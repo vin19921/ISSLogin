@@ -67,7 +67,7 @@ public struct OTPView: View {
                                             isFirstResponder[i] = false
                                         }
                                         isFirstResponder[index] = true
-                                    })
+                                    }
                     )
                     .frame(width: 36, height: 36)
                     .padding()

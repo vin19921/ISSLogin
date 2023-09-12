@@ -89,10 +89,3 @@ struct OTPDigitTextField: View {
             .keyboardType(.numberPad)
     }
 }
-
-struct OTPView_Previews: PreviewProvider {
-    static var previews: some View {
-        OTPView()
-    }
-}
-

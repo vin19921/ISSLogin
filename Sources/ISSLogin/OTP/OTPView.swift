@@ -14,7 +14,7 @@ public struct OTPView: View {
     @ObservedObject private var presenter: OTPPresenter
 
     @State private var pin: [String] = Array(repeating: "", count: 4)
-    @State private var isFirstResponder: [Bool] = Array(repeating: false, count: 4)
+    @State private var isFirstResponder: [Bool] = [true, false, false, false]
 
     // MARK: Injection
 
@@ -60,25 +60,43 @@ public struct OTPView: View {
                                     keyboardType: .numberPad,
                                     maxLength: 1,
                                     toolbarButtonTitle: "",
-                                    textFieldDidChange: { print("\(pin[index])")},
-                                    onTapGesture: {
-                                        print("on Tap \(index)")
-                                        for i in 0..<isFirstResponder.count {
-                                            isFirstResponder[i] = false
+                                    textFieldDidChange: {
+                                        print("\(pin[index])")
+                                        isFirstResponder[index] = false
+                                        if index < pin.count-1 {
+                                            isFirstResponder[index+1] = true
                                         }
-                                        isFirstResponder[index] = true
+                                        print("\(isFirstResponder)")
                                     }
+//                                    ,
+//                                    onTapGesture: {
+//                                        print("on Tap \(index)")
+//                                        for i in 0..<isFirstResponder.count {
+//                                            isFirstResponder[i] = false
+//                                        }
+//                                        isFirstResponder[index] = true
+//                                    }
                     )
-                    .frame(width: 36, height: 36)
+//                    .frame(width: 36, height: 36)
                     .padding()
                     .background(Theme.current.issWhite.color)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .accentColor(nil) // Set the accent color for the text field
+                    .accentColor(Color.red) // Set the accent color for the text field
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                 }
+                
+                Text("Generate 1234")
+                    .foregroundColor(Color.blue)
+                    .onTapGesture {
+                        let inputString = "1234"
+                        for (index, character) in inputString.enumerated() {
+                            print("Character at index \(index): \(character)")
+                            pin[index] = character
+                        }
+                    }
                     
 //                TextField("", text: $pinOne)
 //                    .modifier(OtpModifer(pin:$pinOne))
@@ -132,19 +150,19 @@ public struct OTPView: View {
 
             Spacer()
 
-            Button(action: {
-                print("Verify btn")
-            }) {
-                Text("Verify")
-                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                        verticalPadding: 8)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity) // Expands the button to full screen width
-                    .background(Color.black)
-                    .cornerRadius(12)
-            }
-            .padding()
+//            Button(action: {
+//                print("Verify btn")
+//            }) {
+//                Text("Verify")
+//                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                        verticalPadding: 8)
+//                    .foregroundColor(.white)
+//                    .frame(maxWidth: .infinity) // Expands the button to full screen width
+//                    .background(Color.black)
+//                    .cornerRadius(12)
+//            }
+//            .padding()
         }
         .background(Theme.current.grayDisabled.color)
     }

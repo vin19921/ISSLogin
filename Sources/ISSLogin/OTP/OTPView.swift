@@ -8,6 +8,19 @@
 import SwiftUI
 
 struct OTPView: View {
+    @ObservedObject private var presenter: OTPPresenter
+    
+    @State private var emailText = ""
+    @State private var passwordText = ""
+
+    // MARK: Injection
+
+    @Environment(\.presentationMode) var presentationMode
+
+    init(presenter: OTPPresenter) {
+        self.presenter = presenter
+    }
+
     @State private var otp: String = ""
     
     var body: some View {

@@ -56,19 +56,25 @@ public struct OTPView: View {
     }
     
     func digitAtIndex(_ index: Int) -> Binding<String> {
-        let currentIndex = otp.index(otp.startIndex, offsetBy: index)
-        let digit = otp[currentIndex]
         return Binding<String>(
             get: {
-                return String(digit)
+                if index < otp.count {
+                    let currentIndex = otp.index(otp.startIndex, offsetBy: index)
+                    return String(otp[currentIndex])
+                } else {
+                    return ""
+                }
             },
             set: { newValue in
                 if newValue.count > 0 {
-                    otp.replaceSubrange(currentIndex...currentIndex, with: newValue)
-                    if index < 5 {
-                        let nextIndex = otp.index(otp.startIndex, offsetBy: index + 1)
-                        DispatchQueue.main.async {
-                            UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                    if index < otp.count {
+                        let currentIndex = otp.index(otp.startIndex, offsetBy: index)
+                        otp.replaceSubrange(currentIndex...currentIndex, with: newValue)
+                        if index < 5 {
+                            let nextIndex = otp.index(otp.startIndex, offsetBy: index + 1)
+                            DispatchQueue.main.async {
+                                UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                            }
                         }
                     }
                 }

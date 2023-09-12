@@ -55,7 +55,7 @@ public struct OTPView: View {
             HStack(spacing:16) {
                 Spacer()
                 if #available(iOS 16.0, *) {
-                    TextField("", text: $pinText)
+                    TextField($pinText)
                         .kerning(15)
                         .lineLimit(1)
                         .fontWithLineHeight(font: Theme.current.headline4.uiFont,
@@ -66,7 +66,8 @@ public struct OTPView: View {
                         .onChange(of: pinText, perform: {
                             pinText = String($0.prefix(4))
                         })
-                        .frame(width: 100)
+                        .frame(width: 110)
+                        .keyboardType(.numberPad)
                 } else {
                     // Fallback on earlier versions
                 }

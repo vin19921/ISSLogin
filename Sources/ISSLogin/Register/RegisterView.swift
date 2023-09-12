@@ -56,6 +56,7 @@ public struct RegisterView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                 }
+                .padding()
                 Spacer()
             }
         }

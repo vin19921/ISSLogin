@@ -86,30 +86,22 @@ public struct LoginView: View {
                             .cornerRadius(12)
                     }
 
-                    Spacer()
-                    Text("Sign Up")
-                        .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-                                            verticalPadding: 0)
-                        .foregroundColor(.blue)
-                        .onTapGesture {
-                            presenter.routeToRegister()
-                        }
-                        .padding()
+//                    Spacer()
+                  
                     
                 }
                 .padding()
 //                Spacer()
-//                ZStack(alignment: .bottom) {
-//                    Text("Sign Up")
-//                        .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-//                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-//                                            verticalPadding: 0)
-//                        .foregroundColor(.blue)
-//                        .onTapGesture {
-//                            presenter.routeToRegister()
-//                        }
-//                }
+            }
+            ZStack(alignment: .bottom) {
+                Text("Register")
+                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                        verticalPadding: 0)
+                    .foregroundColor(.blue)
+                    .onTapGesture {
+                        presenter.routeToRegister()
+                    }
             }
         }
     }

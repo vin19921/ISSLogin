@@ -63,10 +63,19 @@ public struct OTPView: View {
                                     textFieldDidChange: {
                                         print("\(pin[index])")
 //                                        isFirstResponder[index] = false
-                                        if index < pin.count-1 {
-                                            isFirstResponder[index+1] = true
-                                            isFirstResponder[index] = false
-                                        }
+                        if pin[index].isEmpty {
+                            if index > -1 {
+                                isFirstResponder[index-1] = true
+                                isFirstResponder[index] = false
+                            }
+                        } else {
+                            if index < pin.count-1 {
+                                isFirstResponder[index+1] = true
+                                isFirstResponder[index] = false
+                            } else {
+                                isFirstResponder[index] = false
+                            }
+                        }
                                         print("\(isFirstResponder)")
                                     }
 //                                    ,
@@ -78,10 +87,10 @@ public struct OTPView: View {
 //                                        isFirstResponder[index] = true
 //                                    }
                     )
-                    .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
-                                        lineHeight: Theme.current.subtitle2.lineHeight,
+                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                        lineHeight: Theme.current.headline4.lineHeight,
                                         verticalPadding: 0)
-                    .frame(width: 40, height: 40)
+                    .frame(height: 40)
                     .padding(.horizontal)
                     .background(Theme.current.issWhite.color)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -174,7 +183,9 @@ public struct OTPView: View {
         }
         .background(Theme.current.grayDisabled.color)
         .onAppear {
-            isFirstResponder[0] = true
+            DispatchQueue.main.async {
+                isFirstResponder[0] = true
+            }
         }
     }
 }

@@ -93,16 +93,16 @@ public struct LoginView: View {
                 .padding()
 //                Spacer()
             }
-            ZStack(alignment: .bottom) {
-                Text("Register")
-                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-                                        verticalPadding: 0)
-                    .foregroundColor(.blue)
-                    .onTapGesture {
-                        presenter.routeToRegister()
-                    }
-            }
+        }
+        ZStack(alignment: .bottom) {
+            Text("Register")
+                .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+                                    lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                    verticalPadding: 0)
+                .foregroundColor(.blue)
+                .onTapGesture {
+                    presenter.routeToRegister()
+                }
         }
     }
 }

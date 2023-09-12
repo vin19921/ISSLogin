@@ -42,19 +42,90 @@ public struct RegisterView: View {
                         .padding()
                 }
                 ZStack {
-                    HStack {
-                        TextField("Full Name (as Per NRIC)", text: $fullNameText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
+                    VStack(spacing: 16) {
+                        HStack {
+                            TextField("Full Name (as Per NRIC)", text: $fullNameText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+
+                        HStack {
+                            TextField("Password", text: $fullNameText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+
+                        HStack {
+                            TextField("Confirm Password", text: $fullNameText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+
+                        HStack {
+                            TextField("Email", text: $fullNameText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+
+                        HStack {
+                            TextField("Mobile No.", text: $fullNameText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+
+                        Button(action: {
+                            print("Next btn")
+                        }) {
+                            Text("Next")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity) // Expands the button to full screen width
+                                .background(Color.black)
+                                .cornerRadius(12)
+                        }
                     }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                    )
                 }
                 .padding()
                 Spacer()

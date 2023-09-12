@@ -32,20 +32,23 @@ public struct LoginView: View {
                     Spacer()
                     Image(systemName: "xmark")
                         .resizable()
-                        .frame(width: 36, height: 36)
+                        .frame(width: 24, height: 24)
                         .aspectRatio(contentMode: .fill)
                         .foregroundColor(Color.black)
                         .onTapGesture {
                             presentationMode.wrappedValue.dismiss()
                         }
+                        .padding()
                 }
+                Spacer()
             }
             ZStack(alignment: .center) {
 //                Spacer()
-                VStack {
+                VStack(spacing: 16) {
                     HStack {
                         TextField("Email", text: $emailText)
                     }
+                    .frame(height: 32)
                     .padding(.horizontal)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(
@@ -55,15 +58,40 @@ public struct LoginView: View {
                     HStack {
                         TextField("Password", text: $passwordText)
                     }
-                    .padding(.top)
+                    .frame(height: 32)
                     .padding(.horizontal)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
+
+                    Button(action: {
+                        print("Login btn")
+                    }) {
+                        Text("LOGIN")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 8)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity) // Expands the button to full screen width
+                            .background(Color.black)
+                            .cornerRadius(12)
+                    }
+                    .padding()
                 }
+                .padding()
 //                Spacer()
+                ZStack(alignment: .bottom) {
+                    Text("Sign Up")
+                        .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                            verticalPadding: 0)
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            presenter.routeToRegister()
+                        }
+                }
             }
         }
     }

@@ -24,4 +24,8 @@ extension LoginPresenter {
     func routeToLogin() {
         router?.navigate(to: .loginScreen)
     }
+
+    func routeToRegister() {
+        router?.navigate(to: .registerScreen)
+    }
 }

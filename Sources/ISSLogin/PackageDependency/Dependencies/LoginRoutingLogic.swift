@@ -6,5 +6,6 @@
 //
 
 public protocol LoginRoutingLogic {
-    func navigateToLogin()
+    func navigateToLoginScreen()
+    func navigateToRegisterScreen()
 }

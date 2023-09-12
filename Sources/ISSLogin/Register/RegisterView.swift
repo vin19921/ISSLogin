@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct RegisterView: View {
 
-//    @ObservedObject private var presenter: LoginPresenter
+    @ObservedObject private var presenter: RegisterPresenter
     
     @State private var fullNameText = ""
     @State private var passwordText = ""
@@ -20,9 +20,9 @@ public struct RegisterView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-//    init(presenter: LoginPresenter) {
-//        self.presenter = presenter
-//    }
+    init(presenter: RegisterPresenter) {
+        self.presenter = presenter
+    }
 
     // MARK: View
 

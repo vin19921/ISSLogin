@@ -15,6 +15,7 @@ public struct OTPView: View {
 
     @State private var pin: [String] = Array(repeating: "", count: 4)
     @State private var isFirstResponder: [Bool] = Array(repeating: false, count: 4)
+    @State private var pinText = ""
 
     // MARK: Injection
 
@@ -53,52 +54,57 @@ public struct OTPView: View {
 
             HStack(spacing:16, content: {
                 Spacer()
-                ForEach(0..<4, id: \.self) { index in
-                    CustomTextField(text: $pin[index],
-                                    isFirstResponder: $isFirstResponder[index],
-                                    font: Theme.current.bodyTwoMedium.uiFont,
-                                    keyboardType: .numberPad,
-                                    maxLength: 1,
-                                    toolbarButtonTitle: "",
-                                    textFieldDidChange: {
-                                        print("\(pin[index])")
-//                                        isFirstResponder[index] = false
-                        if pin[index].isEmpty {
-                            if index > -1 {
-                                isFirstResponder[index-1] = true
+                TextField("", text: $pinText)
+                    .kerning(10)
+                    .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
+                                        lineHeight: Theme.current.subtitle.lineHeight,
+                                        verticalPadding: 0)
+//                ForEach(0..<4, id: \.self) { index in
+//                    CustomTextField(text: $pin[index],
+//                                    isFirstResponder: $isFirstResponder[index],
+//                                    font: Theme.current.bodyTwoMedium.uiFont,
+//                                    keyboardType: .numberPad,
+//                                    maxLength: 1,
+//                                    toolbarButtonTitle: "",
+//                                    textFieldDidChange: {
+//                                        print("\(pin[index])")
+////                                        isFirstResponder[index] = false
+//                        if pin[index].isEmpty {
+//                            if index > -1 {
+//                                isFirstResponder[index-1] = true
+////                                isFirstResponder[index] = false
+//                            }
+//                        } else {
+//                            if index < pin.count-1 {
+//                                isFirstResponder[index+1] = true
+////                                isFirstResponder[index] = false
+//                            } else {
 //                                isFirstResponder[index] = false
-                            }
-                        } else {
-                            if index < pin.count-1 {
-                                isFirstResponder[index+1] = true
-//                                isFirstResponder[index] = false
-                            } else {
-                                isFirstResponder[index] = false
-                            }
-                        }
-                                        print("\(isFirstResponder)")
-                                    }
-                                    ,
-                                    onTapGesture: {
-                                        print("on Tap \(index)")
-//                                        for i in 0..<isFirstResponder.count {
-//                                            isFirstResponder[i] = false
-//                                        }
-                                        isFirstResponder[index] = true
-                                    }
-                    )
-//                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-//                                        lineHeight: Theme.current.headline4.lineHeight,
-//                                        verticalPadding: 0)
-                    .frame(width: 32, height: 32)
-                    .padding(.horizontal)
-                    .background(Theme.current.issWhite.color)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .accentColor(Color.red) // Set the accent color for the text field
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                    )
+//                            }
+//                        }
+//                                        print("\(isFirstResponder)")
+//                                    }
+//                                    ,
+//                                    onTapGesture: {
+//                                        print("on Tap \(index)")
+////                                        for i in 0..<isFirstResponder.count {
+////                                            isFirstResponder[i] = false
+////                                        }
+//                                        isFirstResponder[index] = true
+//                                    }
+//                    )
+////                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+////                                        lineHeight: Theme.current.headline4.lineHeight,
+////                                        verticalPadding: 0)
+//                    .frame(width: 32, height: 32)
+//                    .padding(.horizontal)
+//                    .background(Theme.current.issWhite.color)
+//                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                    .accentColor(Color.red) // Set the accent color for the text field
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                    )
                 }
                 Spacer()
 
@@ -151,6 +157,8 @@ public struct OTPView: View {
                 
             })
             .padding()
+            .background(Color.orange)
+            .foregroundColor(Color.black)
             
             Text("Generate 1234")
                 .foregroundColor(Color.blue)

@@ -57,11 +57,16 @@ public struct OTPView: View {
                 if #available(iOS 16.0, *) {
                     TextField("", text: $pinText)
                         .kerning(15)
-                        .lineLimit(4)
-                        .fontWithLineHeight(font: Theme.current.headline2.uiFont,
-                                            lineHeight: Theme.current.headline2.lineHeight,
+                        .lineLimit(1)
+                        .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                            lineHeight: Theme.current.headline4.lineHeight,
                                             verticalPadding: 0)
                         .background(Color.white)
+                        .textContentType(.oneTimeCode)
+                        .onChange(of: pinText, perform: {
+                            pinText = String($0.prefix(8))
+                        })
+                        .frame(width: 200)
                 } else {
                     // Fallback on earlier versions
                 }

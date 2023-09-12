@@ -52,7 +52,7 @@ public struct OTPView: View {
                 .fontWeight(.thin)
                 .padding(.top)
 
-            HStack(spacing:16, content: {
+            HStack(spacing:16) {
                 Spacer()
                 TextField("", text: $pinText)
                     .kerning(10)
@@ -105,7 +105,7 @@ public struct OTPView: View {
 //                        RoundedRectangle(cornerRadius: 10)
 //                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
 //                    )
-                }
+//                }
                 Spacer()
 
 //                TextField("", text: $pinOne)
@@ -155,7 +155,8 @@ public struct OTPView: View {
 ////                    .focused($pinFocusState, equals: .pinFour)
                 
                 
-            })
+            }
+//            )
             .padding()
             .background(Color.orange)
             .foregroundColor(Color.black)

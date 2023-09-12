@@ -117,6 +117,7 @@ public struct RegisterView: View {
 
                         Button(action: {
                             print("confirm btn")
+                            presenter.routeToOTP()
                         }) {
                             Text("Confirm")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

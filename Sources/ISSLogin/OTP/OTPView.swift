@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OTPView: View {
+public struct OTPView: View {
     @ObservedObject private var presenter: OTPPresenter
     
     @State private var emailText = ""
@@ -23,7 +23,7 @@ struct OTPView: View {
 
     @State private var otp: String = ""
     
-    var body: some View {
+    public var body: some View {
         VStack {
             Text("Enter OTP")
                 .font(.largeTitle)

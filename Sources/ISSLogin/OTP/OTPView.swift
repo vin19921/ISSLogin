@@ -52,7 +52,7 @@ public struct OTPView: View {
                 .fontWeight(.thin)
                 .padding(.top)
 
-            HStack(spacing:16) {
+            HStack(spacing: 0) {
                 Spacer()
                 if #available(iOS 16.0, *) {
                     TextField("", text: $pinText)
@@ -69,7 +69,7 @@ public struct OTPView: View {
                         .frame(width: 120)
                         .keyboardType(.numberPad)
                         .accentColor(Color.red)
-                        .padding(.horizontal)
+//                        .padding(.horizontal)
                 } else {
                     // Fallback on earlier versions
                 }

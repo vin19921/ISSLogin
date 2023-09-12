@@ -13,7 +13,7 @@ public struct OTPView: View {
 
     @ObservedObject private var presenter: OTPPresenter
 
-    @State private var pin: [String] = Array(repeating: "", count: 4)
+    @State private var pin: [Character] = Array(repeating: "", count: 4)
     @State private var isFirstResponder: [Bool] = [true, false, false, false]
 
     // MARK: Injection

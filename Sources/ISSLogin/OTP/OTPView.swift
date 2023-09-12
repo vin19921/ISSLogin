@@ -5,6 +5,7 @@
 //  Created by Wing Seng Chew on 12/09/2023.
 //
 
+import ISSTheme
 import SwiftUI
 
 public struct OTPView: View {
@@ -31,7 +32,16 @@ public struct OTPView: View {
             
             HStack(spacing: 20) {
                 ForEach(0..<6, id: \.self) { index in
-                    OTPDigitTextField(value: digitAtIndex(index))
+                    OTPDigitTextField(value: digitAtIndex(index), isLastField: index == 5) {
+                        if index < 5 {
+                            let nextIndex = otp.index(otp.startIndex, offsetBy: index + 1)
+                            let nextDigit = String(otp[nextIndex])
+                            if nextDigit.isEmpty {
+                                // Set focus to the next digit field
+                                otp.replaceSubrange(nextIndex...nextIndex, with: "0") // Place a placeholder digit
+                            }
+                        }
+                    }
                 }
             }
             .padding()
@@ -53,6 +63,7 @@ public struct OTPView: View {
             
             Spacer()
         }
+        .background(Theme.current.grayDisabled.color)
     }
     
     func digitAtIndex(_ index: Int) -> Binding<String> {
@@ -85,6 +96,8 @@ public struct OTPView: View {
 
 struct OTPDigitTextField: View {
     @Binding var value: String
+    var isLastField: Bool = false
+    var nextResponder: (() -> Void)? = nil
     
     var body: some View {
         TextField("", text: $value)
@@ -93,5 +106,10 @@ struct OTPDigitTextField: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .multilineTextAlignment(.center)
             .keyboardType(.numberPad)
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+                if self.isLastField {
+                    self.nextResponder?()
+                }
+            }
     }
 }

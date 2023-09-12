@@ -13,8 +13,8 @@ public struct OTPView: View {
 
     @ObservedObject private var presenter: OTPPresenter
 
-    @State private var emailText = ""
-    @State private var passwordText = ""
+    @State private var pin: [String] = Array(repeating: "", count: 4)
+    @State private var isFirstResponder: [Bool] = Array(repeating: false, count: 4)
 
     // MARK: Injection
 
@@ -26,15 +26,15 @@ public struct OTPView: View {
 
     //MARK -> PROPERTIES
 
-    enum FocusPin {
-        case  pinOne, pinTwo, pinThree, pinFour
-    }
+//    enum FocusPin {
+//        case  pinOne, pinTwo, pinThree, pinFour
+//    }
 
 //    @FocusState private var pinFocusState : FocusPin?
-    @State var pinOne: String = ""
-    @State var pinTwo: String = ""
-    @State var pinThree: String = ""
-    @State var pinFour: String = ""
+//    @State var pinOne: String = ""
+//    @State var pinTwo: String = ""
+//    @State var pinThree: String = ""
+//    @State var pinFour: String = ""
 
     //MARK -> BODY
     public var body: some View {
@@ -43,6 +43,7 @@ public struct OTPView: View {
             Text("Verify your Email Address")
                 .font(.title2)
                 .fontWeight(.semibold)
+                .padding(.top)
 
 
             Text("Enter 4 digit code we'll text you on Email")
@@ -50,53 +51,77 @@ public struct OTPView: View {
                 .fontWeight(.thin)
                 .padding(.top)
 
-                HStack(spacing:15, content: {
+            HStack(spacing:15, content: {
+                
+                ForEach(0..<4, id: \.self) { index in
+                    CustomTextField(text: $pin[index],
+                                    isFirstResponder: $isFirstResponder[index],
+                                    font: Theme.current.bodyTwoMedium.uiFont, keyboardType: .numericPad,
+                                    textFieldDidChange: { print("\(pin[index])")},
+                                    onTapGesture: {
+                                        print("on Tap \(index)")
+                                        for i in 0..<isFirstResponder.count {
+                                            isFirstResponder[i] = false
+                                        }
+                                        isFirstResponder[index] = true
+                                    })
+                    )
+                    .frame(width: 36, height: 36)
+                    .padding()
+                    .background(Theme.current.issWhite.color)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .accentColor(nil) // Set the accent color for the text field
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                    )
+                }
                     
-                TextField("", text: $pinOne)
-                    .modifier(OtpModifer(pin:$pinOne))
+//                TextField("", text: $pinOne)
+//                    .modifier(OtpModifer(pin:$pinOne))
 //                    .onChange(of:pinOne){newVal in
 //                        if (newVal.count == 1) {
-//                            pinFocusState = .pinTwo
+//                            self.resignFirstResponder()
 //                        }
 //                    }
-//                    .focused($pinFocusState, equals: .pinOne)
-                
-                TextField("", text:  $pinTwo)
-                    .modifier(OtpModifer(pin:$pinTwo))
-//                    .onChange(of:pinTwo){newVal in
-//                        if (newVal.count == 1) {
-//                            pinFocusState = .pinThree
-//                        }else {
-//                            if (newVal.count == 0) {
-//                                pinFocusState = .pinOne
-//                            }
-//                        }
-//                    }
-//                    .focused($pinFocusState, equals: .pinTwo)
-                
-                
-                TextField("", text:$pinThree)
-                    .modifier(OtpModifer(pin:$pinThree))
-//                    .onChange(of:pinThree){newVal in
-//                        if (newVal.count == 1) {
-//                            pinFocusState = .pinFour
-//                        }else {
-//                            if (newVal.count == 0) {
-//                                pinFocusState = .pinTwo
-//                            }
-//                        }
-//                    }
-//                    .focused($pinFocusState, equals: .pinThree)
-                
-                
-                TextField("", text:$pinFour)
-                    .modifier(OtpModifer(pin:$pinFour))
-//                    .onChange(of:pinFour){newVal in
-//                        if (newVal.count == 0) {
-//                            pinFocusState = .pinThree
-//                        }
-//                    }
-//                    .focused($pinFocusState, equals: .pinFour)
+////                    .focused($pinFocusState, equals: .pinOne)
+//
+//                TextField("", text:  $pinTwo)
+//                    .modifier(OtpModifer(pin:$pinTwo))
+////                    .onChange(of:pinTwo){newVal in
+////                        if (newVal.count == 1) {
+////                            pinFocusState = .pinThree
+////                        }else {
+////                            if (newVal.count == 0) {
+////                                pinFocusState = .pinOne
+////                            }
+////                        }
+////                    }
+////                    .focused($pinFocusState, equals: .pinTwo)
+//
+//
+//                TextField("", text:$pinThree)
+//                    .modifier(OtpModifer(pin:$pinThree))
+////                    .onChange(of:pinThree){newVal in
+////                        if (newVal.count == 1) {
+////                            pinFocusState = .pinFour
+////                        }else {
+////                            if (newVal.count == 0) {
+////                                pinFocusState = .pinTwo
+////                            }
+////                        }
+////                    }
+////                    .focused($pinFocusState, equals: .pinThree)
+//
+//
+//                TextField("", text:$pinFour)
+//                    .modifier(OtpModifer(pin:$pinFour))
+////                    .onChange(of:pinFour){newVal in
+////                        if (newVal.count == 0) {
+////                            pinFocusState = .pinThree
+////                        }
+////                    }
+////                    .focused($pinFocusState, equals: .pinFour)
                 
                 
             })
@@ -116,6 +141,7 @@ public struct OTPView: View {
                     .background(Color.black)
                     .cornerRadius(12)
             }
+            .padding()
         }
         .background(Theme.current.grayDisabled.color)
     }
@@ -133,7 +159,6 @@ struct OtpModifer: ViewModifier {
         }
     }
 
-
     //MARK -> BODY
     func body(content: Content) -> some View {
         content
@@ -144,7 +169,7 @@ struct OtpModifer: ViewModifier {
             .background(Color.white.cornerRadius(5))
             .background(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color("blueColor"), lineWidth: 2)
+                    .stroke(Color.blue, lineWidth: 2)
             )
     }
 }

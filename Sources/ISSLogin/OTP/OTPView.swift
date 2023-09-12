@@ -57,7 +57,7 @@ public struct OTPView: View {
                     CustomTextField(text: $pin[index],
                                     isFirstResponder: $isFirstResponder[index],
                                     font: Theme.current.bodyTwoMedium.uiFont,
-                                    keyboardType: .numpad,
+                                    keyboardType: .numberPad,
                                     maxLength: 1,
                                     toolbarButtonTitle: "",
                                     textFieldDidChange: { print("\(pin[index])")},

@@ -92,7 +92,8 @@ public struct OTPView: View {
                     .foregroundColor(Color.blue)
                     .onTapGesture {
                         let inputString = "1234"
-                        for (index, character) in inputString.enumerated() {
+                        let characters = Array(inputString)
+                        for (index, character) in characters.enumerated() {
                             print("Character at index \(index): \(character)")
                             pin[index] = character
                         }

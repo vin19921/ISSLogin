@@ -66,6 +66,9 @@ public struct OTPView: View {
                         .textContentType(.oneTimeCode)
                         .onChange(of: pinText, perform: {
                             pinText = String($0.prefix(4))
+                            if pinText.count == 4 {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            }
                         })
                         .frame(width: 140)
                         .keyboardType(.numberPad)

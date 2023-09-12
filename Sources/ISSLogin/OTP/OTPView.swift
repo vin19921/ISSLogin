@@ -55,7 +55,7 @@ public struct OTPView: View {
             HStack(spacing:16) {
                 Spacer()
                 if #available(iOS 16.0, *) {
-                    TextField($pinText)
+                    TextField("", text: $pinText)
                         .kerning(15)
                         .lineLimit(1)
                         .fontWithLineHeight(font: Theme.current.headline4.uiFont,

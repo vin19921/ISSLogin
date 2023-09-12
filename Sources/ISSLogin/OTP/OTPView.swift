@@ -218,7 +218,7 @@ struct PinTextField: View {
 
     var body: some View {
         TextField("", text: $text)
-            .frame(width: 40, height: 40)
+            .frame(width: 45, height: 45)
             .font(.largeTitle)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .multilineTextAlignment(.center)

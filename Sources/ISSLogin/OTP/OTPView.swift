@@ -66,9 +66,10 @@ public struct OTPView: View {
                         .onChange(of: pinText, perform: {
                             pinText = String($0.prefix(4))
                         })
-                        .frame(width: 116)
+                        .frame(width: 120)
                         .keyboardType(.numberPad)
                         .accentColor(Color.red)
+                        .padding(.horizontal)
                 } else {
                     // Fallback on earlier versions
                 }

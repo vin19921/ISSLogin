@@ -51,7 +51,7 @@ public struct OTPView: View {
                 .fontWeight(.thin)
                 .padding(.top)
 
-            HStack(spacing:15, content: {
+            HStack(spacing:16, content: {
                 
                 ForEach(0..<4, id: \.self) { index in
                     CustomTextField(text: $pin[index],
@@ -77,8 +77,8 @@ public struct OTPView: View {
 //                                        isFirstResponder[index] = true
 //                                    }
                     )
-//                    .frame(width: 36, height: 36)
-                    .padding()
+                    .frame(width: 36, height: 36)
+//                    .padding()
                     .background(Theme.current.issWhite.color)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .accentColor(Color.red) // Set the accent color for the text field
@@ -136,7 +136,7 @@ public struct OTPView: View {
                 
                 
             })
-            .padding(.vertical)
+            .padding()
             
             Text("Generate 1234")
                 .foregroundColor(Color.blue)

@@ -48,6 +48,9 @@ public struct LoginView: View {
                 VStack(spacing: 16) {
                     HStack {
                         TextField("Email", text: $emailText)
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
                     }
                     .frame(height: 32)
                     .padding(.horizontal)
@@ -58,6 +61,9 @@ public struct LoginView: View {
                     )
                     HStack {
                         TextField("Password", text: $passwordText)
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
                     }
                     .frame(height: 32)
                     .padding(.horizontal)
@@ -79,11 +85,8 @@ public struct LoginView: View {
                             .background(Color.black)
                             .cornerRadius(12)
                     }
-                    .padding()
-                }
-                .padding()
-//                Spacer()
-                ZStack(alignment: .bottom) {
+
+                    Spacer()
                     Text("Sign Up")
                         .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
                                             lineHeight: Theme.current.bodyThreeRegular.lineHeight,
@@ -92,7 +95,21 @@ public struct LoginView: View {
                         .onTapGesture {
                             presenter.routeToRegister()
                         }
+                        .padding()
+                    
                 }
+                .padding()
+//                Spacer()
+//                ZStack(alignment: .bottom) {
+//                    Text("Sign Up")
+//                        .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+//                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+//                                            verticalPadding: 0)
+//                        .foregroundColor(.blue)
+//                        .onTapGesture {
+//                            presenter.routeToRegister()
+//                        }
+//                }
             }
         }
     }

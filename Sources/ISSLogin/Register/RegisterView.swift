@@ -44,6 +44,9 @@ public struct RegisterView: View {
                 ZStack {
                     HStack {
                         TextField("Full Name (as Per NRIC)", text: $fullNameText)
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
                     }
                     .frame(height: 32)
                     .padding(.horizontal)
@@ -53,6 +56,7 @@ public struct RegisterView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                 }
+                Spacer()
             }
         }
     }

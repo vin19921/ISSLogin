@@ -209,6 +209,7 @@ public struct OTPView: View {
 //            }
 //            .padding()
         }
+        .edgesIgnoringSafeArea(.all)
         .background(Theme.current.grayDisabled.color)
         .onAppear {
             DispatchQueue.main.async {

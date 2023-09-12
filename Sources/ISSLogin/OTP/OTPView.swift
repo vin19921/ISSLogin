@@ -14,7 +14,7 @@ public struct OTPView: View {
     @ObservedObject private var presenter: OTPPresenter
 
     @State private var pin: [String] = Array(repeating: "", count: 4)
-    @State private var isFirstResponder: [Bool] = [true, false, false, false]
+    @State private var isFirstResponder: [Bool] = Array(repeating: false, count: 4)
 
     // MARK: Injection
 
@@ -52,7 +52,7 @@ public struct OTPView: View {
                 .padding(.top)
 
             HStack(spacing:16, content: {
-                
+                Spacer()
                 ForEach(0..<4, id: \.self) { index in
                     CustomTextField(text: $pin[index],
                                     isFirstResponder: $isFirstResponder[index],
@@ -77,7 +77,7 @@ public struct OTPView: View {
 //                                        isFirstResponder[index] = true
 //                                    }
                     )
-                    .frame(width: 36, height: 36)
+                    .frame(width: 36, height: 36, alignment: .center)
 //                    .padding()
                     .background(Theme.current.issWhite.color)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -87,6 +87,7 @@ public struct OTPView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                 }
+                Spacer()
 
 //                TextField("", text: $pinOne)
 //                    .modifier(OtpModifer(pin:$pinOne))
@@ -146,6 +147,7 @@ public struct OTPView: View {
                     for (index, character) in characters.enumerated() {
                         print("Character at index \(index): \(character)")
                         pin[index] = String(character)
+                        print("\(pin[index])")
                     }
                 }
 
@@ -167,6 +169,9 @@ public struct OTPView: View {
 //            .padding()
         }
         .background(Theme.current.grayDisabled.color)
+        .onAppear {
+            isFirstResponder[0] = true
+        }
     }
 }
 

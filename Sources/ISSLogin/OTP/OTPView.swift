@@ -64,9 +64,9 @@ public struct OTPView: View {
                         .background(Color.white)
                         .textContentType(.oneTimeCode)
                         .onChange(of: pinText, perform: {
-                            pinText = String($0.prefix(8))
+                            pinText = String($0.prefix(4))
                         })
-                        .frame(width: 200)
+                        .frame(width: 100)
                 } else {
                     // Fallback on earlier versions
                 }

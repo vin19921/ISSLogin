@@ -65,6 +65,7 @@ public struct OTPView: View {
 //                                        isFirstResponder[index] = false
                                         if index < pin.count-1 {
                                             isFirstResponder[index+1] = true
+                                            isFirstResponder[index] = false
                                         }
                                         print("\(isFirstResponder)")
                                     }
@@ -77,8 +78,11 @@ public struct OTPView: View {
 //                                        isFirstResponder[index] = true
 //                                    }
                     )
-                    .frame(width: 36, height: 36, alignment: .center)
-//                    .padding()
+                    .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
+                                        lineHeight: Theme.current.subtitle2.lineHeight,
+                                        verticalPadding: 0)
+                    .frame(width: 40, height: 40)
+                    .padding(.horizontal)
                     .background(Theme.current.issWhite.color)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .accentColor(Color.red) // Set the accent color for the text field

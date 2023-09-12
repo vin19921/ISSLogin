@@ -56,7 +56,10 @@ public struct OTPView: View {
                 ForEach(0..<4, id: \.self) { index in
                     CustomTextField(text: $pin[index],
                                     isFirstResponder: $isFirstResponder[index],
-                                    font: Theme.current.bodyTwoMedium.uiFont, keyboardType: .numericPad,
+                                    font: Theme.current.bodyTwoMedium.uiFont,
+                                    keyboardType: .numpad,
+                                    maxLength: 1,
+                                    toolbarButtonTitle: "",
                                     textFieldDidChange: { print("\(pin[index])")},
                                     onTapGesture: {
                                         print("on Tap \(index)")

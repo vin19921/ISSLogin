@@ -38,7 +38,7 @@ public struct OTPView: View {
 
     //MARK -> BODY
     public var body: some View {
-        VStack {
+        VStack(spacing: 16) {
 
             Text("Verify your Email Address")
                 .font(.title2)
@@ -102,21 +102,22 @@ public struct OTPView: View {
             })
             .padding(.vertical)
 
+            Spacer()
+
             Button(action: {
-                print("\(pinOne)\(pinTwo)\(pinThree)\(pinFour)")
-            }, label: {
-                Spacer()
-                Text("Veify")
-                    .font(.system(.title3, design: .rounded))
-                    .fontWeight(.semibold)
+                print("Verify btn")
+            }) {
+                Text("Verify")
+                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                        verticalPadding: 8)
                     .foregroundColor(.white)
-                Spacer()
-            })
-            .padding(15)
-            .background(Color.blue)
-            .clipShape(Capsule())
-            .padding()
+                    .frame(maxWidth: .infinity) // Expands the button to full screen width
+                    .background(Color.black)
+                    .cornerRadius(12)
+            }
         }
+        .background(Theme.current.grayDisabled.color)
     }
 }
 

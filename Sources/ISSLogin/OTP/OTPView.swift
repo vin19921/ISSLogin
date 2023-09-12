@@ -68,6 +68,7 @@ public struct OTPView: View {
                         })
                         .frame(width: 110)
                         .keyboardType(.numberPad)
+                        .accentColor(Color.red)
                 } else {
                     // Fallback on earlier versions
                 }

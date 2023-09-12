@@ -66,31 +66,31 @@ public struct OTPView: View {
                         if pin[index].isEmpty {
                             if index > -1 {
                                 isFirstResponder[index-1] = true
-                                isFirstResponder[index] = false
+//                                isFirstResponder[index] = false
                             }
                         } else {
                             if index < pin.count-1 {
                                 isFirstResponder[index+1] = true
-                                isFirstResponder[index] = false
+//                                isFirstResponder[index] = false
                             } else {
                                 isFirstResponder[index] = false
                             }
                         }
                                         print("\(isFirstResponder)")
                                     }
-//                                    ,
-//                                    onTapGesture: {
-//                                        print("on Tap \(index)")
+                                    ,
+                                    onTapGesture: {
+                                        print("on Tap \(index)")
 //                                        for i in 0..<isFirstResponder.count {
 //                                            isFirstResponder[i] = false
 //                                        }
-//                                        isFirstResponder[index] = true
-//                                    }
+                                        isFirstResponder[index] = true
+                                    }
                     )
-                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-                                        lineHeight: Theme.current.headline4.lineHeight,
-                                        verticalPadding: 0)
-                    .frame(height: 40)
+//                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+//                                        lineHeight: Theme.current.headline4.lineHeight,
+//                                        verticalPadding: 0)
+                    .frame(width: 32, height: 32)
                     .padding(.horizontal)
                     .background(Theme.current.issWhite.color)
                     .clipShape(RoundedRectangle(cornerRadius: 10))

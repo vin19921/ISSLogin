@@ -9,6 +9,7 @@ import ISSTheme
 import SwiftUI
 import Combine
 
+@available(iOS 15.0, *)
 public struct OTPView: View {
 
     @ObservedObject private var presenter: OTPPresenter
@@ -30,7 +31,7 @@ public struct OTPView: View {
         case  pinOne, pinTwo, pinThree, pinFour
     }
 
-    @available(iOS 15.0, *) @FocusState private var pinFocusState : FocusPin?
+    @FocusState private var pinFocusState : FocusPin?
     @State var pinOne: String = ""
     @State var pinTwo: String = ""
     @State var pinThree: String = ""

@@ -57,4 +57,27 @@ public enum ISSGateway {
         presenter.setRouter(registerRouter)
         return view
     }
+
+    public static func makeOTP(theme: Theme,
+//                                          provider: EventsDataProviderLogic,
+                                          router: OTPRoutingLogic,
+                                          networkMonitor: NetworkMonitor
+    ) ->
+    OTPView
+    {
+        /// Explicity setting the theme to register fonts and colors required by events package.
+        Theme.current = theme
+//        injectEventsOverviewProvider(provider)
+//        injectEventsOverviewRouter(router)
+//        injectNetworkMonitor(networkMonitor)
+        
+//        let interactor = EventsOverviewInteractor(provider: provider)
+        let presenter = OTPPresenter()
+        
+        let view = OTPView(presenter: presenter)
+        let otpRouter = OTPRouter(navigator: router)
+        
+        presenter.setRouter(otpRouter)
+        return view
+    }
 }

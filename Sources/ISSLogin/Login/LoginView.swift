@@ -39,10 +39,31 @@ public struct LoginView: View {
                             presentationMode.wrappedValue.dismiss()
                         }
                 }
-                Spacer()
-                TextField("Email", text: $emailText)
-                TextField("Password", text: $passwordText)
-                Spacer()
+            }
+            ZStack(alignment: .center) {
+//                Spacer()
+                VStack {
+                    HStack {
+                        TextField("Email", text: $emailText)
+                    }
+                    .padding(.horizontal)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                    )
+                    HStack {
+                        TextField("Password", text: $passwordText)
+                    }
+                    .padding(.top)
+                    .padding(.horizontal)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                    )
+                }
+//                Spacer()
             }
         }
     }

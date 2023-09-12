@@ -54,11 +54,15 @@ public struct OTPView: View {
 
             HStack(spacing:16) {
                 Spacer()
-                TextField("", text: $pinText)
-                    .kerning(10)
-                    .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
-                                        lineHeight: Theme.current.subtitle.lineHeight,
-                                        verticalPadding: 0)
+                if #available(iOS 16.0, *) {
+                    TextField("", text: $pinText)
+                        .kerning(10)
+                        .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
+                                            lineHeight: Theme.current.subtitle.lineHeight,
+                                            verticalPadding: 0)
+                } else {
+                    // Fallback on earlier versions
+                }
 //                ForEach(0..<4, id: \.self) { index in
 //                    CustomTextField(text: $pin[index],
 //                                    isFirstResponder: $isFirstResponder[index],

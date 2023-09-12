@@ -30,7 +30,7 @@ public struct OTPView: View {
         case  pinOne, pinTwo, pinThree, pinFour
     }
 
-    @FocusState private var pinFocusState : FocusPin?
+    @available(iOS 15.0, *) @FocusState private var pinFocusState : FocusPin?
     @State var pinOne: String = ""
     @State var pinTwo: String = ""
     @State var pinThree: String = ""

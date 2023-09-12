@@ -44,6 +44,20 @@ public struct RegisterView: View {
                 ZStack {
                     VStack(spacing: 16) {
                         HStack {
+                            TextField("Mobile No.", text: $fullNameText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+
+                        HStack {
                             TextField("Full Name (as Per NRIC)", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -99,24 +113,12 @@ public struct RegisterView: View {
                                 .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                         )
 
-                        HStack {
-                            TextField("Mobile No.", text: $fullNameText)
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 0)
-                        }
-                        .frame(height: 32)
-                        .padding(.horizontal)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                        )
+                        Spacer()
 
                         Button(action: {
-                            print("Next btn")
+                            print("confirm btn")
                         }) {
-                            Text("Next")
+                            Text("Confirm")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 8)

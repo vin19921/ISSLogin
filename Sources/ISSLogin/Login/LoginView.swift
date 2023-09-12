@@ -47,7 +47,7 @@ public struct LoginView: View {
 //                Spacer()
                 VStack(spacing: 16) {
                     HStack {
-                        TextField("Email", text: $emailText)
+                        TextField("Mobile No.", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
@@ -76,7 +76,7 @@ public struct LoginView: View {
                     Button(action: {
                         print("Login btn")
                     }) {
-                        Text("LOGIN")
+                        Text("Login")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 8)
@@ -95,14 +95,25 @@ public struct LoginView: View {
             }
         }
         ZStack(alignment: .bottom) {
-            Text("Register")
-                .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-                                    lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-                                    verticalPadding: 0)
-                .foregroundColor(.blue)
-                .onTapGesture {
-                    presenter.routeToRegister()
-                }
+            VStack(spacing: 16) {
+                Text("Forget Password")
+                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                        verticalPadding: 0)
+                    .foregroundColor(.blue)
+                    .onTapGesture {
+                        presenter.routeToRegister()
+                    }
+
+                Text("Register")
+                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                        verticalPadding: 0)
+                    .foregroundColor(.blue)
+                    .onTapGesture {
+                        presenter.routeToRegister()
+                    }
+            }
         }
     }
 }

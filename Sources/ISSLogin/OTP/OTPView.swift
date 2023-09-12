@@ -56,10 +56,12 @@ public struct OTPView: View {
                 Spacer()
                 if #available(iOS 16.0, *) {
                     TextField("", text: $pinText)
-                        .kerning(10)
-                        .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
-                                            lineHeight: Theme.current.subtitle.lineHeight,
+                        .kerning(15)
+                        .lineLimit(4)
+                        .fontWithLineHeight(font: Theme.current.headline2.uiFont,
+                                            lineHeight: Theme.current.headline2.lineHeight,
                                             verticalPadding: 0)
+                        .background(Color.white)
                 } else {
                     // Fallback on earlier versions
                 }
@@ -168,13 +170,14 @@ public struct OTPView: View {
             Text("Generate 1234")
                 .foregroundColor(Color.blue)
                 .onTapGesture {
-                    let inputString = "1234"
-                    let characters = Array(inputString)
-                    for (index, character) in characters.enumerated() {
-                        print("Character at index \(index): \(character)")
-                        pin[index] = String(character)
-                        print("\(pin[index])")
-                    }
+                    pinText = "1234"
+//                    let inputString = "1234"
+//                    let characters = Array(inputString)
+//                    for (index, character) in characters.enumerated() {
+//                        print("Character at index \(index): \(character)")
+//                        pin[index] = String(character)
+//                        print("\(pin[index])")
+//                    }
                 }
 
 

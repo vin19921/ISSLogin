@@ -62,7 +62,7 @@ public struct OTPView: View {
                                     toolbarButtonTitle: "",
                                     textFieldDidChange: {
                                         print("\(pin[index])")
-                                        isFirstResponder[index] = false
+//                                        isFirstResponder[index] = false
                                         if index < pin.count-1 {
                                             isFirstResponder[index+1] = true
                                         }

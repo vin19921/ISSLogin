@@ -87,18 +87,7 @@ public struct OTPView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                 }
-                
-                Text("Generate 1234")
-                    .foregroundColor(Color.blue)
-                    .onTapGesture {
-                        let inputString = "1234"
-                        let characters = Array(inputString)
-                        for (index, character) in characters.enumerated() {
-                            print("Character at index \(index): \(character)")
-                            pin[index] = String(character)
-                        }
-                    }
-                    
+
 //                TextField("", text: $pinOne)
 //                    .modifier(OtpModifer(pin:$pinOne))
 //                    .onChange(of:pinOne){newVal in
@@ -148,6 +137,18 @@ public struct OTPView: View {
                 
             })
             .padding(.vertical)
+            
+            Text("Generate 1234")
+                .foregroundColor(Color.blue)
+                .onTapGesture {
+                    let inputString = "1234"
+                    let characters = Array(inputString)
+                    for (index, character) in characters.enumerated() {
+                        print("Character at index \(index): \(character)")
+                        pin[index] = String(character)
+                    }
+                }
+
 
             Spacer()
 

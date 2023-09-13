@@ -5,6 +5,7 @@
 //  Created by Wing Seng Chew on 12/09/2023.
 //
 
+import ISSCommonUI
 import ISSTheme
 import SwiftUI
 import Combine
@@ -39,185 +40,75 @@ public struct OTPView: View {
 
     //MARK -> BODY
     public var body: some View {
-        VStack(spacing: 16) {
+        ZStack(alignment: .top) {
+            VStack(spacing: .zero) {
+                ISSNavigationBarSUI(data: navigationBarData)
 
-            Text("Verify your Email Address")
-                .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
-                                    lineHeight: Theme.current.subtitle2.lineHeight,
-                                    verticalPadding: 0)
-                .padding(.top, 32)
-
-
-            Text("Enter 4 digit code we'll text you on Email")
-                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                    verticalPadding: 0)
-
-            HStack(spacing: 0) {
-                Spacer()
-                if #available(iOS 16.0, *) {
-                    TextField("", text: $pinText)
-    //                        .padding(.leading, 16)
-                        .tracking(16)
-                        .lineLimit(1)
-                        .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-                                            lineHeight: Theme.current.headline4.lineHeight,
+                VStack(spacing: 16) {
+                    Text("Verify your Email Address")
+                        .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
+                                            lineHeight: Theme.current.subtitle2.lineHeight,
                                             verticalPadding: 0)
-                        .background(Theme.current.backgroundGray.color)
-                        .textContentType(.oneTimeCode)
-                        .onChange(of: pinText, perform: {
-                            pinText = String($0.prefix(4))
-                            if pinText.count == 4 {
-                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            }
-                        })
-                        .frame(width: 140)
-                        .keyboardType(.numberPad)
-                        .accentColor(Color.black)
-                        .multilineTextAlignment(.center)
-//                        .padding(.horizontal)
-                } else {
-                    // Fallback on earlier versions
+                    Text("Enter 4 digit code we'll text you on Email")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 0)
+                    HStack(spacing: 0) {
+                        Spacer()
+                        if #available(iOS 16.0, *) {
+                            TextField("", text: $pinText)
+                                .tracking(16)
+                                .lineLimit(1)
+                                .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                                    lineHeight: Theme.current.headline4.lineHeight,
+                                                    verticalPadding: 0)
+                                .background(Theme.current.backgroundGray.color)
+                                .textContentType(.oneTimeCode)
+                                .onChange(of: pinText, perform: {
+                                    pinText = String($0.prefix(4))
+                                    if pinText.count == 4 {
+                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                    }
+                                })
+                                .frame(width: 140)
+                                .keyboardType(.numberPad)
+                                .accentColor(Color.black)
+                                .multilineTextAlignment(.center)
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                        Spacer()
+                    }
+                    .padding()
                 }
-//                ForEach(0..<4, id: \.self) { index in
-//                    CustomTextField(text: $pin[index],
-//                                    isFirstResponder: $isFirstResponder[index],
-//                                    font: Theme.current.bodyTwoMedium.uiFont,
-//                                    keyboardType: .numberPad,
-//                                    maxLength: 1,
-//                                    toolbarButtonTitle: "",
-//                                    textFieldDidChange: {
-//                                        print("\(pin[index])")
-////                                        isFirstResponder[index] = false
-//                        if pin[index].isEmpty {
-//                            if index > -1 {
-//                                isFirstResponder[index-1] = true
-////                                isFirstResponder[index] = false
-//                            }
-//                        } else {
-//                            if index < pin.count-1 {
-//                                isFirstResponder[index+1] = true
-////                                isFirstResponder[index] = false
-//                            } else {
-//                                isFirstResponder[index] = false
-//                            }
-//                        }
-//                                        print("\(isFirstResponder)")
-//                                    }
-//                                    ,
-//                                    onTapGesture: {
-//                                        print("on Tap \(index)")
-////                                        for i in 0..<isFirstResponder.count {
-////                                            isFirstResponder[i] = false
-////                                        }
-//                                        isFirstResponder[index] = true
-//                                    }
-//                    )
-////                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-////                                        lineHeight: Theme.current.headline4.lineHeight,
-////                                        verticalPadding: 0)
-//                    .frame(width: 32, height: 32)
-//                    .padding(.horizontal)
-//                    .background(Theme.current.issWhite.color)
-//                    .clipShape(RoundedRectangle(cornerRadius: 10))
-//                    .accentColor(Color.red) // Set the accent color for the text field
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                    )
-//                }
+
                 Spacer()
-
-//                TextField("", text: $pinOne)
-//                    .modifier(OtpModifer(pin:$pinOne))
-//                    .onChange(of:pinOne){newVal in
-//                        if (newVal.count == 1) {
-//                            self.resignFirstResponder()
-//                        }
-//                    }
-////                    .focused($pinFocusState, equals: .pinOne)
-//
-//                TextField("", text:  $pinTwo)
-//                    .modifier(OtpModifer(pin:$pinTwo))
-////                    .onChange(of:pinTwo){newVal in
-////                        if (newVal.count == 1) {
-////                            pinFocusState = .pinThree
-////                        }else {
-////                            if (newVal.count == 0) {
-////                                pinFocusState = .pinOne
-////                            }
-////                        }
-////                    }
-////                    .focused($pinFocusState, equals: .pinTwo)
-//
-//
-//                TextField("", text:$pinThree)
-//                    .modifier(OtpModifer(pin:$pinThree))
-////                    .onChange(of:pinThree){newVal in
-////                        if (newVal.count == 1) {
-////                            pinFocusState = .pinFour
-////                        }else {
-////                            if (newVal.count == 0) {
-////                                pinFocusState = .pinTwo
-////                            }
-////                        }
-////                    }
-////                    .focused($pinFocusState, equals: .pinThree)
-//
-//
-//                TextField("", text:$pinFour)
-//                    .modifier(OtpModifer(pin:$pinFour))
-////                    .onChange(of:pinFour){newVal in
-////                        if (newVal.count == 0) {
-////                            pinFocusState = .pinThree
-////                        }
-////                    }
-////                    .focused($pinFocusState, equals: .pinFour)
-                
-                
             }
-//            )
-            .padding()
-//            .background(Color.orange)
-//            .foregroundColor(Color.black)
-            
-//            Text("Generate 1234")
-//                .foregroundColor(Color.blue)
-//                .onTapGesture {
-//                    pinText = "1234"
-////                    let inputString = "1234"
-////                    let characters = Array(inputString)
-////                    for (index, character) in characters.enumerated() {
-////                        print("Character at index \(index): \(character)")
-////                        pin[index] = String(character)
-////                        print("\(pin[index])")
-////                    }
-//                }
-
-
-            Spacer()
-
-//            Button(action: {
-//                print("Verify btn")
-//            }) {
-//                Text("Verify")
-//                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                        verticalPadding: 8)
-//                    .foregroundColor(.white)
-//                    .frame(maxWidth: .infinity) // Expands the button to full screen width
-//                    .background(Color.black)
-//                    .cornerRadius(12)
+        }
+        
+//        .onAppear {
+//            DispatchQueue.main.async {
+//                isFirstResponder[0] = true
 //            }
-//            .padding()
-        }
-//        .edgesIgnoringSafeArea(.all)
-//        .background(Theme.current.grayDisabled.color)
-        .onAppear {
-            DispatchQueue.main.async {
-                isFirstResponder[0] = true
+//        }
+    }
+
+    private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
+        let leftAlignedItem = ToolBarItemDataBuilder()
+            .setImage(Image(systemName: "chevron.backward"))
+            .setCallback {
+                self.presentationMode.wrappedValue.dismiss()
             }
-        }
+            .build()
+        let toolBarItems = ToolBarItemsDataBuilder()
+            .setLeftAlignedItem(leftAlignedItem)
+            .build()
+        let issNavBarData = ISSNavigationBarBuilder()
+            .setToolBarItems(toolBarItems)
+            .setTintColor(Theme.current.issBlack.color)
+            .includeStatusBarArea(false)
+            .build()
+        return issNavBarData
     }
 }
 

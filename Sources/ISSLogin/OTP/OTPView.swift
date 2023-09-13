@@ -56,7 +56,7 @@ public struct OTPView: View {
                 Spacer()
                 if #available(iOS 16.0, *) {
                     TextField("----", text: $pinText)
-                        .padding(.leading, 16)
+//                        .padding(.leading, 16)
                         .tracking(16)
                         .lineLimit(1)
                         .fontWithLineHeight(font: Theme.current.headline4.uiFont,

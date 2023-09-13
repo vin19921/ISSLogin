@@ -48,7 +48,7 @@ public struct LoginView: View {
                 VStack(spacing: 16) {
                     Image(systemName: "iphone")
                         .resizable()
-//                        .frame(width: 16, height: 16)
+                        .frame(width: 14, height: 14)
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(Color.black)
                     HStack {
@@ -67,7 +67,7 @@ public struct LoginView: View {
                     HStack {
                         Image(systemName: "lock")
                             .resizable()
-//                            .frame(width: 16, height: 16)
+                            .frame(width: 14, height: 14)
                             .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color.black)
                         TextField("Password", text: $passwordText)

@@ -42,6 +42,7 @@ public struct LoginView: View {
                         .padding()
                 }
                 Spacer()
+                ISSNavigationBarSUI(data: navigationBarData)
             }
             ZStack(alignment: .center) {
 //                Spacer()
@@ -56,7 +57,7 @@ public struct LoginView: View {
                                 .padding(.horizontal, 4)
                         }
                         .frame(width: 32)
-                        .background(Color.orange)
+
                         TextField("Mobile No.", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -79,7 +80,6 @@ public struct LoginView: View {
                                 .padding(.horizontal, 4)
                         }
                         .frame(width: 32)
-                        .background(Color.orange)
 
                         SecureField("Password", text: $passwordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -136,26 +136,29 @@ public struct LoginView: View {
 //                Spacer()
             }
         }
-//        ZStack(alignment: .bottom) {
-//            VStack(spacing: 16) {
-//                Text("Forget Password")
-//                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-//                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-//                                        verticalPadding: 0)
-//                    .foregroundColor(.blue)
-//                    .onTapGesture {
-//                        presenter.routeToRegister()
-//                    }
-//
-//                Text("Register")
-//                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-//                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-//                                        verticalPadding: 0)
-//                    .foregroundColor(.blue)
-//                    .onTapGesture {
-//                        presenter.routeToRegister()
-//                    }
-//            }
-//        }
+    }
+
+    private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
+        let leftAlignedItem = ToolBarItemDataBuilder()
+            .setImage(Image(systemName: "chevron.backward"))
+            .setCallback {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            .build()
+//        let leftAlignedSecondItem = ToolBarItemDataBuilder()
+//            .setTitleString("Checkout")
+//            .setTitleFont(Theme.current.subtitle.font)
+//            .build()
+        let toolBarItems = ToolBarItemsDataBuilder()
+            .setLeftAlignedItem(leftAlignedItem)
+//            .setLeftAlignedSecondItem(leftAlignedSecondItem)
+            .build()
+        let issNavBarData = ISSNavigationBarBuilder()
+            .setToolBarItems(toolBarItems)
+            .setBackgroundColor(Theme.current.backgroundGray.color)
+            .setTintColor(Theme.current.issBlack.color)
+            .includeStatusBarArea(true)
+            .build()
+        return issNavBarData
     }
 }

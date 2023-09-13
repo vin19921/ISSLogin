@@ -46,6 +46,11 @@ public struct LoginView: View {
             ZStack(alignment: .center) {
 //                Spacer()
                 VStack(spacing: 16) {
+                    Image(systemName: "iphone")
+                        .resizable()
+                        .frame(width: 16, height: 16)
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(Color.black)
                     HStack {
                         TextField("Mobile No.", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -60,6 +65,11 @@ public struct LoginView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                     HStack {
+                        Image(systemName: "lock")
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(Color.black)
                         TextField("Password", text: $passwordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,

@@ -55,7 +55,7 @@ public struct OTPView: View {
             HStack(spacing: 0) {
                 Spacer()
                 if #available(iOS 16.0, *) {
-                    TextField("", text: $pinText)
+                    TextField("----", text: $pinText)
                         .padding(.leading, 16)
                         .tracking(16)
                         .lineLimit(1)
@@ -209,8 +209,8 @@ public struct OTPView: View {
 //            }
 //            .padding()
         }
-        .edgesIgnoringSafeArea(.all)
-        .background(Theme.current.grayDisabled.color)
+//        .edgesIgnoringSafeArea(.all)
+//        .background(Theme.current.grayDisabled.color)
         .onAppear {
             DispatchQueue.main.async {
                 isFirstResponder[0] = true

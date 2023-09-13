@@ -9,6 +9,7 @@ import Combine
 import ISSCommonUI
 import ISSTheme
 import SwiftUI
+import UIKit
 
 public struct RegisterView: View {
 

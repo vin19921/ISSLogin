@@ -53,6 +53,7 @@ public struct LoginView: View {
 //                            .frame(height: 16)
 //                            .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color.black)
+                            .padding(.all, 4)
                         TextField("Mobile No.", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,

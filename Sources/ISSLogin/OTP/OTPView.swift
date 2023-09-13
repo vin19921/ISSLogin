@@ -44,13 +44,13 @@ public struct OTPView: View {
             Text("Verify your Email Address")
                 .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
                                     lineHeight: Theme.current.subtitle2.lineHeight,
-                                    verticalPadding: 16)
-//                .padding(.top)
+                                    verticalPadding: 0)
+                .padding(.top, 32)
 
 
             Text("Enter 4 digit code we'll text you on Email")
-                .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
-                                    lineHeight: Theme.current.bodyOneMedium.lineHeight,
+                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                     verticalPadding: 0)
 
             HStack(spacing: 0) {
@@ -181,18 +181,18 @@ public struct OTPView: View {
 //            .background(Color.orange)
 //            .foregroundColor(Color.black)
             
-            Text("Generate 1234")
-                .foregroundColor(Color.blue)
-                .onTapGesture {
-                    pinText = "1234"
-//                    let inputString = "1234"
-//                    let characters = Array(inputString)
-//                    for (index, character) in characters.enumerated() {
-//                        print("Character at index \(index): \(character)")
-//                        pin[index] = String(character)
-//                        print("\(pin[index])")
-//                    }
-                }
+//            Text("Generate 1234")
+//                .foregroundColor(Color.blue)
+//                .onTapGesture {
+//                    pinText = "1234"
+////                    let inputString = "1234"
+////                    let characters = Array(inputString)
+////                    for (index, character) in characters.enumerated() {
+////                        print("Character at index \(index): \(character)")
+////                        pin[index] = String(character)
+////                        print("\(pin[index])")
+////                    }
+//                }
 
 
             Spacer()

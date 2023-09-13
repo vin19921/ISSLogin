@@ -43,7 +43,19 @@ public struct RegisterView: View {
                 }
                 ZStack {
                     VStack(spacing: 16) {
-                        HStack {
+                        HStack(spacing: 0) {
+                            Image(systemName: "iphone")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 4)
+                                .padding(.trailing, 16)
+
+                            Text("+60")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
                             TextField("Mobile No.", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -58,6 +70,12 @@ public struct RegisterView: View {
                         )
 
                         HStack {
+                            Image(systemName: "person")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 4)
                             TextField("Full Name (as Per NRIC)", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -72,6 +90,12 @@ public struct RegisterView: View {
                         )
 
                         HStack {
+                            Image(systemName: "lock")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 4)
                             TextField("Password", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -86,6 +110,12 @@ public struct RegisterView: View {
                         )
 
                         HStack {
+                            Image(systemName: "lock")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 4)
                             TextField("Confirm Password", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -100,6 +130,12 @@ public struct RegisterView: View {
                         )
 
                         HStack {
+                            Image(systemName: "envelope")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 4)
                             TextField("Email", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,

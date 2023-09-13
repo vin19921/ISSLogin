@@ -49,8 +49,9 @@ public struct LoginView: View {
                     HStack {
                         Image(systemName: "iphone")
                             .resizable()
-                            .frame(height: 16)
-                            .aspectRatio(contentMode: .fit)
+                            .scaledToFit()
+//                            .frame(height: 16)
+//                            .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color.black)
                         TextField("Mobile No.", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -67,8 +68,9 @@ public struct LoginView: View {
                     HStack {
                         Image(systemName: "lock")
                             .resizable()
-                            .frame(height: 16)
-                            .aspectRatio(contentMode: .fit)
+//                            .frame(height: 16)
+                            .scaledToFit()
+//                            .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color.black)
                         TextField("Password", text: $passwordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

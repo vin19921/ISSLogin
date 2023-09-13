@@ -42,15 +42,16 @@ public struct OTPView: View {
         VStack(spacing: 16) {
 
             Text("Verify your Email Address")
-                .font(.title2)
-                .fontWeight(.semibold)
-                .padding(.top)
+                .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
+                                    lineHeight: Theme.current.subtitle2.lineHeight,
+                                    verticalPadding: 16)
+//                .padding(.top)
 
 
             Text("Enter 4 digit code we'll text you on Email")
-                .font(.caption)
-                .fontWeight(.thin)
-                .padding(.top)
+                .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                    lineHeight: Theme.current.bodyOneMedium.lineHeight,
+                                    verticalPadding: 0)
 
             HStack(spacing: 0) {
                 Spacer()
@@ -62,7 +63,7 @@ public struct OTPView: View {
                         .fontWithLineHeight(font: Theme.current.headline4.uiFont,
                                             lineHeight: Theme.current.headline4.lineHeight,
                                             verticalPadding: 0)
-                        .background(Color.gray)
+                        .background(Theme.current.backgroundGray.color)
                         .textContentType(.oneTimeCode)
                         .onChange(of: pinText, perform: {
                             pinText = String($0.prefix(4))
@@ -72,7 +73,7 @@ public struct OTPView: View {
                         })
                         .frame(width: 140)
                         .keyboardType(.numberPad)
-                        .accentColor(Color.red)
+                        .accentColor(Color.black)
                         .multilineTextAlignment(.center)
 //                        .padding(.horizontal)
                 } else {

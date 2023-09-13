@@ -42,7 +42,7 @@ public struct LoginView: View {
 //                        }
 //                        .padding()
 //                }
-//                Spacer()
+                Spacer()
             }
             ZStack(alignment: .center) {
 //                Spacer()

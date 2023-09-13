@@ -28,21 +28,21 @@ public struct LoginView: View {
 
     public var body: some View {
         ZStack {
-            VStack(spacing: 16) {
-                HStack {
-                    Spacer()
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .aspectRatio(contentMode: .fill)
-                        .foregroundColor(Color.black)
-                        .onTapGesture {
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                        .padding()
-                }
-                Spacer()
+            VStack(spacing: 0) {
                 ISSNavigationBarSUI(data: navigationBarData)
+//                HStack {
+//                    Spacer()
+//                    Image(systemName: "xmark")
+//                        .resizable()
+//                        .frame(width: 24, height: 24)
+//                        .aspectRatio(contentMode: .fill)
+//                        .foregroundColor(Color.black)
+//                        .onTapGesture {
+//                            presentationMode.wrappedValue.dismiss()
+//                        }
+//                        .padding()
+//                }
+//                Spacer()
             }
             ZStack(alignment: .center) {
 //                Spacer()
@@ -136,6 +136,7 @@ public struct LoginView: View {
 //                Spacer()
             }
         }
+        .background(Theme.current.backgroundGray.color)
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
@@ -155,7 +156,7 @@ public struct LoginView: View {
             .build()
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)
-            .setBackgroundColor(Theme.current.backgroundGray.color)
+//            .setBackgroundColor(Theme.current.issWhite.color)
             .setTintColor(Theme.current.issBlack.color)
             .includeStatusBarArea(true)
             .build()

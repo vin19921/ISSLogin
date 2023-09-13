@@ -71,7 +71,7 @@ public struct RegisterView: View {
                     .onReceive(Just(fullNameText)) { newValue in
                         let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
                         if filtered != newValue {
-                            self.guestFullName = filtered
+                            self.fullNameText = filtered
                         }
                     }
                     

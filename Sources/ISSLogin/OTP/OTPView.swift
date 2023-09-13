@@ -54,30 +54,30 @@ public struct OTPView: View {
 
             HStack(spacing: 0) {
                 Spacer()
-//                if #available(iOS 16.0, *) {
-                TextField("", text: $pinText)
-//                        .padding(.leading, 16)
-                    .tracking(16)
-                    .lineLimit(1)
-                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-                                        lineHeight: Theme.current.headline4.lineHeight,
-                                        verticalPadding: 0)
-                    .background(Color.gray)
-                    .textContentType(.oneTimeCode)
-                    .onChange(of: pinText, perform: {
-                        pinText = String($0.prefix(4))
-                        if pinText.count == 4 {
-                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                        }
-                    })
-                    .frame(width: 140)
-                    .keyboardType(.numberPad)
-                    .accentColor(Color.red)
-                    .multilineTextAlignment(.center)
+                if #available(iOS 16.0, *) {
+                    TextField("", text: $pinText)
+    //                        .padding(.leading, 16)
+                        .tracking(16)
+                        .lineLimit(1)
+                        .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                            lineHeight: Theme.current.headline4.lineHeight,
+                                            verticalPadding: 0)
+                        .background(Color.gray)
+                        .textContentType(.oneTimeCode)
+                        .onChange(of: pinText, perform: {
+                            pinText = String($0.prefix(4))
+                            if pinText.count == 4 {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            }
+                        })
+                        .frame(width: 140)
+                        .keyboardType(.numberPad)
+                        .accentColor(Color.red)
+                        .multilineTextAlignment(.center)
 //                        .padding(.horizontal)
-//                } else {
-//                    // Fallback on earlier versions
-//                }
+                } else {
+                    // Fallback on earlier versions
+                }
 //                ForEach(0..<4, id: \.self) { index in
 //                    CustomTextField(text: $pin[index],
 //                                    isFirstResponder: $isFirstResponder[index],

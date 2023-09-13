@@ -124,10 +124,11 @@ public struct LoginView: View {
                         
                     }
                 }
+                .padding(.horizontal)
                 Spacer()
             }
         }
-        .background(Theme.current.backgroundGray.color)
+        .background(Theme.current.issWhite.color)
 //        ZStack {
 //            ZStack(alignment: .center) {
 //                VStack(spacing: 16) {
@@ -234,7 +235,7 @@ public struct LoginView: View {
             .setToolBarItems(toolBarItems)
 //            .setBackgroundColor(Theme.current.issWhite.color)
             .setTintColor(Theme.current.issBlack.color)
-            .includeStatusBarArea(true)
+            .includeStatusBarArea(false)
             .build()
         return issNavBarData
     }

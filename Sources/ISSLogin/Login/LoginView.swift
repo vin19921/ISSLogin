@@ -47,14 +47,16 @@ public struct LoginView: View {
 //                Spacer()
                 VStack(spacing: 16) {
                     HStack {
-                        Image(systemName: "iphone")
-                            .resizable()
-                            .scaledToFit()
-//                            .frame(height: 16)
-//                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(Color.black)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 4)
+                        HStack(alignment: .center) {
+                            Image(systemName: "iphone")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 4)
+                        }
+                        .frame(width: 32)
+                        .background(Color.orange)
                         TextField("Mobile No.", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -68,16 +70,26 @@ public struct LoginView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                     HStack {
-                        Image(systemName: "lock")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color.black)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 4)
-                        TextField("Password", text: $passwordText)
+                        HStack(alignment: .center) {
+                            Image(systemName: "lock")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 4)
+                        }
+                        .frame(width: 32)
+                        .background(Color.orange)
+
+                        SecureField("Password", text: $passwordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
+
+//                        TextField("Password", text: $passwordText)
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 0)
                     }
                     .frame(height: 32)
                     .padding(.horizontal)

@@ -48,7 +48,7 @@ public struct LoginView: View {
                 VStack(spacing: 16) {
                     Image(systemName: "iphone")
                         .resizable()
-                        .frame(width: 16, height: 16)
+//                        .frame(width: 16, height: 16)
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(Color.black)
                     HStack {
@@ -67,7 +67,7 @@ public struct LoginView: View {
                     HStack {
                         Image(systemName: "lock")
                             .resizable()
-                            .frame(width: 16, height: 16)
+//                            .frame(width: 16, height: 16)
                             .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color.black)
                         TextField("Password", text: $passwordText)
@@ -96,7 +96,23 @@ public struct LoginView: View {
                             .cornerRadius(12)
                     }
 
-//                    Spacer()
+                    Text("Forget Password")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                            verticalPadding: 0)
+//                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            presenter.routeToRegister()
+                        }
+
+                    Text("Register")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                            verticalPadding: 0)
+//                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            presenter.routeToRegister()
+                        }
                   
                     
                 }
@@ -104,26 +120,26 @@ public struct LoginView: View {
 //                Spacer()
             }
         }
-        ZStack(alignment: .bottom) {
-            VStack(spacing: 16) {
-                Text("Forget Password")
-                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-                                        verticalPadding: 0)
-                    .foregroundColor(.blue)
-                    .onTapGesture {
-                        presenter.routeToRegister()
-                    }
-
-                Text("Register")
-                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
-                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-                                        verticalPadding: 0)
-                    .foregroundColor(.blue)
-                    .onTapGesture {
-                        presenter.routeToRegister()
-                    }
-            }
-        }
+//        ZStack(alignment: .bottom) {
+//            VStack(spacing: 16) {
+//                Text("Forget Password")
+//                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+//                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+//                                        verticalPadding: 0)
+//                    .foregroundColor(.blue)
+//                    .onTapGesture {
+//                        presenter.routeToRegister()
+//                    }
+//
+//                Text("Register")
+//                    .fontWithLineHeight(font: Theme.current.bodyThreeRegular.uiFont,
+//                                        lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+//                                        verticalPadding: 0)
+//                    .foregroundColor(.blue)
+//                    .onTapGesture {
+//                        presenter.routeToRegister()
+//                    }
+//            }
+//        }
     }
 }

@@ -73,6 +73,7 @@ public struct OTPView: View {
                         .frame(width: 140)
                         .keyboardType(.numberPad)
                         .accentColor(Color.red)
+                        .multilineTextAlignment(.center)
 //                        .padding(.horizontal)
                 } else {
                     // Fallback on earlier versions

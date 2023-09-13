@@ -27,23 +27,26 @@ public struct LoginView: View {
     // MARK: View
 
     public var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
+        ZStack(alignment: .top) {
+            VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-//                HStack {
-//                    Spacer()
-//                    Image(systemName: "xmark")
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                        .aspectRatio(contentMode: .fill)
-//                        .foregroundColor(Color.black)
-//                        .onTapGesture {
-//                            presentationMode.wrappedValue.dismiss()
-//                        }
-//                        .padding()
-//                }
+                //                HStack {
+                //                    Spacer()
+                //                    Image(systemName: "xmark")
+                //                        .resizable()
+                //                        .frame(width: 24, height: 24)
+                //                        .aspectRatio(contentMode: .fill)
+                //                        .foregroundColor(Color.black)
+                //                        .onTapGesture {
+                //                            presentationMode.wrappedValue.dismiss()
+                //                        }
+                //                        .padding()
+                //                }
                 Spacer()
             }
+        }
+        .background(Theme.current.backgroundGray.color)
+//        ZStack {
             ZStack(alignment: .center) {
 //                Spacer()
                 VStack(spacing: 16) {
@@ -135,8 +138,7 @@ public struct LoginView: View {
                 .padding()
 //                Spacer()
             }
-        }
-        .background(Theme.current.backgroundGray.color)
+//        }
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

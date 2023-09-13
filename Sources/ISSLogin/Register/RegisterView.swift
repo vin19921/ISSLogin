@@ -14,8 +14,12 @@ public struct RegisterView: View {
 
     @ObservedObject private var presenter: RegisterPresenter
     
+    @State private var phoneText = ""
     @State private var fullNameText = ""
     @State private var passwordText = ""
+    @State private var cPasswordText = ""
+    @State private var emailText = ""
+
     @State private var fullNameErrorState = false
 
     // MARK: Injection
@@ -51,7 +55,7 @@ public struct RegisterView: View {
                                                 verticalPadding: 0)
                             .padding(.leading, 8)
                             .padding(.trailing, 4)
-                        TextField("Mobile No.", text: $fullNameText)
+                        TextField("Mobile No.", text: $phoneText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
@@ -64,16 +68,16 @@ public struct RegisterView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
 
-                    ISSTextFieldSUI(inputString: $fullNameText,
-                                    isErrorState: $fullNameErrorState,
-                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "fullName",
-                                                                       isRequiredText: "fullNameMandatoryText"))
-                    .onReceive(Just(fullNameText)) { newValue in
-                        let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
-                        if filtered != newValue {
-                            self.fullNameText = filtered
-                        }
-                    }
+//                    ISSTextFieldSUI(inputString: $fullNameText,
+//                                    isErrorState: $fullNameErrorState,
+//                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "fullName",
+//                                                                       isRequiredText: "fullNameMandatoryText"))
+//                    .onReceive(Just(fullNameText)) { newValue in
+//                        let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
+//                        if filtered != newValue {
+//                            self.fullNameText = filtered
+//                        }
+//                    }
                     
                     HStack {
                         HStack(alignment: .center) {
@@ -110,10 +114,11 @@ public struct RegisterView: View {
                         }
                         .frame(width: 32)
 
-                        TextField("Password", text: $fullNameText)
+                        SecureField("Password", text: $passwordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
+
                     }
                     .frame(height: 32)
                     .padding(.horizontal)
@@ -134,7 +139,7 @@ public struct RegisterView: View {
                         }
                         .frame(width: 32)
 
-                        TextField("Confirm Password", text: $fullNameText)
+                        SecureField("Confirm Password", text: $cPasswordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
@@ -158,7 +163,7 @@ public struct RegisterView: View {
                         }
                         .frame(width: 32)
 
-                        TextField("Email", text: $fullNameText)
+                        TextField("Email", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)

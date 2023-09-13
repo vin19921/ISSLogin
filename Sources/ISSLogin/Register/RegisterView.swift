@@ -59,6 +59,7 @@ public struct RegisterView: View {
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
+                                .padding(.leading, 16)
                                 .padding(.trailing, 4)
                             TextField("Mobile No.", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -169,7 +170,7 @@ public struct RegisterView: View {
                                 .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                         )
 
-                        Spacer()
+//                        Spacer()
 
                         Button(action: {
                             print("confirm btn")

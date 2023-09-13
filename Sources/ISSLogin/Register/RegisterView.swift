@@ -51,12 +51,13 @@ public struct RegisterView: View {
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 8)
                                 .padding(.leading, 4)
-                                .padding(.trailing, 16)
+                                .padding(.trailing, 12)
 
                             Text("+60")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
+                                .padding(.trailing, 4)
                             TextField("Mobile No.", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -71,13 +72,16 @@ public struct RegisterView: View {
                         )
 
                         HStack {
-                            Image(systemName: "person")
-                                .resizable()
-                                .frame(width: 20)
-                                .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
+                            HStack(alignment: .center) {
+                                Image(systemName: "person")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 4)
+                            }
+                            .frame(width: 32)
+                            .background(Color.orange)
                             TextField("Full Name (as Per NRIC)", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -134,13 +138,16 @@ public struct RegisterView: View {
                         )
 
                         HStack {
-                            Image(systemName: "envelope")
-                                .resizable()
-                                .frame(width: 20)
-                                .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
+                            HStack(alignment: .center) {
+                                Image(systemName: "envelope")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 4)
+                            }
+                            .frame(width: 32)
+                            .background(Color.orange)
                             TextField("Email", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,

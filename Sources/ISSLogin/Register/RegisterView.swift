@@ -59,7 +59,7 @@ public struct RegisterView: View {
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
-                                .padding(.leading, 16)
+                                .padding(.leading, 8)
                                 .padding(.trailing, 4)
                             TextField("Mobile No.", text: $fullNameText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

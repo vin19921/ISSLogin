@@ -46,10 +46,11 @@ public struct RegisterView: View {
                         HStack(spacing: 0) {
                             Image(systemName: "iphone")
                                 .resizable()
+                                .frame(width: 20)
                                 .scaledToFit()
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
+                                .padding(.leading, 4)
                                 .padding(.trailing, 16)
 
                             Text("+60")
@@ -72,6 +73,7 @@ public struct RegisterView: View {
                         HStack {
                             Image(systemName: "person")
                                 .resizable()
+                                .frame(width: 20)
                                 .scaledToFit()
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 8)
@@ -92,6 +94,7 @@ public struct RegisterView: View {
                         HStack {
                             Image(systemName: "lock")
                                 .resizable()
+                                .frame(width: 20)
                                 .scaledToFit()
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 8)
@@ -112,6 +115,7 @@ public struct RegisterView: View {
                         HStack {
                             Image(systemName: "lock")
                                 .resizable()
+                                .frame(width: 20)
                                 .scaledToFit()
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 8)
@@ -132,6 +136,7 @@ public struct RegisterView: View {
                         HStack {
                             Image(systemName: "envelope")
                                 .resizable()
+                                .frame(width: 20)
                                 .scaledToFit()
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 8)

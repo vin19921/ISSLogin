@@ -43,101 +43,174 @@ public struct LoginView: View {
                 //                        .padding()
                 //                }
                 Spacer()
+                ZStack(alignment: .center) {
+                    VStack(spacing: 16) {
+                        HStack {
+                            HStack(alignment: .center) {
+                                Image(systemName: "iphone")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 4)
+                            }
+                            .frame(width: 32)
+
+                            TextField("Mobile No.", text: $emailText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+                        HStack {
+                            HStack(alignment: .center) {
+                                Image(systemName: "lock")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 4)
+                            }
+                            .frame(width: 32)
+
+                            SecureField("Password", text: $passwordText)
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(height: 32)
+                        .padding(.horizontal)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        )
+
+                        Button(action: {
+                            print("Login btn")
+                        }) {
+                            Text("Login")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity) // Expands the button to full screen width
+                                .background(Color.black)
+                                .cornerRadius(12)
+                        }
+
+                        Text("Forget Password")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                                verticalPadding: 0)
+                            .onTapGesture {
+                                presenter.routeToRegister()
+                            }
+
+                        Text("Register")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+                                                verticalPadding: 0)
+                            .onTapGesture {
+                                presenter.routeToRegister()
+                            }
+                      
+                        
+                    }
+                Spacer()
             }
         }
         .background(Theme.current.backgroundGray.color)
 //        ZStack {
-            ZStack(alignment: .center) {
-//                Spacer()
-                VStack(spacing: 16) {
-                    HStack {
-                        HStack(alignment: .center) {
-                            Image(systemName: "iphone")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
-
-                        TextField("Mobile No.", text: $emailText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                    }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                    )
-                    HStack {
-                        HStack(alignment: .center) {
-                            Image(systemName: "lock")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
-
-                        SecureField("Password", text: $passwordText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-
-//                        TextField("Password", text: $passwordText)
+//            ZStack(alignment: .center) {
+//                VStack(spacing: 16) {
+//                    HStack {
+//                        HStack(alignment: .center) {
+//                            Image(systemName: "iphone")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .foregroundColor(Color.black)
+//                                .padding(.vertical, 8)
+//                                .padding(.horizontal, 4)
+//                        }
+//                        .frame(width: 32)
+//
+//                        TextField("Mobile No.", text: $emailText)
 //                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
 //                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
 //                                                verticalPadding: 0)
-                    }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                    )
-
-                    Button(action: {
-                        print("Login btn")
-                    }) {
-                        Text("Login")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 8)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity) // Expands the button to full screen width
-                            .background(Color.black)
-                            .cornerRadius(12)
-                    }
-
-                    Text("Forget Password")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-                                            verticalPadding: 0)
-//                        .foregroundColor(.blue)
-                        .onTapGesture {
-                            presenter.routeToRegister()
-                        }
-
-                    Text("Register")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
-                                            verticalPadding: 0)
-//                        .foregroundColor(.blue)
-                        .onTapGesture {
-                            presenter.routeToRegister()
-                        }
-                  
-                    
-                }
-                .padding()
+//                    }
+//                    .frame(height: 32)
+//                    .padding(.horizontal)
+//                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                    )
+//                    HStack {
+//                        HStack(alignment: .center) {
+//                            Image(systemName: "lock")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .foregroundColor(Color.black)
+//                                .padding(.vertical, 8)
+//                                .padding(.horizontal, 4)
+//                        }
+//                        .frame(width: 32)
+//
+//                        SecureField("Password", text: $passwordText)
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 0)
+//                    }
+//                    .frame(height: 32)
+//                    .padding(.horizontal)
+//                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                    )
+//
+//                    Button(action: {
+//                        print("Login btn")
+//                    }) {
+//                        Text("Login")
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 8)
+//                            .foregroundColor(.white)
+//                            .frame(maxWidth: .infinity) // Expands the button to full screen width
+//                            .background(Color.black)
+//                            .cornerRadius(12)
+//                    }
+//
+//                    Text("Forget Password")
+//                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+//                                            verticalPadding: 0)
+//                        .onTapGesture {
+//                            presenter.routeToRegister()
+//                        }
+//
+//                    Text("Register")
+//                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                            lineHeight: Theme.current.bodyThreeRegular.lineHeight,
+//                                            verticalPadding: 0)
+//                        .onTapGesture {
+//                            presenter.routeToRegister()
+//                        }
+//
+//
+//                }
+//                .padding()
 //                Spacer()
-            }
+//            }
 //        }
     }
 

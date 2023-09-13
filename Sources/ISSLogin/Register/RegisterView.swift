@@ -15,6 +15,7 @@ public struct RegisterView: View {
     
     @State private var fullNameText = ""
     @State private var passwordText = ""
+    @State private var fullNameErrorState = false
 
     // MARK: Injection
 
@@ -61,6 +62,17 @@ public struct RegisterView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
+
+                    ISSTextFieldSUI(inputString: $fullNameText,
+                                    isErrorState: $fullNameErrorState,
+                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "viewData.fullName",
+                                                                       isRequiredText: "viewData.fullNameMandatoryText"))
+                    .onReceive(Just(fullNameText)) { newValue in
+                        let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
+                        if filtered != newValue {
+                            self.guestFullName = filtered
+                        }
+                    }
                     
                     HStack {
                         HStack(alignment: .center) {

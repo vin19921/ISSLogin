@@ -55,7 +55,7 @@ public struct LoginView: View {
                                     .padding(.horizontal, 4)
                             }
                             .frame(width: 32)
-
+                            
                             TextField("Mobile No.", text: $emailText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -78,7 +78,7 @@ public struct LoginView: View {
                                     .padding(.horizontal, 4)
                             }
                             .frame(width: 32)
-
+                            
                             SecureField("Password", text: $passwordText)
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -91,7 +91,7 @@ public struct LoginView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                         )
-
+                        
                         Button(action: {
                             print("Login btn")
                         }) {
@@ -104,7 +104,7 @@ public struct LoginView: View {
                                 .background(Color.black)
                                 .cornerRadius(12)
                         }
-
+                        
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyThreeRegular.lineHeight,
@@ -112,7 +112,7 @@ public struct LoginView: View {
                             .onTapGesture {
                                 presenter.routeToRegister()
                             }
-
+                        
                         Text("Register")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyThreeRegular.lineHeight,
@@ -120,9 +120,10 @@ public struct LoginView: View {
                             .onTapGesture {
                                 presenter.routeToRegister()
                             }
-                      
+                        
                         
                     }
+                }
                 Spacer()
             }
         }

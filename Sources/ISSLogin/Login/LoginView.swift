@@ -78,6 +78,7 @@ public struct LoginView: View {
                                         isErrorState: $phoneErrorState,
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
                                                                            keyboardType: .numberPad,
+                                                                           errorBorderColor: Theme.current.issBlack.color,
                                                                            leadingImageIcon: Image(systemName: "iphone"),
                                                                            prefix: "+60")
                         )
@@ -101,6 +102,7 @@ public struct LoginView: View {
                         ISSSecureFieldSUI(inputString: $passwordText,
                                           isErrorState: $passwordErrorState,
                                           viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
+                                                                               errorBorderColor: Theme.current.issBlack.color,
                                                                                leadingImageIcon: Image(systemName: "lock"))
                         )
                         .onReceive(Just(passwordText)) { newValue in
@@ -134,19 +136,20 @@ public struct LoginView: View {
 //                            RoundedRectangle(cornerRadius: 10)
 //                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
 //                        )
-                        
+
                         Button(action: {
-                            print("Login btn")
+                            print("login btn")
                         }) {
                             Text("Login")
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 8)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity) // Expands the button to full screen width
-                                .background(Color.black)
-                                .cornerRadius(12)
                         }
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                        .frame(maxWidth: .infinity)
+                        .disabled(!validated())
+                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                        .cornerRadius(12)
                         
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -172,6 +175,14 @@ public struct LoginView: View {
             }
         }
         .background(Theme.current.issWhite.color)
+    }
+
+    private func validated() -> Bool {
+        if !phoneErrorState,
+           !passwordErrorState {
+            return true
+        }
+        return false
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

@@ -14,8 +14,11 @@ public struct LoginView: View {
 
     @ObservedObject private var presenter: LoginPresenter
     
-    @State private var emailText = ""
+    @State private var phoneText = ""
     @State private var passwordText = ""
+
+    @State private var phoneErrorState = false
+    @State private var passwordErrorState = false
 
     // MARK: Injection
 
@@ -46,52 +49,90 @@ public struct LoginView: View {
                 Spacer()
                 ZStack(alignment: .center) {
                     VStack(spacing: 16) {
-                        HStack {
-                            HStack(alignment: .center) {
-                                Image(systemName: "iphone")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(Color.black)
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 4)
-                            }
-                            .frame(width: 32)
-                            
-                            TextField("Mobile No.", text: $emailText)
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 0)
-                        }
-                        .frame(height: 32)
-                        .padding(.horizontal)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                        HStack {
+//                            HStack(alignment: .center) {
+//                                Image(systemName: "iphone")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .foregroundColor(Color.black)
+//                                    .padding(.vertical, 8)
+//                                    .padding(.horizontal, 4)
+//                            }
+//                            .frame(width: 32)
+//
+//                            TextField("Mobile No.", text: $phoneText)
+//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                    verticalPadding: 0)
+//                        }
+//                        .frame(height: 32)
+//                        .padding(.horizontal)
+//                        .clipShape(RoundedRectangle(cornerRadius: 10))
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                        )
+
+                        ISSTextFieldSUI(inputString: $phoneText,
+                                        isErrorState: $phoneErrorState,
+                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
+                                                                           keyboardType: .numberPad,
+                                                                           leadingImageIcon: Image(systemName: "iphone"),
+                                                                           prefix: "+60")
                         )
-                        HStack {
-                            HStack(alignment: .center) {
-                                Image(systemName: "lock")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(Color.black)
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 4)
+                        .onReceive(Just(phoneText)) { newValue in
+//                            if newValue == RegExConstants.minNineDigitRegEx {
+//                                phoneErrorState = false
+//                            } else {
+//                                phoneErrorState = true
+//                            }
+                            let regex = try! NSRegularExpression(pattern: RegExConstants.minNineDigitRegEx)
+                            let range = NSRange(location: 0, length: newValue.utf16.count)
+
+                            if regex.firstMatch(in: newValue, options: [], range: range) != nil {
+                                phoneErrorState = false
+                            } else {
+                                phoneErrorState = true
                             }
-                            .frame(width: 32)
-                            
-                            SecureField("Password", text: $passwordText)
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 0)
                         }
-                        .frame(height: 32)
-                        .padding(.horizontal)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+
+
+                        ISSSecureFieldSUI(inputString: $passwordText,
+                                          isErrorState: $passwordErrorState,
+                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
+                                                                               leadingImageIcon: Image(systemName: "lock"))
                         )
+                        .onReceive(Just(passwordText)) { newValue in
+                            if newValue.count > 7 {
+                                passwordErrorState = false
+                            } else {
+                                passwordErrorState = true
+                            }
+                        }
+
+//                        HStack {
+//                            HStack(alignment: .center) {
+//                                Image(systemName: "lock")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .foregroundColor(Color.black)
+//                                    .padding(.vertical, 8)
+//                                    .padding(.horizontal, 4)
+//                            }
+//                            .frame(width: 32)
+//
+//                            SecureField("Password", text: $passwordText)
+//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                    verticalPadding: 0)
+//                        }
+//                        .frame(height: 32)
+//                        .padding(.horizontal)
+//                        .clipShape(RoundedRectangle(cornerRadius: 10))
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                        )
                         
                         Button(action: {
                             print("Login btn")

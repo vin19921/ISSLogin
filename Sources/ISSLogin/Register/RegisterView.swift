@@ -41,7 +41,7 @@ public struct RegisterView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                
+
                 ScrollView {
                     VStack(spacing: 16) {
                         HStack {
@@ -62,7 +62,7 @@ public struct RegisterView: View {
                                                                            leadingImageIcon: Image(systemName: "iphone"),
                                                                            prefix: "+60")
                         )
-                        
+
                         ISSTextFieldSUI(inputString: $fullNameText,
                                         isErrorState: $fullNameErrorState,
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Full Name (as Per NRIC)",
@@ -75,16 +75,16 @@ public struct RegisterView: View {
                                 self.fullNameText = filtered
                             }
                         }
-                        
+
                         ISSSecureFieldSUI(inputString: $passwordText,
                                           isErrorState: $passwordErrorState,
                                           viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
-                                                                               validateText: "Password must contain the following:\n-8 characters in length.\n-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
+                                                                               validateText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
                                                                                regEx: RegExConstants.passwordRegEx,
-                                                                               isRequiredText: "Password must contain the following:\n-8 characters in length.\n-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
+                                                                               isRequiredText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
                                                                                leadingImageIcon: Image(systemName: "lock"))
                         )
-                        
+
                         ISSSecureFieldSUI(inputString: $cPasswordText,
                                           isErrorState: $cPasswordErrorState,
                                           compareString: passwordText,
@@ -94,7 +94,7 @@ public struct RegisterView: View {
                                                                                leadingImageIcon: Image(systemName: "lock")
                                                                               )
                         )
-                        
+
                         ISSTextFieldSUI(inputString: $emailText,
                                         isErrorState: $emailErrorState,
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
@@ -103,7 +103,7 @@ public struct RegisterView: View {
                                                                            isRequiredText: "Please enter valid email",
                                                                            leadingImageIcon: Image(systemName: "envelope"))
                         )
-                        
+
                         Button(action: {
                             print("confirm btn")
                             presenter.routeToOTP()
@@ -119,7 +119,7 @@ public struct RegisterView: View {
                         .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
                         .cornerRadius(12)
                     }
-                    .padding()
+                    .padding(.horizontal)
 
                     Spacer()
                 }

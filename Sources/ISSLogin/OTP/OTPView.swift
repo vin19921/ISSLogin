@@ -47,29 +47,51 @@ public struct OTPView: View {
                                             verticalPadding: 0)
                     HStack(spacing: 0) {
                         Spacer()
+                        CustomTextField(text: $pinText, placeholder: "")
+                            .lineLimit(1)
+                            .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                                lineHeight: Theme.current.headline4.lineHeight,
+                                                verticalPadding: 0)
+                            .background(Theme.current.backgroundGray.color)
+                            .textContentType(.oneTimeCode)
+                            .onChange(of: pinText, perform: {
+                                pinText = String($0.prefix(6))
+                                if pinText.count == 6 {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }
+                            })
+                            .frame(width: 204)
+                            .keyboardType(.numberPad)
+                            .accentColor(Color.black)
+                            .multilineTextAlignment(.center)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                            )
+
 //                        if #available(iOS 16.0, *) {
-                            TextField("", text: $pinText)
-                                .tracking(16)
-                                .lineLimit(1)
-                                .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-                                                    lineHeight: Theme.current.headline4.lineHeight,
-                                                    verticalPadding: 0)
-                                .background(Theme.current.backgroundGray.color)
-                                .textContentType(.oneTimeCode)
-                                .onChange(of: pinText, perform: {
-                                    pinText = String($0.prefix(6))
-                                    if pinText.count == 6 {
-                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                    }
-                                })
-                                .frame(width: 204)
-                                .keyboardType(.numberPad)
-                                .accentColor(Color.black)
-                                .multilineTextAlignment(.center)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                                )
+//                            TextField("", text: $pinText)
+//                                .tracking(16)
+//                                .lineLimit(1)
+//                                .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+//                                                    lineHeight: Theme.current.headline4.lineHeight,
+//                                                    verticalPadding: 0)
+//                                .background(Theme.current.backgroundGray.color)
+//                                .textContentType(.oneTimeCode)
+//                                .onChange(of: pinText, perform: {
+//                                    pinText = String($0.prefix(6))
+//                                    if pinText.count == 6 {
+//                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                                    }
+//                                })
+//                                .frame(width: 204)
+//                                .keyboardType(.numberPad)
+//                                .accentColor(Color.black)
+//                                .multilineTextAlignment(.center)
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: 10)
+//                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                                )
 //                        } else {
 //                            // Fallback on earlier versions
 //                        }
@@ -184,100 +206,25 @@ struct OtpModifer: ViewModifier {
     }
 }
 
+struct CustomTextField: View {
+    @Binding var text: String
+    var placeholder: String
 
-//import SwiftUI
-//
-//enum PinFocusState {
-//    case pinOne, pinTwo, pinThree, pinFour
-//}
-//
-//public struct OTPView: View {
-//
-//    @ObservedObject private var presenter: OTPPresenter
-//
-//    // MARK: Injection
-//
-//    @Environment(\.presentationMode) var presentationMode
-//
-//    init(presenter: OTPPresenter) {
-//        self.presenter = presenter
-//    }
-//
-//    @State private var pinOne: String = ""
-//    @State private var pinTwo: String = ""
-//    @State private var pinThree: String = ""
-//    @State private var pinFour: String = ""
-//    @State private var pinFocusState: PinFocusState = .pinOne
-//
-//    public var body: some View {
-//        VStack {
-//            Text("Verify your Email Address")
-//                .font(.title2)
-//                .fontWeight(.semibold)
-//
-//            Text("Enter 4 digit code we'll text you on Email")
-//                .font(.caption)
-//                .fontWeight(.thin)
-//                .padding(.top)
-//
-//            HStack(spacing: 15) {
-//                PinTextField(text: $pinOne, focusState: $pinFocusState, nextFocusState: .pinTwo)
-//                PinTextField(text: $pinTwo, focusState: $pinFocusState, nextFocusState: .pinThree)
-//                PinTextField(text: $pinThree, focusState: $pinFocusState, nextFocusState: .pinFour)
-//                PinTextField(text: $pinFour, focusState: $pinFocusState, nextFocusState: nil)
-//            }
-//            .padding(.vertical)
-//
-//            Button(action: {
-//                print("\(pinOne)\(pinTwo)\(pinThree)\(pinFour)")
-//            }, label: {
-//                Spacer()
-//                Text("Verify")
-//                    .font(.system(.title3, design: .rounded))
-//                    .fontWeight(.semibold)
-//                    .foregroundColor(.white)
-//                Spacer()
-//            })
-//            .padding(15)
-//            .background(Color.blue)
-//            .clipShape(Capsule())
-//            .padding()
-//        }
-//    }
-//}
-//
-//struct PinTextField: View {
-//    @Binding var text: String
-//    @Binding var focusState: PinFocusState
-//    var nextFocusState: PinFocusState?
-//
-//    var body: some View {
-//        TextField("", text: $text)
-//            .frame(width: 45, height: 45)
-//            .font(.largeTitle)
-//            .textFieldStyle(RoundedBorderTextFieldStyle())
-//            .multilineTextAlignment(.center)
-//            .keyboardType(.numberPad)
-//            .textContentType = .oneTimeCode
-//            .onChange(of: text) { newValue in
-//                if newValue.count == 1, let nextFocusState = nextFocusState {
-//                    focusState = nextFocusState
-//                } else if newValue.isEmpty, let previousFocusState = previousFocusState() {
-//                    focusState = previousFocusState
-//                }
-//            }
-//    }
-//
-//    func previousFocusState() -> PinFocusState? {
-//        switch focusState {
-//        case .pinTwo:
-//            return .pinOne
-//        case .pinThree:
-//            return .pinTwo
-//        case .pinFour:
-//            return .pinThree
-//        default:
-//            return nil
-//        }
-//    }
-//}
+    var body: some View {
+        VStack {
+            if text.isEmpty {
+                Text(placeholder)
+                    .foregroundColor(.gray)
+                    .tracking(16) // Apply character spacing to the placeholder text
+            }
+            TextField("", text: $text)
+//                .font(.system(size: 18))
+//                .padding(10)
+//                .background(
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .stroke(Color.blue, lineWidth: 1)
+//                )
+        }
+    }
+}
+

@@ -47,7 +47,7 @@ public struct OTPView: View {
                                             verticalPadding: 0)
                     HStack(spacing: 0) {
                         Spacer()
-                        if #available(iOS 16.0, *) {
+//                        if #available(iOS 16.0, *) {
                             TextField("", text: $pinText)
                                 .tracking(16)
                                 .lineLimit(1)
@@ -70,9 +70,9 @@ public struct OTPView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                                 )
-                        } else {
-                            // Fallback on earlier versions
-                        }
+//                        } else {
+//                            // Fallback on earlier versions
+//                        }
                         Spacer()
                     }
                     .padding()

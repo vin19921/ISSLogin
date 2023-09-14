@@ -104,11 +104,11 @@ public struct OTPView: View {
             .publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                if countdown > 0 {
-                    countdown -= 1
+                if self.countdown > 0 {
+                    self.countdown -= 1
                 } else {
-                    isButtonEnabled = true
-                    timer?.cancel()
+                    self.isButtonEnabled = true
+                    self.timer?.cancel()
                 }
             }
     }

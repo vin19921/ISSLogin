@@ -95,6 +95,7 @@ public struct OTPView: View {
 
                 Spacer()
             }
+            .padding(.horizontal)
         }
         .onAppear {
             startCountdownTimer()

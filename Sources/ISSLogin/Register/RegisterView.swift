@@ -39,343 +39,98 @@ public struct RegisterView: View {
 
     public var body: some View {
         ZStack(alignment: .top) {
-            VStack(spacing: .zero) {
-                ISSNavigationBarSUI(data: navigationBarData)
-                
-                VStack(spacing: 16) {
-                    ISSTextFieldSUI(inputString: $phoneText,
-                                    isErrorState: $phoneErrorState,
-                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
-                                                                       regEx: RegExConstants.minNineDigitRegEx,
-                                                                       keyboardType: .numberPad,
-                                                                       isRequiredText: "Please enter valid mobile number",
-                                                                       leadingImageIcon: Image(systemName: "iphone"),
-                                                                       prefix: "+60")
-                    )
-
-                    ISSTextFieldSUI(inputString: $fullNameText,
-                                    isErrorState: $fullNameErrorState,
-                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "Full Name (as Per NRIC)",
-                                                                       isRequiredText: "Please enter full name",
-                                                                       leadingImageIcon: Image(systemName: "person"))
-                    )
-                    .onReceive(Just(fullNameText)) { newValue in
-                        let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
-                        if filtered != newValue {
-                            self.fullNameText = filtered
+            ScrollView {
+                VStack(spacing: .zero) {
+                    ISSNavigationBarSUI(data: navigationBarData)
+                    
+                    VStack(spacing: 16) {
+                        ISSTextFieldSUI(inputString: $phoneText,
+                                        isErrorState: $phoneErrorState,
+                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
+                                                                           regEx: RegExConstants.minNineDigitRegEx,
+                                                                           keyboardType: .numberPad,
+                                                                           isRequiredText: "Please enter valid mobile number",
+                                                                           leadingImageIcon: Image(systemName: "iphone"),
+                                                                           prefix: "+60")
+                        )
+                        
+                        ISSTextFieldSUI(inputString: $fullNameText,
+                                        isErrorState: $fullNameErrorState,
+                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Full Name (as Per NRIC)",
+                                                                           isRequiredText: "Please enter full name",
+                                                                           leadingImageIcon: Image(systemName: "person"))
+                        )
+                        .onReceive(Just(fullNameText)) { newValue in
+                            let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
+                            if filtered != newValue {
+                                self.fullNameText = filtered
+                            }
                         }
+                        
+                        ISSSecureFieldSUI(inputString: $passwordText,
+                                          isErrorState: $passwordErrorState,
+                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
+                                                                               validateText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
+                                                                               regEx: RegExConstants.passwordRegEx,
+                                                                               isRequiredText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
+                                                                               leadingImageIcon: Image(systemName: "lock"))
+                        )
+                        
+                        ISSSecureFieldSUI(inputString: $cPasswordText,
+                                          isErrorState: $cPasswordErrorState,
+                                          compareString: passwordText,
+                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Confirm Password",
+                                                                               validateText: "Password does not match",
+                                                                               isRequiredText: "Password does not match",
+                                                                               leadingImageIcon: Image(systemName: "lock")
+                                                                              )
+                        )
+                        
+                        ISSTextFieldSUI(inputString: $emailText,
+                                        isErrorState: $emailErrorState,
+                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
+                                                                           validateText: "Please enter valid email",
+                                                                           regEx: RegExConstants.emailRegEx,
+                                                                           isRequiredText: "Please enter valid email",
+                                                                           leadingImageIcon: Image(systemName: "envelope"))
+                        )
+                        
+                        Button(action: {
+                            print("confirm btn")
+                            presenter.routeToOTP()
+                        }) {
+                            Text("Confirm")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity) // Expands the button to full screen width
+                                .background(Color.black)
+                                .cornerRadius(12)
+                        }
+                        .disabled(!validated())
+                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
                     }
-
-                    ISSSecureFieldSUI(inputString: $passwordText,
-                                      isErrorState: $passwordErrorState,
-                                      viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
-                                                                           validateText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
-                                                                           regEx: RegExConstants.passwordRegEx,
-                                                                           isRequiredText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
-                                                                           leadingImageIcon: Image(systemName: "lock"))
-                    )
-
-                    ISSSecureFieldSUI(inputString: $cPasswordText,
-                                      isErrorState: $cPasswordErrorState,
-                                      compareString: passwordText,
-                                      viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Confirm Password",
-                                                                           validateText: "Password does not match",
-                                                                           isRequiredText: "Password does not match",
-                                                                           leadingImageIcon: Image(systemName: "lock")
-                                                                          )
-                    )
-//                    HStack(spacing: 12) {
-//                        HStack(alignment: .center) {
-//                            Image(systemName: "lock")
-//                                .resizable()
-//                                .scaledToFit()
-//                        }
-//                        .frame(width: 32)
-//
-//                        SecureField("Password", text: $passwordText)
-//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                verticalPadding: 0)
-//
-//                    }
-//                    .foregroundColor(Theme.current.issBlack.color)
-//                    .padding(.vertical, 8)
-//                    .padding(.horizontal, 12)
-//                    .frame(height: 36)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 12)
-//                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
-//                    )
+                    .padding()
                     
-//                    HStack {
-//                        HStack(alignment: .center) {
-//                            Image(systemName: "lock")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .foregroundColor(Color.black)
-//                                .padding(.vertical, 8)
-//                                .padding(.horizontal, 4)
-//                        }
-//                        .frame(width: 32)
-//
-//                        SecureField("Confirm Password", text: $cPasswordText)
-//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                verticalPadding: 0)
-//                    }
-//                    .frame(height: 32)
-//                    .padding(.horizontal)
-//                    .clipShape(RoundedRectangle(cornerRadius: 10))
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                    )
-                    
-//                    HStack {
-//                        HStack(alignment: .center) {
-//                            Image(systemName: "envelope")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .foregroundColor(Color.black)
-//                                .padding(.vertical, 8)
-//                                .padding(.horizontal, 4)
-//                        }
-//                        .frame(width: 32)
-//
-//                        TextField("Email", text: $emailText)
-//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                verticalPadding: 0)
-//                    }
-//                    .frame(height: 32)
-//                    .padding(.horizontal)
-//                    .clipShape(RoundedRectangle(cornerRadius: 10))
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                    )
-//                    HStack(spacing: 12) {
-////                        HStack {
-//                            Image(systemName: "envelope")
-//                                .resizable()
-//                                .scaledToFit()
-////                                .foregroundColor(Color.black)
-////                                .padding(.vertical, 8)
-////                                .padding(.horizontal, 12)
-////                        }
-////                        .frame(width: 36)
-//
-//                        TextField("Email", text: $emailText)
-//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                verticalPadding: 0)
-//
-//                    }
-//                    .foregroundColor(Theme.current.issBlack.color)
-//                    .padding(.vertical, 8)
-//                    .padding(.horizontal, 12)
-//                    .frame(height: 36)
-////                    .clipShape(RoundedRectangle(cornerRadius: 10))
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 12)
-//                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
-//                    )
-
-                    ISSTextFieldSUI(inputString: $emailText,
-                                    isErrorState: $emailErrorState,
-                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
-                                                                       validateText: "Please enter valid email",
-                                                                       regEx: RegExConstants.emailRegEx,
-                                                                       isRequiredText: "Please enter valid email",
-                                                                       leadingImageIcon: Image(systemName: "envelope"))
-                    )
-
-                    Button(action: {
-                        print("confirm btn")
-                        presenter.routeToOTP()
-                    }) {
-                        Text("Confirm")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 8)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity) // Expands the button to full screen width
-                            .background(Color.black)
-                            .cornerRadius(12)
-                    }
+                    Spacer()
                 }
-                .padding()
-                
-                Spacer()
             }
         }
         .background(Theme.current.issWhite.color)
     }
-//        ZStack {
-//            VStack(spacing: 16) {
-//                HStack {
-//                    Spacer()
-//                    Image(systemName: "xmark")
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                        .aspectRatio(contentMode: .fill)
-//                        .foregroundColor(Color.black)
-//                        .onTapGesture {
-//                            presentationMode.wrappedValue.dismiss()
-//                        }
-//                        .padding()
-//                }
-//                ZStack {
-//                    VStack(spacing: 16) {
-//                        HStack(spacing: 0) {
-//                            HStack(alignment: .center) {
-//                                Image(systemName: "iphone")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .foregroundColor(Color.black)
-//                                    .padding(.vertical, 8)
-//                                    .padding(.horizontal, 4)
-//                            }
-//                            .frame(width: 32)
-//                            .background(Color.orange)
-//
-//                            Text("+60")
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                                .padding(.leading, 8)
-//                                .padding(.trailing, 4)
-//                            TextField("Mobile No.", text: $fullNameText)
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                        }
-//                        .frame(height: 32)
-//                        .padding(.horizontal)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                        )
-//
-//                        HStack {
-//                            HStack(alignment: .center) {
-//                                Image(systemName: "person")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .foregroundColor(Color.black)
-//                                    .padding(.vertical, 8)
-//                                    .padding(.horizontal, 4)
-//                            }
-//                            .frame(width: 32)
-//                            .background(Color.orange)
-//                            TextField("Full Name (as Per NRIC)", text: $fullNameText)
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                        }
-//                        .frame(height: 32)
-//                        .padding(.horizontal)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                        )
-//
-//                        HStack {
-//                            HStack(alignment: .center) {
-//                                Image(systemName: "lock")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .foregroundColor(Color.black)
-//                                    .padding(.vertical, 8)
-//                                    .padding(.horizontal, 4)
-//                            }
-//                            .frame(width: 32)
-//                            .background(Color.orange)
-//                            TextField("Password", text: $fullNameText)
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                        }
-//                        .frame(height: 32)
-//                        .padding(.horizontal)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                        )
-//
-//                        HStack {
-//                            HStack(alignment: .center) {
-//                                Image(systemName: "lock")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .foregroundColor(Color.black)
-//                                    .padding(.vertical, 8)
-//                                    .padding(.horizontal, 4)
-//                            }
-//                            .frame(width: 32)
-//                            .background(Color.orange)
-//                            TextField("Confirm Password", text: $fullNameText)
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                        }
-//                        .frame(height: 32)
-//                        .padding(.horizontal)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                        )
-//
-//                        HStack {
-//                            HStack(alignment: .center) {
-//                                Image(systemName: "envelope")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .foregroundColor(Color.black)
-//                                    .padding(.vertical, 8)
-//                                    .padding(.horizontal, 4)
-//                            }
-//                            .frame(width: 32)
-//                            .background(Color.orange)
-//                            TextField("Email", text: $fullNameText)
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                        }
-//                        .frame(height: 32)
-//                        .padding(.horizontal)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                        )
-//
-////                        Spacer()
-//
-//                        Button(action: {
-//                            print("confirm btn")
-//                            presenter.routeToOTP()
-//                        }) {
-//                            Text("Confirm")
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 8)
-//                                .foregroundColor(.white)
-//                                .frame(maxWidth: .infinity) // Expands the button to full screen width
-//                                .background(Color.black)
-//                                .cornerRadius(12)
-//                        }
-//                    }
-//                }
-//                .padding()
-//                Spacer()
-//            }
-//        }
-//    }
+
+    private func validated() -> Bool {
+        if !phoneErrorState,
+           !fullNameErrorState,
+           !passwordErrorState,
+           !cPasswordErrorState,
+           !emailErrorState {
+            return true
+        }
+        return false
+    }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
         let leftAlignedItem = ToolBarItemDataBuilder()

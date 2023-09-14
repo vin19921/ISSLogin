@@ -23,6 +23,7 @@ public struct RegisterView: View {
 
     @State private var phoneErrorState = false
     @State private var fullNameErrorState = false
+    @State private var emailErrorState = false
 
     // MARK: Injection
 
@@ -136,31 +137,39 @@ public struct RegisterView: View {
 //                        RoundedRectangle(cornerRadius: 10)
 //                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
 //                    )
-                    HStack(spacing: 12) {
-//                        HStack {
-                            Image(systemName: "envelope")
-                                .resizable()
-                                .scaledToFit()
-//                                .foregroundColor(Color.black)
-//                                .padding(.vertical, 8)
-//                                .padding(.horizontal, 12)
-//                        }
-//                        .frame(width: 36)
+//                    HStack(spacing: 12) {
+////                        HStack {
+//                            Image(systemName: "envelope")
+//                                .resizable()
+//                                .scaledToFit()
+////                                .foregroundColor(Color.black)
+////                                .padding(.vertical, 8)
+////                                .padding(.horizontal, 12)
+////                        }
+////                        .frame(width: 36)
+//
+//                        TextField("Email", text: $emailText)
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 0)
+//
+//                    }
+//                    .foregroundColor(Theme.current.issBlack.color)
+//                    .padding(.vertical, 8)
+//                    .padding(.horizontal, 12)
+//                    .frame(height: 36)
+////                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 12)
+//                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
+//                    )
 
-                        TextField("Email", text: $emailText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-
-                    }
-                    .foregroundColor(Theme.current.issBlack.color)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 12)
-                    .frame(height: 36)
-//                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
+                    ISSTextFieldSUI(inputString: $emailText,
+                                    isErrorState: $emailErrorState,
+                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
+                                                                       validateText: "Please enter valid email",
+                                                                       isRequiredText: "Please enter valid email",
+                                                                       leadingImageIcon: Image(systemName: "envelope"))
                     )
                     
                     Button(action: {

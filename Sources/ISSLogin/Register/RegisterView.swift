@@ -44,10 +44,14 @@ public struct RegisterView: View {
                 
                 ScrollView {
                     VStack(spacing: 16) {
-                        Text("Please fill in all the fields.")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 8)
+                        HStack {
+                            Text("Please fill in all the fields.")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                            Spacer()
+                        }
+                        .background(Color.orange)
 
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
@@ -104,18 +108,16 @@ public struct RegisterView: View {
                             print("confirm btn")
                             presenter.routeToOTP()
                         }) {
-                            HStack {
-                                Text("Confirm")
-                            }
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 8)
-                            .frame(maxWidth: .infinity)
-                            .disabled(!validated())
-                            .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-                            .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
-                            .cornerRadius(12)
+                            Text("Confirm")
                         }
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                        .frame(maxWidth: .infinity)
+                        .disabled(!validated())
+                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                        .cornerRadius(12)
                     }
                     .padding()
 

@@ -73,7 +73,7 @@ public struct RegisterView: View {
                                     isErrorState: $fullNameErrorState,
                                     viewData: ISSTextFieldSUI.ViewData(placeholderText: "fullName",
                                                                        isRequiredText: "fullNameMandatoryText",
-                                                                       leadingImageIcon: Image("iphone"))
+                                                                       leadingImageIcon: Image(systemName: "iphone"))
                     )
                     .onReceive(Just(fullNameText)) { newValue in
                         let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }

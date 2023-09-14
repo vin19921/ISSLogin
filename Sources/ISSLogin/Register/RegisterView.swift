@@ -69,16 +69,18 @@ public struct RegisterView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
 
-//                    ISSTextFieldSUI(inputString: $fullNameText,
-//                                    isErrorState: $fullNameErrorState,
-//                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "fullName",
-//                                                                       isRequiredText: "fullNameMandatoryText"))
-//                    .onReceive(Just(fullNameText)) { newValue in
-//                        let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
-//                        if filtered != newValue {
-//                            self.fullNameText = filtered
-//                        }
-//                    }
+                    ISSTextFieldSUI(inputString: $fullNameText,
+                                    isErrorState: $fullNameErrorState,
+                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "fullName",
+                                                                       isRequiredText: "fullNameMandatoryText"),
+                                    leadingImageIcon: Image("iphone")
+                    )
+                    .onReceive(Just(fullNameText)) { newValue in
+                        let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
+                        if filtered != newValue {
+                            self.fullNameText = filtered
+                        }
+                    }
                     
                     HStack {
                         HStack(alignment: .center) {

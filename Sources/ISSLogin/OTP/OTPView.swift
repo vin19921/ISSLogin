@@ -48,54 +48,50 @@ public struct OTPView: View {
                                             verticalPadding: 0)
                     HStack(spacing: 0) {
                         Spacer()
-                        OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
-                            .lineLimit(1)
-//                            .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-//                                                lineHeight: Theme.current.headline4.lineHeight,
-//                                                verticalPadding: 0)
-                            .background(Theme.current.backgroundGray.color)
-                            .textContentType(.oneTimeCode)
-                            .onChange(of: pinText, perform: {
-                                pinText = String($0.prefix(6))
-                                if pinText.count == 6 {
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                }
-                            })
-                            .frame(width: 204, height: 32)
-                            .keyboardType(.numberPad)
-                            .accentColor(Color.black)
-                            .multilineTextAlignment(.center)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                            )
 
-//                        if #available(iOS 16.0, *) {
-//                            TextField("", text: $pinText)
-//                                .tracking(16)
-//                                .lineLimit(1)
-//                                .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-//                                                    lineHeight: Theme.current.headline4.lineHeight,
-//                                                    verticalPadding: 0)
-//                                .background(Theme.current.backgroundGray.color)
-//                                .textContentType(.oneTimeCode)
-//                                .onChange(of: pinText, perform: {
-//                                    pinText = String($0.prefix(6))
-//                                    if pinText.count == 6 {
-//                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//                                    }
-//                                })
-//                                .frame(width: 204)
-//                                .keyboardType(.numberPad)
-//                                .accentColor(Color.black)
-//                                .multilineTextAlignment(.center)
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 10)
-//                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                                )
-//                        } else {
-//                            // Fallback on earlier versions
-//                        }
+                        if #available(iOS 16.0, *) {
+                            TextField("", text: $pinText)
+                                .tracking(16)
+                                .lineLimit(1)
+                                .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                                    lineHeight: Theme.current.headline4.lineHeight,
+                                                    verticalPadding: 0)
+                                .background(Theme.current.backgroundGray.color)
+                                .textContentType(.oneTimeCode)
+                                .onChange(of: pinText, perform: {
+                                    pinText = String($0.prefix(6))
+                                    if pinText.count == 6 {
+                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                    }
+                                })
+                                .frame(width: 204)
+                                .keyboardType(.numberPad)
+                                .accentColor(Color.black)
+                                .multilineTextAlignment(.center)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                                )
+                        } else {
+                            OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
+                                .lineLimit(1)
+                                .background(Theme.current.backgroundGray.color)
+                                .textContentType(.oneTimeCode)
+                                .onChange(of: pinText, perform: {
+                                    pinText = String($0.prefix(6))
+                                    if pinText.count == 6 {
+                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                    }
+                                })
+                                .frame(width: 204, height: 32)
+                                .keyboardType(.numberPad)
+                                .accentColor(Color.black)
+                                .multilineTextAlignment(.center)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                                )
+                        }
                         Spacer()
                     }
                     .padding()

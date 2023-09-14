@@ -47,7 +47,7 @@ public struct OTPView: View {
                                             verticalPadding: 0)
                     HStack(spacing: 0) {
                         Spacer()
-                        CustomTextField(text: $pinText, placeholder: "")
+                        CTextField(text: $pinText, placeholder: "")
                             .lineLimit(1)
                             .fontWithLineHeight(font: Theme.current.headline4.uiFont,
                                                 lineHeight: Theme.current.headline4.lineHeight,
@@ -206,7 +206,7 @@ struct OtpModifer: ViewModifier {
     }
 }
 
-struct CustomTextField: View {
+struct CTextField: View {
     @Binding var text: String
     var placeholder: String
 

@@ -75,9 +75,9 @@ public struct RegisterView: View {
                         ISSSecureFieldSUI(inputString: $passwordText,
                                           isErrorState: $passwordErrorState,
                                           viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
-                                                                               validateText: "Password must contain the following:\n-8 characters in length.\-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
+                                                                               validateText: "Password must contain the following:\n-8 characters in length.\n-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
                                                                                regEx: RegExConstants.passwordRegEx,
-                                                                               isRequiredText: "Password must contain the following:\n-8 characters in length.\-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
+                                                                               isRequiredText: "Password must contain the following:\n-8 characters in length.\n-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
                                                                                leadingImageIcon: Image(systemName: "lock"))
                         )
                         

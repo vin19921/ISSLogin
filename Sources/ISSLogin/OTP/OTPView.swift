@@ -17,10 +17,10 @@ public struct OTPView: View {
     @State private var pin: [String] = Array(repeating: "", count: 6)
     @State private var pinText = ""
     @State private var isButtonEnabled = false
-    @State private var countdown = 180 // 3 minutes in seconds
+//    @State private var countdown = 180 // 3 minutes in seconds
 //    private var timer: AnyCancellable?
-//    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var timer: AnyCancellable?
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+//    @State private var timer: AnyCancellable?
 
     // MARK: Injection
 
@@ -81,7 +81,7 @@ public struct OTPView: View {
                         print("resend btn")
                         resetTimer()
                     }) {
-                        Text(isButtonEnabled ? "Resend" : "Can resend in \(countdown)")
+                        Text(isButtonEnabled ? "Resend" : "Can resend in \(presenter.getFormattedRemainingTime())")
                     }
                     .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -97,42 +97,45 @@ public struct OTPView: View {
             }
             .padding(.horizontal)
         }
-        .onAppear {
-            startCountdownTimer()
-        }
-//        .onReceive(timer) { _ in
-//            if presenter.remainingTimeInSeconds > 0 {
-//                presenter.remainingTimeInSeconds -= 1
-//            }
-//            else {
-////                presenter.remainingTimeInSeconds = 0
-////                presenter.showTimeOutAlert()
-//                isButtonEnabled = true
-//                timer.upstream.connect().cancel()
-//            }
+//        .onAppear {
+//            startCountdownTimer()
 //        }
-    }
-
-    private func startCountdownTimer() {
-        timer = Timer
-            .publish(every: 1, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-
-                if self.countdown > 0 {
-                    self.countdown -= 1
-                } else {
-                    self.isButtonEnabled = true
-                    self.timer?.cancel()
-                }
+        .onReceive(timer) { _ in
+            if presenter.remainingTimeInSeconds > 0 {
+                presenter.remainingTimeInSeconds -= 1
             }
+            else {
+//                presenter.remainingTimeInSeconds = 0
+//                presenter.showTimeOutAlert()
+                isButtonEnabled = true
+//                timer.upstream.connect().cancel()
+            }
+        }
+        .onDisappear {
+            timer.upstream.connect().cancel()
+        }
     }
+
+//    private func startCountdownTimer() {
+//        timer = Timer
+//            .publish(every: 1, on: .main, in: .common)
+//            .autoconnect()
+//            .sink { [weak self] _ in
+//                guard let self = self else { return }
+//
+//                if self.countdown > 0 {
+//                    self.countdown -= 1
+//                } else {
+//                    self.isButtonEnabled = true
+//                    self.timer?.cancel()
+//                }
+//            }
+//    }
 
     private func resetTimer() {
         presenter.remainingTimeInSeconds = 10 // Reset the countdown to 3 minutes
         isButtonEnabled = false // Disable the button
-        startCountdownTimer() // Start the timer again
+//        startCountdownTimer() // Start the timer again
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

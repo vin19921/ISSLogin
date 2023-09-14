@@ -80,6 +80,10 @@ public struct OTPView: View {
                         Spacer()
                     }
                     .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                    )
                 }
 
                 Spacer()

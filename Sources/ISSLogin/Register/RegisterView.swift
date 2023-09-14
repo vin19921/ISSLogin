@@ -23,6 +23,8 @@ public struct RegisterView: View {
 
     @State private var phoneErrorState = false
     @State private var fullNameErrorState = false
+    @State private var passwordErrorState = false
+    @State private var cPasswordErrorState = false
     @State private var emailErrorState = false
 
     // MARK: Injection
@@ -64,56 +66,70 @@ public struct RegisterView: View {
                         }
                     }
 
-                    HStack(spacing: 12) {
-                        HStack(alignment: .center) {
-                            Image(systemName: "lock")
-                                .resizable()
-                                .scaledToFit()
+                    ISSSecureFieldSUI(inputString: $passwordText,
+                                      isErrorState: $passwordErrorState,
+                                      viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
+                                                                           validateText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
+                                                                           regEx: RegExConstants.passwordRegEx,
+                                                                           isRequiredText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
+                                                                           leadingImageIcon: Image(systemName: "lock"))
+                    )
+
+                    ISSSecureFieldSUI(inputString: $cPasswordText,
+                                      isErrorState: $cPasswordErrorState,
+                                      compareString: passwordText,
+                                      viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Confirm Password",
+                                                                           validateText: "Password does not match",
+                                                                           isRequiredText: "Password does not match",
+                                                                           leadingImageIcon: Image(systemName: "lock")
+                                                                          )
+                    )
+//                    HStack(spacing: 12) {
+//                        HStack(alignment: .center) {
+//                            Image(systemName: "lock")
+//                                .resizable()
+//                                .scaledToFit()
+//                        }
+//                        .frame(width: 32)
+//
+//                        SecureField("Password", text: $passwordText)
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 0)
+//
+//                    }
+//                    .foregroundColor(Theme.current.issBlack.color)
+//                    .padding(.vertical, 8)
+//                    .padding(.horizontal, 12)
+//                    .frame(height: 36)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 12)
+//                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
+//                    )
+                    
+//                    HStack {
+//                        HStack(alignment: .center) {
+//                            Image(systemName: "lock")
+//                                .resizable()
+//                                .scaledToFit()
 //                                .foregroundColor(Color.black)
 //                                .padding(.vertical, 8)
 //                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
-
-                        SecureField("Password", text: $passwordText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-
-                    }
-                    .foregroundColor(Theme.current.issBlack.color)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 12)
-                    .frame(height: 36)
+//                        }
+//                        .frame(width: 32)
+//
+//                        SecureField("Confirm Password", text: $cPasswordText)
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 0)
+//                    }
+//                    .frame(height: 32)
+//                    .padding(.horizontal)
 //                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
-                    )
-                    
-                    HStack {
-                        HStack(alignment: .center) {
-                            Image(systemName: "lock")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
-
-                        SecureField("Confirm Password", text: $cPasswordText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                    }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                    )
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                    )
                     
 //                    HStack {
 //                        HStack(alignment: .center) {
@@ -173,7 +189,7 @@ public struct RegisterView: View {
                                                                        isRequiredText: "Please enter valid email",
                                                                        leadingImageIcon: Image(systemName: "envelope"))
                     )
-                    
+
                     Button(action: {
                         print("confirm btn")
                         presenter.routeToOTP()

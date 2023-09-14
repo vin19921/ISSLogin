@@ -113,43 +113,19 @@ public struct LoginView: View {
                             }
                         }
 
-//                        HStack {
-//                            HStack(alignment: .center) {
-//                                Image(systemName: "lock")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .foregroundColor(Color.black)
-//                                    .padding(.vertical, 8)
-//                                    .padding(.horizontal, 4)
-//                            }
-//                            .frame(width: 32)
-//
-//                            SecureField("Password", text: $passwordText)
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                        }
-//                        .frame(height: 32)
-//                        .padding(.horizontal)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                        )
-
                         Button(action: {
                             print("login btn")
                         }) {
                             Text("Login")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                                .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                                .cornerRadius(12)
                         }
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 8)
-                        .frame(maxWidth: .infinity)
                         .disabled(!validated())
-                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
-                        .cornerRadius(12)
                         
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

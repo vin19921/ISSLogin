@@ -108,15 +108,15 @@ public struct RegisterView: View {
                             presenter.routeToOTP()
                         }) {
                             Text("Confirm")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                                .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                                .cornerRadius(12)
                         }
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 8)
-                        .frame(maxWidth: .infinity)
 //                        .disabled(!validated()) /// temporary remark
-                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
-                        .cornerRadius(12)
                     }
                     .padding(.horizontal)
 

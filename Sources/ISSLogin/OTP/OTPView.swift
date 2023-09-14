@@ -62,7 +62,7 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-                                .frame(width: 180)
+                                .frame(width: 204)
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
                                 .multilineTextAlignment(.center)
@@ -82,15 +82,15 @@ public struct OTPView: View {
                         resetTimer()
                     }) {
                         Text(isButtonEnabled ? "Resend" : "Can resend in \(presenter.getFormattedRemainingTime())")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 8)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(!isButtonEnabled ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                            .background(!isButtonEnabled ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                            .cornerRadius(12)
                     }
-                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                        verticalPadding: 8)
-                    .frame(maxWidth: .infinity)
                     .disabled(!isButtonEnabled)
-                    .foregroundColor(!isButtonEnabled ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-                    .background(!isButtonEnabled ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
-                    .cornerRadius(12)
                 }
 
                 Spacer()

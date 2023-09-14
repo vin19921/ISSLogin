@@ -48,7 +48,7 @@ public struct OTPView: View {
                                             verticalPadding: 0)
                     HStack(spacing: 0) {
                         Spacer()
-                        OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 30, font: Theme.current.headline4.uiFont)
+                        OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
                             .lineLimit(1)
 //                            .fontWithLineHeight(font: Theme.current.headline4.uiFont,
 //                                                lineHeight: Theme.current.headline4.lineHeight,
@@ -61,7 +61,7 @@ public struct OTPView: View {
                                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }
                             })
-                            .frame(width: 204, height: 40)
+                            .frame(width: 204, height: 32)
                             .keyboardType(.numberPad)
                             .accentColor(Color.black)
                             .multilineTextAlignment(.center)
@@ -264,9 +264,9 @@ struct OTPTextField: UIViewRepresentable {
                 newStringLength += 1
             }
 
-            if currentText.length == maxLength {
-                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
-            }
+//            if currentText.length == maxLength {
+//                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
+//            }
 
             textField.attributedText = currentText
             parent.otp = currentText.string

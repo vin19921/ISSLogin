@@ -21,6 +21,7 @@ public struct RegisterView: View {
     @State private var cPasswordText = ""
     @State private var emailText = ""
 
+    @State private var phoneErrorState = false
     @State private var fullNameErrorState = false
 
     // MARK: Injection
@@ -39,8 +40,8 @@ public struct RegisterView: View {
                 ISSNavigationBarSUI(data: navigationBarData)
                 
                 VStack(spacing: 16) {
-                    ISSTextFieldSUI(inputString: $fullNameText,
-                                    isErrorState: $fullNameErrorState,
+                    ISSTextFieldSUI(inputString: $phoneText,
+                                    isErrorState: $phoneErrorState,
                                     viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
                                                                        keyboardType: .numberPad,
                                                                        isRequiredText: "Please enter valid mobile number",
@@ -112,31 +113,55 @@ public struct RegisterView: View {
                             .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                     )
                     
-                    HStack {
-                        HStack(alignment: .center) {
+//                    HStack {
+//                        HStack(alignment: .center) {
+//                            Image(systemName: "envelope")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .foregroundColor(Color.black)
+//                                .padding(.vertical, 8)
+//                                .padding(.horizontal, 4)
+//                        }
+//                        .frame(width: 32)
+//
+//                        TextField("Email", text: $emailText)
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 0)
+//                    }
+//                    .frame(height: 32)
+//                    .padding(.horizontal)
+//                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                    )
+                    HStack(spacing: 12) {
+//                        HStack {
                             Image(systemName: "envelope")
                                 .resizable()
                                 .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
+//                                .foregroundColor(Color.black)
+//                                .padding(.vertical, 8)
+//                                .padding(.horizontal, 12)
+//                        }
+//                        .frame(width: 36)
 
                         TextField("Email", text: $emailText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
+
                     }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .foregroundColor(Theme.current.issBlack.color)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 12)
+                    .frame(height: 36)
+//                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
                     )
-                    
-                    //                        Spacer()
                     
                     Button(action: {
                         print("confirm btn")

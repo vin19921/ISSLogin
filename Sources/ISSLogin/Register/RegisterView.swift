@@ -44,6 +44,11 @@ public struct RegisterView: View {
                 
                 ScrollView {
                     VStack(spacing: 16) {
+                        Text("Please fill in all the fields.")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 8)
+
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
@@ -70,9 +75,9 @@ public struct RegisterView: View {
                         ISSSecureFieldSUI(inputString: $passwordText,
                                           isErrorState: $passwordErrorState,
                                           viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
-                                                                               validateText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
+                                                                               validateText: "Password must contain the following:\n-8 characters in length.\-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
                                                                                regEx: RegExConstants.passwordRegEx,
-                                                                               isRequiredText: "At least 8 characters in length.\nContains at least 1 uppercase letter (A-Z).\nContains at least 1 lowercase letter (a-z).\nContains at least 1 digit (0-9).\nContains at least 1 special character (not a letter or digit).",
+                                                                               isRequiredText: "Password must contain the following:\n-8 characters in length.\-1 Uppercase (A-Z).\n-1 Lowercase (a-z).\n-1 Digit (0-9).\n-1 Special character",
                                                                                leadingImageIcon: Image(systemName: "lock"))
                         )
                         
@@ -99,24 +104,21 @@ public struct RegisterView: View {
                             print("confirm btn")
                             presenter.routeToOTP()
                         }) {
-                            Text("Confirm")
-                               
-//                                .foregroundColor(.white)
-                            //                                .frame(maxWidth: .infinity) // Expands the button to full screen width
-                            //                                .background(Color.black)
-//                                .cornerRadius(12)
+                            HStack {
+                                Text("Confirm")
+                            }
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 8)
+                            .frame(maxWidth: .infinity)
+                            .disabled(!validated())
+                            .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                            .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                            .cornerRadius(12)
                         }
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 8)
-                        .frame(maxWidth: .infinity)
-                        .cornerRadius(12)
-                        .disabled(!validated())
-                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
                     }
                     .padding()
-                    
+
                     Spacer()
                 }
             }

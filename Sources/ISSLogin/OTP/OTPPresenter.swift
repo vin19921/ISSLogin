@@ -11,10 +11,19 @@ final class OTPPresenter: ObservableObject {
 
     private var router: OTPRouter?
 
+    @Published var remainingTimeInSeconds: Int = 180
+
     // MARK: Injection
 
     func setRouter(_ router: OTPRouter) {
         self.router = router
+    }
+
+    func getFormattedRemainingTime() -> String {
+        let minutes = remainingTimeInSeconds / 60
+        let seconds = remainingTimeInSeconds % 60
+
+        return String(format: "%02i:%02i", minutes, seconds)
     }
 }
 

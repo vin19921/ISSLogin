@@ -113,7 +113,7 @@ public struct RegisterView: View {
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 8)
                         .frame(maxWidth: .infinity)
-                        .disabled(!validated())
+//                        .disabled(!validated()) /// temporary remark
                         .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
                         .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
                         .cornerRadius(12)

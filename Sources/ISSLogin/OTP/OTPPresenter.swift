@@ -11,7 +11,7 @@ final class OTPPresenter: ObservableObject {
 
     private var router: OTPRouter?
 
-    @Published var remainingTimeInSeconds: Int = 180
+    @Published var remainingTimeInSeconds: Int = 10 // 180
 
     // MARK: Injection
 

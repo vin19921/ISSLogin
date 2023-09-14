@@ -19,7 +19,8 @@ public struct OTPView: View {
     @State private var isButtonEnabled = false
     @State private var countdown = 180 // 3 minutes in seconds
 //    private var timer: AnyCancellable?
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+//    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var timer: AnyCancellable?
 
     // MARK: Injection
 
@@ -36,11 +37,11 @@ public struct OTPView: View {
                 ISSNavigationBarSUI(data: navigationBarData)
 
                 VStack(spacing: 16) {
-                    Text("Verify your Email Address")
-                        .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
-                                            lineHeight: Theme.current.subtitle2.lineHeight,
-                                            verticalPadding: 0)
-                    Text("Enter 4 digit code we'll text you on Email")
+//                    Text("Verify your Email Address")
+//                        .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
+//                                            lineHeight: Theme.current.subtitle2.lineHeight,
+//                                            verticalPadding: 0)
+                    Text("Please enter OTP code sent to +60")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 0)
@@ -61,7 +62,7 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-                                .frame(width: 168)
+                                .frame(width: 180)
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
                                 .multilineTextAlignment(.center)
@@ -80,7 +81,7 @@ public struct OTPView: View {
                         print("resend btn")
                         resetTimer()
                     }) {
-                        Text(isButtonEnabled ? "Resend" : "Can resend in \(presenter.getFormattedRemainingTime())")
+                        Text(isButtonEnabled ? "Resend" : "Can resend in \(countdown)")
                     }
                     .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -95,39 +96,42 @@ public struct OTPView: View {
                 Spacer()
             }
         }
-//        .onAppear {
-//            startCountdownTimer()
-//        }
-        .onReceive(timer) { _ in
-            if presenter.remainingTimeInSeconds > 0 {
-                presenter.remainingTimeInSeconds -= 1
-            }
+        .onAppear {
+            startCountdownTimer()
+        }
+//        .onReceive(timer) { _ in
+//            if presenter.remainingTimeInSeconds > 0 {
+//                presenter.remainingTimeInSeconds -= 1
+//            }
 //            else {
-//                presenter.remainingTimeInSeconds = 0
-//                presenter.showTimeOutAlert()
+////                presenter.remainingTimeInSeconds = 0
+////                presenter.showTimeOutAlert()
+//                isButtonEnabled = true
 //                timer.upstream.connect().cancel()
 //            }
-        }
+//        }
     }
 
-//    private func startCountdownTimer() {
-//        timer = Timer
-//            .publish(every: 1, on: .main, in: .common)
-//            .autoconnect()
-//            .sink { _ in
-//                if self.countdown > 0 {
-//                    self.countdown -= 1
-//                } else {
-//                    self.isButtonEnabled = true
-//                    self.timer?.cancel()
-//                }
-//            }
-//    }
+    private func startCountdownTimer() {
+        timer = Timer
+            .publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                if self.countdown > 0 {
+                    self.countdown -= 1
+                } else {
+                    self.isButtonEnabled = true
+                    self.timer?.cancel()
+                }
+            }
+    }
 
     private func resetTimer() {
-        presenter.remainingTimeInSeconds = 180 // Reset the countdown to 3 minutes
+        presenter.remainingTimeInSeconds = 10 // Reset the countdown to 3 minutes
         isButtonEnabled = false // Disable the button
-//        startCountdownTimer() // Start the timer again
+        startCountdownTimer() // Start the timer again
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

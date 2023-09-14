@@ -39,10 +39,10 @@ public struct RegisterView: View {
 
     public var body: some View {
         ZStack(alignment: .top) {
-            ScrollView {
-                VStack(spacing: .zero) {
-                    ISSNavigationBarSUI(data: navigationBarData)
-                    
+            VStack(spacing: .zero) {
+                ISSNavigationBarSUI(data: navigationBarData)
+                
+                ScrollView {
                     VStack(spacing: 16) {
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
@@ -100,14 +100,17 @@ public struct RegisterView: View {
                             presenter.routeToOTP()
                         }) {
                             Text("Confirm")
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 8)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity) // Expands the button to full screen width
-                                .background(Color.black)
-                                .cornerRadius(12)
+                               
+//                                .foregroundColor(.white)
+                            //                                .frame(maxWidth: .infinity) // Expands the button to full screen width
+                            //                                .background(Color.black)
+//                                .cornerRadius(12)
                         }
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(12)
                         .disabled(!validated())
                         .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
                         .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)

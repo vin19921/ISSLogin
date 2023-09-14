@@ -74,6 +74,7 @@ public struct OTPView: View {
                                 )
                         } else {
                             OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
+                                .padding(.leading, 30)
                                 .lineLimit(1)
                                 .background(Theme.current.backgroundGray.color)
                                 .textContentType(.oneTimeCode)

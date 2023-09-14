@@ -44,6 +44,7 @@ public struct RegisterView: View {
                     ISSTextFieldSUI(inputString: $phoneText,
                                     isErrorState: $phoneErrorState,
                                     viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
+                                                                       regEx: RegExConstants.minNineDigitRegEx,
                                                                        keyboardType: .numberPad,
                                                                        isRequiredText: "Please enter valid mobile number",
                                                                        leadingImageIcon: Image(systemName: "iphone"),
@@ -64,15 +65,15 @@ public struct RegisterView: View {
                     }
 
                     HStack(spacing: 12) {
-//                        HStack {
+                        HStack(alignment: .center) {
                             Image(systemName: "lock")
                                 .resizable()
                                 .scaledToFit()
 //                                .foregroundColor(Color.black)
 //                                .padding(.vertical, 8)
-//                                .padding(.horizontal, 12)
-//                        }
-//                        .frame(width: 36)
+//                                .padding(.horizontal, 4)
+                        }
+                        .frame(width: 32)
 
                         SecureField("Password", text: $passwordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -168,6 +169,7 @@ public struct RegisterView: View {
                                     isErrorState: $emailErrorState,
                                     viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
                                                                        validateText: "Please enter valid email",
+                                                                       regEx: RegExConstants.emailRegEx,
                                                                        isRequiredText: "Please enter valid email",
                                                                        leadingImageIcon: Image(systemName: "envelope"))
                     )

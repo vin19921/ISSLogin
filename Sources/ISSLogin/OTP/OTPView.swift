@@ -5,18 +5,20 @@
 //  Created by Wing Seng Chew on 12/09/2023.
 //
 
+import Combine
 import ISSCommonUI
 import ISSTheme
 import SwiftUI
-import Combine
 
 public struct OTPView: View {
 
     @ObservedObject private var presenter: OTPPresenter
 
-    @State private var pin: [String] = Array(repeating: "", count: 4)
-    @State private var isFirstResponder: [Bool] = Array(repeating: false, count: 4)
+    @State private var pin: [String] = Array(repeating: "", count: 6)
     @State private var pinText = ""
+    @State private var isButtonEnabled = false
+    @State private var countdown = 180 // 3 minutes in seconds
+    private var timer: AnyCancellable?
 
     // MARK: Injection
 
@@ -25,18 +27,6 @@ public struct OTPView: View {
     init(presenter: OTPPresenter) {
         self.presenter = presenter
     }
-
-    //MARK -> PROPERTIES
-
-//    enum FocusPin {
-//        case  pinOne, pinTwo, pinThree, pinFour
-//    }
-
-//    @FocusState private var pinFocusState : FocusPin?
-//    @State var pinOne: String = ""
-//    @State var pinTwo: String = ""
-//    @State var pinThree: String = ""
-//    @State var pinFour: String = ""
 
     //MARK -> BODY
     public var body: some View {
@@ -65,12 +55,12 @@ public struct OTPView: View {
                                 .background(Theme.current.backgroundGray.color)
                                 .textContentType(.oneTimeCode)
                                 .onChange(of: pinText, perform: {
-                                    pinText = String($0.prefix(4))
-                                    if pinText.count == 4 {
+                                    pinText = String($0.prefix(6))
+                                    if pinText.count == 6 {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-                                .frame(width: 140)
+                                .frame(width: 168)
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
                                 .multilineTextAlignment(.center)
@@ -84,17 +74,49 @@ public struct OTPView: View {
                         Spacer()
                     }
                     .padding()
+
+                    Button(action: {
+                        print("resend btn")
+                        resetTimer()
+                    }) {
+                        Text(isButtonEnabled ? "Resend" : "Can resend in: \(countdown) seconds")
+                    }
+                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                        verticalPadding: 8)
+                    .frame(maxWidth: .infinity)
+                    .disabled(!isButtonEnabled)
+                    .foregroundColor(!isButtonEnabled ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                    .background(!isButtonEnabled ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                    .cornerRadius(12)
                 }
 
                 Spacer()
             }
         }
-        
-//        .onAppear {
-//            DispatchQueue.main.async {
-//                isFirstResponder[0] = true
-//            }
-//        }
+        .onAppear {
+            startCountdownTimer()
+        }
+    }
+
+    private func startCountdownTimer() {
+        timer = Timer
+            .publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                if countdown > 0 {
+                    countdown -= 1
+                } else {
+                    isButtonEnabled = true
+                    timer?.cancel()
+                }
+            }
+    }
+
+    private func resetTimer() {
+        countdown = 180 // Reset the countdown to 3 minutes
+        isButtonEnabled = false // Disable the button
+        startCountdownTimer() // Start the timer again
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

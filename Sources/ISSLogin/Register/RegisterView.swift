@@ -48,10 +48,9 @@ public struct RegisterView: View {
                             Text("Please fill in all the fields.")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 8)
+                                                    verticalPadding: 0)
                             Spacer()
                         }
-                        .background(Color.orange)
 
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,

@@ -74,16 +74,16 @@ public struct OTPView: View {
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
                                 .multilineTextAlignment(.center)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                                )
                         } else {
                             // Fallback on earlier versions
                         }
                         Spacer()
                     }
                     .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                    )
                 }
 
                 Spacer()

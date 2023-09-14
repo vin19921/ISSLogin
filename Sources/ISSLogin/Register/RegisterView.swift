@@ -39,42 +39,20 @@ public struct RegisterView: View {
                 ISSNavigationBarSUI(data: navigationBarData)
                 
                 VStack(spacing: 16) {
-                    HStack(spacing: 0) {
-                        HStack(alignment: .center) {
-                            Image(systemName: "iphone")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
-                        
-                        Text("+60")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                            .padding(.leading, 8)
-                            .padding(.trailing, 4)
-                        TextField("Mobile No.", text: $phoneText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                    }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                    ISSTextFieldSUI(inputString: $fullNameText,
+                                    isErrorState: $fullNameErrorState,
+                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
+                                                                       keyboardType: .numberPad,
+                                                                       isRequiredText: "Please enter valid mobile number",
+                                                                       leadingImageIcon: Image(systemName: "iphone"),
+                                                                       prefix: "+60")
                     )
 
                     ISSTextFieldSUI(inputString: $fullNameText,
                                     isErrorState: $fullNameErrorState,
-                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "fullName",
-                                                                       isRequiredText: "fullNameMandatoryText",
-                                                                       leadingImageIcon: Image(systemName: "iphone"),
-                                                                       prefix: "+60")
+                                    viewData: ISSTextFieldSUI.ViewData(placeholderText: "Full Name (as Per NRIC)",
+                                                                       isRequiredText: "Please enter full name",
+                                                                       leadingImageIcon: Image(systemName: "person"))
                     )
                     .onReceive(Just(fullNameText)) { newValue in
                         let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
@@ -82,41 +60,17 @@ public struct RegisterView: View {
                             self.fullNameText = filtered
                         }
                     }
-                    
-                    HStack {
-                        HStack(alignment: .center) {
-                            Image(systemName: "person")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
 
-                        TextField("Full Name (as Per NRIC)", text: $fullNameText)
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                    }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                    )
-                    
-                    HStack {
-                        HStack(alignment: .center) {
+                    HStack(spacing: 12) {
+//                        HStack {
                             Image(systemName: "lock")
                                 .resizable()
                                 .scaledToFit()
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 4)
-                        }
-                        .frame(width: 32)
+//                                .foregroundColor(Color.black)
+//                                .padding(.vertical, 8)
+//                                .padding(.horizontal, 12)
+//                        }
+//                        .frame(width: 36)
 
                         SecureField("Password", text: $passwordText)
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -124,12 +78,14 @@ public struct RegisterView: View {
                                                 verticalPadding: 0)
 
                     }
-                    .frame(height: 32)
-                    .padding(.horizontal)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .foregroundColor(Theme.current.issBlack.color)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 12)
+                    .frame(height: 36)
+//                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
                     )
                     
                     HStack {

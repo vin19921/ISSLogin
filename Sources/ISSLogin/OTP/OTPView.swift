@@ -76,9 +76,9 @@ public struct OTPView: View {
                         } else {
                             OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
 //                                .padding(.leading, 30)
-                                .lineLimit(1)
+//                                .lineLimit(1)
                                 .background(Theme.current.backgroundGray.color)
-                                .textContentType(.oneTimeCode)
+//                                .textContentType(.oneTimeCode)
                                 .onChange(of: pinText, perform: {
                                     pinText = String($0.prefix(6))
                                     if pinText.count == 6 {
@@ -86,8 +86,8 @@ public struct OTPView: View {
                                     }
                                 })
                                 .frame(width: 200, height: 26)
-                                .keyboardType(.numberPad)
-                                .accentColor(Color.black)
+//                                .keyboardType(.numberPad)
+//                                .accentColor(Color.black)
 //                                .multilineTextAlignment(.center)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
@@ -216,7 +216,10 @@ struct OTPTextField: UIViewRepresentable {
         textField.delegate = context.coordinator
         textField.font = font
         textField.textAlignment = .center
+        textField.textContentType = .oneTimeCode
+        textField.lineLimit = 1
         textField.keyboardType = .numberPad
+        textField.accentColor = Color.black
         return textField
     }
 
@@ -252,15 +255,15 @@ struct OTPTextField: UIViewRepresentable {
             currentText.deleteCharacters(in: range)
             var newStringLength = 0
 
-            for char in string {
+            for (index, char) in string.enumerated() {
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width
-                let kern = symbolWidth - currentSymbolWidth
+//                let kern = symbolWidth - currentSymbolWidth
 
                 if string.count < maxLength {
-                    newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
-                    print("added kern \(string.count)")
+                    newSymbol.addAttribute(.kern, value: 16, range: NSMakeRange(0, 1))
+                    print("added kern \(index)")
                 }
 
                 currentText.insert(newSymbol, at: range.location + newStringLength)

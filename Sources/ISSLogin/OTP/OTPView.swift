@@ -262,9 +262,9 @@ struct OTPTextField: UIViewRepresentable {
                 newStringLength += 1
             }
 
-//            if currentText.length == maxLength {
-//                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
-//            }
+            if currentText.length == maxLength {
+                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
+            }
 
             textField.attributedText = currentText
             parent.otp = currentText.string

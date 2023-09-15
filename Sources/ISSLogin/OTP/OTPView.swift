@@ -307,12 +307,12 @@ struct OTPTextField: UIViewRepresentable {
         func addKerningExcludingLastCharacter(text: String, kernValue: CGFloat) -> NSAttributedString {
             let attributedText = NSMutableAttributedString(string: text)
 
-            // Check if the text is not empty and has more than one character
-            if text.count > 1 {
+            // Check if the text is not empty
+            if text.count > 0 {
                 // Apply kerning to all characters except the last one
                 for i in 0..<text.count - 1 {
                     let range = NSRange(location: i, length: 1)
-                    attributedText.addAttribute(.kern, value: kernValue, range: range)
+                    attributedText.addAttribute(NSAttributedString.Key.kern, value: kernValue, range: range)
                 }
             }
 

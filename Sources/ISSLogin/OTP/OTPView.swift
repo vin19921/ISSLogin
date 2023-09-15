@@ -260,8 +260,10 @@ struct OTPTextField: UIViewRepresentable {
                 
                 if isLastCharacter {
                     newSymbol.addAttribute(.kern, value: 0, range: NSMakeRange(0, 1))
+                    print("isLastCharacter")
                 } else {
                     newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+                    print("not isLastCharacter")
                 }
 
                 currentText.insert(newSymbol, at: range.location + newStringLength)

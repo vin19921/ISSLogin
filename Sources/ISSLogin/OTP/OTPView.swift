@@ -76,7 +76,7 @@ public struct OTPView: View {
                         } else {
                             OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
 //                                .padding(.leading, 30)
-//                                .lineLimit(1)
+                                .lineLimit(1)
                                 .background(Theme.current.backgroundGray.color)
 //                                .textContentType(.oneTimeCode)
                                 .onChange(of: pinText, perform: {
@@ -87,7 +87,7 @@ public struct OTPView: View {
                                 })
                                 .frame(width: 200, height: 26)
 //                                .keyboardType(.numberPad)
-//                                .accentColor(Color.black)
+                                .accentColor(Color.black)
 //                                .multilineTextAlignment(.center)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
@@ -217,9 +217,9 @@ struct OTPTextField: UIViewRepresentable {
         textField.font = font
         textField.textAlignment = .center
         textField.textContentType = .oneTimeCode
-        textField.lineLimit = 1
+//        textField.lineLimit = 1
         textField.keyboardType = .numberPad
-        textField.accentColor = Color.black
+//        textField.accentColor = Color.black
         return textField
     }
 

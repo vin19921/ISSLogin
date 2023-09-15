@@ -76,10 +76,15 @@ public struct OTPView: View {
                         } else {
                             KerningTextField(text: $pinText)
                                 .padding(.vertical, 4)
-                                .frame(width: 204)
+                                .frame(width: 204, height: 32)
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
-                                .multilineTextAlignment(.center)
+                                .onChange(of: pinText, perform: {
+                                    pinText = String($0.prefix(6))
+                                    if pinText.count == 6 {
+                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                    }
+                                })
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
@@ -227,9 +232,7 @@ struct OTPTextField: UIViewRepresentable {
         textField.font = font
         textField.textAlignment = .center
         textField.textContentType = .oneTimeCode
-//        textField.lineLimit = 1
         textField.keyboardType = .numberPad
-//        textField.accentColor = Color.black
         return textField
     }
 
@@ -340,6 +343,9 @@ struct KerningTextField: UIViewRepresentable {
         let textField = UITextField()
         textField.delegate = context.coordinator
         textField.font = font
+        textField.textAlignment = .center
+        textField.textContentType = .oneTimeCode
+        textField.keyboardType = .numberPad
 
         return textField
     }

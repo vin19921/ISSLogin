@@ -283,6 +283,8 @@ struct OTPTextField: UIViewRepresentable {
             // Calculate the new text after applying the user's input
             var currentText = textField.text ?? ""
             let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
+            print("Updated Text: \(updatedText)")
+            print("Max Length: \(maxLength)")
 
             // Check if the new length exceeds the maximum length
             if updatedText.count > maxLength {

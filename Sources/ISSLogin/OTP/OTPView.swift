@@ -85,7 +85,7 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-                                .frame(height: 32)
+                                .frame(width: 204, height: 32)
 //                                .keyboardType(.numberPad)
                                 .accentColor(Color.black)
 //                                .multilineTextAlignment(.center)
@@ -113,10 +113,10 @@ public struct OTPView: View {
                     }
                     .disabled(!isButtonEnabled)
                 }
+                .padding(.horizontal)
 
                 Spacer()
             }
-            .padding(.horizontal)
         }
 //        .onAppear {
 //            startCountdownTimer()
@@ -238,6 +238,46 @@ struct OTPTextField: UIViewRepresentable {
             self.parent = parent
         }
 
+//        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//            let maxLength = parent.maxLength
+//            let symbolWidth = parent.symbolWidth
+//            let font = parent.font
+//
+//            if string == "" {
+//                return true
+//            }
+//
+//            if textField.text!.count + string.count - range.length > maxLength {
+//                return false
+//            }
+//
+//            let currentText = NSMutableAttributedString(attributedString: NSAttributedString(string: textField.text ?? ""))
+//            currentText.deleteCharacters(in: range)
+//            var newStringLength = 0
+//
+//            for (index, char) in string.enumerated() {
+//                let newSymbol = NSMutableAttributedString(string: String(char))
+//                newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
+//                let currentSymbolWidth = newSymbol.size().width
+//                let kern = symbolWidth - currentSymbolWidth
+//
+//                print("kern: \(kern)")
+//                newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+//
+//                currentText.insert(newSymbol, at: range.location + newStringLength)
+//                newStringLength += 1
+//            }
+//
+////            if currentText.length == maxLength {
+////                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
+////            }
+//
+//            textField.attributedText = currentText
+//            parent.otp = currentText.string
+//
+//            return false
+//        }
+
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
             let maxLength = parent.maxLength
             let symbolWidth = parent.symbolWidth
@@ -247,37 +287,34 @@ struct OTPTextField: UIViewRepresentable {
                 return true
             }
 
-            if textField.text!.count + string.count - range.length > maxLength {
-                return false
-            }
-
             let currentText = NSMutableAttributedString(attributedString: NSAttributedString(string: textField.text ?? ""))
             currentText.deleteCharacters(in: range)
             var newStringLength = 0
 
             for (index, char) in string.enumerated() {
-                print("Character at index \(index): \(char)")
+                // Check if this is the last character
+                let isLastCharacter = index == string.count - 1
+                
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width
-                let kern = symbolWidth - currentSymbolWidth
-
-                print("kern: \(kern)")
-                newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+                
+                if !isLastCharacter {
+                    // Calculate the kern for all characters except the last one
+                    let kern = symbolWidth - currentSymbolWidth
+                    newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+                }
 
                 currentText.insert(newSymbol, at: range.location + newStringLength)
                 newStringLength += 1
             }
-
-//            if currentText.length == maxLength {
-//                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
-//            }
 
             textField.attributedText = currentText
             parent.otp = currentText.string
 
             return false
         }
+
     }
 }
 

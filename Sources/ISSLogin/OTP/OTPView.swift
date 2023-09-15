@@ -256,15 +256,16 @@ struct OTPTextField: UIViewRepresentable {
             var newStringLength = 0
 
             for (index, char) in string.enumerated() {
+                print("Character at index \(index): \(char)")
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width
 //                let kern = symbolWidth - currentSymbolWidth
 
-                if string.count < maxLength {
-                    newSymbol.addAttribute(.kern, value: 16, range: NSMakeRange(0, 1))
-                    print("added kern \(index)")
-                }
+//                if string.count < maxLength {
+                newSymbol.addAttribute(.kern, value: 16, range: NSMakeRange(0, 1))
+//                    print("added kern \(index)")
+//                }
 
                 currentText.insert(newSymbol, at: range.location + newStringLength)
                 newStringLength += 1

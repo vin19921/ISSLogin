@@ -85,7 +85,7 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-//                                .frame(width: 200, height: 28)
+                                .frame(width: 200, height: 26)
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
 //                                .multilineTextAlignment(.center)

@@ -251,8 +251,13 @@ struct OTPTextField: UIViewRepresentable {
                 return false
             }
 
-            if textField.text!.count == maxLength {
-                print("last char")
+            // Calculate the new length if the change is applied
+            let newLength = textField.text!.count + string.count - range.length
+
+            // Check if the new length exceeds the maximum length and the change affects the last character
+            if newLength > maxLength && range.location < textField.text!.count - 1 {
+                // Prevent the change if it exceeds the maximum length and doesn't affect the last character
+                print("not apply to last")
                 return false
             }
 

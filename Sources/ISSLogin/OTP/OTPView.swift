@@ -278,7 +278,7 @@ struct OTPTextField: UIViewRepresentable {
 //        }
 
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//            let maxLength = parent.maxLength
+            let maxLength = parent.maxLength
 //            let symbolWidth = parent.symbolWidth
 //            let font = parent.font
 

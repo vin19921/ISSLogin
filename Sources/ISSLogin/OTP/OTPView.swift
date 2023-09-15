@@ -279,8 +279,6 @@ struct OTPTextField: UIViewRepresentable {
 
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
             let maxLength = parent.maxLength
-//            let symbolWidth = parent.symbolWidth
-//            let font = parent.font
 
             // Calculate the new text after applying the user's input
             var currentText = textField.text ?? ""
@@ -307,8 +305,8 @@ struct OTPTextField: UIViewRepresentable {
         func addKerningExcludingLastCharacter(text: String, kernValue: CGFloat) -> NSAttributedString {
             let attributedText = NSMutableAttributedString(string: text)
 
-            // Check if the text is not empty
-            if text.count > 0 {
+            // Check if the text is not empty and has more than one character
+            if text.count > 1 {
                 // Apply kerning to all characters except the last one
                 for i in 0..<text.count - 1 {
                     let range = NSRange(location: i, length: 1)

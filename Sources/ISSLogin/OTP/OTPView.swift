@@ -238,51 +238,91 @@ struct OTPTextField: UIViewRepresentable {
             self.parent = parent
         }
 
+//        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//            let maxLength = parent.maxLength
+//            let symbolWidth = parent.symbolWidth
+//            let font = parent.font
+//
+//            if string == "" {
+//                return true
+//            }
+//
+//            if textField.text!.count + string.count - range.length > maxLength {
+//                return false
+//            }
+//
+//            let currentText = NSMutableAttributedString(attributedString: NSAttributedString(string: textField.text ?? ""))
+//            currentText.deleteCharacters(in: range)
+//            var newStringLength = 0
+//
+//            for (index, char) in string.enumerated() {
+//                let lastCharacterRange = NSRange(location: textField.text!.count - 1, length: 1)
+//                let newSymbol = NSMutableAttributedString(string: String(char))
+//                newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
+//                let currentSymbolWidth = newSymbol.size().width
+//                let kern = symbolWidth - currentSymbolWidth
+//
+//                if !lastCharacterRange {
+//                    newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+//                    print("added kern: \(newSymbol)")
+//                }
+//
+//                // Remove the kerning attribute (NSKern) from the last character
+////                attributedText.removeAttribute(.kern, range: lastCharacterRange)
+//
+//
+//                currentText.insert(newSymbol, at: range.location + newStringLength)
+//                newStringLength += 1
+//            }
+//
+////            if currentText.length == maxLength {
+////                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
+////            }
+//
+//            textField.attributedText = currentText
+//            parent.otp = currentText.string
+//
+//            return false
+//        }
+
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            let maxLength = parent.maxLength
-            let symbolWidth = parent.symbolWidth
-            let font = parent.font
-
-            if string == "" {
-                return true
-            }
-
-            if textField.text!.count + string.count - range.length > maxLength {
+            let maxLength = 6 // Your maximum length requirement
+            let kernValue: CGFloat = 16.0 // The desired kerning value
+            
+            // Get the current text in the text field
+            var currentText = textField.text ?? ""
+            
+            // Calculate the new text after applying the user's input
+            let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
+            
+            // Check if the new length exceeds the maximum length
+            if updatedText.count > maxLength {
                 return false
             }
+            
+            // Apply kerning to all characters except the last one
+            if updatedText.count > 0 {
+                currentText = updatedText
+                let attributedText = addKerningExcludingLastCharacter(text: updatedText, kernValue: kernValue)
+                textField.attributedText = attributedText
+            }
+            
+            return true
+        }
 
-            let currentText = NSMutableAttributedString(attributedString: NSAttributedString(string: textField.text ?? ""))
-            currentText.deleteCharacters(in: range)
-            var newStringLength = 0
+        func addKerningExcludingLastCharacter(text: String, kernValue: CGFloat) -> NSAttributedString {
+            let attributedText = NSMutableAttributedString(string: text)
 
-            for (index, char) in string.enumerated() {
-                let lastCharacterRange = NSRange(location: textField.text!.count - 1, length: 1)
-                let newSymbol = NSMutableAttributedString(string: String(char))
-                newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
-                let currentSymbolWidth = newSymbol.size().width
-                let kern = symbolWidth - currentSymbolWidth
-
-                if !lastCharacterRange {
-                    newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
-                    print("added kern: \(newSymbol)")
+            // Check if the text is not empty
+            if text.count > 0 {
+                // Apply kerning to all characters except the last one
+                for i in 0..<text.count - 1 {
+                    let range = NSRange(location: i, length: 1)
+                    attributedText.addAttribute(.kern, value: kernValue, range: range)
                 }
-
-                // Remove the kerning attribute (NSKern) from the last character
-//                attributedText.removeAttribute(.kern, range: lastCharacterRange)
-
-                
-                currentText.insert(newSymbol, at: range.location + newStringLength)
-                newStringLength += 1
             }
 
-//            if currentText.length == maxLength {
-//                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
-//            }
-
-            textField.attributedText = currentText
-            parent.otp = currentText.string
-
-            return false
+            return attributedText
         }
     }
 }

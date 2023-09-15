@@ -85,7 +85,7 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-                                .frame(width: 200, height: 26)
+                                .frame(height: 32)
 //                                .keyboardType(.numberPad)
                                 .accentColor(Color.black)
 //                                .multilineTextAlignment(.center)
@@ -260,12 +260,10 @@ struct OTPTextField: UIViewRepresentable {
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width
-//                let kern = symbolWidth - currentSymbolWidth
+                let kern = symbolWidth - currentSymbolWidth
 
-//                if string.count < maxLength {
-                newSymbol.addAttribute(.kern, value: 16, range: NSMakeRange(0, 1))
-//                    print("added kern \(index)")
-//                }
+                print("kern: \(kern)")
+                newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
 
                 currentText.insert(newSymbol, at: range.location + newStringLength)
                 newStringLength += 1

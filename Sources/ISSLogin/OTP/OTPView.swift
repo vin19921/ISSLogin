@@ -373,9 +373,17 @@ struct KerningTextField: UIViewRepresentable {
     }
 
     private func applyKerning(to textField: UITextField) {
-        if let attributedText = textField.attributedText?.mutableCopy() as? NSMutableAttributedString {
-            attributedText.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedText.length))
-            textField.attributedText = attributedText
-        }
+//        if let attributedText = textField.attributedText?.mutableCopy() as? NSMutableAttributedString {
+//            attributedText.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedText.length))
+//            textField.attributedText = attributedText
+//        }
+        if let text = textField.text {
+           // Exclude the last character from kerning
+           let textExcludingLastCharacter = String(text.dropLast())
+           let attributedText = NSMutableAttributedString(string: textExcludingLastCharacter)
+           attributedText.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedText.length))
+           attributedText.append(NSAttributedString(string: String(text.last!)))
+           textField.attributedText = attributedText
+       }
     }
 }

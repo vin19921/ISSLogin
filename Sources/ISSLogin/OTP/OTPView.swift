@@ -74,25 +74,53 @@ public struct OTPView: View {
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                                 )
                         } else {
-                            OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
-//                                .padding(.leading, 30)
-                                .lineLimit(1)
-                                .background(Theme.current.backgroundGray.color)
-//                                .textContentType(.oneTimeCode)
-                                .onChange(of: pinText, perform: {
-                                    pinText = String($0.prefix(6))
-                                    if pinText.count == 6 {
-                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                    }
-                                })
-                                .frame(width: 204, height: 32)
-//                                .keyboardType(.numberPad)
-                                .accentColor(Color.black)
-//                                .multilineTextAlignment(.center)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-                                )
+                            ZStack(alignment: .leading) {
+                                // Overlay a Text view with kerning on top of the TextField
+                                Text(pinText)
+                                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                                        lineHeight: Theme.current.headline4.lineHeight,
+                                                        verticalPadding: 0)
+                                    .kerning(kernValue)
+                                    .multilineTextAlignment(.center)
+                                    .opacity(0) // Hide this Text view
+
+                                TextField("", text: $pinText)
+                                    .padding(.vertical, 4)
+                                    .lineLimit(1)
+                                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
+                                                        lineHeight: Theme.current.headline4.lineHeight,
+                                                        verticalPadding: 0)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .multilineTextAlignment(.center)
+                                    .keyboardType(.numberPad)
+                                    .accentColor(Color.black)
+                                    .onChange(of: pinText, perform: {
+                                        pinText = String($0.prefix(6))
+                                        if pinText.count == 6 {
+                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                        }
+                                    })
+                                    .frame(width: 204)
+                            }
+//                            OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
+////                                .padding(.leading, 30)
+//                                .lineLimit(1)
+//                                .background(Theme.current.backgroundGray.color)
+////                                .textContentType(.oneTimeCode)
+//                                .onChange(of: pinText, perform: {
+//                                    pinText = String($0.prefix(6))
+//                                    if pinText.count == 6 {
+//                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                                    }
+//                                })
+//                                .frame(width: 204, height: 32)
+////                                .keyboardType(.numberPad)
+//                                .accentColor(Color.black)
+////                                .multilineTextAlignment(.center)
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: 10)
+//                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+//                                )
                         }
                         Spacer()
                     }

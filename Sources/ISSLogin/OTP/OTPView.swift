@@ -74,34 +74,16 @@ public struct OTPView: View {
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                                 )
                         } else {
-                            ZStack(alignment: .leading) {
-                                // Overlay a Text view with kerning on top of the TextField
-                                Text(pinText)
-                                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-                                                        lineHeight: Theme.current.headline4.lineHeight,
-                                                        verticalPadding: 0)
-                                    .tracking(16.0)
-                                    .multilineTextAlignment(.center)
-                                    .opacity(0) // Hide this Text view
-
-                                TextField("", text: $pinText)
-                                    .padding(.vertical, 4)
-                                    .lineLimit(1)
-                                    .fontWithLineHeight(font: Theme.current.headline4.uiFont,
-                                                        lineHeight: Theme.current.headline4.lineHeight,
-                                                        verticalPadding: 0)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .multilineTextAlignment(.center)
-                                    .keyboardType(.numberPad)
-                                    .accentColor(Color.black)
-                                    .onChange(of: pinText, perform: {
-                                        pinText = String($0.prefix(6))
-                                        if pinText.count == 6 {
-                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        }
-                                    })
-                                    .frame(width: 204)
-                            }
+                            KerningTextField(text: $pinText)
+                                .padding(.vertical, 4)
+                                .frame(width: 204)
+                                .keyboardType(.numberPad)
+                                .accentColor(Color.black)
+                                .multilineTextAlignment(.center)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
+                                )
 //                            OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
 ////                                .padding(.leading, 30)
 //                                .lineLimit(1)
@@ -349,3 +331,45 @@ struct OTPTextField: UIViewRepresentable {
     }
 }
 
+struct KerningTextField: UIViewRepresentable {
+    @Binding var text: String
+    let kernValue: CGFloat = 16.0
+    let font: UIFont = Theme.current.headline4.uiFont
+
+    func makeUIView(context: Context) -> UITextField {
+        let textField = UITextField()
+        textField.delegate = context.coordinator
+        textField.font = font
+
+        return textField
+    }
+
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        uiView.text = text
+        applyKerning(to: uiView)
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UITextFieldDelegate {
+        var parent: KerningTextField
+
+        init(_ parent: KerningTextField) {
+            self.parent = parent
+        }
+
+        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            parent.text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+            return true
+        }
+    }
+
+    private func applyKerning(to textField: UITextField) {
+        if let attributedText = textField.attributedText?.mutableCopy() as? NSMutableAttributedString {
+            attributedText.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedText.length))
+            textField.attributedText = attributedText
+        }
+    }
+}

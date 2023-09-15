@@ -74,7 +74,7 @@ public struct OTPView: View {
                                 )
                         } else {
                             OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
-                                .padding(.leading, 30)
+//                                .padding(.leading, 30)
                                 .lineLimit(1)
                                 .background(Theme.current.backgroundGray.color)
                                 .textContentType(.oneTimeCode)
@@ -84,10 +84,10 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-                                .frame(width: 204, height: 32)
+                                .frame(width: 204, height: 28)
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
-                                .multilineTextAlignment(.center)
+//                                .multilineTextAlignment(.center)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)

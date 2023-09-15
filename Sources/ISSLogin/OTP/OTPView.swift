@@ -251,20 +251,26 @@ struct OTPTextField: UIViewRepresentable {
             currentText.deleteCharacters(in: range)
             var newStringLength = 0
 
-            for char in string {
+            for (index, char) in string.enumerated() {
+                let isLastCharacter = index == string.count - 1
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width
                 let kern = symbolWidth - currentSymbolWidth
-                newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+                
+                if isLastCharacter {
+                    newSymbol.addAttribute(.kern, value: 0, range: NSMakeRange(0, 1))
+                } else {
+                    newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+                }
 
                 currentText.insert(newSymbol, at: range.location + newStringLength)
                 newStringLength += 1
             }
 
-            if currentText.length == maxLength {
-                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
-            }
+//            if currentText.length == maxLength {
+//                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
+//            }
 
             textField.attributedText = currentText
             parent.otp = currentText.string

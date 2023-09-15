@@ -294,7 +294,7 @@ struct OTPTextField: UIViewRepresentable {
             // Apply kerning to all characters except the last one
             if updatedText.count > 0 {
                 currentText = updatedText
-                let kernValue: CGFloat = 16.0 // Adjust this value as needed
+                let kernValue: CGFloat = 5 // Adjust this value as needed
                 let attributedText = addKerningExcludingLastCharacter(text: updatedText, kernValue: kernValue)
                 textField.attributedText = attributedText
             }

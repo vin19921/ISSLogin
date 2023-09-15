@@ -255,7 +255,7 @@ struct OTPTextField: UIViewRepresentable {
 //            currentText.deleteCharacters(in: range)
 //            var newStringLength = 0
 //
-//            for (index, char) in string.enumerated() {
+//            for char in string {
 //                let lastCharacterRange = NSRange(location: textField.text!.count - 1, length: 1)
 //                let newSymbol = NSMutableAttributedString(string: String(char))
 //                newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
@@ -267,17 +267,9 @@ struct OTPTextField: UIViewRepresentable {
 //                    print("added kern: \(newSymbol)")
 //                }
 //
-//                // Remove the kerning attribute (NSKern) from the last character
-////                attributedText.removeAttribute(.kern, range: lastCharacterRange)
-//
-//
 //                currentText.insert(newSymbol, at: range.location + newStringLength)
 //                newStringLength += 1
 //            }
-//
-////            if currentText.length == maxLength {
-////                currentText.addAttribute(.kern, value: 0, range: NSMakeRange(maxLength - 1, 1))
-////            }
 //
 //            textField.attributedText = currentText
 //            parent.otp = currentText.string
@@ -286,28 +278,30 @@ struct OTPTextField: UIViewRepresentable {
 //        }
 
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            let maxLength = 6 // Your maximum length requirement
-            let kernValue: CGFloat = 16.0 // The desired kerning value
-            
-            // Get the current text in the text field
-            var currentText = textField.text ?? ""
-            
+//            let maxLength = parent.maxLength
+//            let symbolWidth = parent.symbolWidth
+//            let font = parent.font
+
             // Calculate the new text after applying the user's input
+            var currentText = textField.text ?? ""
             let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
-            
+
             // Check if the new length exceeds the maximum length
             if updatedText.count > maxLength {
                 return false
             }
-            
+
             // Apply kerning to all characters except the last one
             if updatedText.count > 0 {
                 currentText = updatedText
+                let kernValue: CGFloat = 16.0 // Adjust this value as needed
                 let attributedText = addKerningExcludingLastCharacter(text: updatedText, kernValue: kernValue)
                 textField.attributedText = attributedText
             }
-            
-            return true
+
+            parent.otp = currentText
+
+            return false
         }
 
         func addKerningExcludingLastCharacter(text: String, kernValue: CGFloat) -> NSAttributedString {

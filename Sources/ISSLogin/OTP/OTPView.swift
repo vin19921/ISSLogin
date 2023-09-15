@@ -377,7 +377,7 @@ struct KerningTextField: UIViewRepresentable {
 //            attributedText.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedText.length))
 //            textField.attributedText = attributedText
 //        }
-        if let text = textField.text {
+        if let text = textField.text, text.count > 0 {
            // Exclude the last character from kerning
            let textExcludingLastCharacter = String(text.dropLast())
            let attributedText = NSMutableAttributedString(string: textExcludingLastCharacter)

@@ -251,29 +251,26 @@ struct OTPTextField: UIViewRepresentable {
                 return false
             }
 
-            // Calculate the new length if the change is applied
-            let newLength = textField.text!.count + string.count - range.length
-
-            // Check if the new length exceeds the maximum length and the change affects the last character
-            if newLength > maxLength && range.location < textField.text!.count - 1 {
-                // Prevent the change if it exceeds the maximum length and doesn't affect the last character
-                print("not apply to last")
-                return false
-            }
-
             let currentText = NSMutableAttributedString(attributedString: NSAttributedString(string: textField.text ?? ""))
             currentText.deleteCharacters(in: range)
             var newStringLength = 0
 
             for (index, char) in string.enumerated() {
+                let lastCharacterRange = NSRange(location: text.count - 1, length: 1)
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width
                 let kern = symbolWidth - currentSymbolWidth
 
-                print("kern: \(kern)")
-                newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+                if !lastCharacterRange {
+                    newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
+                    print("added kern: \(newSymbol)")
+                }
 
+                // Remove the kerning attribute (NSKern) from the last character
+//                attributedText.removeAttribute(.kern, range: lastCharacterRange)
+
+                
                 currentText.insert(newSymbol, at: range.location + newStringLength)
                 newStringLength += 1
             }

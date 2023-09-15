@@ -51,6 +51,7 @@ public struct OTPView: View {
 
                         if #available(iOS 16.0, *) {
                             TextField("", text: $pinText)
+                                .padding(.vertical, 4)
                                 .tracking(16)
                                 .lineLimit(1)
                                 .fontWithLineHeight(font: Theme.current.headline4.uiFont,
@@ -64,7 +65,7 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                                 })
-                                .frame(width: 204, height: 32)
+                                .frame(width: 204)
                                 .keyboardType(.numberPad)
                                 .accentColor(Color.black)
                                 .multilineTextAlignment(.center)
@@ -252,16 +253,13 @@ struct OTPTextField: UIViewRepresentable {
             var newStringLength = 0
 
             for (index, char) in string.enumerated() {
-                let isLastCharacter = index == string.count - 1
+                let isNotLastCharacter = index != string.count - 1
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width
                 let kern = symbolWidth - currentSymbolWidth
                 
-                if isLastCharacter {
-                    newSymbol.addAttribute(.kern, value: 0, range: NSMakeRange(0, 1))
-                    print("isLastCharacter")
-                } else {
+                if isNotLastCharacter {
                     newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
                     print("not isLastCharacter")
                 }

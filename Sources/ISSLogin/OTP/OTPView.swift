@@ -214,6 +214,7 @@ struct OTPTextField: UIViewRepresentable {
         let textField = UITextField()
         textField.delegate = context.coordinator
         textField.font = font
+        textField.textAlignment = .center
         textField.keyboardType = .numberPad
         return textField
     }

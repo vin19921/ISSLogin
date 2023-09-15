@@ -80,7 +80,7 @@ public struct OTPView: View {
                                     .fontWithLineHeight(font: Theme.current.headline4.uiFont,
                                                         lineHeight: Theme.current.headline4.lineHeight,
                                                         verticalPadding: 0)
-                                    .kerning(kernValue)
+                                    .kerning(16.0)
                                     .multilineTextAlignment(.center)
                                     .opacity(0) // Hide this Text view
 

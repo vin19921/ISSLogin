@@ -256,7 +256,7 @@ struct OTPTextField: UIViewRepresentable {
             var newStringLength = 0
 
             for (index, char) in string.enumerated() {
-                let lastCharacterRange = NSRange(location: text.count - 1, length: 1)
+                let lastCharacterRange = NSRange(location: textField.text!.count - 1, length: 1)
                 let newSymbol = NSMutableAttributedString(string: String(char))
                 newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
                 let currentSymbolWidth = newSymbol.size().width

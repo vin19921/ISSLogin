@@ -28,4 +28,8 @@ extension LoginPresenter {
     func routeToRegister() {
         router?.navigate(to: .registerScreen)
     }
+
+    func routeToResetPassword() {
+        router?.navigate(to: .resetPasswordScreen)
+    }
 }

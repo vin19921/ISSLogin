@@ -132,7 +132,7 @@ public struct LoginView: View {
                                                 lineHeight: Theme.current.bodyThreeRegular.lineHeight,
                                                 verticalPadding: 0)
                             .onTapGesture {
-                                presenter.routeToRegister()
+                                presenter.routeToResetPassword()
                             }
                         
                         Text("Register")

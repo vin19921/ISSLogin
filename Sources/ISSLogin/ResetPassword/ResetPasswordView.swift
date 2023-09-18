@@ -31,6 +31,7 @@ public struct ResetPasswordView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
                 
+                Spacer() // to remove
 //                ScrollView {
 //                    VStack(spacing: 16) {
 //                        HStack {

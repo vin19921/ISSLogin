@@ -15,6 +15,7 @@ public struct ResetPasswordView: View {
     
     @State private var phoneText = ""
     @State private var phoneErrorState = false
+    @State private var showingAlert = false
     
     // MARK: Injection
     
@@ -31,46 +32,54 @@ public struct ResetPasswordView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
                 
-                Spacer() // to remove
-//                ScrollView {
-//                    VStack(spacing: 16) {
-//                        HStack {
-//                            Text("Please fill in all the fields.")
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                            Spacer()
-//                        }
-//
-//                        ISSTextFieldSUI(inputString: $phoneText,
-//                                        isErrorState: $phoneErrorState,
-//                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
-//                                                                           regEx: RegExConstants.minNineDigitRegEx,
-//                                                                           keyboardType: .numberPad,
-//                                                                           isRequiredText: "Please enter valid mobile number",
-//                                                                           leadingImageIcon: Image(systemName: "iphone"),
-//                                                                           prefix: "+60")
-//                        )
-//
-//                        Button(action: {
-//                            print("resetpw btn")
-//                        }) {
-//                            Text("Reset Password")
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 8)
-//                                .frame(maxWidth: .infinity)
-//                                .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-//                                .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
-//                                .cornerRadius(12)
-//                        }
-//                        .disabled(!validated())
-//
-//                    }
-//                    .padding(.horizontal)
-//
-//                    Spacer()
-//                }
+                ScrollView {
+                    VStack(spacing: 16) {
+                        HStack {
+                            Text("Please enter your registered mobile number.")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                            Spacer()
+                        }
+
+                        ISSTextFieldSUI(inputString: $phoneText,
+                                        isErrorState: $phoneErrorState,
+                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
+                                                                           validateText: "Please enter valid mobile number",
+                                                                           regEx: RegExConstants.minNineDigitRegEx,
+                                                                           keyboardType: .numberPad,
+                                                                           isRequiredText: "Please enter valid mobile number",
+                                                                           leadingImageIcon: Image(systemName: "iphone"),
+                                                                           prefix: "+60")
+                        )
+
+                        Button(action: {
+                            print("resetpw btn")
+                            showingAlert.toggle()
+                        }) {
+                            Text("Reset Password")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                                .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                                .cornerRadius(12)
+                        }
+                        .disabled(!validated())
+                        .alert(isPresented: $showingAlert) {
+                            Alert(title: Text("Reset Successful"),
+                                  message: Text("Please check your registered email for the new password"),
+                                  dismissButton: .default(Text("OK")) {
+                                presentationMode.wrappedValue.dismiss()
+                            })
+                        }
+
+                    }
+                    .padding(.horizontal)
+
+                    Spacer()
+                }
             }
         }
     }

@@ -55,6 +55,7 @@ public struct RegisterView: View {
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
+                                                                           validateText: "Please enter valid mobile number",
                                                                            regEx: RegExConstants.minNineDigitRegEx,
                                                                            keyboardType: .numberPad,
                                                                            isRequiredText: "Please enter valid mobile number",

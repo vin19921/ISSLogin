@@ -19,6 +19,7 @@ extension LoginRouter: RoutingLogic {
     public enum Destination {
         case loginScreen
         case registerScreen
+        case resetPasswordScreen
     }
 
     public func navigate(to destination: Destination) {
@@ -27,6 +28,8 @@ extension LoginRouter: RoutingLogic {
             navigator.navigateToLoginScreen()
         case .registerScreen:
             navigator.navigateToRegisterScreen()
+        case .resetPasswordScreen:
+            navigator.navigateToResetPasswordScreen()
         }
     }
 }

@@ -8,4 +8,5 @@
 public protocol LoginRoutingLogic {
     func navigateToLoginScreen()
     func navigateToRegisterScreen()
+    func navigateToResetPasswordScreen()
 }

@@ -53,7 +53,6 @@ public struct ResetPasswordView: View {
 
                         Button(action: {
                             print("resetpw btn")
-                            presenter.routeToOTP()
                         }) {
                             Text("Reset Password")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

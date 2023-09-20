@@ -17,7 +17,7 @@ public enum RegisterModel {
     }
 
     struct Response {
-        var resultCode: Int
+        var resultCode: Int16
         var resultMessage: String
         var data: Register
     }

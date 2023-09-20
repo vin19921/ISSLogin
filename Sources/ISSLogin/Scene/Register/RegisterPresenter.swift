@@ -13,6 +13,8 @@ final class RegisterPresenter: ObservableObject {
     private var router: RegisterRouter?
     private var cancellables = Set<AnyCancellable>()
 
+    @Published var state = State.isLoading
+
     // MARK: Injection
 
     init(interactor: RegisterBusinessLogic) {
@@ -59,6 +61,19 @@ final class RegisterPresenter: ObservableObject {
                 completion(.success(response))
             })
             .store(in: &cancellables)
+    }
+}
+
+extension RegisterPresenter {
+    enum State: Equatable {
+        case isLoading
+        case failure(FailureType)
+        case success
+    }
+    
+    enum FailureType {
+        case connectivity
+        case internet
     }
 }
 

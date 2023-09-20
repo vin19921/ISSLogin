@@ -9,11 +9,13 @@ public struct OTP: Codable {
     public let id: String?
     public let email: String?
     public let mobileNo: Int?
+    public let message: String?
 
     enum CodingKeys: String, CodingKey {
         case id
         case email
         case mobileNo
+        case message
     }
 }
 

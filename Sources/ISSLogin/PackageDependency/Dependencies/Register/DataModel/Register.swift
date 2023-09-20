@@ -6,7 +6,7 @@
 //
 
 public struct Register: Codable {
-    public let id: String
+    public let _id: String
     public let name: String
     public let email: String
     public let mobileNo: Int
@@ -14,7 +14,7 @@ public struct Register: Codable {
     public let isCompleteRegister: Int
 
     enum CodingKeys: String, CodingKey {
-        case id
+        case _id
         case name
         case email
         case mobileNo

@@ -106,7 +106,14 @@ public struct RegisterView: View {
 
                         Button(action: {
                             print("confirm btn")
-                            presenter.routeToOTP()
+//                            presenter.routeToOTP()
+                            print("phoneText ::: \(phoneText)")
+//                            presenter.proceedRegistration(request: RegisterModel.Request(
+//                                mobileNo: phoneText,
+//                                password: passwordText,
+//                                confirmPassword: cPasswordText,
+//                                email: emailText,
+//                                name: fullNameText))
                         }) {
                             Text("Confirm")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

@@ -36,20 +36,14 @@ public enum ISSGateway {
     }
 
     public static func makeRegister(theme: Theme,
-//                                          provider: EventsDataProviderLogic,
-                                          router: RegisterRoutingLogic,
-                                          networkMonitor: NetworkMonitor
-    ) ->
-    RegisterView
-    {
+                                    provider: RegisterDataProviderLogic,
+                                    router: RegisterRoutingLogic,
+                                    networkMonitor: NetworkMonitor) -> RegisterView {
         /// Explicity setting the theme to register fonts and colors required by events package.
         Theme.current = theme
-//        injectEventsOverviewProvider(provider)
-//        injectEventsOverviewRouter(router)
-//        injectNetworkMonitor(networkMonitor)
         
-//        let interactor = EventsOverviewInteractor(provider: provider)
-        let presenter = RegisterPresenter()
+        let interactor = RegisterInteractor(provider: provider)
+        let presenter = RegisterPresenter(interactor: interactor)
         
         let view = RegisterView(presenter: presenter)
         let registerRouter = RegisterRouter(navigator: router)

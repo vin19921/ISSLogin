@@ -9,9 +9,9 @@ import Combine
 import Foundation
 
 final class RegisterPresenter: ObservableObject {
-
-    private var router: RegisterRouter?
     private var interactor: RegisterBusinessLogic
+    private var router: RegisterRouter?
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: Injection
 

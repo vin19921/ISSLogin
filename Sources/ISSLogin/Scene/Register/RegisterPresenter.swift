@@ -13,14 +13,13 @@ final class RegisterPresenter: ObservableObject {
     private var router: RegisterRouter?
     private var cancellables = Set<AnyCancellable>()
 
-    @Published var presenterState: PresenterState = .idle
+    @Published var presenterState: PresenterState = .success(nil)
     @Published var showingAlert = false
 
     enum PresenterState {
         case isLoading
         case failure(FailureType)
-        case idle
-        case success(Registration.Model.ViewModel)
+        case success(Registration.Model.ViewModel?)
     }
 
     enum FailureType {
@@ -62,8 +61,7 @@ final class RegisterPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-//                            self.presenterState = .failure(.internet)
-                            self.presenterState = .failure(.connectivity)
+                            self.presenterState = .failure(.internet)
                         default:
                             self.presenterState = .failure(.connectivity)
                         }

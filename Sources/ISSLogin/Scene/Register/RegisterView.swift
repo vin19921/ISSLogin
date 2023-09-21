@@ -45,110 +45,110 @@ public struct RegisterView: View {
                 switch presenter.presenterState {
                 case .isLoading:
                     VStack(spacing: 16) { Spacer() }
-                case .idle, let .success(viewModel):
-                    ScrollView {
-                        VStack(spacing: 16) {
-                            HStack {
-                                Text("Please fill in all the fields.")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 0)
-                                Spacer()
-                            }
-                            
-                            ISSTextFieldSUI(inputString: $phoneText,
-                                            isErrorState: $phoneErrorState,
-                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
-                                                                               validateText: "Please enter valid mobile number",
-                                                                               regEx: RegExConstants.minNineDigitRegEx,
-                                                                               keyboardType: .numberPad,
-                                                                               isRequiredText: "Please enter valid mobile number",
-                                                                               leadingImageIcon: Image(systemName: "iphone"),
-                                                                               prefix: "+60")
-                            )
-                            
-                            ISSTextFieldSUI(inputString: $fullNameText,
-                                            isErrorState: $fullNameErrorState,
-                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: "Full Name (as Per NRIC)",
-                                                                               isRequiredText: "Please enter full name",
-                                                                               leadingImageIcon: Image(systemName: "person"))
-                            )
-                            .onReceive(Just(fullNameText)) { newValue in
-                                let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
-                                if filtered != newValue {
-                                    self.fullNameText = filtered
-                                }
-                            }
-                            
-                            ISSSecureFieldSUI(inputString: $passwordText,
-                                              isErrorState: $passwordErrorState,
-                                              viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
-                                                                                   validateText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
-                                                                                   regEx: RegExConstants.passwordRegEx,
-                                                                                   isRequiredText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
-                                                                                   leadingImageIcon: Image(systemName: "lock"))
-                            )
-                            
-                            ISSSecureFieldSUI(inputString: $cPasswordText,
-                                              isErrorState: $cPasswordErrorState,
-                                              compareString: passwordText,
-                                              viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Confirm Password",
-                                                                                   validateText: "Password does not match",
-                                                                                   isRequiredText: "Password does not match",
-                                                                                   leadingImageIcon: Image(systemName: "lock")
-                                                                                  )
-                            )
-                            
-                            ISSTextFieldSUI(inputString: $emailText,
-                                            isErrorState: $emailErrorState,
-                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
-                                                                               validateText: "Please enter valid email",
-                                                                               regEx: RegExConstants.emailRegEx,
-                                                                               isRequiredText: "Please enter valid email",
-                                                                               leadingImageIcon: Image(systemName: "envelope"))
-                            )
-                            
-                            Button(action: {
-                                presenter.fetchRegister(request: Registration.Model.Request(
-                                    mobileNo: "60\(phoneText)",
-                                    password: passwordText,
-                                    confirmPassword: cPasswordText,
-                                    email: emailText,
-                                    name: fullNameText))
-                            }) {
-                                Text("Confirm")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 8)
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-                                    .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
-                                    .cornerRadius(12)
-                            }
-                            .disabled(!validated()) /// temporary remark
-                        }
-                        .padding(.horizontal)
-                        
-                        Spacer()
-                    }
-                    .alert(isPresented: $presenter.showingAlert) {
-                        AlertSUI(alertInfo: AlertInfo(message: viewModel.resultMessage, onDismiss: {
-                            print("Dismiss")
-                        }))
-                    }
+                case .success(nil):
+                    registerView(viewModel: nil)
+                case let .success(viewModel):
+                    registerView(viewModel: viewModel)
                 case .failure(type):
                     VStack(spacing: 16) { Spacer() }
                 }
             }
         }
         .background(Theme.current.issWhite.color)
-//        .alert(isPresented: $presenter.showingAlert) {
-//            Alert(title: Text("Error"),
-//                  message: Text("User Existing"),
-//                  dismissButton: .default(Text("OK")) {
-//                presenter.showingAlert = false
-//            })
-//        }
+    }
+
+    @ViewBuilder
+    private func registerView(viewModel: Registration.Model.ViewModel?) -> some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                HStack {
+                    Text("Please fill in all the fields.")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 0)
+                    Spacer()
+                }
+                
+                ISSTextFieldSUI(inputString: $phoneText,
+                                isErrorState: $phoneErrorState,
+                                viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
+                                                                   validateText: "Please enter valid mobile number",
+                                                                   regEx: RegExConstants.minNineDigitRegEx,
+                                                                   keyboardType: .numberPad,
+                                                                   isRequiredText: "Please enter valid mobile number",
+                                                                   leadingImageIcon: Image(systemName: "iphone"),
+                                                                   prefix: "+60")
+                )
+                
+                ISSTextFieldSUI(inputString: $fullNameText,
+                                isErrorState: $fullNameErrorState,
+                                viewData: ISSTextFieldSUI.ViewData(placeholderText: "Full Name (as Per NRIC)",
+                                                                   isRequiredText: "Please enter full name",
+                                                                   leadingImageIcon: Image(systemName: "person"))
+                )
+                .onReceive(Just(fullNameText)) { newValue in
+                    let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
+                    if filtered != newValue {
+                        self.fullNameText = filtered
+                    }
+                }
+                
+                ISSSecureFieldSUI(inputString: $passwordText,
+                                  isErrorState: $passwordErrorState,
+                                  viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Password",
+                                                                       validateText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
+                                                                       regEx: RegExConstants.passwordRegEx,
+                                                                       isRequiredText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
+                                                                       leadingImageIcon: Image(systemName: "lock"))
+                )
+                
+                ISSSecureFieldSUI(inputString: $cPasswordText,
+                                  isErrorState: $cPasswordErrorState,
+                                  compareString: passwordText,
+                                  viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Confirm Password",
+                                                                       validateText: "Password does not match",
+                                                                       isRequiredText: "Password does not match",
+                                                                       leadingImageIcon: Image(systemName: "lock")
+                                                                      )
+                )
+                
+                ISSTextFieldSUI(inputString: $emailText,
+                                isErrorState: $emailErrorState,
+                                viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
+                                                                   validateText: "Please enter valid email",
+                                                                   regEx: RegExConstants.emailRegEx,
+                                                                   isRequiredText: "Please enter valid email",
+                                                                   leadingImageIcon: Image(systemName: "envelope"))
+                )
+                
+                Button(action: {
+                    presenter.fetchRegister(request: Registration.Model.Request(
+                        mobileNo: "60\(phoneText)",
+                        password: passwordText,
+                        confirmPassword: cPasswordText,
+                        email: emailText,
+                        name: fullNameText))
+                }) {
+                    Text("Confirm")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                        .cornerRadius(12)
+                }
+                .disabled(!validated()) /// temporary remark
+            }
+            .padding(.horizontal)
+            
+            Spacer()
+        }
+        .alert(isPresented: $presenter.showingAlert) {
+            AlertSUI(alertInfo: AlertInfo(message: viewModel.resultMessage, onDismiss: {
+                print("Dismiss")
+            }))
+        }
     }
 
     private func validated() -> Bool {

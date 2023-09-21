@@ -109,7 +109,7 @@ public struct RegisterView: View {
                             )
                             
                             Button(action: {
-                                presenter.fetchRegister(request: Register.Model.Request(
+                                presenter.fetchRegister(request: Registration.Model.Request(
                                     mobileNo: "60\(phoneText)",
                                     password: passwordText,
                                     confirmPassword: cPasswordText,

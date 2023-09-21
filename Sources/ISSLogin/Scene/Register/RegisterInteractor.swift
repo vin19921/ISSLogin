@@ -10,7 +10,7 @@ import Foundation
 import ISSNetwork
 
 protocol RegisterBusinessLogic {
-    func fetchRegister(request: Register.Model.Request) -> AnyPublisher<Register.Model.Response, Error>
+    func fetchRegister(request: Registration.Model.Request) -> AnyPublisher<Registration.Model.Response, Error>
 }
 
 final class RegisterInteractor: RegisterBusinessLogic {
@@ -21,8 +21,8 @@ final class RegisterInteractor: RegisterBusinessLogic {
         self.provider = provider
     }
 
-    func fetchRegister(request: Register.Model.Request) -> AnyPublisher<Register.Model.Response, Error> {
-        return Future<Register.Model.Response, Error> { [weak self] promise in
+    func fetchRegister(request: Registration.Model.Request) -> AnyPublisher<Registration.Model.Response, Error> {
+        return Future<Registration.Model.Response, Error> { [weak self] promise in
 
             guard let self = self else {
                 return promise(.failure(CommonServiceError.invalidDataInFile))
@@ -34,7 +34,7 @@ final class RegisterInteractor: RegisterBusinessLogic {
                         promise(.failure(error))
                     }
                 } receiveValue: { response in
-                    promise(.success(Register.Model.Response(resultCode: response.resultCode,
+                    promise(.success(Registration.Model.Response(resultCode: response.resultCode,
                                                             resultMessage: response.resultMessage,
                                                             data: response.data)))
                 }.store(in: &self.cancellables)

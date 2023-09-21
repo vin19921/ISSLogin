@@ -19,7 +19,7 @@ final class RegisterPresenter: ObservableObject {
     enum State {
         case isLoading
         case failure(FailureType)
-        case success(Register.Model.Response)
+        case success(Registration.Model.Response)
     }
 
     enum FailureType {
@@ -48,7 +48,7 @@ final class RegisterPresenter: ObservableObject {
 //        }
 //    }
 
-    func fetchRegister(request: Register.Model.Request, completionHandler: (() -> Void)? = nil) {
+    func fetchRegister(request: Registration.Model.Request, completionHandler: (() -> Void)? = nil) {
         interactor.fetchRegister(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
@@ -77,7 +77,7 @@ final class RegisterPresenter: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func handleRegistrationResponse(response: Register.Model.Response) {
+    private func handleRegistrationResponse(response: Registration.Model.Response) {
         let resultCode = response.resultCode
         let resultMessage = response.resultMessage
         let data = response.data

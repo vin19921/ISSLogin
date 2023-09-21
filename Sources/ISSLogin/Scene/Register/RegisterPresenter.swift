@@ -82,15 +82,15 @@ final class RegisterPresenter: ObservableObject {
         let resultMessage = response.resultMessage
         let data = response.data
         
-        if resultCode > 0 {
-            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
-            showingAlert = true
-            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
-                                                                        registrationData: response.data))
-        } else {
+//        if resultCode > 0 {
+//            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
+//            showingAlert = true
+//            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
+//                                                                        registrationData: response.data))
+//        } else {
             print("Registration Successful ::: \(data)")
-            routeToOTP()
-        }
+            routeToOTP(mobileNo: data.mobileNo)
+//        }
     }
 }
 
@@ -110,7 +110,7 @@ final class RegisterPresenter: ObservableObject {
 // MARK: - Routing
 
 extension RegisterPresenter {
-    func routeToOTP() {
-        router?.navigate(to: .otpScreen)
+    func routeToOTP(mobileNo: String) {
+        router?.navigate(to: .otpScreen(mobileNo: mobileNo))
     }
 }

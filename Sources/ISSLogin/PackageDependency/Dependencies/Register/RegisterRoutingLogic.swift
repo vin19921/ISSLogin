@@ -6,5 +6,5 @@
 //
 
 public protocol RegisterRoutingLogic {
-    func navigateToOTPScreen()
+    func navigateToOTPScreen(mobileNo: String)
 }

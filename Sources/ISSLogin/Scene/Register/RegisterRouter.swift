@@ -17,13 +17,13 @@ public struct RegisterRouter {
 
 extension RegisterRouter: RoutingLogic {
     public enum Destination {
-        case otpScreen
+        case otpScreen(mobileNo: String)
     }
 
     public func navigate(to destination: Destination) {
         switch destination {
-        case .otpScreen:
-            navigator.navigateToOTPScreen()
+        case let .otpScreen(mobileNo):
+            navigator.navigateToOTPScreen(mobileNo: mobileNo)
         }
     }
 }

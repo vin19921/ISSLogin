@@ -14,7 +14,7 @@ final class RegisterPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     @Published var state = State.isLoading
-    @State private var showingAlert = false
+    @Published var showingAlert = false
 
     // MARK: Injection
 

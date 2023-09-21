@@ -49,7 +49,7 @@ public struct RegisterView: View {
                     registerView(viewModel: nil)
                 case let .success(viewModel):
                     registerView(viewModel: viewModel)
-                case .failure(type):
+                case let .failure(type):
                     VStack(spacing: 16) { Spacer() }
                 }
             }

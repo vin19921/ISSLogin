@@ -53,7 +53,7 @@ final class RegisterPresenter: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
-//                self.isAPICallInProgress = false
+
                 completionHandler?()
 
                 switch completion {
@@ -61,19 +61,16 @@ final class RegisterPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-                            self.state = .failure(.internet)
+                            self.state = RegisterPresenter.State.failure(.internet)
                         default:
-                            self.state = .failure(.connectivity)
+                            self.state = RegisterPresenter.State.failure(.connectivity)
                         }
                     }
                 case .finished:
                     break
                 }
             }, receiveValue: { response in
-//                self.isAPICallInProgress = false
-//                completion(.success(response))
                 DispatchQueue.main.async {
-//                    completion(.success(response))
                     self.handleRegistrationResponse(response: response)
                 }
             })

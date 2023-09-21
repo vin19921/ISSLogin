@@ -45,7 +45,7 @@ public struct RegisterView: View {
                 switch presenter.presenterState {
                 case .isLoading:
                     VStack(spacing: 16) { Spacer() }
-                case .success, let .success(viewModel):
+                case .idle, let .success(viewModel):
                     ScrollView {
                         VStack(spacing: 16) {
                             HStack {

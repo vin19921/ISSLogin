@@ -13,13 +13,13 @@ final class RegisterPresenter: ObservableObject {
     private var router: RegisterRouter?
     private var cancellables = Set<AnyCancellable>()
 
-    @Published var presenterState: PresenterState = .success
+    @Published var presenterState: PresenterState = .idle
     @Published var showingAlert = false
 
-    enum PresenterState: Equatable {
+    enum PresenterState {
         case isLoading
         case failure(FailureType)
-        case success
+        case idle
         case success(Registration.Model.ViewModel)
     }
 

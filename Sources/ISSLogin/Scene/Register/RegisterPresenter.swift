@@ -13,7 +13,7 @@ final class RegisterPresenter: ObservableObject {
     private var router: RegisterRouter?
     private var cancellables = Set<AnyCancellable>()
 
-    @Published var state = State.isLoading
+    @Published var state = State.success
     @Published var showingAlert = false
 
     // MARK: Injection
@@ -71,6 +71,7 @@ final class RegisterPresenter: ObservableObject {
         if resultCode > 0 {
             print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
             showingAlert = true
+            self.state = .success(response)
         } else {
             print("Registration Successful ::: \(data)")
             routeToOTP()
@@ -82,7 +83,7 @@ extension RegisterPresenter {
     enum State: Equatable {
         case isLoading
         case failure(FailureType)
-        case success
+        case success(RegisterModel.Response)
     }
     
     enum FailureType {

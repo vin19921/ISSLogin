@@ -7,7 +7,7 @@
 
 import UIKit
 
-public enum Register {
+public enum Registration {
     public enum Model {
         public struct Request: Encodable {
             public var mobileNo: String

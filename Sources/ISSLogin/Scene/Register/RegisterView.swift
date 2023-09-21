@@ -179,9 +179,4 @@ public struct RegisterView: View {
             .build()
         return issNavBarData
     }
-
-    func createAlert(title: Text? = nil, message: Text, dismissText: String = "OK", onDismiss: @escaping () -> Void) -> Alert {
-        let dismissButton = Alert.Button.default(Text(dismissText), action: onDismiss)
-        return Alert(title: title, message: message, dismissButton: dismissButton)
-    }
 }

@@ -13,7 +13,7 @@ final class RegisterPresenter: ObservableObject {
     private var router: RegisterRouter?
     private var cancellables = Set<AnyCancellable>()
 
-    @Published var state = State.success
+    @Published var presenterState = State.success
     @Published var showingAlert = false
 
     enum State {
@@ -61,9 +61,9 @@ final class RegisterPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-                            self.state = RegisterPresenter.State.failure(.internet)
+                            self.presenterState = .failure(.internet)
                         default:
-                            self.state = RegisterPresenter.State.failure(.connectivity)
+                            self.presenterState = .failure(.connectivity)
                         }
                     }
                 case .finished:
@@ -85,7 +85,7 @@ final class RegisterPresenter: ObservableObject {
         if resultCode > 0 {
             print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
             showingAlert = true
-            self.state = RegisterPresenter.State.success(response)
+            self.presenterState = .success(response)
         } else {
             print("Registration Successful ::: \(data)")
             routeToOTP()

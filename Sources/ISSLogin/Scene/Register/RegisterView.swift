@@ -42,7 +42,7 @@ public struct RegisterView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
 
-                switch presenter.state {
+                switch presenter.presenterState {
                 case .isLoading:
                     VStack(spacing: 16) { Spacer() }
                 case let .success(viewModel):

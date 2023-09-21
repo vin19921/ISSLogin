@@ -29,6 +29,7 @@ final class RegisterInteractor: RegisterBusinessLogic {
             }
 
             self.provider.fetchRegister(request:request)
+                .subscribe(on: DispatchQueue.global(qos: .background))
                 .sink { completion in
                     if case let .failure(error) = completion {
                         promise(.failure(error))

@@ -16,6 +16,17 @@ final class RegisterPresenter: ObservableObject {
     @Published var state = State.success
     @Published var showingAlert = false
 
+    enum State {
+        case isLoading
+        case failure(FailureType)
+        case success(RegisterModel.Response)
+    }
+
+    enum FailureType {
+        case connectivity
+        case internet
+    }
+
     // MARK: Injection
 
     init(interactor: RegisterBusinessLogic) {
@@ -47,11 +58,13 @@ final class RegisterPresenter: ObservableObject {
 
                 switch completion {
                 case let .failure(error):
-                    switch error.localizedDescription {
-                    case CommonServiceError.internetFailure.localizedDescription:
-                        self.state = .failure(.internet)
-                    default:
-                        self.state = .failure(.connectivity)
+                    DispatchQueue.main.async {
+                        switch error.localizedDescription {
+                        case CommonServiceError.internetFailure.localizedDescription:
+                            self.state = .failure(.internet)
+                        default:
+                            self.state = .failure(.connectivity)
+                        }
                     }
                 case .finished:
                     break
@@ -83,18 +96,18 @@ final class RegisterPresenter: ObservableObject {
     }
 }
 
-extension RegisterPresenter {
-    enum State {
-        case isLoading
-        case failure(FailureType)
-        case success(RegisterModel.Response)
-    }
-
-    enum FailureType {
-        case connectivity
-        case internet
-    }
-}
+//extension RegisterPresenter {
+//    enum State {
+//        case isLoading
+//        case failure(FailureType)
+//        case success(RegisterModel.Response)
+//    }
+//
+//    enum FailureType {
+//        case connectivity
+//        case internet
+//    }
+//}
 
 // MARK: - Routing
 

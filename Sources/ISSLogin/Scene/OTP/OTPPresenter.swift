@@ -36,7 +36,7 @@ extension OTPPresenter {
     }
 }
 
-extension EventsDetailPresenter {
+extension OTPPresenter {
     func setMobileNo(_ mobileNo: String) {
         self.mobileNo = mobileNo
     }

@@ -70,6 +70,7 @@ final class RegisterPresenter: ObservableObject {
         
         if resultCode > 0 {
             print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
+            showingAlert = true
         } else {
             print("Registration Successful ::: \(data)")
             routeToOTP()

@@ -134,6 +134,7 @@ public struct RegisterView: View {
             Alert(title: Text("Error"),
                   message: Text("User Existing"),
                   dismissButton: .default(Text("OK")) {
+                presenter.showingAlert = false
             })
         }
     }

@@ -22,5 +22,10 @@ public enum Registration {
             var resultMessage: String
             var data: Register
         }
+
+        struct ViewModel {
+            var message: String
+            var registrationData: Register
+        }
     }
 }

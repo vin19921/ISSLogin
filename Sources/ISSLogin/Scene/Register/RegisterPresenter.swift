@@ -19,7 +19,7 @@ final class RegisterPresenter: ObservableObject {
     enum State {
         case isLoading
         case failure(FailureType)
-        case success(Registration.Model.Response)
+        case success(Registration.Model.ViewModel)
     }
 
     enum FailureType {
@@ -61,7 +61,8 @@ final class RegisterPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-                            self.presenterState = .failure(.internet)
+//                            self.presenterState = .failure(.internet)
+                            self.presenterState = .failure(.connectivity)
                         default:
                             self.presenterState = .failure(.connectivity)
                         }
@@ -85,7 +86,8 @@ final class RegisterPresenter: ObservableObject {
         if resultCode > 0 {
             print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
             showingAlert = true
-            self.presenterState = .success(response)
+            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
+                                                                        registrationData: response.data))
         } else {
             print("Registration Successful ::: \(data)")
             routeToOTP()

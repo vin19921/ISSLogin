@@ -10,6 +10,7 @@ import Foundation
 final class OTPPresenter: ObservableObject {
 
     private var router: OTPRouter?
+    private var mobileNo: String = ""
 
     @Published var remainingTimeInSeconds: Int = 10 // 180
 
@@ -32,5 +33,15 @@ final class OTPPresenter: ObservableObject {
 extension OTPPresenter {
     func routeToRegSuccess() {
         router?.navigate(to: .regSuccessScreen)
+    }
+}
+
+extension EventsDetailPresenter {
+    func setMobileNo(_ mobileNo: String) {
+        self.mobileNo = mobileNo
+    }
+
+    func getMobileNo() -> String {
+        return mobileNo
     }
 }

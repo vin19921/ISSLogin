@@ -191,6 +191,10 @@ public struct OTPView: View {
             .build()
         return issNavBarData
     }
+
+    public func setMobileNo(_ mobileNo: String) {
+        presenter.setMobileNo(mobileNo)
+    }
 }
 
 struct OtpModifer: ViewModifier {

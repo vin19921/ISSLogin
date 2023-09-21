@@ -44,6 +44,7 @@ public struct RegisterView: View {
 
                 switch presenter.state {
                 case .isLoading:
+                    print("isLoading")
                 case let .success(viewModel):
                     ScrollView {
                         VStack(spacing: 16) {
@@ -136,6 +137,7 @@ public struct RegisterView: View {
                         }))
                     }
                 case .failure:
+                    print("failure")
                 }
             }
         }

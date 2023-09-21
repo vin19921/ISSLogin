@@ -8,7 +8,7 @@
 import UIKit
 
 public enum RegisterModel {
-    public struct Request {
+    public struct Request: Encodable {
         public var mobileNo: String
         public var password: String
         public var confirmPassword: String

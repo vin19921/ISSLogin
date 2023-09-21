@@ -130,6 +130,12 @@ public struct RegisterView: View {
             }
         }
         .background(Theme.current.issWhite.color)
+        .alert(isPresented: presenter.showingAlert) {
+            Alert(title: Text("Error"),
+                  message: Text("User Existing"),
+                  dismissButton: .default(Text("OK")) {
+            })
+        }
     }
 
     private func validated() -> Bool {

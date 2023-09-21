@@ -16,6 +16,17 @@ final class RegisterPresenter: ObservableObject {
     @Published var state = State.success
     @Published var showingAlert = false
 
+    enum State {
+        case isLoading
+        case failure(FailureType)
+        case success(RegisterModel.Response)
+    }
+    
+    enum FailureType {
+        case connectivity
+        case internet
+    }
+
     // MARK: Injection
 
     init(interactor: RegisterBusinessLogic) {
@@ -79,18 +90,18 @@ final class RegisterPresenter: ObservableObject {
     }
 }
 
-extension RegisterPresenter {
-    enum State {
-        case isLoading
-        case failure(FailureType)
-        case success(RegisterModel.Response)
-    }
-    
-    enum FailureType {
-        case connectivity
-        case internet
-    }
-}
+//extension RegisterPresenter {
+//    enum State {
+//        case isLoading
+//        case failure(FailureType)
+//        case success(RegisterModel.Response)
+//    }
+//
+//    enum FailureType {
+//        case connectivity
+//        case internet
+//    }
+//}
 
 // MARK: - Routing
 

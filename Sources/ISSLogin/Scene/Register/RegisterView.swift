@@ -136,7 +136,7 @@ public struct RegisterView: View {
                             print("Dismiss")
                         }))
                     }
-                case .failure:
+                case .failure(type):
                     VStack(spacing: 16) { Spacer() }
                 }
             }

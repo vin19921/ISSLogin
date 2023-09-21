@@ -16,17 +16,6 @@ final class RegisterPresenter: ObservableObject {
     @Published var state = State.success
     @Published var showingAlert = false
 
-    enum State {
-        case isLoading
-        case failure(FailureType)
-        case success(RegisterModel.Response)
-    }
-    
-    enum FailureType {
-        case connectivity
-        case internet
-    }
-
     // MARK: Injection
 
     init(interactor: RegisterBusinessLogic) {
@@ -37,23 +26,25 @@ final class RegisterPresenter: ObservableObject {
         self.router = router
     }
 
-    func proceedRegistration(request: RegisterModel.Request) {
-        fetchRegister(request: request) { result in
-            switch result {
-            case let .success(response):
-                self.handleRegistrationResponse(response: response)
-            case let .failure(error):
-                print(error)
-            }
-        }
-    }
+//    func proceedRegistration(request: RegisterModel.Request) {
+//        fetchRegister(request: request) { result in
+//            switch result {
+//            case let .success(response):
+//                self.handleRegistrationResponse(response: response)
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
+//    }
 
-    func fetchRegister(request: RegisterModel.Request, completion: @escaping (Result<RegisterModel.Response, Error>) -> Void) {
+    func fetchRegister(request: RegisterModel.Request, completionHandler: (() -> Void)? = nil) {
         interactor.fetchRegister(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
 //                self.isAPICallInProgress = false
+                completionHandler?()
+
                 switch completion {
                 case let .failure(error):
                     switch error.localizedDescription {
@@ -68,8 +59,10 @@ final class RegisterPresenter: ObservableObject {
             }, receiveValue: { response in
 //                self.isAPICallInProgress = false
 //                completion(.success(response))
-              
-                completion(.success(response))
+                DispatchQueue.main.async {
+//                    completion(.success(response))
+                    self.handleRegistrationResponse(response: response)
+                }
             })
             .store(in: &cancellables)
     }
@@ -90,18 +83,18 @@ final class RegisterPresenter: ObservableObject {
     }
 }
 
-//extension RegisterPresenter {
-//    enum State {
-//        case isLoading
-//        case failure(FailureType)
-//        case success(RegisterModel.Response)
-//    }
-//
-//    enum FailureType {
-//        case connectivity
-//        case internet
-//    }
-//}
+extension RegisterPresenter {
+    enum State {
+        case isLoading
+        case failure(FailureType)
+        case success(RegisterModel.Response)
+    }
+
+    enum FailureType {
+        case connectivity
+        case internet
+    }
+}
 
 // MARK: - Routing
 

@@ -29,8 +29,7 @@ final class RegisterPresenter: ObservableObject {
         fetchRegister(request: request) { result in
             switch result {
             case let .success(response):
-//                self.handleEventsResponse(response: success)
-                print(response)
+                self.handleRegistrationResponse(response: response)
             case let .failure(error):
                 print(error)
             }
@@ -61,6 +60,19 @@ final class RegisterPresenter: ObservableObject {
                 completion(.success(response))
             })
             .store(in: &cancellables)
+    }
+
+    private func handleRegistrationResponse(response: RegisterModel.Response) {
+        let resultCode = response.resultCode
+        let resultMessage = response.resultMessage
+        let data = response.data
+        
+        if resultCode > 0 {
+            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
+        } else {
+            print("Registration Successful ::: \(data)")
+            routeToOTP()
+        }
     }
 }
 

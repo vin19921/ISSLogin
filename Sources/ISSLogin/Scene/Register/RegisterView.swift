@@ -105,9 +105,6 @@ public struct RegisterView: View {
                         )
 
                         Button(action: {
-                            print("confirm btn")
-//                            presenter.routeToOTP()
-                            print("phoneText ::: \(phoneText)")
                             presenter.proceedRegistration(request: RegisterModel.Request(
                                 mobileNo: "60\(phoneText)",
                                 password: passwordText,
@@ -124,7 +121,7 @@ public struct RegisterView: View {
                                 .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
                                 .cornerRadius(12)
                         }
-//                        .disabled(!validated()) /// temporary remark
+                        .disabled(!validated()) /// temporary remark
                     }
                     .padding(.horizontal)
 

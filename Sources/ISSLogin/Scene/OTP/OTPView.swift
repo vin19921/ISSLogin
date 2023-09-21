@@ -42,7 +42,7 @@ public struct OTPView: View {
 //                        .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
 //                                            lineHeight: Theme.current.subtitle2.lineHeight,
 //                                            verticalPadding: 0)
-                    Text("Please enter OTP code sent to +60")
+                    Text("Please enter OTP code sent to +\(presenter.getMobileNo())")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 0)

@@ -80,7 +80,7 @@ final class RegisterPresenter: ObservableObject {
 }
 
 extension RegisterPresenter {
-    enum State: Equatable {
+    enum State {
         case isLoading
         case failure(FailureType)
         case success(RegisterModel.Response)

@@ -44,7 +44,7 @@ public struct RegisterView: View {
 
                 switch presenter.state {
                 case .isLoading:
-                    break
+                    VStack(spacing: 16) { Spacer() }
                 case let .success(viewModel):
                     ScrollView {
                         VStack(spacing: 16) {
@@ -137,7 +137,7 @@ public struct RegisterView: View {
                         }))
                     }
                 case .failure:
-                    break
+                    VStack(spacing: 16) { Spacer() }
                 }
             }
         }

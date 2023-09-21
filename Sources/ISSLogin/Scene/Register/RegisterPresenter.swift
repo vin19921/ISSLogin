@@ -16,7 +16,7 @@ final class RegisterPresenter: ObservableObject {
     @Published var presenterState = PresenterState.success
     @Published var showingAlert = false
 
-    enum PresenterState {
+    enum PresenterState: Equatable {
         case isLoading
         case failure(FailureType)
         case success(Registration.Model.ViewModel)

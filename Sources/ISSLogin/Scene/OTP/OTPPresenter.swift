@@ -8,13 +8,18 @@
 import Foundation
 
 final class OTPPresenter: ObservableObject {
-
+    private var interactor: OTPBusinessLogic
     private var router: OTPRouter?
+    private var cancellables = Set<AnyCancellable>()
     private var mobileNo: String = ""
 
     @Published var remainingTimeInSeconds: Int = 10 // 180
 
     // MARK: Injection
+
+    init(interactor: OTPBusinessLogic) {
+        self.interactor = interactor
+    }
 
     func setRouter(_ router: OTPRouter) {
         self.router = router

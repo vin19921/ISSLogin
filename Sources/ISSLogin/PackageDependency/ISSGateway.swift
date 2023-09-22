@@ -53,11 +53,13 @@ public enum ISSGateway {
     }
 
     public static func makeOTP(theme: Theme,
+                               provider: OTPDataProviderLogic,
                                router: OTPRoutingLogic,
                                networkMonitor: NetworkMonitor) ->
     OTPView
     {
         Theme.current = theme
+        let interactor = OTPInteractor(provider: provider)
         let presenter = OTPPresenter()
         
         let view = OTPView(presenter: presenter)

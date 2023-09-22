@@ -60,7 +60,7 @@ public enum ISSGateway {
     {
         Theme.current = theme
         let interactor = OTPInteractor(provider: provider)
-        let presenter = OTPPresenter()
+        let presenter = OTPPresenter(interactor: interactor)
         
         let view = OTPView(presenter: presenter)
         let otpRouter = OTPRouter(navigator: router)

@@ -133,9 +133,10 @@ public struct OTPView: View {
                 Spacer()
             }
         }
-//        .onAppear {
+        .onAppear {
 //            startCountdownTimer()
-//        }
+            presenter.fetchOTP(request: presenter.getMobileNo())
+        }
         .onReceive(timer) { _ in
             if presenter.remainingTimeInSeconds > 0 {
                 presenter.remainingTimeInSeconds -= 1

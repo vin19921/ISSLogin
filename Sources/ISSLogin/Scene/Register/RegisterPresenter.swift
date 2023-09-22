@@ -89,7 +89,7 @@ final class RegisterPresenter: ObservableObject {
 //                                                                        registrationData: response.data))
 //        } else {
             print("Registration Successful ::: \(data)")
-            routeToOTP(mobileNo: data.mobileNo)
+            routeToOTP(mobileNo: data.email) //temporary use email
 //        }
     }
 }

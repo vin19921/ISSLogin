@@ -34,7 +34,7 @@ final class OTPPresenter: ObservableObject {
     }
 
     func fetchOTP(request: OTP.Model.Request, completionHandler: (() -> Void)? = nil) {
-        interactor.fetchRegister(request: request)
+        interactor.fetchOTP(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
@@ -56,13 +56,13 @@ final class OTPPresenter: ObservableObject {
                 }
             }, receiveValue: { response in
                 DispatchQueue.main.async {
-                    self.handleRegistrationResponse(response: response)
+                    self.handleOTPResponse(response: response)
                 }
             })
             .store(in: &cancellables)
     }
 
-    private func handleRegistrationResponse(response: Registration.Model.Response) {
+    private func handleOTPResponse(response: OTP.Model.Response) {
         let resultCode = response.resultCode
         let resultMessage = response.resultMessage
         let data = response.data
@@ -73,7 +73,7 @@ final class OTPPresenter: ObservableObject {
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))
 //        } else {
-            print("Registration Successful ::: \(data)")
+            print("OTP Successful ::: \(data)")
 //            routeToOTP(mobileNo: data.mobileNo)
 //        }
     }

@@ -26,6 +26,51 @@ final class OTPPresenter: ObservableObject {
 
         return String(format: "%02i:%02i", minutes, seconds)
     }
+
+    func fetchOTP(request: OTP.Model.Request, completionHandler: (() -> Void)? = nil) {
+        interactor.fetchRegister(request: request)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+
+                completionHandler?()
+
+                switch completion {
+                case let .failure(error):
+                    DispatchQueue.main.async {
+                        switch error.localizedDescription {
+                        case CommonServiceError.internetFailure.localizedDescription:
+                            self.presenterState = .failure(.internet)
+                        default:
+                            self.presenterState = .failure(.connectivity)
+                        }
+                    }
+                case .finished:
+                    break
+                }
+            }, receiveValue: { response in
+                DispatchQueue.main.async {
+                    self.handleRegistrationResponse(response: response)
+                }
+            })
+            .store(in: &cancellables)
+    }
+
+    private func handleRegistrationResponse(response: Registration.Model.Response) {
+        let resultCode = response.resultCode
+        let resultMessage = response.resultMessage
+        let data = response.data
+        
+//        if resultCode > 0 {
+//            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
+//            showingAlert = true
+//            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
+//                                                                        registrationData: response.data))
+//        } else {
+            print("Registration Successful ::: \(data)")
+//            routeToOTP(mobileNo: data.mobileNo)
+//        }
+    }
 }
 
 // MARK: - Routing

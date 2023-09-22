@@ -46,9 +46,9 @@ final class OTPPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-                            self.presenterState = .failure(.internet)
+//                            self.presenterState = .failure(.internet)
                         default:
-                            self.presenterState = .failure(.connectivity)
+//                            self.presenterState = .failure(.connectivity)
                         }
                     }
                 case .finished:

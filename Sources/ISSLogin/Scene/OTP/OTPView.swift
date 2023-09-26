@@ -63,7 +63,7 @@ public struct OTPView: View {
                                     pinText = String($0.prefix(6))
                                     if pinText.count == 6 {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: Int16(pinText)))
+                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: Int(pinText)))
                                     }
                                 })
                                 .frame(width: 204)

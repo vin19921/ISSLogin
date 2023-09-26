@@ -11,4 +11,5 @@ import Combine
 /// This helps provide proper separation of concerns between the these objects.
 public protocol OTPDataProviderLogic {
     func fetchOTP(request: OTP.Model.Request) -> AnyPublisher<OTPResponse, Error>
+    func validateOTP(request: OTP.Model.Request) -> AnyPublisher<OTPResponse, Error>
 }

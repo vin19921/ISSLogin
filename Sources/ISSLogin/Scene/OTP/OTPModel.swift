@@ -11,6 +11,7 @@ public enum OTP {
     public enum Model {
         public struct Request: Encodable {
             public var mobileNo: String
+            public var code: String?
         }
         
         struct Response {

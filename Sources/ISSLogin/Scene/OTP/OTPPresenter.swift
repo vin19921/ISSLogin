@@ -79,6 +79,37 @@ final class OTPPresenter: ObservableObject {
 //            routeToOTP(mobileNo: data.mobileNo)
 //        }
     }
+
+    func validateOTP(request: OTP.Model.Request, completionHandler: (() -> Void)? = nil) {
+        interactor.validateOTP(request: request)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+
+                completionHandler?()
+
+                switch completion {
+                case let .failure(error):
+                    DispatchQueue.main.async {
+                        switch error.localizedDescription {
+                        case CommonServiceError.internetFailure.localizedDescription:
+//                            self.presenterState = .failure(.internet)
+                            print("CommonServiceError ::: internet")
+                        default:
+//                            self.presenterState = .failure(.connectivity)
+                            print("CommonServiceError ::: connectivity")
+                        }
+                    }
+                case .finished:
+                    break
+                }
+            }, receiveValue: { response in
+                DispatchQueue.main.async {
+                    self.handleOTPResponse(response: response)
+                }
+            })
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - Routing

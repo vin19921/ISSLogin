@@ -17,13 +17,13 @@ public struct OTPRouter {
 
 extension OTPRouter: RoutingLogic {
     public enum Destination {
-        case regSuccessScreen
+        case loginScreen
     }
 
     public func navigate(to destination: Destination) {
         switch destination {
-        case .regSuccessScreen:
-            navigator.navigateToRegSuccessScreen()
+        case .loginScreen:
+            navigator.navigateToLoginScreen()
         }
     }
 }

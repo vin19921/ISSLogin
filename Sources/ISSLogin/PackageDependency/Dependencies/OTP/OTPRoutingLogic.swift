@@ -6,5 +6,5 @@
 //
 
 public protocol OTPRoutingLogic {
-    func navigateToRegSuccessScreen()
+    func navigateToLoginScreen()
 }

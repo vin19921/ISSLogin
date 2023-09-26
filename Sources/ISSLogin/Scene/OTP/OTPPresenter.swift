@@ -134,8 +134,8 @@ final class OTPPresenter: ObservableObject {
 // MARK: - Routing
 
 extension OTPPresenter {
-    func routeToRegSuccess() {
-        router?.navigate(to: .regSuccessScreen)
+    func routeToLogin() {
+        router?.navigate(to: .loginScreen)
     }
 }
 

@@ -63,6 +63,10 @@ public struct OTPView: View {
                                     pinText = String($0.prefix(6))
                                     if pinText.count == 6 {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                        isButtonEnabled = true
+                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: pinText), completionHandler: {
+                                            isButtonEnabled = false
+                                        })
                                     }
                                 })
                                 .frame(width: 204)
@@ -73,15 +77,15 @@ public struct OTPView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                                 )
-                                .onReceive(Just(pinText)) { newText in
-                                    if newText.count >= 6 {
-                                        print("pin limit reached")
-                                        isButtonEnabled = true
-                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: pinText), completionHandler: {
-                                            isButtonEnabled = false
-                                        })
-                                    }
-                                }
+//                                .onReceive(Just(pinText)) { newText in
+//                                    if newText.count >= 6 {
+//                                        print("pin limit reached")
+//                                        isButtonEnabled = true
+//                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: pinText), completionHandler: {
+//                                            isButtonEnabled = false
+//                                        })
+//                                    }
+//                                }
                                 .alert(isPresented: $presenter.showingAlert) {
                                     AlertSUI(alertInfo: AlertInfo(title: presenter.otpDataModel?.message ?? "", dismissText: "Back to Login", onDismiss: {
                                         print("Dismiss")

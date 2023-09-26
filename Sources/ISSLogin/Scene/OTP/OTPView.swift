@@ -82,6 +82,11 @@ public struct OTPView: View {
                                         })
                                     }
                                 }
+                                .alert(isPresented: $presenter.showingAlert) {
+                                    AlertSUI(alertInfo: AlertInfo(title: presenter.otpDataModel?.message ?? "", dismissText: "Back to Login", onDismiss: {
+                                        print("Dismiss")
+                                    }))
+                                }
                         } else {
                             KerningTextField(text: $pinText)
                                 .padding(.vertical, 4)

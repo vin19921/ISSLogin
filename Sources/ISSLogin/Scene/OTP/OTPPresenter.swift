@@ -15,6 +15,8 @@ final class OTPPresenter: ObservableObject {
     private var mobileNo: String = ""
 
     @Published var remainingTimeInSeconds: Int = 10 // 180
+    @Published var showingAlert = false
+    @Published var otpDataModel: OTPDataModel?
 
     // MARK: Injection
 
@@ -105,10 +107,28 @@ final class OTPPresenter: ObservableObject {
                 }
             }, receiveValue: { response in
                 DispatchQueue.main.async {
-                    self.handleOTPResponse(response: response)
+                    self.handleValidateOTPResponse(response: response)
                 }
             })
             .store(in: &cancellables)
+    }
+
+    private func handleValidateOTPResponse(response: OTP.Model.Response) {
+        let resultCode = response.resultCode
+        let resultMessage = response.resultMessage
+        let data = response.data
+        
+//        if resultCode > 0 {
+//            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
+//            showingAlert = true
+//            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
+//                                                                        registrationData: response.data))
+//        } else {
+            print("OTP Successful ::: \(data)")
+        showingAlert = true
+        otpDataModel = data
+//            routeToOTP(mobileNo: data.mobileNo)
+//        }
     }
 }
 

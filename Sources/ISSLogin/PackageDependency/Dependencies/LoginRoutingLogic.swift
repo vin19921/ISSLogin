@@ -6,6 +6,7 @@
 //
 
 public protocol LoginRoutingLogic {
+    func navigateToRootScreen()
     func navigateToRegisterScreen()
     func navigateToResetPasswordScreen()
 }

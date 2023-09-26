@@ -21,6 +21,10 @@ final class LoginPresenter: ObservableObject {
 // MARK: - Routing
 
 extension LoginPresenter {
+    func routeToRoot() {
+        router?.navigate(to: .rootScreen)
+    }
+
     func routeToRegister() {
         router?.navigate(to: .registerScreen)
     }

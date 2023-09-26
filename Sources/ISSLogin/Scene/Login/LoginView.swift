@@ -143,7 +143,6 @@ public struct LoginView: View {
                                 presenter.routeToRegister()
                             }
                         
-                        
                     }
                 }
                 .padding(.horizontal)

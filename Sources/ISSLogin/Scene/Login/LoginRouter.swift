@@ -17,12 +17,15 @@ public struct LoginRouter {
 
 extension LoginRouter: RoutingLogic {
     public enum Destination {
+        case rootScreen
         case registerScreen
         case resetPasswordScreen
     }
 
     public func navigate(to destination: Destination) {
         switch destination {
+        case .rootScreen:
+            navigator.navigateToRootScreen()
         case .registerScreen:
             navigator.navigateToRegisterScreen()
         case .resetPasswordScreen:

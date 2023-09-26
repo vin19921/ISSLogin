@@ -73,8 +73,8 @@ public struct OTPView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                                 )
-                                .onChange(of: pinText) {
-                                    if pinText.count >= 6 {
+                                .onReceive(Just(pinText)) { newText in
+                                    if newText.count >= 6 {
                                         print("pin limit reached")
                                     }
                                 }

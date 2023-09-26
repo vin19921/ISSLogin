@@ -27,6 +27,8 @@ public struct RegisterView: View {
     @State private var cPasswordErrorState = false
     @State private var emailErrorState = false
 
+    @State private var isLoading = false
+
     // MARK: Injection
 
     @Environment(\.presentationMode) var presentationMode
@@ -55,6 +57,7 @@ public struct RegisterView: View {
             }
         }
         .background(Theme.current.issWhite.color)
+        .loading(isLoading: $isLoading)
     }
 
     @ViewBuilder
@@ -122,12 +125,15 @@ public struct RegisterView: View {
                 )
                 
                 Button(action: {
+                    isLoading.toggle()
                     presenter.fetchRegister(request: Registration.Model.Request(
                         mobileNo: "60\(phoneText)",
                         password: passwordText,
                         confirmPassword: cPasswordText,
                         email: emailText,
-                        name: fullNameText))
+                        name: fullNameText), completionHandler: {
+                            isLoading.toggle()
+                        })
                 }) {
                     Text("Confirm")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

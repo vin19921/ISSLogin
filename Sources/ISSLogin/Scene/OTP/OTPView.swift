@@ -84,7 +84,7 @@ public struct OTPView: View {
 //                                    }
 //                                }
                                 .alert(isPresented: $presenter.showingAlert) {
-                                    AlertSUI(alertInfo: AlertInfo(message: presenter.otpDataModel?.message ?? "", dismissText: "Back to Login", onDismiss: {
+                                    AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.otpDataModel?.message ?? "", dismissText: "Back to Login", onDismiss: {
                                         print("Dismiss")
                                         presenter.navigateToLoginScreen()
                                     }))

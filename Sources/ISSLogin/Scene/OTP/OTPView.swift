@@ -22,6 +22,7 @@ public struct OTPView: View {
 //    private var timer: AnyCancellable?
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 //    @State private var timer: AnyCancellable?
+    @State private var isLoading = false
 
     // MARK: Injection
 
@@ -62,8 +63,11 @@ public struct OTPView: View {
                                 .onChange(of: pinText, perform: {
                                     pinText = String($0.prefix(6))
                                     if pinText.count == 6 {
+                                        isLoading.toggle()
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: Int(pinText)))
+                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: Int(pinText)), completionHandler: {
+                                            isLoading.toggle()
+                                        })
                                     }
                                 })
                                 .frame(width: 204)
@@ -168,6 +172,7 @@ public struct OTPView: View {
         .onDisappear {
             timer.upstream.connect().cancel()
         }
+        .loading(isLoading: $isLoading)
     }
 
 //    private func startCountdownTimer() {

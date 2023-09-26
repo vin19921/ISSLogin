@@ -88,6 +88,8 @@ final class OTPPresenter: ObservableObject {
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
 
+                completionHandler?()
+
                 switch completion {
                 case let .failure(error):
                     DispatchQueue.main.async {
@@ -107,7 +109,6 @@ final class OTPPresenter: ObservableObject {
                 DispatchQueue.main.async {
                     self.handleValidateOTPResponse(response: response)
                 }
-                completionHandler?()
             })
             .store(in: &cancellables)
     }

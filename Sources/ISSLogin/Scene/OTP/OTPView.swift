@@ -76,6 +76,10 @@ public struct OTPView: View {
                                 .onReceive(Just(pinText)) { newText in
                                     if newText.count >= 6 {
                                         print("pin limit reached")
+                                        isButtonEnabled = true
+                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: pinText), completionHandler: {
+                                            isButtonEnabled = false
+                                        })
                                     }
                                 }
                         } else {
@@ -121,6 +125,7 @@ public struct OTPView: View {
                     Button(action: {
                         print("resend btn")
                         resetTimer()
+                        presenter.fetchOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo()))
                     }) {
                         Text(isButtonEnabled ? "Resend" : "Can resend in \(presenter.getFormattedRemainingTime())")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

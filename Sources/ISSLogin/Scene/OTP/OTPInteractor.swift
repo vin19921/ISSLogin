@@ -11,7 +11,7 @@ import ISSNetwork
 
 protocol OTPBusinessLogic {
     func fetchOTP(request: OTP.Model.Request) -> AnyPublisher<OTP.Model.Response, Error>
-    func validateOTP(request: OTP.Model.Request) -> AnyPublisher<OTPResponse, Error>
+    func validateOTP(request: OTP.Model.Request) -> AnyPublisher<OTP.Model.Response, Error>
 }
 
 final class OTPInteractor: OTPBusinessLogic {

@@ -10,7 +10,8 @@ import ISSCommonUI
 import ISSTheme
 import SwiftUI
 import UIKit
-import Firebase
+import FirebaseCore
+import FirebaseAuth
 import FacebookCore
 import FacebookLogin
 

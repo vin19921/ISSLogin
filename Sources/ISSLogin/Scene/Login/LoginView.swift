@@ -129,7 +129,6 @@ public struct LoginView: View {
                         }
                         .disabled(!validated())
 
-                        FBLoginButtonView()
 
                         
                         Text("Forget Password")

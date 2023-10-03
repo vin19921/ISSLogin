@@ -133,19 +133,6 @@ public struct LoginView: View {
                         }
                         .disabled(!validated())
 
-                        Button(action: {
-                            print("fb login")
-                            self.loginWithFacebook()
-                        }) {
-                            Text("FB Login")
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 8)
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor(Theme.current.issWhite.color)
-                                .background(Color.blue)
-                                .cornerRadius(12)
-                        }
                         
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -203,48 +190,5 @@ public struct LoginView: View {
             .includeStatusBarArea(false)
             .build()
         return issNavBarData
-    }
-
-    private func loginWithFacebook() {
-        let loginManager = LoginManager()
-        loginManager.logIn(permissions: [.publicProfile, .email], viewController: nil) { loginResult in
-            switch loginResult {
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                // Check if Facebook login was successful
-                if grantedPermissions.contains(.publicProfile) && grantedPermissions.contains(.email) {
-                    // Facebook login was successful
-                    self.firebaseLoginWithFacebookAccessToken(accessToken)
-                } else {
-                    // Some permissions were not granted
-                    print("Facebook login failed. Missing permissions: \(declinedPermissions)")
-                }
-            case .cancelled:
-                print("Facebook login cancelled.")
-            case .failed(let error):
-                print("Facebook login failed with error: \(error)")
-            }
-        }
-    }
-    
-    private func firebaseLoginWithFacebookAccessToken(_ accessToken: AccessToken) {
-        let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-        
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                print("Firebase login failed with error: \(error)")
-            } else if authResult != nil {
-                // Firebase login successful
-                self.isLoggedIn = true
-            }
-        }
-    }
-    
-    private func logout() {
-        do {
-            try Auth.auth().signOut()
-            self.isLoggedIn = false
-        } catch {
-            print("Error signing out: \(error.localizedDescription)")
-        }
     }
 }

@@ -27,6 +27,8 @@ let package = Package(
             name: "ISSLogin",
             dependencies: [.product(name: "ISSTheme", package: "iSSBooking-iOS-Theme"),
                            .product(name: "ISSCommonUI", package: "iSSBooking-iOS-CommonUI"),
+                           .product(name: "Firebase", package: "Firebase"),
+                           .product(name: "Facebook", package: "Facebook"),
             ]),
         .testTarget(
             name: "ISSLoginTests",

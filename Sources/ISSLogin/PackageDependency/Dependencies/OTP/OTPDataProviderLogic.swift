@@ -12,4 +12,5 @@ import Combine
 public protocol OTPDataProviderLogic {
     func fetchOTP(request: OTP.Model.Request) -> AnyPublisher<OTPResponse, Error>
     func validateOTP(request: OTP.Model.Request) -> AnyPublisher<OTPResponse, Error>
+    
 }

@@ -32,9 +32,9 @@ public enum OTP {
             var otpData: OTPDataModel
         }
     }
+}
 
-    public enum OTPAction {
-        case registration
-        case resetPassword
-    }
+public enum OTPAction {
+    case registration
+    case resetPassword
 }

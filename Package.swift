@@ -17,8 +17,6 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/iSoftStoneMY/iSSBooking-iOS-Theme", branch: "develop"),
         .package(url: "https://github.com/iSoftStoneMY/iSSBooking-iOS-CommonUI", branch: "develop"),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "10.15.0"),
-        .package(url: "https://github.com/facebook/facebook-ios-sdk", exact: "16.2.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -27,8 +25,6 @@ let package = Package(
             name: "ISSLogin",
             dependencies: [.product(name: "ISSTheme", package: "iSSBooking-iOS-Theme"),
                            .product(name: "ISSCommonUI", package: "iSSBooking-iOS-CommonUI"),
-                           .product(name: "Firebase", package: "Firebase"),
-                           .product(name: "Facebook", package: "Facebook"),
             ]),
         .testTarget(
             name: "ISSLoginTests",

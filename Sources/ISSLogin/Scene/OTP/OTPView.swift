@@ -136,8 +136,7 @@ public struct OTPView: View {
                     Button(action: {
                         print("resend btn")
                         resetTimer()
-                        presenter.fetchOTP(request: OTP.Model.Request(otpAction: presenter.getOTPAction(),
-                                                                      mobileNo: presenter.getMobileNo()))
+                        presenter.fetchOTP(otpAction: presenter.getOTPAction(), request: OTP.Model.Request(mobileNo: presenter.getMobileNo()))
                     }) {
                         Text(isButtonEnabled ? "Resend" : "Can resend in \(presenter.getFormattedRemainingTime())")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

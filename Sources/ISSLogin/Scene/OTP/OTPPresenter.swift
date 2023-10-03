@@ -36,7 +36,7 @@ final class OTPPresenter: ObservableObject {
         return String(format: "%02i:%02i", minutes, seconds)
     }
 
-    func fetchOTP(request: OTP.Model.Request, completionHandler: (() -> Void)? = nil) {
+    func fetchOTP(otpAction: OTPAction, request: OTP.Model.Request, completionHandler: (() -> Void)? = nil) {
         interactor.fetchOTP(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in

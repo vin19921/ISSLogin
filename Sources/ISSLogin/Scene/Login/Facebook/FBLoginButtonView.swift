@@ -5,7 +5,7 @@
 //  Created by Wing Seng Chew on 03/10/2023.
 //
 
-import FirebaseCore
+import Firebase
 import FirebaseAuth
 import FacebookCore
 import FacebookLogin

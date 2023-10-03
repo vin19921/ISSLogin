@@ -10,10 +10,6 @@ import ISSCommonUI
 import ISSTheme
 import SwiftUI
 import UIKit
-import FirebaseCore
-import FirebaseAuth
-import FacebookCore
-import FacebookLogin
 
 public struct LoginView: View {
 

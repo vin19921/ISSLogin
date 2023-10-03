@@ -129,6 +129,8 @@ public struct LoginView: View {
                         }
                         .disabled(!validated())
 
+                        FBLoginButtonView()
+
                         
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

@@ -156,7 +156,7 @@ public struct OTPView: View {
         }
         .onAppear {
 //            startCountdownTimer()
-            presenter.fetchOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo()))
+            presenter.fetchOTP(otpAction: presenter.getOTPAction(), request: OTP.Model.Request(mobileNo: presenter.getMobileNo()))
         }
         .onReceive(timer) { _ in
             if presenter.remainingTimeInSeconds > 0 {

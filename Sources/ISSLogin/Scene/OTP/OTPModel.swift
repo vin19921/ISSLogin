@@ -13,6 +13,12 @@ public enum OTP {
             public var otpAction: OTPAction
             public var mobileNo: String
             public var code: Int?
+
+            public init(otpAction: OTPAction, mobileNo: String, code: Int?) {
+               self.otpAction = otpAction
+               self.mobileNo = mobileNo
+               self.code = code
+           }
         }
 
         struct Response {

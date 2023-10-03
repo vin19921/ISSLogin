@@ -71,7 +71,7 @@ public struct ResetPasswordView: View {
                             Alert(title: Text("Reset Successful"),
                                   message: Text("Please check your registered email for the new password"),
                                   dismissButton: .default(Text("OK")) {
-                                presentationMode.wrappedValue.dismiss()
+//                                presentationMode.wrappedValue.dismiss()
                             })
                         }
 

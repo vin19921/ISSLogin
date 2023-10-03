@@ -10,10 +10,11 @@ import UIKit
 public enum OTP {
     public enum Model {
         public struct Request: Encodable {
+            public var otpAction: OTPAction
             public var mobileNo: String
             public var code: Int?
         }
-        
+
         struct Response {
             var resultCode: Int16
             var resultMessage: String
@@ -24,5 +25,10 @@ public enum OTP {
             var message: String
             var otpData: OTPDataModel
         }
+    }
+
+    public enum OTPAction {
+        case registration
+        case resetPassword
     }
 }

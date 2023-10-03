@@ -13,6 +13,7 @@ final class OTPPresenter: ObservableObject {
     private var router: OTPRouter?
     private var cancellables = Set<AnyCancellable>()
     private var mobileNo: String = ""
+    private let otpAction = OTPAction.registration
 
     @Published var remainingTimeInSeconds: Int = 10 // 180
     @Published var showingAlert = false
@@ -146,6 +147,10 @@ extension OTPPresenter {
     }
 
     func getMobileNo() -> String {
-        return mobileNo
+        mobileNo
+    }
+
+    func getOTPAction() -> OTPAction {
+        otpAction
     }
 }

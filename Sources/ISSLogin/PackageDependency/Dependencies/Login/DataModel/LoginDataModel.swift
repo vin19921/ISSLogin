@@ -57,7 +57,7 @@ public struct LoginResponse: Codable {
     public let resultCode: Int16?
     public let resultMessage: String?
     public let status: Bool?
-    public let data: LoginDataModel?
+    public let data: LoginDataModel
 }
 
 public extension LoginResponse {

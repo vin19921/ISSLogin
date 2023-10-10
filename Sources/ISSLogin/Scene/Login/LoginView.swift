@@ -192,9 +192,9 @@ public struct LoginView: View {
         }
         .background(Theme.current.issWhite.color)
         .alert(isPresented: $presenter.showingAlert) {
-            AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.otpDataModel?.message ?? "", dismissText: "Back to Login", onDismiss: {
+            AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.errorMessage, dismissText: "OK", onDismiss: {
                 print("Dismiss")
-                presenter.routeToLogin()
+//                presenter.routeToLogin()
             }))
         }
     }

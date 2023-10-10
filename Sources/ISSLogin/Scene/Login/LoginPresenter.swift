@@ -14,6 +14,7 @@ final class LoginPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     @Published var showingAlert = false
+    @Published var errorMessage = ""
 
     // MARK: Injection
 
@@ -62,12 +63,14 @@ final class LoginPresenter: ObservableObject {
         let status = response.status
         let data = response.data
         
-//        if resultCode > 0 {
-//            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
-//            showingAlert = true
+        if resultCode > 0 {
+            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
+            showingAlert = true
+            errorMessage = resultMessage
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))
-//        } else {
+        } else {
+            loginDataModel = data
             print("Login Successful ::: \(data)")
 //            routeToOTP(mobileNo: data.mobileNo)
 //        }

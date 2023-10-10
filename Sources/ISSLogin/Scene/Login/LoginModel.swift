@@ -15,7 +15,7 @@ public enum Login {
         }
 
         struct Response {
-            var resultCode: Int?
+            var resultCode: Int16? = 1
             var resultMessage: String?
             var status: Bool?
             var data: LoginDataModel

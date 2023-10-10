@@ -117,7 +117,7 @@ public struct LoginView: View {
 
                         Button(action: {
                             print("login btn")
-                            presenter.fetchLogin(request: Login.Model.Request(mobileNo: phoneText,
+                            presenter.fetchLogin(request: Login.Model.Request(mobileNo: "60\(phoneText)",
                                                                               password: passwordText))
                         }) {
                             Text("Login")

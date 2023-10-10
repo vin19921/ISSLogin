@@ -7,7 +7,7 @@
 
 public struct LoginToken: Codable {
     public let appToken: String?
-    public let exp: String?
+    public let exp: Int?
     
     enum CodingKeys: String, CodingKey {
         case appToken

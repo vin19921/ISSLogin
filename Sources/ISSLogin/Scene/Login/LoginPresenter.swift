@@ -11,6 +11,7 @@ import Foundation
 final class LoginPresenter: ObservableObject {
     private var interactor: LoginBusinessLogic
     private var router: LoginRouter?
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: Injection
 

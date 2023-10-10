@@ -117,6 +117,8 @@ public struct LoginView: View {
 
                         Button(action: {
                             print("login btn")
+                            presenter.fetchOTP(request: Login.Model.Request(mobileNo: phoneText,
+                                                                            password: passwordText))
                         }) {
                             Text("Login")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -129,9 +131,42 @@ public struct LoginView: View {
                         }
                         .disabled(!validated())
 
-                        FacebookLoginButton()
-                            .frame(width: 200, height: 40)
-                            .padding()
+//                        HStack {
+                            
+//                            FacebookLoginButton()
+//                                .frame(maxWidth: .infinity)
+//                                .frame(height: 28)
+//                                .opacity(0)
+////                                .hidden()
+//                                .overlay(
+//                                    HStack {
+//                                        Text("Sign up using Facebook")
+//                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                                verticalPadding: 8)
+//                                    }
+//                                    .foregroundColor(Theme.current.issWhite.color)
+//                                    .background(Color.blue)
+//                                    .cornerRadius(12)
+//                                )
+                        FacebookLoginButtonView(isLoggedIn: $isLoggedIn)
+//                        }
+//                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                            verticalPadding: 8)
+//                        .frame(maxWidth: .infinity)
+////                        .frame(height: 28)
+//                        .foregroundColor(Theme.current.issWhite.color)
+//                        .background(Color.blue)
+//                        .cornerRadius(12)
+
+//                        HStack {
+//                            Text("Sign up using Facebook")
+//                            FacebookLoginButton(buttonLabel: "Sign up using Facebook")
+////                                .frame(width: 200, height: 28)
+//                        }
+//                        .padding(.horizontal)
+//                        .cornerRadius(12)
                         
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

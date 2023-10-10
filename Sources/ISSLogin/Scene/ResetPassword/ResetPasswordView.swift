@@ -72,6 +72,7 @@ public struct ResetPasswordView: View {
                                   message: Text("Please check your registered email for the new password"),
                                   dismissButton: .default(Text("OK")) {
 //                                presentationMode.wrappedValue.dismiss()
+                                presenter.routeToOTP(mobileNo: "60\(phoneText)")
                             })
                         }
 

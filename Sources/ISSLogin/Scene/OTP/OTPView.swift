@@ -65,7 +65,10 @@ public struct OTPView: View {
                                     if pinText.count == 6 {
                                         isLoading.toggle()
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: Int(pinText)), completionHandler: {
+                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(),
+                                                                                         code: Int(pinText),
+                                                                                         otpAttemptCount: presenter.otpAttempCount),
+                                                              completionHandler: {
                                             isLoading.toggle()
                                         })
                                     }
@@ -136,7 +139,9 @@ public struct OTPView: View {
                     Button(action: {
                         print("resend btn")
                         resetTimer()
-                        presenter.fetchOTP(otpAction: presenter.getOTPAction(), request: OTP.Model.Request(mobileNo: presenter.getMobileNo()))
+                        presenter.fetchOTP(otpAction: presenter.getOTPAction(),
+                                           request: OTP.Model.Request(mobileNo: presenter.getMobileNo(),
+                                                                      otpAttemptCount: presenter.otpAttempCount))
                     }) {
                         Text(isButtonEnabled ? "Resend" : "Can resend in \(presenter.getFormattedRemainingTime())")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -156,7 +161,9 @@ public struct OTPView: View {
         }
         .onAppear {
 //            startCountdownTimer()
-            presenter.fetchOTP(otpAction: presenter.getOTPAction(), request: OTP.Model.Request(mobileNo: presenter.getMobileNo()))
+            presenter.fetchOTP(otpAction: presenter.getOTPAction(),
+                               request: OTP.Model.Request(mobileNo: presenter.getMobileNo(),
+                                                          otpAttemptCount: presenter.otpAttempCount))
         }
         .onReceive(timer) { _ in
             if presenter.remainingTimeInSeconds > 0 {
@@ -217,6 +224,10 @@ public struct OTPView: View {
 
     public func setMobileNo(_ mobileNo: String) {
         presenter.setMobileNo(mobileNo)
+    }
+
+    public func setOTPAction(_ otpAction: OTPAction) {
+        presenter.setOTPAction(otpAction)
     }
 }
 

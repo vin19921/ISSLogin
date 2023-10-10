@@ -13,11 +13,12 @@ final class OTPPresenter: ObservableObject {
     private var router: OTPRouter?
     private var cancellables = Set<AnyCancellable>()
     private var mobileNo: String = ""
-    private let otpAction = OTPAction.registration
+    private var otpAction = OTPAction.registration
 
     @Published var remainingTimeInSeconds: Int = 10 // 180
     @Published var showingAlert = false
     @Published var otpDataModel: OTPDataModel?
+    @Published var otpAttempCount = 1
 
     // MARK: Injection
 
@@ -84,7 +85,8 @@ final class OTPPresenter: ObservableObject {
     }
 
     func validateOTP(request: OTP.Model.Request, completionHandler: (() -> Void)? = nil) {
-        interactor.validateOTP(request: request)
+        print("otpAction ::: \(otpAction)")
+        interactor.validateOTP(otpAction: otpAction, request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
@@ -148,6 +150,10 @@ extension OTPPresenter {
 
     func getMobileNo() -> String {
         mobileNo
+    }
+
+    func setOTPAction(_ otpAction: OTPAction) {
+        self.otpAction = otpAction
     }
 
     func getOTPAction() -> OTPAction {

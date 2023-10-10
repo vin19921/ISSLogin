@@ -13,9 +13,9 @@ import Foundation
 /// This helps provide proper separation of concerns between app and events package.
 public enum ISSGateway {
     public static func makeLogin(theme: Theme,
-//                                          provider: EventsDataProviderLogic,
-                                          router: LoginRoutingLogic,
-                                          networkMonitor: NetworkMonitor
+                                 provider: LoginDataProviderLogic,
+                                 router: LoginRoutingLogic,
+                                 networkMonitor: NetworkMonitor
     ) ->
     LoginView
     {
@@ -25,8 +25,8 @@ public enum ISSGateway {
 //        injectEventsOverviewRouter(router)
 //        injectNetworkMonitor(networkMonitor)
         
-//        let interactor = EventsOverviewInteractor(provider: provider)
-        let presenter = LoginPresenter()
+        let interactor = LoginInteractor(provider: provider)
+        let presenter = LoginPresenter(interactor: interactor)
         
         let view = LoginView(presenter: presenter)
         let loginRouter = LoginRouter(navigator: router)
@@ -70,13 +70,16 @@ public enum ISSGateway {
     }
 
     public static func makeResetPassword(theme: Theme,
+                                         router: ResetPasswordRoutingLogic,
                                          networkMonitor: NetworkMonitor) ->
     ResetPasswordView
     {
         Theme.current = theme
         let presenter = ResetPasswordPresenter()
         let view = ResetPasswordView(presenter: presenter)
+        let resetPasswordRouter = ResetPasswordRouter(navigator: router)
 
+        presenter.setRouter(resetPasswordRouter)
         return view
     }
 }

@@ -18,8 +18,8 @@ public struct LoginToken: Codable {
 public extension LoginToken {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        appToken = try? container.decode(Int16.self, forKey: .appToken) ?? 0
-        exp = try? container.decode(String.self, forKey: .exp) ?? ""
+        appToken = try? container.decode(String.self, forKey: .appToken)
+        exp = try? container.decode(String.self, forKey: .exp)
     }
 }
 

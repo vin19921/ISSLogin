@@ -55,9 +55,9 @@ public struct LoginResponse: Codable {
 public extension LoginResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        resultCode = try container.decode(Int16.self, forKey: .resultCode) ?? 0
-        resultMessage = try container.decode(String.self, forKey: .resultMessage) ?? ""
-        status = try container.decode(Bool.self, forKey: .status) ?? false
+        resultCode = try? container.decode(Int16.self, forKey: .resultCode) ?? 0
+        resultMessage = try? container.decode(String.self, forKey: .resultMessage) ?? ""
+        status = try? container.decodeIfPresent(Bool.self, forKey: .status) ?? false
         data = try container.decode(LoginDataModel.self, forKey: .data)
     }
 }

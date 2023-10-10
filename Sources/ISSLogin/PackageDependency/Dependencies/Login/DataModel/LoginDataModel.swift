@@ -14,14 +14,14 @@ public struct LoginToken: Codable {
         case exp
     }
 }
-
-public extension LoginToken {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        appToken = try? container.decode(String.self, forKey: .appToken)
-        exp = try? container.decode(String.self, forKey: .exp)
-    }
-}
+//
+//public extension LoginToken {
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        appToken = try? container.decode(String.self, forKey: .appToken)
+//        exp = try? container.decode(String.self, forKey: .exp)
+//    }
+//}
 
 public struct LoginDataModel: Codable {
     public let id: String?
@@ -35,7 +35,7 @@ public struct LoginDataModel: Codable {
     public let isCustomer: Bool?
     public let isDraft: Bool?
     public let isCompleteRegister: Bool?
-    public let token: LoginToken
+    public let token: LoginToken?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -57,14 +57,14 @@ public struct LoginResponse: Codable {
     public let resultCode: Int16?
     public let resultMessage: String?
     public let status: Bool?
-    public let data: LoginDataModel
+    public let data: LoginDataModel?
 }
 
 public extension LoginResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        resultCode = try? container.decode(Int16.self, forKey: .resultCode) ?? 0
-        resultMessage = try? container.decode(String.self, forKey: .resultMessage) ?? ""
+        resultCode = try? container.decode(Int16.self, forKey: .resultCode)
+        resultMessage = try? container.decode(String.self, forKey: .resultMessage)
         status = try? container.decodeIfPresent(Bool.self, forKey: .status) ?? false
         data = try container.decode(LoginDataModel.self, forKey: .data)
     }

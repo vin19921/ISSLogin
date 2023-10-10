@@ -29,7 +29,7 @@ let package = Package(
                 .product(name: "ISSTheme", package: "iSSBooking-iOS-Theme"),
                 .product(name: "ISSCommonUI", package: "iSSBooking-iOS-CommonUI"),
                 .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
-                .product(name: "Facebook", package: "facebook-ios-sdk"),
+                .product(name: "FacebookLogin", package: "facebook-ios-sdk"),
             ]),
         .testTarget(
             name: "ISSLoginTests",

@@ -63,17 +63,18 @@ final class LoginPresenter: ObservableObject {
         let status = response.status
         let data = response.data
         
-        if resultCode > 0 {
+        if Int16(resultCode) > 0 {
             print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
             showingAlert = true
             errorMessage = resultMessage
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))
         } else {
-            loginDataModel = data
+//            loginDataModel = data
             print("Login Successful ::: \(data)")
-//            routeToOTP(mobileNo: data.mobileNo)
-//        }
+            //            routeToOTP(mobileNo: data.mobileNo)
+            //        }
+        }
     }
 }
 

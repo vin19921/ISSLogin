@@ -13,6 +13,8 @@ final class LoginPresenter: ObservableObject {
     private var router: LoginRouter?
     private var cancellables = Set<AnyCancellable>()
 
+    @Published var showingAlert = false
+
     // MARK: Injection
 
     init(interactor: LoginBusinessLogic) {
@@ -23,7 +25,7 @@ final class LoginPresenter: ObservableObject {
         self.router = router
     }
 
-    func fetchOTP(request: Login.Model.Request, completionHandler: (() -> Void)? = nil) {
+    func fetchLogin(request: Login.Model.Request, completionHandler: (() -> Void)? = nil) {
         interactor.fetchLogin(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in

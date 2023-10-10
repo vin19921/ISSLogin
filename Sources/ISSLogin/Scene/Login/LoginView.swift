@@ -117,8 +117,8 @@ public struct LoginView: View {
 
                         Button(action: {
                             print("login btn")
-                            presenter.fetchOTP(request: Login.Model.Request(mobileNo: phoneText,
-                                                                            password: passwordText))
+                            presenter.fetchLogin(request: Login.Model.Request(mobileNo: phoneText,
+                                                                              password: passwordText))
                         }) {
                             Text("Login")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -191,6 +191,12 @@ public struct LoginView: View {
             }
         }
         .background(Theme.current.issWhite.color)
+        .alert(isPresented: $presenter.showingAlert) {
+            AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.otpDataModel?.message ?? "", dismissText: "Back to Login", onDismiss: {
+                print("Dismiss")
+                presenter.routeToLogin()
+            }))
+        }
     }
 
     private func validated() -> Bool {

@@ -58,14 +58,12 @@ final class LoginPresenter: ObservableObject {
     }
 
     private func handleLoginResponse(response: Login.Model.Response) {
-        let resultCode = response.resultCode
-        let resultMessage = response.resultMessage
+//        let resultCode = response.resultCode
+//        let resultMessage = response.resultMessage
         let status = response.status
         let data = response.data
-        
-        let intValue: Int = response.resultCode
 
-        if let code = Int16(exactly: intValue),
+        if let code = response.resultCode,
            let message = response.resultMessage {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
 

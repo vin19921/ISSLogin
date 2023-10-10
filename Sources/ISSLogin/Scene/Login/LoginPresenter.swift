@@ -63,7 +63,7 @@ final class LoginPresenter: ObservableObject {
         let status = response.status
         let data = response.data
         
-        if let code = Int16(response.resultCode),
+        if let code = Int16(exactly: response.resultCode),
            let message = response.resultMessage {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
 

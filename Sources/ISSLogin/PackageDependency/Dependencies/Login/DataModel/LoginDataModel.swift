@@ -31,10 +31,10 @@ public struct LoginDataModel: Codable {
     public let city: String?
     public let mobileNo: String?
     public let status: Int16?
-    public let isMerchant: Bool?
-    public let isCustomer: Bool?
-    public let isDraft: Bool?
-    public let isCompleteRegister: Bool?
+    public let isMerchant: Int16?
+    public let isCustomer: Int16?
+    public let isDraft: Int16?
+    public let isCompleteRegister: Int16?
     public let token: LoginToken?
 
     enum CodingKeys: String, CodingKey {
@@ -56,7 +56,7 @@ public struct LoginDataModel: Codable {
 public struct LoginResponse: Codable {
     public let resultCode: Int16?
     public let resultMessage: String?
-    public let status: Bool?
+    public let status: Int16?
     public let data: LoginDataModel
 }
 
@@ -65,7 +65,7 @@ public extension LoginResponse {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         resultCode = try? container.decode(Int16.self, forKey: .resultCode)
         resultMessage = try? container.decode(String.self, forKey: .resultMessage)
-        status = try? container.decodeIfPresent(Bool.self, forKey: .status) ?? false
+        status = try? container.decodeIfPresent(Int16.self, forKey: .status) ?? false
         data = try container.decode(LoginDataModel.self, forKey: .data)
     }
 }

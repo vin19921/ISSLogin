@@ -65,7 +65,7 @@ public extension LoginResponse {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         resultCode = try? container.decode(Int16.self, forKey: .resultCode)
         resultMessage = try? container.decode(String.self, forKey: .resultMessage)
-        status = try? container.decodeIfPresent(Int16.self, forKey: .status) ?? false
+        status = try? container.decodeIfPresent(Int16.self, forKey: .status) ?? 0
         data = try container.decode(LoginDataModel.self, forKey: .data)
     }
 }

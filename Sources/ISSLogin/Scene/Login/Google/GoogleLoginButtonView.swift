@@ -26,6 +26,7 @@ struct GoogleLoginButtonView: View {
                             try Auth.auth().signOut()
                             GIDSignIn.sharedInstance.signOut()
 //                            self.user = nil
+                            isLoggedIn = false
                         } catch {
                             print("Error signing out: \(error)")
                         }
@@ -132,6 +133,7 @@ struct GoogleLoginButtonView: View {
                     print(authResult?.user.photoURL!.absoluteString)
 //                    self.checkIfUserAccountExists()
 //                    print(authResult)
+                    isLoggedIn = true
                 }
             }
         }

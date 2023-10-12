@@ -32,44 +32,45 @@ struct GoogleLoginButtonView: View {
                     }
             } else {
                 Button(action: {
+                    googleSignInAction()
                     // Trigger the Facebook login
 //                    presenter.signIn()
 //                    GIDSignIn.sharedInstance.presentingViewController = UIApplication.shared.windows.first?.rootViewController
-                    guard let presentingVC = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {return}
-
-                    GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { user, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                            return
-                          }
-
-                          guard let authentication = user?.authentication, let idToken = authentication.idToken
-                          else {
-                            return
-                          }
-
-                          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                                         accessToken: authentication.accessToken)
-
-                        Auth.auth().signIn(with: credential) { authResult, error in
-                            guard let user = authResult?.user, error == nil else {
-                                self.signUpResultText = error?.localizedDescription ?? "Error Occured"
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                                    self.showCustomAlertLoading = false
-                                })
-                                return}
-                            self.signUpResultText = "\(user.email!)\nSigning Succesfully"
-                            self.isSignUpSucces = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-//                                self.showCustomAlertLoading = false
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-//                                    self.navigateHome = true
+//                    guard let presentingVC = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {return}
+//
+//                    GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { user, error in
+//                        if let error = error {
+//                            print(error.localizedDescription)
+//                            return
+//                          }
+//
+//                          guard let authentication = user?.authentication, let idToken = authentication.idToken
+//                          else {
+//                            return
+//                          }
+//
+//                          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+//                                                                         accessToken: authentication.accessToken)
+//
+//                        Auth.auth().signIn(with: credential) { authResult, error in
+//                            guard let user = authResult?.user, error == nil else {
+//                                self.signUpResultText = error?.localizedDescription ?? "Error Occured"
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                                    self.showCustomAlertLoading = false
 //                                })
-                            })
-                            print("\(user.email!) signed****")
-
-                        }
-                    }
+//                                return}
+//                            self.signUpResultText = "\(user.email!)\nSigning Succesfully"
+//                            self.isSignUpSucces = true
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+////                                self.showCustomAlertLoading = false
+////                                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+////                                    self.navigateHome = true
+////                                })
+//                            })
+//                            print("\(user.email!) signed****")
+//
+//                        }
+//                    }
 
 
                 }) {
@@ -105,6 +106,30 @@ struct GoogleLoginButtonView: View {
 //            GIDSignIn.sharedInstance()?.delegate = self
         }
     }
+
+    func googleSignInAction() {
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { authentication, error in
+            if let error = error {
+                print("There is an error signing the user in ==> \(error)")
+                return
+            }
+            guard let user = authentication?.user, let idToken = user.idToken?.tokenString else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if error != nil {
+                    print(error)
+                } else {
+                    self.email = authResult?.user.email
+                    self.photoURL = authResult?.user.photoURL!.absoluteString
+                    self.checkIfUserAccountExists()
+                    print(authResult)
+                }
+            }
+        }
+    }
+
 }
 
 //extension GoogleLoginButtonView: GIDSignInDelegate {

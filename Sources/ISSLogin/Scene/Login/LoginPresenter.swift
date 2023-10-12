@@ -75,8 +75,8 @@ final class LoginPresenter: ObservableObject {
                 errorMessage = message
             } else {
                 print("Login Successful ::: \(data)")
-                saveUserInfo(key: .userEmail, value: data.email)
-                saveUserInfo(key: .accessToken, value: data.token?.appToken)
+                saveUserInfo(key: .userEmail, value: data.email ?? "")
+                saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")
             }
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))
@@ -110,6 +110,6 @@ extension LoginPresenter {
 
 extension LoginPresenter {
     func saveUserInfo(key: UserInfoKey, value: String) {
-        interactor.saveUserInfo(key: UserInfoKey, value: value)
+        interactor.saveUserInfo(key: key, value: value)
     }
 }

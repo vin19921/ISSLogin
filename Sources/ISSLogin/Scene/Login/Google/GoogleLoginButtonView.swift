@@ -147,8 +147,10 @@ struct GoogleLoginButtonView: View {
                     print("Display Name: \(displayName ?? "N/A")")
                     print("Email: \(email ?? "N/A")")
                     print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
-                    
-                    action?(displayName, email)
+
+                    if let action = action {
+                        action(displayName, email)
+                    }
                 }
             }
         }

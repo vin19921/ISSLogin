@@ -18,7 +18,7 @@ public struct LoginRouter {
 extension LoginRouter: RoutingLogic {
     public enum Destination {
         case rootScreen
-        case registerScreen(fullName: String, email: String):
+        case registerScreen(fullName: String, email: String)
         case resetPasswordScreen
     }
 

@@ -109,7 +109,8 @@ struct GoogleLoginButtonView: View {
 
     func googleSignInAction() {
         
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { authentication, error in
+        guard let presentingVC = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {return}
+        GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { authentication, error in
             if let error = error {
                 print("There is an error signing the user in ==> \(error)")
                 return
@@ -121,10 +122,10 @@ struct GoogleLoginButtonView: View {
                 if error != nil {
                     print(error)
                 } else {
-                    self.email = authResult?.user.email
-                    self.photoURL = authResult?.user.photoURL!.absoluteString
-                    self.checkIfUserAccountExists()
-                    print(authResult)
+                    print(authResult?.user.email)
+                    print(authResult?.user.photoURL!.absoluteString)
+//                    self.checkIfUserAccountExists()
+//                    print(authResult)
                 }
             }
         }

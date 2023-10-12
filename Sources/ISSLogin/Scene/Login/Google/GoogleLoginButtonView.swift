@@ -79,7 +79,7 @@ struct GoogleLoginButtonView: View {
                         Spacer()
                         LoginImageAssets.google.image
                             .resizable()
-                            .renderingMode(.template)
+                            .renderingMode(.original)
                             .frame(width: 20, height: 20)
                             .aspectRatio(contentMode: .fit)
                         Text("Sign Up with Google")
@@ -130,14 +130,22 @@ struct GoogleLoginButtonView: View {
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
             
             Auth.auth().signIn(with: credential) { authResult, error in
-                if error != nil {
-                    print(error)
-                } else {
-                    print(authResult?.user.email)
-                    print(authResult?.user.photoURL!.absoluteString)
-//                    self.checkIfUserAccountExists()
-//                    print(authResult)
+                if let error = error {
+                    print("Firebase authentication error: \(error.localizedDescription)")
+                } else if let user = authResult?.user {
+                    print("Firebase login success! User UID: \(user.uid)")
+                    
                     isLoggedIn = true
+                    // Fetch user information from Facebook if needed
+                    let uid = user.uid
+                    let displayName = user.displayName
+                    let email = user.email
+                    let photoURL = user.photoURL
+
+                    print("UID: \(uid)")
+                    print("Display Name: \(displayName ?? "N/A")")
+                    print("Email: \(email ?? "N/A")")
+                    print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
                 }
             }
         }

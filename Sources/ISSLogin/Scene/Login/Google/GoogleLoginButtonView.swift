@@ -33,7 +33,7 @@ struct GoogleLoginButtonView: View {
             } else {
                 Button(action: {
                     // Trigger the Facebook login
-                    presenter.signIn()
+//                    presenter.signIn()
                     GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.first?.rootViewController
                     GIDSignIn.sharedInstance()?.signIn()
 
@@ -62,35 +62,35 @@ struct GoogleLoginButtonView: View {
         .onAppear {
             // Check if the user is already signed in
             if let user = Auth.auth().currentUser {
-                self.user = user
+//                self.user = user
             }
             
             // Set up Google Sign-In delegate
-            GIDSignIn.sharedInstance()?.delegate = self
+//            GIDSignIn.sharedInstance()?.delegate = self
         }
     }
 }
 
-extension GoogleLoginButtonView: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("Google Sign-In error: \(error.localizedDescription)")
-        } else {
-            let authentication = user.authentication
-            let credential = GoogleAuthProvider.credential(
-                withIDToken: authentication.idToken,
-                accessToken: authentication.accessToken
-            )
-
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
-                    print("Firebase Auth error: \(error.localizedDescription)")
-                } else if let user = authResult?.user {
-                    self.user = user
-                    print("\(user)")
-                    isLoggedIn = true
-                }
-            }
-        }
-    }
-}
+//extension GoogleLoginButtonView: GIDSignInDelegate {
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//        if let error = error {
+//            print("Google Sign-In error: \(error.localizedDescription)")
+//        } else {
+//            let authentication = user.authentication
+//            let credential = GoogleAuthProvider.credential(
+//                withIDToken: authentication.idToken,
+//                accessToken: authentication.accessToken
+//            )
+//
+//            Auth.auth().signIn(with: credential) { (authResult, error) in
+//                if let error = error {
+//                    print("Firebase Auth error: \(error.localizedDescription)")
+//                } else if let user = authResult?.user {
+//                    self.user = user
+//                    print("\(user)")
+//                    isLoggedIn = true
+//                }
+//            }
+//        }
+//    }
+//}

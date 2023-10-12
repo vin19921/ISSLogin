@@ -86,10 +86,10 @@ struct GoogleLoginButtonView: View {
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 8)
+                            .foregroundColor(Theme.current.issBlack.color)
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Theme.current.issBlack.color)
                     .background(Color.white)
                     .cornerRadius(12)
                     .overlay(

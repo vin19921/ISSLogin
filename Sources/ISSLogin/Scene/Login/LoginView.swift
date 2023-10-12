@@ -39,45 +39,9 @@ public struct LoginView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                //                HStack {
-                //                    Spacer()
-                //                    Image(systemName: "xmark")
-                //                        .resizable()
-                //                        .frame(width: 24, height: 24)
-                //                        .aspectRatio(contentMode: .fill)
-                //                        .foregroundColor(Color.black)
-                //                        .onTapGesture {
-                //                            presentationMode.wrappedValue.dismiss()
-                //                        }
-                //                        .padding()
-                //                }
                 Spacer()
                 ZStack(alignment: .center) {
                     VStack(spacing: 16) {
-//                        HStack {
-//                            HStack(alignment: .center) {
-//                                Image(systemName: "iphone")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .foregroundColor(Color.black)
-//                                    .padding(.vertical, 8)
-//                                    .padding(.horizontal, 4)
-//                            }
-//                            .frame(width: 32)
-//
-//                            TextField("Mobile No.", text: $phoneText)
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                        }
-//                        .frame(height: 32)
-//                        .padding(.horizontal)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                        )
-
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",

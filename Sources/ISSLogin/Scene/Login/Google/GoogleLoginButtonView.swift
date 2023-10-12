@@ -34,8 +34,11 @@ struct GoogleLoginButtonView: View {
                 Button(action: {
                     // Trigger the Facebook login
 //                    presenter.signIn()
-                    GIDSignIn.sharedInstance.presentingViewController = UIApplication.shared.windows.first?.rootViewController
-                    GIDSignIn.sharedInstance.signIn()
+//                    GIDSignIn.sharedInstance.presentingViewController = UIApplication.shared.windows.first?.rootViewController
+                    GIDSignIn.sharedInstance.signIn(withPresenting: nil) { user, error in
+                        print("\(user)")
+                        print("\(error)")
+                    }
 
                 }) {
                     HStack {

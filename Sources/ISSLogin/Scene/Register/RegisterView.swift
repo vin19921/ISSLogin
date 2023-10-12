@@ -16,10 +16,10 @@ public struct RegisterView: View {
     @ObservedObject private var presenter: RegisterPresenter
     
     @State private var phoneText = ""
-    @State private var fullNameText = ""
+    @State var fullNameText = ""
     @State private var passwordText = ""
     @State private var cPasswordText = ""
-    @State private var emailText = ""
+    @State var emailText = ""
 
     @State private var phoneErrorState = false
     @State private var fullNameErrorState = false

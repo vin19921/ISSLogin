@@ -15,6 +15,8 @@ public struct LoginView: View {
 
     @ObservedObject private var presenter: LoginPresenter
     
+    @State private var isLoading = false
+
     @State private var phoneText = ""
     @State private var passwordText = ""
 
@@ -116,9 +118,13 @@ public struct LoginView: View {
                         }
 
                         Button(action: {
-                            print("login btn")
+                            isLoading.toggle()
                             presenter.fetchLogin(request: Login.Model.Request(mobileNo: "60\(phoneText)",
-                                                                              password: passwordText))
+                                                                              password: passwordText),
+                                                 completionHandler: {
+                                                    isLoading.toggle()
+                                                    self.presentationMode.wrappedValue.dismiss()
+                                                 })
                         }) {
                             Text("Login")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -201,6 +207,7 @@ public struct LoginView: View {
 //                presenter.routeToLogin()
             }))
         }
+        .loading(isLoading: $isLoading)
     }
 
     private func validated() -> Bool {

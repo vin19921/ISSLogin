@@ -13,6 +13,9 @@ final class RegisterPresenter: ObservableObject {
     private var router: RegisterRouter?
     private var cancellables = Set<AnyCancellable>()
 
+    private var fullName = ""
+    private var email = ""
+
     @Published var presenterState: PresenterState = .success(nil)
     @Published var showingAlert = false
 
@@ -112,5 +115,21 @@ final class RegisterPresenter: ObservableObject {
 extension RegisterPresenter {
     func routeToOTP(mobileNo: String) {
         router?.navigate(to: .otpScreen(mobileNo: mobileNo))
+    }
+
+    func setFullName(_ fullName: String) {
+        self.fullName = fullName
+    }
+
+    func getFullName() -> String {
+        fullName
+    }
+
+    func setEmail(_ email: String) {
+        self.email = email
+    }
+
+    func getEmail() -> String {
+        email
     }
 }

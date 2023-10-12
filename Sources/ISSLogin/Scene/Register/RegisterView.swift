@@ -187,10 +187,10 @@ public struct RegisterView: View {
     }
 
     public func setFullName(_ fullName: String) {
-        fullNameText = fullName
+        presenter.setFullName(fullName)
     }
 
     public func setEmail(_ email: String) {
-        emailText = emailText
+        presenter.setEmail(email)
     }
 }

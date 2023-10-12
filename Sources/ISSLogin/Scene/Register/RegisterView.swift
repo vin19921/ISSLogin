@@ -16,10 +16,10 @@ public struct RegisterView: View {
     @ObservedObject private var presenter: RegisterPresenter
     
     @State private var phoneText = ""
-    @State var fullNameText = ""
+    @State private var fullNameText = ""
     @State private var passwordText = ""
     @State private var cPasswordText = ""
-    @State var emailText = ""
+    @State private var emailText = ""
 
     @State private var phoneErrorState = false
     @State private var fullNameErrorState = false
@@ -184,5 +184,13 @@ public struct RegisterView: View {
             .includeStatusBarArea(false)
             .build()
         return issNavBarData
+    }
+
+    public func setFullName(_ fullName: String) {
+        fullNameText = fullName
+    }
+
+    public func setEmail(_ email: String) {
+        emailText = emailText
     }
 }

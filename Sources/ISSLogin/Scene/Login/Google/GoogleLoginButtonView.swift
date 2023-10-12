@@ -35,10 +35,42 @@ struct GoogleLoginButtonView: View {
                     // Trigger the Facebook login
 //                    presenter.signIn()
 //                    GIDSignIn.sharedInstance.presentingViewController = UIApplication.shared.windows.first?.rootViewController
-                    GIDSignIn.sharedInstance.signIn(withPresenting: nil) { user, error in
-                        print("\(user)")
-                        print("\(error)")
+                    guard let presentingVC = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {return}
+
+                    GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { user, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                          }
+
+                          guard let authentication = user?.authentication, let idToken = authentication.idToken
+                          else {
+                            return
+                          }
+
+                          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                                         accessToken: authentication.accessToken)
+
+                        Auth.auth().signIn(with: credential) { authResult, error in
+                            guard let user = authResult?.user, error == nil else {
+                                self.signUpResultText = error?.localizedDescription ?? "Error Occured"
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                                    self.showCustomAlertLoading = false
+                                })
+                                return}
+                            self.signUpResultText = "\(user.email!)\nSigning Succesfully"
+                            self.isSignUpSucces = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+//                                self.showCustomAlertLoading = false
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//                                    self.navigateHome = true
+//                                })
+                            })
+                            print("\(user.email!) signed****")
+
+                        }
                     }
+
 
                 }) {
                     HStack {

@@ -150,6 +150,7 @@ public struct LoginView: View {
 //                                    .cornerRadius(12)
 //                                )
                         FacebookLoginButtonView(isLoggedIn: $isLoggedIn)
+                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn)
 //                        }
 //                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
 //                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,

@@ -77,7 +77,7 @@ struct GoogleLoginButtonView: View {
                 }) {
                     HStack {
                         Spacer()
-                        LoginImageAssets.facebook.image
+                        LoginImageAssets.google.image
                             .resizable()
                             .renderingMode(.template)
                             .frame(width: 20, height: 20)
@@ -89,9 +89,13 @@ struct GoogleLoginButtonView: View {
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Theme.current.issWhite.color)
-                    .background(Color.blue)
+                    .foregroundColor(Theme.current.issBlack.color)
+                    .background(Color.white)
                     .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Theme.current.issBlack.color, lineWidth: 2)
+                    )
                 }
 //                .facebookLoginButtonStyle() // Apply custom button style
             }

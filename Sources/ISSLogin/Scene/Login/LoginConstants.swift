@@ -9,4 +9,5 @@ import Foundation
 
 public enum LoginImageAssets: String, ImageLoader, ImageLoaderSUI {
     case facebook
+    case google
 }

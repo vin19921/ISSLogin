@@ -18,7 +18,7 @@ public struct LoginRouter {
 extension LoginRouter: RoutingLogic {
     public enum Destination {
         case rootScreen
-        case registerScreen(fullName, email):
+        case registerScreen(fullName: String, email: String):
         case resetPasswordScreen
     }
 
@@ -26,7 +26,7 @@ extension LoginRouter: RoutingLogic {
         switch destination {
         case .rootScreen:
             navigator.navigateToRootScreen()
-        case .registerScreen(fullName, email):
+        case let .registerScreen(fullName, email):
             navigator.navigateToRegisterScreen(fullName: fullName, email: email)
         case .resetPasswordScreen:
             navigator.navigateToResetPasswordScreen()

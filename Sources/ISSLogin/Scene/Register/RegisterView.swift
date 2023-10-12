@@ -58,6 +58,10 @@ public struct RegisterView: View {
         }
         .background(Theme.current.issWhite.color)
         .loading(isLoading: $isLoading)
+        .onAppear {
+            fullNameText = presenter.getFullName()
+            emailText = presenter.getEmail()
+        }
     }
 
     @ViewBuilder

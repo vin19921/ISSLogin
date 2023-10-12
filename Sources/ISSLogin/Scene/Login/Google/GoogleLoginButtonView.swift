@@ -24,8 +24,8 @@ struct GoogleLoginButtonView: View {
                     .onTapGesture {
                         do {
                             try Auth.auth().signOut()
-                            GIDSignIn.sharedInstance()?.signOut()
-                            self.user = nil
+                            GIDSignIn.sharedInstance.signOut()
+//                            self.user = nil
                         } catch {
                             print("Error signing out: \(error)")
                         }
@@ -34,8 +34,8 @@ struct GoogleLoginButtonView: View {
                 Button(action: {
                     // Trigger the Facebook login
 //                    presenter.signIn()
-                    GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.first?.rootViewController
-                    GIDSignIn.sharedInstance()?.signIn()
+                    GIDSignIn.sharedInstance.presentingViewController = UIApplication.shared.windows.first?.rootViewController
+                    GIDSignIn.sharedInstance.signIn()
 
                 }) {
                     HStack {
@@ -63,6 +63,7 @@ struct GoogleLoginButtonView: View {
             // Check if the user is already signed in
             if let user = Auth.auth().currentUser {
 //                self.user = user
+                print("\(user)")
             }
             
             // Set up Google Sign-In delegate

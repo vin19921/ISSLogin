@@ -11,3 +11,12 @@ public enum LoginImageAssets: String, ImageLoader, ImageLoaderSUI {
     case facebook
     case google
 }
+
+public enum UserInfoKey: String {
+    case userId
+    case userFullName
+    case userEmail
+    case userPhone
+    case accessToken
+    case refreshToken
+}

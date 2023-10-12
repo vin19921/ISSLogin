@@ -75,6 +75,8 @@ final class LoginPresenter: ObservableObject {
                 errorMessage = message
             } else {
                 print("Login Successful ::: \(data)")
+                saveUserInfo(key: .userEmail, value: data.email)
+                saveUserInfo(key: .accessToken, value: data.token?.appToken)
             }
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))
@@ -104,66 +106,10 @@ extension LoginPresenter {
     }
 }
 
-//
-//extension LoginPresenter {
-//    func signIn() {
-//      // 1
-//      if GIDSignIn.sharedInstance.hasPreviousSignIn() {
-//        GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
-//            authenticateUser(for: user, with: error)
-//        }
-//      } else {
-//        // 2
-//        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-//
-//        // 3
-//        let configuration = GIDConfiguration(clientID: clientID)
-//
-//        // 4
-//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-//        guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
-//
-//        // 5
-//        GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
-//          authenticateUser(for: user, with: error)
-//        }
-//      }
-//    }
-//
-//    private func authenticateUser(for user: GIDGoogleUser?, with error: Error?) {
-//      // 1
-//      if let error = error {
-//        print(error.localizedDescription)
-//        return
-//      }
-//
-//      // 2
-//      guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
-//
-//      let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-//
-//      // 3
-//      Auth.auth().signIn(with: credential) { [weak self] (_, error) in
-//        if let error = error {
-//          print(error.localizedDescription)
-//        } else {
-//            print("Signed In")
-////          self.state = .signedIn
-//        }
-//      }
-//    }
-//
-//    func signOut() {
-//      // 1
-//      GIDSignIn.sharedInstance.signOut()
-//      
-//      do {
-//        // 2
-//        try Auth.auth().signOut()
-//
-//        state = .signedOut
-//      } catch {
-//        print(error.localizedDescription)
-//      }
-//    }
-//}
+// MARK: - Store User Info
+
+extension LoginPresenter {
+    func saveUserInfo(key: UserInfoKey, value: String) {
+        interactor.saveUserInfo(key: UserInfoKey, value: value)
+    }
+}

@@ -11,6 +11,8 @@ import ISSNetwork
 
 protocol LoginBusinessLogic {
     func fetchLogin(request: Login.Model.Request) -> AnyPublisher<Login.Model.Response, Error>
+    func getUserInfo(key: UserInfoKey) -> String
+    func saveUserInfo(key: UserInfoKey, value: String)
 }
 
 final class LoginInteractor: LoginBusinessLogic {
@@ -41,6 +43,14 @@ final class LoginInteractor: LoginBusinessLogic {
                                                           data: response.data)))
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()
+    }
+
+    func getUserInfo(key: UserInfoKey) -> String {
+        provider.getUserInfo(key: key)
+    }
+
+    func saveUserInfo(key: UserInfoKey, value: String) {
+        provider.saveUserInfo(key: key, value: value)
     }
 }
 

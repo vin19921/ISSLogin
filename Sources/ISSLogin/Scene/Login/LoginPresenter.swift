@@ -95,8 +95,8 @@ extension LoginPresenter {
         router?.navigate(to: .rootScreen)
     }
 
-    func routeToRegister() {
-        router?.navigate(to: .registerScreen)
+    func routeToRegister(fullName: String, email: String) {
+        router?.navigate(to: .registerScreen(fullName: fullName, email: email))
     }
 
     func routeToResetPassword() {

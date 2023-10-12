@@ -150,7 +150,10 @@ public struct LoginView: View {
 //                                    .cornerRadius(12)
 //                                )
                         FacebookLoginButtonView(isLoggedIn: $isLoggedIn)
-                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn)
+                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
+                            presenter.routeToRegister(fullName: fullName, email: email)
+                        })
+                        
 //                        }
 //                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
 //                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -182,7 +185,7 @@ public struct LoginView: View {
                                                 lineHeight: Theme.current.bodyThreeRegular.lineHeight,
                                                 verticalPadding: 0)
                             .onTapGesture {
-                                presenter.routeToRegister()
+                                presenter.routeToRegister(fullName: "", email: "")
                             }
                         
                     }

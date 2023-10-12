@@ -108,7 +108,13 @@ struct GoogleLoginButtonView: View {
     }
 
     func googleSignInAction() {
-        
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+                
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+
+        GIDSignIn.sharedInstance.configuration = config
+
         guard let presentingVC = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {return}
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { authentication, error in
             if let error = error {

@@ -11,6 +11,7 @@ import ISSNetwork
 
 protocol ProfileRootBusinessLogic {
 //    func getUserInfo(key: UserInfoKey) -> String
+    func logOut()
 }
 
 final class ProfileRootInteractor: ProfileRootBusinessLogic {
@@ -24,5 +25,9 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
 //    func getUserInfo(key: UserInfoKey) -> String {
 //        provider.getUserInfo(key: key)
 //    }
+
+    func logOut() {
+        provider.logOut()
+    }
 }
 

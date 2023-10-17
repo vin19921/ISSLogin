@@ -37,6 +37,10 @@ extension ProfileRootPresenter {
     func routeToChangePassword() {
         router?.navigate(to: .changePasswordScreen)
     }
+
+    func logOut() {
+        interactor.logOut()
+    }
 }
 
 // MARK: - Store User Info

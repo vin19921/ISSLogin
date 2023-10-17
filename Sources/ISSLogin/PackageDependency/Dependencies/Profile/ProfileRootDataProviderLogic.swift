@@ -11,4 +11,5 @@ import Combine
 /// This helps provide proper separation of concerns between the these objects.
 public protocol ProfileRootDataProviderLogic {
 //    func getUserInfo(key: UserInfoKey) -> String
+    func logOut()
 }

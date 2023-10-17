@@ -33,9 +33,21 @@ public struct ProfileRootView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
+                Text("User Logged In")
                 Spacer()
-//                Text("\(presenter.getUserInfo(.userEmail))")
-//                Spacer()
+                Button(action: {
+
+
+                }) {
+                    Text("Log Out")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
+                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                        .cornerRadius(12)
+                }
             }
         }
     }

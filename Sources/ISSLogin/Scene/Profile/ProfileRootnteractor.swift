@@ -11,6 +11,7 @@ import ISSNetwork
 
 protocol ProfileRootBusinessLogic {
 //    func getUserInfo(key: UserInfoKey) -> String
+    func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfile.Model.Response, Error>
     func logOut()
 }
 
@@ -22,9 +23,27 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
         self.provider = provider
     }
 
-//    func getUserInfo(key: UserInfoKey) -> String {
-//        provider.getUserInfo(key: key)
-//    }
+    func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfile.Model.Response, Error> {
+        return Future<ViewProfile.Model.Response, Error> { [weak self] promise in
+
+            guard let self = self else {
+                return promise(.failure(CommonServiceError.invalidDataInFile))
+            }
+
+            self.provider.fetchViewProfile(request:request)
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        promise(.failure(error))
+                    }
+                } receiveValue: { response in
+                    promise(.success(ViewProfile.Model.Response(resultCode: response.resultCode,
+                                                                resultMessage: response.resultMessage,
+                                                                status: response.status,
+                                                                data: response.data)))
+                }.store(in: &self.cancellables)
+        }.eraseToAnyPublisher()
+    }
 
     func logOut() {
         provider.logOut()

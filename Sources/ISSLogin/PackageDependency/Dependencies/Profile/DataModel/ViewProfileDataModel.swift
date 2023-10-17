@@ -2,30 +2,10 @@
 //  File.swift
 //  
 //
-//  Created by Wing Seng Chew on 05/10/2023.
+//  Created by Wing Seng Chew on 17/10/2023.
 //
 
-public struct LoginToken: Codable {
-    public let appToken: String?
-    public let exp: Int?
-    public let refreshToken: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case appToken
-        case exp
-        case refreshToken
-    }
-}
-//
-//public extension LoginToken {
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        appToken = try? container.decode(String.self, forKey: .appToken)
-//        exp = try? container.decode(String.self, forKey: .exp)
-//    }
-//}
-
-public struct LoginDataModel: Codable {
+public struct ViewProfileDataModel: Codable {
     public let id: String?
     public let name: String?
     public let email: String?
@@ -37,7 +17,6 @@ public struct LoginDataModel: Codable {
     public let isCustomer: Int16?
     public let isDraft: Int16?
     public let isCompleteRegister: Int16?
-    public let token: LoginToken?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -51,15 +30,14 @@ public struct LoginDataModel: Codable {
         case isCustomer
         case isDraft
         case isCompleteRegister
-        case token
     }
 }
 
-public struct LoginResponse: Codable {
+public struct ViewProfileResponse: Codable {
     public let resultCode: Int16?
     public let resultMessage: String?
     public let status: Int16?
-    public let data: LoginDataModel
+    public let data: ViewProfileDataModel
 }
 
 public extension LoginResponse {
@@ -68,6 +46,7 @@ public extension LoginResponse {
         resultCode = try? container.decode(Int16.self, forKey: .resultCode)
         resultMessage = try? container.decode(String.self, forKey: .resultMessage)
         status = try? container.decodeIfPresent(Int16.self, forKey: .status) ?? 0
-        data = try container.decode(LoginDataModel.self, forKey: .data)
+        data = try container.decode(ViewProfileDataModel.self, forKey: .data)
     }
 }
+

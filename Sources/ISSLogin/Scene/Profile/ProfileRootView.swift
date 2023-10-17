@@ -36,8 +36,8 @@ public struct ProfileRootView: View {
                 Text("User Logged In")
                 Spacer()
                 Button(action: {
-
-
+                    self.presentationMode.wrappedValue.dismiss()
+                    presenter.logOut()
                 }) {
                     Text("Log Out")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

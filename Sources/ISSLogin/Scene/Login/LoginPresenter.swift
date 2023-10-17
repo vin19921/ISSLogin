@@ -74,7 +74,7 @@ final class LoginPresenter: ObservableObject {
                 showingAlert = true
                 errorMessage = message
             } else {
-                print("Login Successful ::: \(data)")
+//                print("Login Successful ::: \(data)")
                 if let data = response.data {
 //                    saveUserInfo(key: .userEmail, value: data.email ?? "")
 //                    saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")

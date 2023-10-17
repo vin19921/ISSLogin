@@ -40,7 +40,7 @@ public struct ViewProfileResponse: Codable {
     public let data: ViewProfileDataModel
 }
 
-public extension LoginResponse {
+public extension ViewProfileResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         resultCode = try? container.decode(Int16.self, forKey: .resultCode)

@@ -75,8 +75,11 @@ final class LoginPresenter: ObservableObject {
                 errorMessage = message
             } else {
                 print("Login Successful ::: \(data)")
-                saveUserInfo(key: .userEmail, value: data.email ?? "")
-                saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")
+                if let accessToken = data.token.appToken {
+                    saveUserInfo(key: .userEmail, value: data.email ?? "")
+                    saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")
+                    saveUserInfo(key: .isLoggedIn, value: true)
+                }
             }
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))

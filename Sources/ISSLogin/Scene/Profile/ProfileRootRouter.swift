@@ -7,15 +7,15 @@
 
 import UIKit
 
-public struct UserProfileRouter {
-    private var navigator: UserProfileRoutingLogic
+public struct ProfileRootRouter {
+    private var navigator: ProfileRootRoutingLogic
 
-    public init(navigator: UserProfileRoutingLogic) {
+    public init(navigator: ProfileRootRoutingLogic) {
         self.navigator = navigator
     }
 }
 
-extension UserProfileRouter: RoutingLogic {
+extension ProfileRootRouter: RoutingLogic {
     public enum Destination {
         case rootScreen
         case changePasswordScreen

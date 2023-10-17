@@ -13,6 +13,7 @@ public enum LoginImageAssets: String, ImageLoader, ImageLoaderSUI {
 }
 
 public enum UserInfoKey: String {
+    case isLoggedIn
     case userId
     case userFullName
     case userEmail

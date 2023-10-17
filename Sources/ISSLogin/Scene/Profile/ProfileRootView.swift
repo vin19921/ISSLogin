@@ -9,9 +9,9 @@ import ISSCommonUI
 import ISSTheme
 import SwiftUI
 
-public struct UserProfileView: View {
+public struct ProfileRootView: View {
     
-    @ObservedObject private var presenter: UserProfilePresenter
+    @ObservedObject private var presenter: ProfileRootPresenter
     
     @State private var isLoading = false
 
@@ -23,7 +23,7 @@ public struct UserProfileView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    init(presenter: LoginPresenter) {
+    init(presenter: ProfileRootPresenter) {
         self.presenter = presenter
     }
 

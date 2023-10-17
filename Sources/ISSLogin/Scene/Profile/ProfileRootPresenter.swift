@@ -10,7 +10,7 @@ import Foundation
 
 final class ProfileRootPresenter: ObservableObject {
     private var interactor: ProfileRootBusinessLogic
-    private var router: UserProfileRouter?
+    private var router: ProfileRootRouter?
     private var cancellables = Set<AnyCancellable>()
 
     @Published var showingAlert = false

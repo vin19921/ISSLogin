@@ -82,4 +82,18 @@ public enum ISSGateway {
         presenter.setRouter(resetPasswordRouter)
         return view
     }
+
+    public static func makeProfileRoot(theme: Theme,
+                                       router: ProfileRootRoutingLogic,
+                                       networkMonitor: NetworkMonitor) ->
+    ProfileRootView
+    {
+        Theme.current = theme
+        let presenter = ProfileRootPresenter()
+        let view = ProfileRootView(presenter: presenter)
+        let profileRootRouter = ProfileRootRouter(navigator: router)
+
+        presenter.setRouter(profileRootRouter)
+        return view
+    }
 }

@@ -34,8 +34,8 @@ public struct ProfileRootView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
                 Spacer()
-                Text("\(presenter.getUserInfo(.userEmail))")
-                Spacer()
+//                Text("\(presenter.getUserInfo(.userEmail))")
+//                Spacer()
             }
         }
     }

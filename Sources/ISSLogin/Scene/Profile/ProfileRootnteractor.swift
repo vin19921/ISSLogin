@@ -10,7 +10,7 @@ import Foundation
 import ISSNetwork
 
 protocol ProfileRootBusinessLogic {
-    func getUserInfo(key: UserInfoKey) -> String
+//    func getUserInfo(key: UserInfoKey) -> String
 }
 
 final class ProfileRootInteractor: ProfileRootBusinessLogic {
@@ -21,8 +21,8 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
         self.provider = provider
     }
 
-    func getUserInfo(key: UserInfoKey) -> String {
-        provider.getUserInfo(key: key)
-    }
+//    func getUserInfo(key: UserInfoKey) -> String {
+//        provider.getUserInfo(key: key)
+//    }
 }
 

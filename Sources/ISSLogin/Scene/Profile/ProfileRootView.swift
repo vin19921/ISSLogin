@@ -34,6 +34,18 @@ public struct ProfileRootView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
                 Text("User Logged In")
+                Button(action: {
+                    presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
+                }) {
+                    Text("View Profile")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Theme.current.issWhite.color)
+                        .background(Theme.current.issBlack.color)
+                        .cornerRadius(12)
+                }
                 Spacer()
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()

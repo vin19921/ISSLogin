@@ -12,5 +12,5 @@ import Combine
 public protocol LoginDataProviderLogic {
     func fetchLogin(request: Login.Model.Request) -> AnyPublisher<LoginResponse, Error>
     func getUserInfo(key: UserInfoKey) -> String
-    func saveUserInfo(key: UserInfoKey, value: String)
+    func saveUserInfo(loginDataModel: LoginDataModel)
 }

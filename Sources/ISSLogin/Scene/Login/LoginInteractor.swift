@@ -12,7 +12,7 @@ import ISSNetwork
 protocol LoginBusinessLogic {
     func fetchLogin(request: Login.Model.Request) -> AnyPublisher<Login.Model.Response, Error>
     func getUserInfo(key: UserInfoKey) -> String
-    func saveUserInfo(key: UserInfoKey, value: String)
+    func saveUserInfo(loginDataModel: LoginDataModel)
 }
 
 final class LoginInteractor: LoginBusinessLogic {
@@ -49,8 +49,8 @@ final class LoginInteractor: LoginBusinessLogic {
         provider.getUserInfo(key: key)
     }
 
-    func saveUserInfo(key: UserInfoKey, value: String) {
-        provider.saveUserInfo(key: key, value: value)
+    func saveUserInfo(loginDataModel: LoginDataModel) {
+        provider.saveUserInfo(loginDataModel: loginDataModel)
     }
 }
 

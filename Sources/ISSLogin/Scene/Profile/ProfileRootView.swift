@@ -44,8 +44,8 @@ public struct ProfileRootView: View {
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 8)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(!validated() ? Theme.current.disabledGray1.color : Theme.current.issWhite.color)
-                        .background(!validated() ? Theme.current.grayDisabled.color : Theme.current.issBlack.color)
+                        .foregroundColor(Theme.current.issWhite.color)
+                        .background(Theme.current.issBlack.color)
                         .cornerRadius(12)
                 }
             }

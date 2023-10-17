@@ -84,12 +84,15 @@ public enum ISSGateway {
     }
 
     public static func makeProfileRoot(theme: Theme,
+                                       provider: ProfileRootDataProviderLogic,
                                        router: ProfileRootRoutingLogic,
                                        networkMonitor: NetworkMonitor) ->
     ProfileRootView
     {
         Theme.current = theme
-        let presenter = ProfileRootPresenter()
+        let interactor = ProfileRootInteractor(provider: provider)
+        let presenter = ProfileRootPresenter(interactor: interactor)
+
         let view = ProfileRootView(presenter: presenter)
         let profileRootRouter = ProfileRootRouter(navigator: router)
 

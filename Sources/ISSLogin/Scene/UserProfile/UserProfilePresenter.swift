@@ -8,8 +8,8 @@
 import Combine
 import Foundation
 
-final class UserProfilePresenter: ObservableObject {
-    private var interactor: UserProfileBusinessLogic
+final class ProfileRootPresenter: ObservableObject {
+    private var interactor: ProfileRootBusinessLogic
     private var router: UserProfileRouter?
     private var cancellables = Set<AnyCancellable>()
 
@@ -18,18 +18,18 @@ final class UserProfilePresenter: ObservableObject {
 
     // MARK: Injection
 
-    init(interactor: UserProfileBusinessLogic) {
+    init(interactor: ProfileRootBusinessLogic) {
         self.interactor = interactor
     }
 
-    func setRouter(_ router: UserProfileRouter) {
+    func setRouter(_ router: ProfileRootRouter) {
         self.router = router
     }
 }
 
 // MARK: - Routing
 
-extension UserProfilePresenter {
+extension ProfileRootPresenter {
     func routeToRoot() {
         router?.navigate(to: .rootScreen)
     }
@@ -41,7 +41,7 @@ extension UserProfilePresenter {
 
 // MARK: - Store User Info
 
-extension UserProfilePresenter {
+extension ProfileRootPresenter {
     func getUserInfo(key: UserInfoKey) {
         interactor.getUserInfo(key: key)
     }

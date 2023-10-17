@@ -9,15 +9,15 @@ import Combine
 import Foundation
 import ISSNetwork
 
-protocol UserProfileBusinessLogic {
+protocol ProfileRootBusinessLogic {
     func getUserInfo(key: UserInfoKey) -> String
 }
 
-final class UserProfileInteractor: UserProfileBusinessLogic {
-    private var provider: UserProfileDataProviderLogic
+final class ProfileRootInteractor: ProfileRootBusinessLogic {
+    private var provider: ProfileRootDataProviderLogic
     private var cancellables = Set<AnyCancellable>()
 
-    init(provider: UserProfileDataProviderLogic) {
+    init(provider: ProfileRootDataProviderLogic) {
         self.provider = provider
     }
 

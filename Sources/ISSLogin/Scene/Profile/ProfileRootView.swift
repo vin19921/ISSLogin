@@ -38,7 +38,7 @@ public struct ProfileRootView: View {
                     Image(systemName: "circle.fill")
                         .font(.system(size: 80))
                         .foregroundColor(.blue)
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: .zero) {
                         Text(presenter.getUserName())
                             .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                 lineHeight: Theme.current.bodyOneBold.lineHeight,
@@ -49,6 +49,7 @@ public struct ProfileRootView: View {
                                                 verticalPadding: 0)
                             .foregroundColor(Color.blue)
                     }
+                    .background(Color.red)
                     Spacer()
                 }
                 .background(Color.orange)
@@ -60,21 +61,22 @@ public struct ProfileRootView: View {
                 Button(action: {
                     presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
                 }) {
-                    Text("View Profile")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 0)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 36)
-                        .foregroundColor(Theme.current.issBlack.color)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 0)
-                        .foregroundColor(Theme.current.issBlack.color)
+                    HStack {
+                        Text("View Profile")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 36)
+                            .foregroundColor(Theme.current.issBlack.color)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
+                            .foregroundColor(Theme.current.issBlack.color)
+                    }
+                    .padding(.horizontal)
                 }
 
                 Rectangle().frame(height: 1).foregroundColor(Color.gray)

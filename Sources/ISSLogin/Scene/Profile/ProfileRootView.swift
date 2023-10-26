@@ -34,7 +34,7 @@ public struct ProfileRootView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
 //                Text("User Logged In")
-                HStack(spacing: .zero) {
+                HStack(spacing: 16) {
                     Image(systemName: "circle.fill")
                         .font(.system(size: 80))
                         .foregroundColor(.blue)
@@ -48,11 +48,12 @@ public struct ProfileRootView: View {
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
                             .foregroundColor(Color.blue)
+                            .padding(.top)
                     }
-                    .background(Color.red)
+//                    .background(Color.red)
                     Spacer()
                 }
-                .background(Color.orange)
+//                .background(Color.orange)
                 .padding(.horizontal)
                 .padding(.bottom)
 
@@ -62,20 +63,19 @@ public struct ProfileRootView: View {
                     presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
                 }) {
                     HStack {
-                        Text("View Profile")
+                        Text("Change Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 36)
-                            .foregroundColor(Theme.current.issBlack.color)
                         Spacer()
                         Image(systemName: "chevron.right")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
-                            .foregroundColor(Theme.current.issBlack.color)
                     }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 36)
+                    .foregroundColor(Theme.current.issBlack.color)
                     .padding(.horizontal)
                 }
 

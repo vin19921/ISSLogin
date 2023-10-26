@@ -38,7 +38,7 @@ public struct ProfileRootView: View {
                     Image(systemName: "circle.fill")
                         .font(.system(size: 80))
                         .foregroundColor(.blue)
-                    VStack(spacing: 16, alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text(presenter.getUserName())
                             .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                 lineHeight: Theme.current.bodyOneBold.lineHeight,

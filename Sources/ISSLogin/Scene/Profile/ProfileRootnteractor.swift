@@ -11,7 +11,7 @@ import ISSNetwork
 
 protocol ProfileRootBusinessLogic {
     func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfile.Model.Response, Error>
-    func getUserInfo(key: UserInfoKey) -> String
+    func getUserName() -> String
     func logOut()
 }
 
@@ -45,8 +45,8 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
         }.eraseToAnyPublisher()
     }
 
-    func getUserInfo(key: UserInfoKey) -> String {
-        provider.getUserInfo(key: key)
+    func getUserName() -> String {
+        provider.getUserName()
     }
 
     func logOut() {

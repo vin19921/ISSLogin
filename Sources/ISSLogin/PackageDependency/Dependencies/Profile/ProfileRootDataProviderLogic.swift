@@ -12,5 +12,6 @@ import Combine
 public protocol ProfileRootDataProviderLogic {
 //    func getUserInfo(key: UserInfoKey) -> String
     func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfileResponse, Error>
+    func getUserName() -> String
     func logOut()
 }

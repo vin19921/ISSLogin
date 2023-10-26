@@ -66,6 +66,10 @@ extension ProfileRootPresenter {
         router?.navigate(to: .rootScreen)
     }
 
+    func routeToViewProfile() {
+        router?.navigate(to: .viewProfileScreen)
+    }
+
     func routeToChangePassword() {
         router?.navigate(to: .changePasswordScreen)
     }

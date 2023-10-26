@@ -34,26 +34,26 @@ public struct ProfileRootView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
 //                Text("User Logged In")
-                HStack(spacing: 16) {
-                    Image(systemName: "circle.fill")
-                        .font(.system(size: 80))
-                        .foregroundColor(.blue)
-                    VStack(alignment: .leading, spacing: .zero) {
-                        Text(presenter.getUserName())
-                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                verticalPadding: 0)
-                        Text("View Profile")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                            .foregroundColor(Color.blue)
-                            .padding(.top)
-                    }
-//                    .background(Color.red)
-                    Spacer()
+//                HStack(spacing: 16) {
+//                    Image(systemName: "circle.fill")
+//                        .font(.system(size: 80))
+//                        .foregroundColor(.blue)
+                VStack(alignment: .leading, spacing: .zero) {
+                    Text(presenter.getUserName())
+                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                            verticalPadding: 0)
+                    Text("View Profile")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 0)
+                        .foregroundColor(Color.blue)
+                        .padding(.top, 8)
+                        .onTapGesture {
+                            print("On Tap View Profile")
+                            presenter.routeToViewProfile()
+                        }
                 }
-//                .background(Color.orange)
                 .padding(.horizontal)
                 .padding(.bottom)
 

@@ -36,9 +36,9 @@ public struct ProfileRootView: View {
                 Text("User Logged In")
                 HStack(spacing: 16) {
                     Image(systemName: "circle.fill")
-                        .resizable()
-                        .frame(height: 40, width: 40)
-                    Text(presenter.getUserInfo(key: .userFullName))
+                        .font(.system(size: 40))
+                        .foregroundColor(.blue)
+                    Text(presenter.getUserName())
                 }
                 .padding(.horizontal)
                 Button(action: {

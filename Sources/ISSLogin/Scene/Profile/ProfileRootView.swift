@@ -49,10 +49,13 @@ public struct ProfileRootView: View {
                                                 verticalPadding: 0)
                             .foregroundColor(Color.blue)
                     }
+                    Spacer()
                 }
+                .background(Color.orange)
                 .padding(.horizontal)
+                .padding(.bottom)
 
-                Rectangle().frame(height: 1)
+                Rectangle().frame(height: 1).foregroundColor(Color.gray)
 
                 Button(action: {
                     presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
@@ -67,6 +70,9 @@ public struct ProfileRootView: View {
 //                        .background(Theme.current.issBlack.color)
 //                        .cornerRadius(12)
                 }
+
+                Rectangle().frame(height: 1).foregroundColor(Color.gray)
+
                 Spacer()
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()

@@ -34,6 +34,13 @@ public struct ProfileRootView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
                 Text("User Logged In")
+                HStack(spacing: 16) {
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .frame(height: 40, width: 40)
+                    Text(presenter.getUserInfo(key: .userFullName))
+                }
+                .padding(.horizontal)
                 Button(action: {
                     presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
                 }) {

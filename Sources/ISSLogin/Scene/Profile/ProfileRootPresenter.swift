@@ -75,11 +75,11 @@ extension ProfileRootPresenter {
     }
 }
 
-// MARK: - Store User Info
+// MARK: - Get User Info
 
 extension ProfileRootPresenter {
-//    func getUserInfo(key: UserInfoKey) {
-//        interactor.getUserInfo(key: key)
-//    }
+    func getUserInfo(key: UserInfoKey) {
+        interactor.getUserInfo(key: key)
+    }
 }
 

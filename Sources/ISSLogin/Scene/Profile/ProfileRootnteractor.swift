@@ -10,8 +10,8 @@ import Foundation
 import ISSNetwork
 
 protocol ProfileRootBusinessLogic {
-//    func getUserInfo(key: UserInfoKey) -> String
     func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfile.Model.Response, Error>
+    func getUserInfo(key: UserInfoKey) -> String
     func logOut()
 }
 
@@ -43,6 +43,10 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
                                                                 data: response.data)))
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()
+    }
+
+    func getUserInfo(key: UserInfoKey) -> String {
+        provider.getUserInfo(key: key)
     }
 
     func logOut() {

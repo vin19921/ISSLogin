@@ -48,7 +48,6 @@ public struct ProfileRootView: View {
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
                             .foregroundColor(Color.blue)
-                            .underline()
                     }
                 }
                 .padding(.horizontal)

@@ -34,6 +34,7 @@ public struct ViewProfileView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
                 Text("ViewProfile")
+                Spacer()
             }
         }
         .onAppear {

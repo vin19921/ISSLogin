@@ -33,21 +33,24 @@ public struct ProfileRootView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                VStack(alignment: .leading, spacing: .zero) {
-                    Text(presenter.getUserName())
-                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                            verticalPadding: 0)
-                    Text("View Profile")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 0)
-                        .foregroundColor(Color.blue)
-                        .padding(.top, 8)
-                        .onTapGesture {
-                            print("On Tap View Profile")
-                            presenter.routeToViewProfile()
-                        }
+                HStack {
+                    VStack(alignment: .leading, spacing: .zero) {
+                        Text(presenter.getUserName())
+                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                verticalPadding: 0)
+                        Text("View Profile")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
+                            .foregroundColor(Color.blue)
+                            .padding(.top, 8)
+                            .onTapGesture {
+                                print("On Tap View Profile")
+                                presenter.routeToViewProfile()
+                            }
+                    }
+                    Spacer()
                 }
                 .padding(.horizontal)
                 .padding(.bottom)

@@ -17,7 +17,7 @@ final class ViewProfileInteractor: ViewProfileBusinessLogic {
     private var provider: ViewProfileDataProviderLogic
     private var cancellables = Set<AnyCancellable>()
 
-    init(provider: ProfileRootDataProviderLogic) {
+    init(provider: ViewProfileDataProviderLogic) {
         self.provider = provider
     }
 

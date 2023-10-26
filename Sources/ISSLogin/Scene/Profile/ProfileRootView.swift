@@ -33,25 +33,40 @@ public struct ProfileRootView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                Text("User Logged In")
-                HStack(spacing: 16) {
+//                Text("User Logged In")
+                HStack {
                     Image(systemName: "circle.fill")
-                        .font(.system(size: 40))
+                        .font(.system(size: 80))
                         .foregroundColor(.blue)
-                    Text(presenter.getUserName())
+                    VStack(spacing: 16) {
+                        Text(presenter.getUserName())
+                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                verticalPadding: 0)
+                        Text("View Profile")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
+                            .foregroundColor(Color.blue)
+                            .underline()
+                    }
                 }
                 .padding(.horizontal)
+
+                Rectangle().frame(height: 1)
+
                 Button(action: {
                     presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
                 }) {
                     Text("View Profile")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 8)
+                                            verticalPadding: 0)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(Theme.current.issWhite.color)
-                        .background(Theme.current.issBlack.color)
-                        .cornerRadius(12)
+                        .frame(height: 36)
+//                        .foregroundColor(Theme.current.issWhite.color)
+//                        .background(Theme.current.issBlack.color)
+//                        .cornerRadius(12)
                 }
                 Spacer()
                 Button(action: {

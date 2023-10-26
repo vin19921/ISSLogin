@@ -186,8 +186,8 @@ public struct LoginView: View {
         let leftAlignedItem = ToolBarItemDataBuilder()
             .setImage(Image(systemName: "chevron.backward"))
             .setCallback {
-//                self.presentationMode.wrappedValue.dismiss()
-                presenter.routeToRoot()
+                self.presentationMode.wrappedValue.dismiss()
+//                presenter.routeToRoot()
             }
             .build()
 //        let leftAlignedSecondItem = ToolBarItemDataBuilder()

@@ -99,4 +99,21 @@ public enum ISSGateway {
         presenter.setRouter(profileRootRouter)
         return view
     }
+
+    public static func makeViewProfile(theme: Theme,
+                                       provider: ViewProfileDataProviderLogic,
+//                                       router: ProfileRootRoutingLogic,
+                                       networkMonitor: NetworkMonitor) ->
+    ViewProfileView
+    {
+        Theme.current = theme
+        let interactor = ViewProfileInteractor(provider: provider)
+        let presenter = ViewProfilePresenter(interactor: interactor)
+
+        let view = ViewProfileView(presenter: presenter)
+//        let profileRootRouter = ProfileRootRouter(navigator: router)
+
+//        presenter.setRouter(profileRootRouter)
+        return view
+    }
 }

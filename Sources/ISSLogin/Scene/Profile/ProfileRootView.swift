@@ -34,11 +34,11 @@ public struct ProfileRootView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
 //                Text("User Logged In")
-                HStack {
+                HStack(spacing: .zero) {
                     Image(systemName: "circle.fill")
                         .font(.system(size: 80))
                         .foregroundColor(.blue)
-                    VStack(spacing: 16) {
+                    VStack(spacing: 16, alignment: .leading) {
                         Text(presenter.getUserName())
                             .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                 lineHeight: Theme.current.bodyOneBold.lineHeight,
@@ -66,9 +66,15 @@ public struct ProfileRootView: View {
                                             verticalPadding: 0)
                         .frame(maxWidth: .infinity)
                         .frame(height: 36)
-//                        .foregroundColor(Theme.current.issWhite.color)
-//                        .background(Theme.current.issBlack.color)
-//                        .cornerRadius(12)
+                        .foregroundColor(Theme.current.issBlack.color)
+                    
+                    Spacer()
+                    
+                    Image(systemName: "chevron.right")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 0)
+                        .foregroundColor(Theme.current.issBlack.color)
                 }
 
                 Rectangle().frame(height: 1).foregroundColor(Color.gray)
@@ -83,9 +89,9 @@ public struct ProfileRootView: View {
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 8)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(Theme.current.issWhite.color)
-                        .background(Theme.current.issBlack.color)
-                        .cornerRadius(12)
+                        .foregroundColor(Theme.current.issBlack.color)
+//                        .background(Theme.current.issBlack.color)
+//                        .cornerRadius(12)
                 }
             }
         }

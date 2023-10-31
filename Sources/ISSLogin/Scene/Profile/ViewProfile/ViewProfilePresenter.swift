@@ -43,12 +43,13 @@ final class ViewProfilePresenter: ObservableObject {
 
     func fetchData(request: ViewProfile.Model.Request) {
         fetchViewProfile(request: request) { result in
-        switch result {
-        case let .success(success):
-            self.handleViewProfileResponse(response: success)
-        case let .failure(error):
-//                self.handleError(error: error)
-            print(error)
+            switch result {
+            case let .success(success):
+                self.handleViewProfileResponse(response: success)
+            case let .failure(error):
+                //                self.handleError(error: error)
+                print(error)
+            }
         }
     }
 
@@ -58,7 +59,7 @@ final class ViewProfilePresenter: ObservableObject {
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
 
-                completionHandler?()
+//                completionHandler?()
 
                 switch completion {
                 case let .failure(error):

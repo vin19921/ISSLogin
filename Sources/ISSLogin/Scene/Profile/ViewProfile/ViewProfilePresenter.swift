@@ -53,7 +53,7 @@ final class ViewProfilePresenter: ObservableObject {
         }
     }
 
-    func fetchViewProfile(request: ViewProfile.Model.Request, completion: @escaping (Result<EmployeeOverview.Model.Response, Error>) -> Void) {
+    func fetchViewProfile(request: ViewProfile.Model.Request, completion: @escaping (Result<ViewProfile.Model.Response, Error>) -> Void) {
         interactor.fetchViewProfile(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in

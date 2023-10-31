@@ -42,7 +42,7 @@ public struct ViewProfileView: View {
                         .progressViewStyle(CircularProgressViewStyle())
                         .padding()
                         .onAppear {
-                            presenter.fetchData(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
+                            presenter.fetchData(request: ViewProfile.Model.FetchRequest(mobileNo: "60129665980"))
                         }
                     Spacer()
                 case let .success(viewModel):

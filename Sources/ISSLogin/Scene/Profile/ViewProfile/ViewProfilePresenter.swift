@@ -89,7 +89,7 @@ final class ViewProfilePresenter: ObservableObject {
     }
 
     func updateData() {
-        fetchViewProfile(request: ViewProfile.Model.UpdateRequest(name: fullNameText, email: emailText)) { result in
+        updateProfile(request: ViewProfile.Model.UpdateRequest(name: fullNameText, email: emailText)) { result in
             switch result {
             case let .success(success):
                 self.handleViewProfileResponse(response: success)

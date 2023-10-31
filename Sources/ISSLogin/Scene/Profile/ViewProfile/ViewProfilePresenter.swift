@@ -108,10 +108,10 @@ final class ViewProfilePresenter: ObservableObject {
 //                    saveUserInfo(key: .isLoggedIn, value: true)
 //                    saveUserInfo(loginDataModel: data)
 //                }
-                fullNameText = data.name
-                emailText = data.email
-                phoneText = data.mobileNo
-                self.state = .success(ViewProfile.Model.ViewModel(message: response.resultMessage,
+                fullNameText = data.name ?? ""
+                emailText = data.email ?? ""
+                phoneText = data.mobileNo ?? ""
+                self.state = .success(ViewProfile.Model.ViewModel(message: response.resultMessage ?? "",
                                                                   viewProfileData: response.data))
             }
         }

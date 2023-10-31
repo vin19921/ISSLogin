@@ -18,7 +18,7 @@ public struct ViewProfileView: View {
     @State private var email = ""
     
     @State private var isLoggedIn = false
-    @State private var isEditMode = false
+//    @State private var isEditMode = false
     
     // MARK: Injection
     
@@ -50,14 +50,14 @@ public struct ViewProfileView: View {
                         VStack {
                             ISSTextFieldSUI(inputString: $presenter.fullNameText,
                                             isErrorState: $presenter.fullNameErrorState,
-                                            isDisabled: !isEditMode,
+                                            isDisabled: !$presenter.isEditMode,
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                isRequiredText: "Please enter full name")
                             )
 
                             ISSTextFieldSUI(inputString: $presenter.emailText,
                                             isErrorState: $presenter.emailErrorState,
-                                            isDisabled: !isEditMode,
+                                            isDisabled: !$presenter.isEditMode,
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                validateText: "Please enter valid email",
                                                                                regEx: RegExConstants.emailRegEx,
@@ -83,11 +83,11 @@ public struct ViewProfileView: View {
             }
             .build()
         let rightAlignedItem = ToolBarItemDataBuilder()
-            .setTitleString(isEditMode ? "Save" : "Edit")
+            .setTitleString(presenter.isEditMode ? "Save" : "Edit")
             .setTitleFont(Theme.current.bodyTwoMedium.font)
             .setCallback {
-                isEditMode.toggle()
-                if isEditMode {
+                presenter.isEditMode.toggle()
+                if presenter.isEditMode {
                     print("in Edit mode")
                 } else {
                     print("not in Edit mode")

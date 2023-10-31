@@ -14,7 +14,7 @@ final class ViewProfilePresenter: ObservableObject {
 
     @Published var state = State.isLoading
     @Published var showingAlert = false
-    @Published var errorMessage = ""
+    @Published var alertMessage = ""
 
     @Published var isDisabled = true
     @Published var fullNameText = ""
@@ -89,8 +89,8 @@ final class ViewProfilePresenter: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func updateData() {
-        updateProfile(request: ViewProfile.Model.UpdateRequest(name: fullNameText, email: emailText)) { result in
+    func updateData(completionHandler: (() -> Void)? = nil) {
+        updateProfile(request: ViewProfile.Model.UpdateRequest(name: fullNameText, email: emailText), completionHandler: completionHandler) { result in
             switch result {
             case let .success(success):
                 self.handleViewProfileResponse(response: success)
@@ -101,13 +101,16 @@ final class ViewProfilePresenter: ObservableObject {
         }
     }
 
-    func updateProfile(request: ViewProfile.Model.UpdateRequest, completion: @escaping (Result<ViewProfile.Model.Response, Error>) -> Void) {
+    func updateProfile(request: ViewProfile.Model.UpdateRequest,
+                       completionHandler: (() -> Void)? = nil,
+                       completion: @escaping (Result<ViewProfile.Model.Response, Error>) -> Void
+    ) {
         interactor.updateProfile(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
                 
-                //                completionHandler?()
+                completionHandler?()
                 
                 switch completion {
                 case let .failure(error):
@@ -148,7 +151,7 @@ final class ViewProfilePresenter: ObservableObject {
 
             if code > 0 {
                 showingAlert = true
-                errorMessage = message
+                alertMessage = message
             } else {
 //                print("Login Successful ::: \(data)")
 //                if let data = response.data.token?.appToken {
@@ -160,6 +163,9 @@ final class ViewProfilePresenter: ObservableObject {
                 fullNameText = data.name ?? ""
                 emailText = data.email ?? ""
                 phoneText = data.mobileNo ?? ""
+
+                showingAlert = true
+                alertMessage = response.resultMessage
                 self.state = .success(ViewProfile.Model.ViewModel(message: response.resultMessage ?? "",
                                                                   viewProfileData: response.data))
             }

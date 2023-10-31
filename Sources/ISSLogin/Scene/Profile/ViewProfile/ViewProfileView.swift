@@ -73,6 +73,12 @@ public struct ViewProfileView: View {
                 }
             }
         }
+        .alert(isPresented: $presenter.showingAlert) {
+            AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.alertMessage, dismissText: "OK", onDismiss: {
+                print("Dismiss")
+            }))
+        }
+        .loading(isLoading: $isLoading)
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
@@ -88,10 +94,13 @@ public struct ViewProfileView: View {
             .setCallback {
                 presenter.isDisabled.toggle()
                 if presenter.isDisabled {
-                    print("in Edit mode")
+                    print("update Data")
+                    isLoading.toggle()
+                    presenter.updateData(completionHandler: {
+                        isLoading.toggle()
+                     })
                 } else {
                     print("not in Edit mode")
-                    presenter.updateData()
                 }
             }
             .build()

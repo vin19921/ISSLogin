@@ -164,8 +164,10 @@ final class ViewProfilePresenter: ObservableObject {
                 emailText = data.email ?? ""
                 phoneText = data.mobileNo ?? ""
 
-                showingAlert = true
-                alertMessage = message
+                if !message.isEmpty {
+                    showingAlert = true
+                    alertMessage = message
+                }
                 self.state = .success(ViewProfile.Model.ViewModel(message: message,
                                                                   viewProfileData: response.data))
             }

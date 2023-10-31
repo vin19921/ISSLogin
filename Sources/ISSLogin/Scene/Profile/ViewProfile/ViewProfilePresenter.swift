@@ -16,6 +16,7 @@ final class ViewProfilePresenter: ObservableObject {
     @Published var showingAlert = false
     @Published var errorMessage = ""
 
+    @Published var isEditMode = false
     @Published var fullNameText = ""
     @Published var emailText = ""
     @Published var phoneText = ""

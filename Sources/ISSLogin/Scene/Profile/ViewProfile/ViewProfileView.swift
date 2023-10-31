@@ -53,6 +53,7 @@ public struct ViewProfileView: View {
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: ""))
                             .disabled(!isEditMode)
                         }
+                        .padding()
                         Spacer()
                     }
                 case let .failure(type):
@@ -72,15 +73,8 @@ public struct ViewProfileView: View {
             .build()
         let rightAlignedItem = ToolBarItemDataBuilder()
             .setTitleString(isEditMode ? "Save" : "Edit")
-//            .setCallback {
-//                isEditMode.toggle()
-//                if isEditMode {
-//                    print("in Edit mode")
-//                } else {
-//                    print("not in Edit mode")
-//                }
-//            }
-            .onTapGesture {
+            .setTitleFont(Theme.current.bodyTwoMedium.font)
+            .setCallback {
                 isEditMode.toggle()
                 if isEditMode {
                     print("in Edit mode")

@@ -165,8 +165,8 @@ final class ViewProfilePresenter: ObservableObject {
                 phoneText = data.mobileNo ?? ""
 
                 showingAlert = true
-                alertMessage = response.resultMessage
-                self.state = .success(ViewProfile.Model.ViewModel(message: response.resultMessage ?? "",
+                alertMessage = message
+                self.state = .success(ViewProfile.Model.ViewModel(message: message,
                                                                   viewProfileData: response.data))
             }
         }

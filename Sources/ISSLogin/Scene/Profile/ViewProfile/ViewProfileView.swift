@@ -69,6 +69,7 @@ public struct ViewProfileView: View {
             .setCallback {
                 self.presentationMode.wrappedValue.dismiss()
             }
+            .build()
         let rightAlignedItem = ToolBarItemDataBuilder()
             .setTitleString(isEditMode ? "Edit" : "Save")
             .setCallback {

@@ -50,14 +50,14 @@ public struct ViewProfileView: View {
                         VStack {
                             ISSTextFieldSUI(inputString: $presenter.fullNameText,
                                             isErrorState: $presenter.fullNameErrorState,
-                                            isDisabled: !$presenter.isEditMode,
+                                            isDisabled: $presenter.isEditMode,
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                isRequiredText: "Please enter full name")
                             )
 
                             ISSTextFieldSUI(inputString: $presenter.emailText,
                                             isErrorState: $presenter.emailErrorState,
-                                            isDisabled: !$presenter.isEditMode,
+                                            isDisabled: $presenter.isEditMode,
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                validateText: "Please enter valid email",
                                                                                regEx: RegExConstants.emailRegEx,

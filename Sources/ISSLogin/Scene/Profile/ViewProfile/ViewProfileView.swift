@@ -47,7 +47,11 @@ public struct ViewProfileView: View {
                     Spacer()
                 case let .success(viewModel):
                     ScrollView {
-                        VStack {
+                        VStack(spacing: .zero) {
+                            Text("Full Name")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
                             ISSTextFieldSUI(inputString: $presenter.fullNameText,
                                             isErrorState: $presenter.fullNameErrorState,
                                             isDisabled: $presenter.isDisabled,
@@ -55,6 +59,10 @@ public struct ViewProfileView: View {
                                                                                isRequiredText: "Please enter full name")
                             )
 
+                            Text("Email")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
                             ISSTextFieldSUI(inputString: $presenter.emailText,
                                             isErrorState: $presenter.emailErrorState,
                                             isDisabled: $presenter.isDisabled,
@@ -62,6 +70,16 @@ public struct ViewProfileView: View {
                                                                                validateText: "Please enter valid email",
                                                                                regEx: RegExConstants.emailRegEx,
                                                                                isRequiredText: "Please enter valid email")
+                            )
+
+                            Text("Mobile No.")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 8)
+                            ISSTextFieldSUI(inputString: $presenter.phoneText,
+                                            isErrorState: .constant(false),
+                                            isDisabled: .constant(false),
+                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: "")
                             )
                         }
                         .padding()

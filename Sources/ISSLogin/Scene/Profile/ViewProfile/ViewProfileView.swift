@@ -78,7 +78,7 @@ public struct ViewProfileView: View {
                                                     verticalPadding: 8)
                             ISSTextFieldSUI(inputString: $presenter.phoneText,
                                             isErrorState: .constant(false),
-                                            isDisabled: .constant(false),
+                                            isDisabled: .constant(true),
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "")
                             )
                         }

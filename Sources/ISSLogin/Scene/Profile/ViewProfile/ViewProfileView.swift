@@ -18,6 +18,7 @@ public struct ViewProfileView: View {
     @State private var email = ""
     
     @State private var isLoggedIn = false
+    @State private var isEditMode = false
     
     // MARK: Injection
     
@@ -36,17 +37,22 @@ public struct ViewProfileView: View {
 
                 switch presenter.state {
                 case .isLoading:
+                    Spacer()
                     ProgressView("Loading...")
                         .progressViewStyle(CircularProgressViewStyle())
                         .padding()
                         .onAppear {
                             presenter.fetchData(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
                         }
+                    Spacer()
                 case let .success(viewModel):
                     ScrollView {
-                        ISSTextFieldSUI(inputString: $presenter.fullNameText,
-                                        isErrorState: $presenter.fullNameErrorState,
-                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: ""))
+                        VStack {
+                            ISSTextFieldSUI(inputString: $presenter.fullNameText,
+                                            isErrorState: $presenter.fullNameErrorState,
+                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: ""))
+                            .disabled(!isEditMode)
+                        }
                         Spacer()
                     }
                 case let .failure(type):
@@ -63,9 +69,20 @@ public struct ViewProfileView: View {
             .setCallback {
                 self.presentationMode.wrappedValue.dismiss()
             }
+        let rightAlignedItem = ToolBarItemDataBuilder()
+            .setTitleString(isEditMode ? "Edit" : "Save")
+            .setCallback {
+                isEditMode.toggle()
+                if isEditMode {
+                    print("in Edit mode")
+                } else {
+                    print("not in Edit mode")
+                }
+            }
             .build()
         let toolBarItems = ToolBarItemsDataBuilder()
             .setLeftAlignedItem(leftAlignedItem)
+            .setRightAlignedItem(rightAlignedItem)
             .build()
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)

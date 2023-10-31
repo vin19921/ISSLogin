@@ -12,8 +12,28 @@ final class ViewProfilePresenter: ObservableObject {
     private var interactor: ViewProfileBusinessLogic
     private var cancellables = Set<AnyCancellable>()
 
+    @Published var state = State.isLoading
     @Published var showingAlert = false
     @Published var errorMessage = ""
+
+    @Published private var fullNameText = ""
+    @Published private var emailText = ""
+    @Published private var phoneText = ""
+
+    @Published private var fullNameErrorState = false
+    @Published private var emailErrorState = false
+    @Published private var phoneErrorState = false
+
+    enum State {
+        case isLoading
+        case failure(FailureType)
+        case success(ViewProfile.Model.ViewModel?)
+    }
+
+    enum FailureType {
+        case connectivity
+        case internet
+    }
 
     // MARK: Injection
 
@@ -21,7 +41,18 @@ final class ViewProfilePresenter: ObservableObject {
         self.interactor = interactor
     }
 
-    func fetchViewProfile(request: ViewProfile.Model.Request, completionHandler: (() -> Void)? = nil) {
+    func fetchData(request: ViewProfile.Model.Request) {
+        fetchViewProfile(request: request) { result in
+        switch result {
+        case let .success(success):
+            self.handleViewProfileResponse(response: success)
+        case let .failure(error):
+//                self.handleError(error: error)
+            print(error)
+        }
+    }
+
+    func fetchViewProfile(request: ViewProfile.Model.Request, completion: @escaping (Result<EmployeeOverview.Model.Response, Error>) -> Void) {
         interactor.fetchViewProfile(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
@@ -36,9 +67,11 @@ final class ViewProfilePresenter: ObservableObject {
                         case CommonServiceError.internetFailure.localizedDescription:
 //                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
+                            self.state = .failure(.internet)
                         default:
 //                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
+                            self.state = .failure(.connectivity)
                         }
                     }
                 case .finished:
@@ -47,9 +80,45 @@ final class ViewProfilePresenter: ObservableObject {
             }, receiveValue: { response in
                 DispatchQueue.main.async {
                     print("\(response)")
-//                    self.handleLoginResponse(response: response)
+                    self.handleViewProfileResponse(response: response)
                 }
             })
             .store(in: &cancellables)
+    }
+
+    private func handleViewProfileResponse(response: ViewProfile.Model.Response) {
+//        let resultCode = response.resultCode
+//        let resultMessage = response.resultMessage
+        let status = response.status
+        let data = response.data
+
+        if let code = response.resultCode,
+           let message = response.resultMessage {
+            print("resultCode ::: \(code), resultMessage ::: \(message)")
+
+            if code > 0 {
+                showingAlert = true
+                errorMessage = message
+            } else {
+//                print("Login Successful ::: \(data)")
+//                if let data = response.data.token?.appToken {
+//                    saveUserInfo(key: .userEmail, value: data.email ?? "")
+//                    saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")
+//                    saveUserInfo(key: .isLoggedIn, value: true)
+//                    saveUserInfo(loginDataModel: data)
+//                }
+                fullNameText = data.name
+                emailText = data.email
+                phoneText = data.mobileNo
+                self.state = .success(ViewProfile.Model.ViewModel(message: response.resultMessage,
+                                                                  viewProfileData: response.data))
+            }
+        }
+//        else {
+////            loginDataModel = data
+//            print("Login Successful ::: \(data)")
+//            //            routeToOTP(mobileNo: data.mobileNo)
+//            //        }
+//        }
     }
 }

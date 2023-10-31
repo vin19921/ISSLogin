@@ -33,12 +33,27 @@ public struct ViewProfileView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                Text("ViewProfile")
-                Spacer()
+
+                switch presenter.state {
+                case .isLoading:
+                    ProgressView("Loading...")
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .padding()
+                        .onAppear {
+                            presenter.fetchData(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
+                        }
+                case let .success(viewModel):
+                    ScrollView {
+                        ISSTextFieldSUI(inputString: $presenter.fullNameText,
+                                        isErrorState: $presenter.fullNameErrorState,
+                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: ""))
+                        Spacer()
+                    }
+                case let .failure(type):
+                    Text("Error")
+                    Spacer()
+                }
             }
-        }
-        .onAppear {
-            presenter.fetchViewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
         }
     }
 

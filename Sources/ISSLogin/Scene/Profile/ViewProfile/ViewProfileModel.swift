@@ -20,9 +20,9 @@ public enum ViewProfile {
             var data: ViewProfileDataModel
         }
 
-//        struct ViewModel {
-//            var message: String
-//            var otpData: ViewProfileDataModel
-//        }
+        struct ViewModel {
+            var message: String
+            var viewProfileData: ViewProfileDataModel
+        }
     }
 }

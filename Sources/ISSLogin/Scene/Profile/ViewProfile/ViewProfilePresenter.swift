@@ -41,7 +41,7 @@ final class ViewProfilePresenter: ObservableObject {
         self.interactor = interactor
     }
 
-    func fetchData(request: ViewProfile.Model.Request) {
+    func fetchData(request: ViewProfile.Model.FetchRequest) {
         fetchViewProfile(request: request) { result in
             switch result {
             case let .success(success):
@@ -53,7 +53,7 @@ final class ViewProfilePresenter: ObservableObject {
         }
     }
 
-    func fetchViewProfile(request: ViewProfile.Model.Request, completion: @escaping (Result<ViewProfile.Model.Response, Error>) -> Void) {
+    func fetchViewProfile(request: ViewProfile.Model.FetchRequest, completion: @escaping (Result<ViewProfile.Model.Response, Error>) -> Void) {
         interactor.fetchViewProfile(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
@@ -81,7 +81,55 @@ final class ViewProfilePresenter: ObservableObject {
             }, receiveValue: { response in
                 DispatchQueue.main.async {
                     print("\(response)")
-                    self.handleViewProfileResponse(response: response)
+//                    self.handleViewProfileResponse(response: response)
+                    completion(.success(response))
+                }
+            })
+            .store(in: &cancellables)
+    }
+
+    func updateData() {
+        fetchViewProfile(request: ViewProfile.Model.UpdateRequest(name: fullNameText, email: emailText)) { result in
+            switch result {
+            case let .success(success):
+                self.handleViewProfileResponse(response: success)
+            case let .failure(error):
+                //                self.handleError(error: error)
+                print(error)
+            }
+        }
+    }
+
+    func updateProfile(request: ViewProfile.Model.UpdateRequest, completion: @escaping (Result<ViewProfile.Model.Response, Error>) -> Void) {
+        interactor.updateProfile(request: request)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+                
+                //                completionHandler?()
+                
+                switch completion {
+                case let .failure(error):
+                    DispatchQueue.main.async {
+                        switch error.localizedDescription {
+                        case CommonServiceError.internetFailure.localizedDescription:
+                            //                            self.presenterState = .failure(.internet)
+                            print("CommonServiceError ::: internet")
+                            self.state = .failure(.internet)
+                        default:
+                            //                            self.presenterState = .failure(.connectivity)
+                            print("CommonServiceError ::: connectivity")
+                            self.state = .failure(.connectivity)
+                        }
+                    }
+                case .finished:
+                    break
+                }
+            }, receiveValue: { response in
+                DispatchQueue.main.async {
+                    print("\(response)")
+//                    self.handleViewProfileResponse(response: response)
+                    completion(.success(response))
                 }
             })
             .store(in: &cancellables)

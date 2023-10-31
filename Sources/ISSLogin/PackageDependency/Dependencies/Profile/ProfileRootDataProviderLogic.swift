@@ -11,7 +11,7 @@ import Combine
 /// This helps provide proper separation of concerns between the these objects.
 public protocol ProfileRootDataProviderLogic {
 //    func getUserInfo(key: UserInfoKey) -> String
-    func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfileResponse, Error>
+    func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfileResponse, Error>
     func getUserName() -> String
     func logOut()
 }

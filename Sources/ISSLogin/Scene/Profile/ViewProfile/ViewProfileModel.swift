@@ -9,8 +9,13 @@ import UIKit
 
 public enum ViewProfile {
     public enum Model {
-        public struct Request: Encodable {
+        public struct FetchRequest: Encodable {
             public var mobileNo: String
+        }
+
+        public struct UpdateRequest: Encodable {
+            public var name: String
+            public var email: String
         }
 
         struct Response {

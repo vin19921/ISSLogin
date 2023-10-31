@@ -50,8 +50,21 @@ public struct ViewProfileView: View {
                         VStack {
                             ISSTextFieldSUI(inputString: $presenter.fullNameText,
                                             isErrorState: $presenter.fullNameErrorState,
-                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: ""))
+                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
+                                                                               isRequiredText: "Please enter full name")
+                            )
                             .disabled(!isEditMode)
+                            .background(isEditMode ? Color.black : Color.black.opacity(0.3))
+                            
+                            ISSTextFieldSUI(inputString: $presenter.emailText,
+                                            isErrorState: $presenter.emailErrorState,
+                                            viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
+                                                                               validateText: "Please enter valid email",
+                                                                               regEx: RegExConstants.emailRegEx,
+                                                                               isRequiredText: "Please enter valid email"))
+                            )
+                            .disabled(!isEditMode)
+                            .background(isEditMode ? Color.black : Color.black.opacity(0.3))
                         }
                         .padding()
                         Spacer()
@@ -78,6 +91,7 @@ public struct ViewProfileView: View {
                 isEditMode.toggle()
                 if isEditMode {
                     print("in Edit mode")
+                    presenter.updateData()
                 } else {
                     print("not in Edit mode")
                 }

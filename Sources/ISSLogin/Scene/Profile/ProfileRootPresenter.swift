@@ -26,7 +26,7 @@ final class ProfileRootPresenter: ObservableObject {
         self.router = router
     }
 
-    func viewProfile(request: ViewProfile.Model.Request, completionHandler: (() -> Void)? = nil) {
+    func viewProfile(request: ViewProfile.Model.FetchRequest, completionHandler: (() -> Void)? = nil) {
         interactor.fetchViewProfile(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in

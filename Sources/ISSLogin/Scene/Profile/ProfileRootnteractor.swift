@@ -10,7 +10,7 @@ import Foundation
 import ISSNetwork
 
 protocol ProfileRootBusinessLogic {
-    func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfile.Model.Response, Error>
+    func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfile.Model.Response, Error>
     func getUserName() -> String
     func logOut()
 }
@@ -23,7 +23,7 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
         self.provider = provider
     }
 
-    func fetchViewProfile(request: ViewProfile.Model.Request) -> AnyPublisher<ViewProfile.Model.Response, Error> {
+    func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfile.Model.Response, Error> {
         return Future<ViewProfile.Model.Response, Error> { [weak self] promise in
 
             guard let self = self else {

@@ -16,13 +16,13 @@ final class ViewProfilePresenter: ObservableObject {
     @Published var showingAlert = false
     @Published var errorMessage = ""
 
-    @Published private var fullNameText = ""
-    @Published private var emailText = ""
-    @Published private var phoneText = ""
+    @Published var fullNameText = ""
+    @Published var emailText = ""
+    @Published var phoneText = ""
 
-    @Published private var fullNameErrorState = false
-    @Published private var emailErrorState = false
-    @Published private var phoneErrorState = false
+    @Published var fullNameErrorState = false
+    @Published var emailErrorState = false
+    @Published var phoneErrorState = false
 
     enum State {
         case isLoading
@@ -58,19 +58,19 @@ final class ViewProfilePresenter: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
-
-//                completionHandler?()
-
+                
+                //                completionHandler?()
+                
                 switch completion {
                 case let .failure(error):
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-//                            self.presenterState = .failure(.internet)
+                            //                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
                             self.state = .failure(.internet)
                         default:
-//                            self.presenterState = .failure(.connectivity)
+                            //                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
                             self.state = .failure(.connectivity)
                         }

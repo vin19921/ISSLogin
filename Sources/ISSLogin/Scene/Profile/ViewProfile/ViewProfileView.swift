@@ -47,22 +47,29 @@ public struct ViewProfileView: View {
                     Spacer()
                 case let .success(viewModel):
                     ScrollView {
-                        VStack(spacing: .zero) {
+                        VStack(alignment: .leading, spacing: .zero) {
                             Text("Full Name")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 8)
+                                                    verticalPadding: 0)
                             ISSTextFieldSUI(inputString: $presenter.fullNameText,
                                             isErrorState: $presenter.fullNameErrorState,
                                             isDisabled: $presenter.isDisabled,
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                isRequiredText: "Please enter full name")
                             )
+                            .onReceive(Just(presenter.fullNameText)) { newValue in
+                                let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
+                                if filtered != newValue {
+                                    presenter.fullNameText = filtered
+                                }
+                            }
 
                             Text("Email")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 8)
+                                                    verticalPadding: 0)
+                                .padding(.top)
                             ISSTextFieldSUI(inputString: $presenter.emailText,
                                             isErrorState: $presenter.emailErrorState,
                                             isDisabled: $presenter.isDisabled,
@@ -75,7 +82,8 @@ public struct ViewProfileView: View {
                             Text("Mobile No.")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 8)
+                                                    verticalPadding: 0)
+                                .padding(.top)
                             ISSTextFieldSUI(inputString: $presenter.phoneText,
                                             isErrorState: .constant(false),
                                             isDisabled: .constant(true),

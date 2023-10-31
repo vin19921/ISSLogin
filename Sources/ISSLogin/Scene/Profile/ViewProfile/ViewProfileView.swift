@@ -71,8 +71,16 @@ public struct ViewProfileView: View {
             }
             .build()
         let rightAlignedItem = ToolBarItemDataBuilder()
-            .setTitleString(isEditMode ? "Edit" : "Save")
-            .setCallback {
+            .setTitleString(isEditMode ? "Save" : "Edit")
+//            .setCallback {
+//                isEditMode.toggle()
+//                if isEditMode {
+//                    print("in Edit mode")
+//                } else {
+//                    print("not in Edit mode")
+//                }
+//            }
+            .onTapGesture {
                 isEditMode.toggle()
                 if isEditMode {
                     print("in Edit mode")

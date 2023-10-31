@@ -50,14 +50,14 @@ public struct ViewProfileView: View {
                         VStack {
                             ISSTextFieldSUI(inputString: $presenter.fullNameText,
                                             isErrorState: $presenter.fullNameErrorState,
-                                            isDisabled: $presenter.isEditMode,
+                                            isDisabled: $presenter.isDisabled,
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                isRequiredText: "Please enter full name")
                             )
 
                             ISSTextFieldSUI(inputString: $presenter.emailText,
                                             isErrorState: $presenter.emailErrorState,
-                                            isDisabled: $presenter.isEditMode,
+                                            isDisabled: $presenter.isDisabled,
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                validateText: "Please enter valid email",
                                                                                regEx: RegExConstants.emailRegEx,
@@ -83,11 +83,11 @@ public struct ViewProfileView: View {
             }
             .build()
         let rightAlignedItem = ToolBarItemDataBuilder()
-            .setTitleString(presenter.isEditMode ? "Save" : "Edit")
+            .setTitleString(presenter.isDisabled ? "Edit" : "Save")
             .setTitleFont(Theme.current.bodyTwoMedium.font)
             .setCallback {
-                presenter.isEditMode.toggle()
-                if presenter.isEditMode {
+                presenter.isDisabled.toggle()
+                if presenter.isDisabled {
                     print("in Edit mode")
                 } else {
                     print("not in Edit mode")

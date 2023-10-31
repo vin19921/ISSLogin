@@ -54,7 +54,7 @@ public struct ViewProfileView: View {
                                                                                isRequiredText: "Please enter full name")
                             )
                             .disabled(!isEditMode)
-                            .background(isEditMode ? Color.black : Color.black.opacity(0.3))
+                            .background(isEditMode ? Color.clear : Color.black.opacity(0.2))
                             
                             ISSTextFieldSUI(inputString: $presenter.emailText,
                                             isErrorState: $presenter.emailErrorState,
@@ -64,7 +64,11 @@ public struct ViewProfileView: View {
                                                                                isRequiredText: "Please enter valid email")
                             )
                             .disabled(!isEditMode)
-                            .background(isEditMode ? Color.black : Color.black.opacity(0.3))
+                            .background(isEditMode ? Color.clear : Color.black.opacity(0.2))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(isEditMode ? Theme.current.issBlack.color : Theme.current.issBlack.color.opacity(0.3), lineWidth: 2)
+                            )
                         }
                         .padding()
                         Spacer()
@@ -91,9 +95,9 @@ public struct ViewProfileView: View {
                 isEditMode.toggle()
                 if isEditMode {
                     print("in Edit mode")
-                    presenter.updateData()
                 } else {
                     print("not in Edit mode")
+                    presenter.updateData()
                 }
             }
             .build()

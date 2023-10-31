@@ -12,5 +12,5 @@ import Combine
 /// This helps provide proper separation of concerns between the these objects.
 public protocol ViewProfileDataProviderLogic {
     func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfileResponse, Error>
-    func updateProfile(request: ViewProfile.Model.UpdateRequest) -> AnyPublisher<ViewProfile.Model.Response, Error>
+    func updateProfile(request: ViewProfile.Model.UpdateRequest) -> AnyPublisher<ViewProfileResponse, Error>
 }

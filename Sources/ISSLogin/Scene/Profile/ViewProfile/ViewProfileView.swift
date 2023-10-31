@@ -61,7 +61,7 @@ public struct ViewProfileView: View {
                                             viewData: ISSTextFieldSUI.ViewData(placeholderText: "",
                                                                                validateText: "Please enter valid email",
                                                                                regEx: RegExConstants.emailRegEx,
-                                                                               isRequiredText: "Please enter valid email"))
+                                                                               isRequiredText: "Please enter valid email")
                             )
                             .disabled(!isEditMode)
                             .background(isEditMode ? Color.black : Color.black.opacity(0.3))

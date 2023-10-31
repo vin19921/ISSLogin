@@ -44,6 +44,7 @@ public struct LoginView: View {
                     VStack(spacing: 16) {
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
+                                        isDisabled: .constant(false),
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
                                                                            keyboardType: .numberPad,
                                                                            errorBorderColor: Theme.current.issBlack.color,

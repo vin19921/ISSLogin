@@ -78,6 +78,7 @@ public struct RegisterView: View {
                 
                 ISSTextFieldSUI(inputString: $phoneText,
                                 isErrorState: $phoneErrorState,
+                                isDisabled: .constant(false),
                                 viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
                                                                    validateText: "Please enter valid mobile number",
                                                                    regEx: RegExConstants.minNineDigitRegEx,
@@ -89,6 +90,7 @@ public struct RegisterView: View {
                 
                 ISSTextFieldSUI(inputString: $fullNameText,
                                 isErrorState: $fullNameErrorState,
+                                isDisabled: .constant(false),
                                 viewData: ISSTextFieldSUI.ViewData(placeholderText: "Full Name (as Per NRIC)",
                                                                    isRequiredText: "Please enter full name",
                                                                    leadingImageIcon: Image(systemName: "person"))
@@ -121,6 +123,7 @@ public struct RegisterView: View {
                 
                 ISSTextFieldSUI(inputString: $emailText,
                                 isErrorState: $emailErrorState,
+                                isDisabled: .constant(false),
                                 viewData: ISSTextFieldSUI.ViewData(placeholderText: "Email",
                                                                    validateText: "Please enter valid email",
                                                                    regEx: RegExConstants.emailRegEx,

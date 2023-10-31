@@ -44,6 +44,7 @@ public struct ResetPasswordView: View {
 
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
+                                        isDisabled: .constant(false),
                                         viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
                                                                            validateText: "Please enter valid mobile number",
                                                                            regEx: RegExConstants.minNineDigitRegEx,

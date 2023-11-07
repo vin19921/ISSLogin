@@ -94,6 +94,11 @@ public struct ChangePasswordView: View {
                 }
             }
         }
+        .alert(isPresented: $presenter.showingAlert) {
+            AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.alertMessage, dismissText: "OK", onDismiss: {
+                print("Dismiss")
+            }))
+        }
         .loading(isLoading: $isLoading)
     }
 

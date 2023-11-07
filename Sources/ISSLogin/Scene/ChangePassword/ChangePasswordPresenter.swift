@@ -86,16 +86,8 @@ final class ChangePasswordPresenter: ObservableObject {
         if let code = response.resultCode,
            let message = response.resultMessage {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
-
-            if code > 0 {
-                showingAlert = true
-                alertMessage = message
-            } else {
-                if !message.isEmpty {
-                    showingAlert = true
-                    alertMessage = message
-                }
-            }
+            showingAlert.toggle()
+            alertMessage = message
         }
     }
 }

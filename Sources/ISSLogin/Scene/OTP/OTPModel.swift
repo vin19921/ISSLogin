@@ -23,8 +23,8 @@ public enum OTP {
         }
 
         struct Response {
-            var resultCode: Int16
-            var resultMessage: String
+            var resultCode: Int16? = 1
+            var resultMessage: String?
             var data: OTPDataModel
         }
 

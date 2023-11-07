@@ -30,31 +30,38 @@ public struct ChangePasswordView: View {
                 
                 ScrollView {
                     VStack(spacing: 16) {
-//                        HStack {
-//                            Text("Please enter your registered mobile number.")
-//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                    verticalPadding: 0)
-//                            Spacer()
-//                        }
-
-                        ISSTextFieldSUI(inputString: $presenter.oldPasswordText,
-                                        isErrorState: $presenter.oldPasswordErrorState,
-                                        isDisabled: .constant(false),
-                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Old Password",
-//                                                                           validateText: "Please enter valid old password",
-//                                                                           regEx: RegExConstants.minNineDigitRegEx,
-//                                                                           keyboardType: .numberPad,
-                                                                           isRequiredText: "Please enter old password"
-//                                                                           leadingImageIcon: Image(systemName: "iphone"),
-//                                                                           prefix: "+60"
-                                                                          )
+                        ISSSecureFieldSUI(inputString: $presenter.oldPasswordText,
+                                          isErrorState: $presenter.oldPasswordErrorState,
+                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Old Password",
+                                                                               isRequiredText: "Please enter old password")
+                        )
+                        .padding(.top)
+                        
+                        ISSSecureFieldSUI(inputString: $presenter.newPassowrdText,
+                                          isErrorState: $presenter.newPasswordErrorState,
+                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "New Password",
+                                                                               validateText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
+                                                                               regEx: RegExConstants.passwordRegEx,
+                                                                               isRequiredText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character."
+//                                                                               ,
+//                                                                               leadingImageIcon: Image(systemName: "lock")
+                                                                              )
+                        )
+                        
+                        ISSSecureFieldSUI(inputString: $presenter.confirmNewPasswordText,
+                                          isErrorState: $presenter.confirmNewPasswordErrorState,
+                                          compareString: presenter.newPassowrdText,
+                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Confirm New Password",
+                                                                               validateText: "New Password does not match",
+                                                                               isRequiredText: "New Password does not match"
+//                                                                               ,
+//                                                                               leadingImageIcon: Image(systemName: "lock")
+                                                                              )
                         )
 
                         Button(action: {
-                            print("resetpw btn")
-//                            showingAlert.toggle()
-//                            presenter.routeToOTP(mobileNo: "60\(phoneText)")
+                            print("change pw btn")
+                            presenter.changePassword()
                         }) {
                             Text("Change Password")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -85,7 +92,9 @@ public struct ChangePasswordView: View {
     }
 
     private func validated() -> Bool {
-        if !presenter.oldPasswordErrorState {
+        if !presenter.oldPasswordErrorState,
+           !presenter.newPasswordErrorState,
+           !presenter.confirmNewPasswordErrorState {
             return true
         }
         return false

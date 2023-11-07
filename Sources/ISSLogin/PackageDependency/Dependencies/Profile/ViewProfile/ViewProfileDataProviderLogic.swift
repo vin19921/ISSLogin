@@ -13,4 +13,5 @@ import Combine
 public protocol ViewProfileDataProviderLogic {
     func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfileResponse, Error>
     func updateProfile(request: ViewProfile.Model.UpdateRequest) -> AnyPublisher<ViewProfileResponse, Error>
+    func saveUserInfo(viewProfileDataModel: ViewProfileDataModel)
 }

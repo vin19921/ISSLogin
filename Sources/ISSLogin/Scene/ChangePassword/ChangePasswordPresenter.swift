@@ -14,7 +14,7 @@ final class ChangePasswordPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     @Published var showingAlert = false
-    @Published var alertMessage = ""
+//    @Published var alertMessage = ""
     @Published var alertInfo = AlertInfo(message: "")
 
     @Published var isDisabled = true

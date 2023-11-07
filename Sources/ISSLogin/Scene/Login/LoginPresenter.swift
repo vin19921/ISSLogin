@@ -10,6 +10,7 @@ import Combine
 //import Firebase
 //import FirebaseAuth
 import Foundation
+import ISSCommonUI
 
 final class LoginPresenter: ObservableObject {
     private var interactor: LoginBusinessLogic
@@ -17,7 +18,7 @@ final class LoginPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     @Published var showingAlert = false
-    @Published var errorMessage = ""
+    @Published var alertInfo = AlertInfo(message: "")
 
     // MARK: Injection
 
@@ -71,17 +72,11 @@ final class LoginPresenter: ObservableObject {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
 
             if code > 0 {
-                showingAlert = true
-                errorMessage = message
+                showingAlert.toggle()
+                alertInfo = AlertInfo(alertType: .failure, message: message)
             } else {
-//                print("Login Successful ::: \(data)")
-//                if let data = response.data.token?.appToken {
-//                    saveUserInfo(key: .userEmail, value: data.email ?? "")
-//                    saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")
-//                    saveUserInfo(key: .isLoggedIn, value: true)
-                    saveUserInfo(loginDataModel: data)
+                saveUserInfo(loginDataModel: data)
                 routeToRoot()
-//                }
             }
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))

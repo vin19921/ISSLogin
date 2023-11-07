@@ -168,10 +168,7 @@ public struct LoginView: View {
         }
         .background(Theme.current.issWhite.color)
         .alert(isPresented: $presenter.showingAlert) {
-            AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.errorMessage, dismissText: "OK", onDismiss: {
-                print("Dismiss")
-//                presenter.routeToLogin()
-            }))
+            AlertSUI(alertInfo: presenter.alertInfo)
         }
         .loading(isLoading: $isLoading)
     }

@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import ISSCommonUI
 
 final class OTPPresenter: ObservableObject {
     private var interactor: OTPBusinessLogic
@@ -17,6 +18,7 @@ final class OTPPresenter: ObservableObject {
 
     @Published var remainingTimeInSeconds: Int = 10 // 180
     @Published var showingAlert = false
+    @Published var alertInfo = AlertInfo(message: "")
     @Published var otpDataModel: OTPDataModel?
     @Published var otpAttempCount = 1
 
@@ -128,8 +130,20 @@ final class OTPPresenter: ObservableObject {
 //                                                                        registrationData: response.data))
 //        } else {
             print("OTP Successful ::: \(data)")
-        showingAlert = true
-        otpDataModel = data
+
+        if let code = response.resultCode,
+           let message = response.resultMessage {
+            print("resultCode ::: \(code), resultMessage ::: \(message)")
+
+            if code > 0 {
+                alertInfo = AlertInfo(alertType: .failure, message: message)
+            } else {
+                alertInfo = AlertInfo(alertType: .failure, message: message)
+            }
+            showingAlert.toggle()
+        }
+//        showingAlert = true
+//        otpDataModel = data
 //            routeToOTP(mobileNo: data.mobileNo)
 //        }
     }

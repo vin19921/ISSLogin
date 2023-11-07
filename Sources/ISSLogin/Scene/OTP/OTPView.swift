@@ -90,13 +90,13 @@ public struct OTPView: View {
 //                                        })
 //                                    }
 //                                }
-                                .alert(isPresented: $presenter.showingAlert) {
-                                    AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.otpDataModel?.message ?? "",
-                                                                  dismissText: "Back to Login", onDismiss: {
-                                        print("Dismiss")
-                                        presenter.routeToLogin()
-                                    }))
-                                }
+//                                .alert(isPresented: $presenter.showingAlert) {
+//                                    AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.otpDataModel?.message ?? "",
+//                                                                  dismissText: "Back to Login", onDismiss: {
+//                                        print("Dismiss")
+//                                        presenter.routeToLogin()
+//                                    }))
+//                                }
                         } else {
                             KerningTextField(text: $pinText)
                                 .padding(.vertical, 4)
@@ -179,6 +179,9 @@ public struct OTPView: View {
         }
         .onDisappear {
             timer.upstream.connect().cancel()
+        }
+        .alert(isPresented: $presenter.showingAlert) {
+            AlertSUI(alertInfo: presenter.alertInfo)
         }
         .loading(isLoading: $isLoading)
     }

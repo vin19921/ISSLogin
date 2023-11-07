@@ -164,6 +164,8 @@ final class ViewProfilePresenter: ObservableObject {
                 emailText = data.email ?? ""
                 phoneText = data.mobileNo ?? ""
 
+                saveUserInfo(viewProfileDataModel: ViewProfileDataModel(name: fullNameText, email: emailText))
+
                 if !message.isEmpty {
                     showingAlert = true
                     alertMessage = message

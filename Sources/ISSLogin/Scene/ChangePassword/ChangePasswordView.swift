@@ -95,7 +95,9 @@ public struct ChangePasswordView: View {
             }
         }
         .alert(isPresented: $presenter.showingAlert) {
-            AlertSUI(alertInfo: presenter.alertInfo)
+            if let alertInfo = presenter.alertInfo {
+                AlertSUI(alertInfo: alertInfo)
+            }
         }
         .loading(isLoading: $isLoading)
     }

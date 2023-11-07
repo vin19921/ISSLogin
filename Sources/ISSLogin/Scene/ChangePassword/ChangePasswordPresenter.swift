@@ -42,10 +42,11 @@ final class ChangePasswordPresenter: ObservableObject {
         }
     }
 
-    func changePassword(completionHandler: (() -> Void)? = nil,
-                        completion: @escaping (Result<ChangePassword.Model.Response, Error>) -> Void) {
-        interactor.changePassword(request: ChangePassword.Model.UpdateRequest(oldPassword: oldPasswordText,
-                                                                              newPassword: confirmNewPasswordText))
+    func changePassword(request: ChangePassword.Model.UpdateRequest,
+                        completionHandler: (() -> Void)? = nil,
+                        completion: @escaping (Result<ChangePassword.Model.Response, Error>) -> Void
+    ) {
+        interactor.changePassword(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }

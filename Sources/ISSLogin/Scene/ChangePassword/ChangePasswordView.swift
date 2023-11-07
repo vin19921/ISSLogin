@@ -12,6 +12,8 @@ import SwiftUI
 public struct ChangePasswordView: View {
     
     @ObservedObject private var presenter: ChangePasswordPresenter
+
+    @State private var isLoading = false
     
     // MARK: Injection
     
@@ -61,7 +63,10 @@ public struct ChangePasswordView: View {
 
                         Button(action: {
                             print("change pw btn")
-                            presenter.changePassword()
+                            isLoading.toggle()
+                            presenter.updateData(completionHandler: {
+                                isLoading.toggle()
+                            })
                         }) {
                             Text("Change Password")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -89,6 +94,7 @@ public struct ChangePasswordView: View {
                 }
             }
         }
+        .loading(isLoading: $isLoading)
     }
 
     private func validated() -> Bool {

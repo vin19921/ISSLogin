@@ -6,12 +6,12 @@
 //
 
 public struct Register: Codable {
-    public let _id: String
-    public let name: String
-    public let email: String
-    public let mobileNo: String
-    public let isDraft: Int16
-    public let isCompleteRegister: Int16
+    public let _id: String?
+    public let name: String?
+    public let email: String?
+    public let mobileNo: String?
+    public let isDraft: Int16?
+    public let isCompleteRegister: Int16?
 
     enum CodingKeys: String, CodingKey {
         case _id
@@ -24,8 +24,8 @@ public struct Register: Codable {
 }
 
 public struct RegisterResponse: Codable {
-    public let resultCode: Int16
-    public let resultMessage: String
+    public let resultCode: Int16?
+    public let resultMessage: String?
     public let data: Register
 }
 

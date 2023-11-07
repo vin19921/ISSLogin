@@ -85,7 +85,7 @@ final class RegisterPresenter: ObservableObject {
     private func handleRegistrationResponse(response: Registration.Model.Response) {
 //        let resultCode = response.resultCode
 //        let resultMessage = response.resultMessage
-//        let data = response.data
+        let data = response.data
         
 //        if resultCode > 0 {
 //            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
@@ -102,10 +102,12 @@ final class RegisterPresenter: ObservableObject {
 
             if code > 0 {
                 alertInfo = AlertInfo(alertType: .failure, message: message)
+                showingAlert.toggle()
             } else {
-                routeToOTP(mobileNo: data.mobileNo)
+                if let data = response.data {
+                    routeToOTP(mobileNo: data.mobileNo)
+                }
             }
-            showingAlert.toggle()
         }
     }
 }

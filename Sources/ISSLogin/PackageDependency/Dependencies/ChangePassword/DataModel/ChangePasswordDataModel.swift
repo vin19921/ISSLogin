@@ -17,7 +17,7 @@ public struct ChangePasswordResponse: Codable {
     public let resultCode: Int16?
     public let resultMessage: String?
     public let status: Int16?
-    public let data: String?
+    public let data: ChangePasswordDataModel
 }
 
 public extension ChangePasswordResponse {

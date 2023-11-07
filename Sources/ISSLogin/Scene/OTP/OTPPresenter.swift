@@ -140,7 +140,7 @@ final class OTPPresenter: ObservableObject {
             } else {
                 if let message = data.message {
                     alertInfo = AlertInfo(alertType: .success, message: message, onDismiss: {
-                        routeToLogin()
+                        self.routeToLogin()
                     })
                 }
             }

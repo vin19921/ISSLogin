@@ -45,7 +45,7 @@ public struct ChangePasswordView: View {
 //                                                                           validateText: "Please enter valid old password",
 //                                                                           regEx: RegExConstants.minNineDigitRegEx,
 //                                                                           keyboardType: .numberPad,
-                                                                           isRequiredText: "Please enter old password",
+                                                                           isRequiredText: "Please enter old password"
 //                                                                           leadingImageIcon: Image(systemName: "iphone"),
 //                                                                           prefix: "+60"
                                                                           )

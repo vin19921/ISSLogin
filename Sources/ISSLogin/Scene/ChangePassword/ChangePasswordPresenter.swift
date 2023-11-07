@@ -15,7 +15,7 @@ final class ChangePasswordPresenter: ObservableObject {
 
     @Published var showingAlert = false
     @Published var alertMessage = ""
-    @Published var alertInfo: AlertInfo?
+    @Published var alertInfo: AlertInfo
 
     @Published var isDisabled = true
     @Published var oldPasswordText = ""
@@ -90,13 +90,9 @@ final class ChangePasswordPresenter: ObservableObject {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
 
             if code == 0 {
-                alertInfo = AlertInfo(alertType: .success, message: message, onDismiss: {
-                    alertInfo = nil
-                })
+                alertInfo = AlertInfo(alertType: .success, message: message)
             } else {
-                alertInfo = AlertInfo(alertType: .failure, message: message, onDismiss: {
-                    alertInfo = nil
-                })
+                alertInfo = AlertInfo(alertType: .failure, message: message)
             }
             showingAlert.toggle()
         }

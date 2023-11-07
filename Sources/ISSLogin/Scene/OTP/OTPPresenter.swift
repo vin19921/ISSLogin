@@ -136,6 +136,7 @@ final class OTPPresenter: ObservableObject {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
 
             if code > 0 {
+                otpAttempCount = data.otpAttemptCount
                 alertInfo = AlertInfo(alertType: .failure, message: message)
             } else {
                 if let message = data.message {

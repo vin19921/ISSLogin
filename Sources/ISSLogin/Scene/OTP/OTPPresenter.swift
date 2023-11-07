@@ -20,7 +20,7 @@ final class OTPPresenter: ObservableObject {
     @Published var showingAlert = false
     @Published var alertInfo = AlertInfo(message: "")
     @Published var otpDataModel: OTPDataModel?
-    @Published var otpAttempCount = 1
+    @Published var otpAttempCount: Int16 = 1
 
     // MARK: Injection
 

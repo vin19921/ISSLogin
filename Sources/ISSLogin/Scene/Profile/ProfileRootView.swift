@@ -59,6 +59,7 @@ public struct ProfileRootView: View {
 
                 Button(action: {
 //                    presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
+                    presenter.routeToChangePassword()
                 }) {
                     HStack {
                         Text("Change Password")

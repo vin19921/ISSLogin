@@ -157,10 +157,13 @@ public struct RegisterView: View {
             
             Spacer()
         }
+//        .alert(isPresented: $presenter.showingAlert) {
+//            AlertSUI(alertInfo: AlertInfo(title: "", message: viewModel?.message ?? "", onDismiss: {
+//                print("Dismiss")
+//            }))
+//        }
         .alert(isPresented: $presenter.showingAlert) {
-            AlertSUI(alertInfo: AlertInfo(title: "", message: viewModel?.message ?? "", onDismiss: {
-                print("Dismiss")
-            }))
+            AlertSUI(alertInfo: presenter.alertInfo)
         }
     }
 

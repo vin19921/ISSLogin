@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import ISSCommonUI
 
 final class RegisterPresenter: ObservableObject {
     private var interactor: RegisterBusinessLogic
@@ -18,6 +19,7 @@ final class RegisterPresenter: ObservableObject {
 
     @Published var presenterState: PresenterState = .success(nil)
     @Published var showingAlert = false
+    @Published var alertInfo = AlertInfo(message: "")
 
     enum PresenterState {
         case isLoading

@@ -104,9 +104,7 @@ final class RegisterPresenter: ObservableObject {
                 alertInfo = AlertInfo(alertType: .failure, message: message)
                 showingAlert.toggle()
             } else {
-                if let data = response.data {
-                    routeToOTP(mobileNo: data.mobileNo)
-                }
+                routeToOTP(mobileNo: data.mobileNo)
             }
         }
     }

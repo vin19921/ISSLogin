@@ -17,7 +17,7 @@ public struct ChangePasswordResponse: Codable {
     public let resultCode: Int16?
     public let resultMessage: String?
     public let status: Int16?
-    public let data: ChangePasswordDataModel
+//    public let data: ChangePasswordDataModel
 }
 
 public extension ChangePasswordResponse {
@@ -26,6 +26,6 @@ public extension ChangePasswordResponse {
         resultCode = try? container.decode(Int16.self, forKey: .resultCode)
         resultMessage = try? container.decode(String.self, forKey: .resultMessage)
         status = try? container.decodeIfPresent(Int16.self, forKey: .status) ?? 0
-        data = try container.decode(ChangePasswordDataModel.self, forKey: .data)
+//        data = try container.decode(ChangePasswordDataModel.self, forKey: .data)
     }
 }

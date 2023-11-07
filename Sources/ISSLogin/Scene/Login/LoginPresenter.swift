@@ -80,6 +80,7 @@ final class LoginPresenter: ObservableObject {
 //                    saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")
 //                    saveUserInfo(key: .isLoggedIn, value: true)
                     saveUserInfo(loginDataModel: data)
+                routeToRoot()
 //                }
             }
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,

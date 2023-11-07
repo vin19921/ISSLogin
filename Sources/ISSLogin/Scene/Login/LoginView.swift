@@ -89,7 +89,7 @@ public struct LoginView: View {
                                                  completionHandler: {
                                                     isLoading.toggle()
 //                                                    self.presentationMode.wrappedValue.dismiss()
-                                                    presenter.routeToRoot()
+//                                                    presenter.routeToRoot()
                                                  })
                         }) {
                             Text("Login")

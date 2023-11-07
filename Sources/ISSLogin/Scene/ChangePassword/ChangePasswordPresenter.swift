@@ -42,7 +42,7 @@ final class ChangePasswordPresenter: ObservableObject {
         }
     }
 
-    func updateProfile(request: ChangePassword.Model.UpdateRequest,
+    func changePassword(request: ChangePassword.Model.UpdateRequest,
                        completionHandler: (() -> Void)? = nil,
                        completion: @escaping (Result<ChangePassword.Model.Response, Error>) -> Void
     ) {

@@ -95,7 +95,11 @@ public struct ChangePasswordView: View {
             }
         }
         .alert(isPresented: $presenter.showingAlert) {
-            AlertSUI(alertInfo: presenter.alertInfo)
+            AlertSUI(alertInfo: presenter.alertInfo, completionHandler: {
+                if presenter.alertInfo.alertType == .success {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            })
         }
         .loading(isLoading: $isLoading)
     }

@@ -138,7 +138,11 @@ final class OTPPresenter: ObservableObject {
             if code > 0 {
                 alertInfo = AlertInfo(alertType: .failure, message: message)
             } else {
-                alertInfo = AlertInfo(alertType: .failure, message: message)
+                if let message = data.message {
+                    alertInfo = AlertInfo(alertType: .success, message: message, onDismiss: {
+                        routeToLogin()
+                    })
+                }
             }
             showingAlert.toggle()
         }

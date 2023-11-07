@@ -81,9 +81,9 @@ final class RegisterPresenter: ObservableObject {
     }
 
     private func handleRegistrationResponse(response: Registration.Model.Response) {
-        let resultCode = response.resultCode
-        let resultMessage = response.resultMessage
-        let data = response.data
+//        let resultCode = response.resultCode
+//        let resultMessage = response.resultMessage
+//        let data = response.data
         
 //        if resultCode > 0 {
 //            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
@@ -91,9 +91,20 @@ final class RegisterPresenter: ObservableObject {
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))
 //        } else {
-            print("Registration Successful ::: \(data)")
-            routeToOTP(mobileNo: data.mobileNo) //temporary use email
+//            print("Registration Successful ::: \(data)")
+//            routeToOTP(mobileNo: data.mobileNo) //temporary use email
 //        }
+        if let code = response.resultCode,
+           let message = response.resultMessage {
+            print("resultCode ::: \(code), resultMessage ::: \(message)")
+
+            if code > 0 {
+                alertInfo = AlertInfo(alertType: .failure, message: message)
+            } else {
+                routeToOTP(mobileNo: data.mobileNo)
+            }
+            showingAlert.toggle()
+        }
     }
 }
 

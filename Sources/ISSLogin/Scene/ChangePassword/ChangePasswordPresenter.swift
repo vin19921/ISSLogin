@@ -15,7 +15,7 @@ final class ChangePasswordPresenter: ObservableObject {
 
     @Published var showingAlert = false
     @Published var alertMessage = ""
-    @Published var alertInfo: AlertInfo
+    @Published var alertInfo = AlertInfo(message: "")
 
     @Published var isDisabled = true
     @Published var oldPasswordText = ""

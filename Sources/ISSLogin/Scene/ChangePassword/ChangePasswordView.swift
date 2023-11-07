@@ -94,16 +94,14 @@ public struct ChangePasswordView: View {
                 }
             }
         }
-//        .alert(isPresented: $presenter.showingAlert) {
-//            if let alertInfo = presenter.alertInfo {
-//                AlertSUI(alertInfo: alertInfo)
-//            }
-//        }
-        .loading(isLoading: $isLoading)
-
-        if let alertInfo = presenter.alertInfo {
-            AlertSUI(alertInfo: alertInfo)
+        .alert(isPresented: $presenter.showingAlert) {
+            if let alertInfo = presenter.alertInfo {
+                AlertSUI(alertInfo: alertInfo)
+            } else {
+                return nil
+            }
         }
+        .loading(isLoading: $isLoading)
     }
 
     private func validated() -> Bool {

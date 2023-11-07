@@ -5,6 +5,7 @@
 //  Created by Wing Seng Chew on 07/11/2023.
 //
 
+import ISSCommonUI
 import Combine
 import Foundation
 
@@ -14,6 +15,7 @@ final class ChangePasswordPresenter: ObservableObject {
 
     @Published var showingAlert = false
     @Published var alertMessage = ""
+    @Published var alertInfo: AlertInfo?
 
     @Published var isDisabled = true
     @Published var oldPasswordText = ""
@@ -86,8 +88,17 @@ final class ChangePasswordPresenter: ObservableObject {
         if let code = response.resultCode,
            let message = response.resultMessage {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
+
+            if code == 0 {
+                alertInfo = AlertInfo(alertType: .success, message: message, onDismiss: {
+                    alertInfo = nil
+                })
+            } else {
+                alertInfo = AlertInfo(alertType: .failure, message: message, onDismiss: {
+                    alertInfo = nil
+                })
+            }
             showingAlert.toggle()
-            alertMessage = message
         }
     }
 }

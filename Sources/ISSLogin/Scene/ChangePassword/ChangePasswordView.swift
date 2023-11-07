@@ -2,26 +2,22 @@
 //  File.swift
 //  
 //
-//  Created by Wing Seng Chew on 18/09/2023.
+//  Created by Wing Seng Chew on 07/11/2023.
 //
 
 import ISSCommonUI
 import ISSTheme
 import SwiftUI
 
-public struct ResetPasswordView: View {
+public struct ChangePasswordView: View {
     
-    @ObservedObject private var presenter: ResetPasswordPresenter
-    
-    @State private var phoneText = ""
-    @State private var phoneErrorState = false
-    @State private var showingAlert = false
+    @ObservedObject private var presenter: ChangePasswordPresenter
     
     // MARK: Injection
     
     @Environment(\.presentationMode) var presentationMode
     
-    init(presenter: ResetPasswordPresenter) {
+    init(presenter: ChangePasswordPresenter) {
         self.presenter = presenter
     }
     
@@ -34,32 +30,33 @@ public struct ResetPasswordView: View {
                 
                 ScrollView {
                     VStack(spacing: 16) {
-                        HStack {
-                            Text("Please enter your registered mobile number.")
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 0)
-                            Spacer()
-                        }
+//                        HStack {
+//                            Text("Please enter your registered mobile number.")
+//                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                    verticalPadding: 0)
+//                            Spacer()
+//                        }
 
-                        ISSTextFieldSUI(inputString: $phoneText,
-                                        isErrorState: $phoneErrorState,
+                        ISSTextFieldSUI(inputString: $presenter.oldPasswordText,
+                                        isErrorState: $presenter.oldPasswordErrorState,
                                         isDisabled: .constant(false),
-                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Mobile No.",
-                                                                           validateText: "Please enter valid mobile number",
-                                                                           regEx: RegExConstants.minNineDigitRegEx,
-                                                                           keyboardType: .numberPad,
-                                                                           isRequiredText: "Please enter valid mobile number",
-                                                                           leadingImageIcon: Image(systemName: "iphone"),
-                                                                           prefix: "+60")
+                                        viewData: ISSTextFieldSUI.ViewData(placeholderText: "Old Password",
+//                                                                           validateText: "Please enter valid old password",
+//                                                                           regEx: RegExConstants.minNineDigitRegEx,
+//                                                                           keyboardType: .numberPad,
+                                                                           isRequiredText: "Please enter old password",
+//                                                                           leadingImageIcon: Image(systemName: "iphone"),
+//                                                                           prefix: "+60"
+                                                                          )
                         )
 
                         Button(action: {
                             print("resetpw btn")
 //                            showingAlert.toggle()
-                            presenter.routeToOTP(mobileNo: "60\(phoneText)")
+//                            presenter.routeToOTP(mobileNo: "60\(phoneText)")
                         }) {
-                            Text("Reset Password")
+                            Text("Change Password")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 8)
@@ -88,7 +85,7 @@ public struct ResetPasswordView: View {
     }
 
     private func validated() -> Bool {
-        if !phoneErrorState {
+        if !presenter.oldPasswordErrorState {
             return true
         }
         return false
@@ -112,3 +109,4 @@ public struct ResetPasswordView: View {
         return issNavBarData
     }
 }
+

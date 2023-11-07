@@ -116,4 +116,21 @@ public enum ISSGateway {
 //        presenter.setRouter(profileRootRouter)
         return view
     }
+
+    public static func makeChangePassword(theme: Theme,
+                                          provider: ChangePasswordDataProviderLogic,
+//                                       router: ProfileRootRoutingLogic,
+                                          networkMonitor: NetworkMonitor) ->
+    ChangePasswordView
+    {
+        Theme.current = theme
+        let interactor = ChangePasswordInteractor(provider: provider)
+        let presenter = ChangePasswordPresenter(interactor: interactor)
+
+        let view = ChangePasswordView(presenter: presenter)
+//        let profileRootRouter = ProfileRootRouter(navigator: router)
+
+//        presenter.setRouter(profileRootRouter)
+        return view
+    }
 }

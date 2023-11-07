@@ -180,3 +180,11 @@ final class ViewProfilePresenter: ObservableObject {
 //        }
     }
 }
+
+// MARK: - Store User Info
+
+extension ViewProfilePresenter {
+    func saveUserInfo(viewProfileDataModel: ViewProfileDataModel) {
+        interactor.saveUserInfo(viewProfileDataModel: viewProfileDataModel)
+    }
+}

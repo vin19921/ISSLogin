@@ -12,6 +12,7 @@ import ISSNetwork
 protocol ViewProfileBusinessLogic {
     func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfile.Model.Response, Error>
     func updateProfile(request: ViewProfile.Model.UpdateRequest) -> AnyPublisher<ViewProfile.Model.Response, Error>
+    func saveUserInfo(viewProfileDataModel: ViewProfileDataModel)
 }
 
 final class ViewProfileInteractor: ViewProfileBusinessLogic {
@@ -64,6 +65,10 @@ final class ViewProfileInteractor: ViewProfileBusinessLogic {
                                                                 data: response.data)))
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()
+    }
+
+    func saveUserInfo(viewProfileDataModel: ViewProfileDataModel) {
+        provider.saveUserInfo(viewProfileDataModel: viewProfileDataModel)
     }
 }
 

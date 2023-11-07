@@ -53,6 +53,7 @@ public struct ViewProfileView: View {
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
+                                .padding(.bottom, 8)
                             ISSTextFieldSUI(inputString: $presenter.fullNameText,
                                             isErrorState: $presenter.fullNameErrorState,
                                             isDisabled: $presenter.isDisabled,
@@ -71,6 +72,8 @@ public struct ViewProfileView: View {
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
                                 .padding(.top)
+                                .padding(.bottom, 8)
+
                             ISSTextFieldSUI(inputString: $presenter.emailText,
                                             isErrorState: $presenter.emailErrorState,
                                             isDisabled: $presenter.isDisabled,
@@ -85,6 +88,7 @@ public struct ViewProfileView: View {
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
                                 .padding(.top)
+                                .padding(.bottom, 8)
                             ISSTextFieldSUI(inputString: $presenter.phoneText,
                                             isErrorState: .constant(false),
                                             isDisabled: .constant(true),

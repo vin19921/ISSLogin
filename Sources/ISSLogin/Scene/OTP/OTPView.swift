@@ -67,7 +67,7 @@ public struct OTPView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                         presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(),
                                                                                          code: Int(pinText),
-                                                                                         otpAttemptCount: presenter.otpAttempCount),
+                                                                                         otpAttemptCount: presenter.otpAttemptCount),
                                                               completionHandler: {
                                             isLoading.toggle()
                                         })

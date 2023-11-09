@@ -20,7 +20,7 @@ final class OTPPresenter: ObservableObject {
     @Published var showingAlert = false
     @Published var alertInfo = AlertInfo(message: "")
     @Published var otpDataModel: OTPDataModel?
-    @Published var otpAttempCount: Int16 = 1
+    @Published var otpAttemptCount: Int16 = 1
 
     // MARK: Injection
 
@@ -136,8 +136,12 @@ final class OTPPresenter: ObservableObject {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
 
             if code > 0 {
-                otpAttempCount = data.otpAttemptCount ?? 0
-                alertInfo = AlertInfo(alertType: .failure, message: message)
+                otpAttemptCount = data.otpAttemptCount ?? 0
+                alertInfo = AlertInfo(alertType: .failure, message: message, onDismiss: {
+                    if otpAttemptCount >= 3 {
+                        self.routeToLogin()
+                    }
+                })
             } else {
                 if let message = data.message {
                     alertInfo = AlertInfo(alertType: .success, message: message, onDismiss: {

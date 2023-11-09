@@ -137,8 +137,9 @@ final class OTPPresenter: ObservableObject {
 
             if code > 0 {
                 otpAttemptCount = data.otpAttemptCount ?? 0
+                let isExceedAttempt = otpAttemptCount + 1 > 3
                 alertInfo = AlertInfo(alertType: .failure, message: message, onDismiss: {
-                    if self.otpAttemptCount >= 3 {
+                    if isExceedAttempt {
                         self.routeToLogin()
                     }
                 })

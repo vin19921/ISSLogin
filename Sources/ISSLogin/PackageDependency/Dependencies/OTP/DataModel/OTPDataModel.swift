@@ -10,7 +10,7 @@ public struct OTPDataModel: Codable {
     public let email: String?
     public let mobileNo: String?
     public let message: String?
-    public let otpAttemptCount: Int?
+    public let otpAttemptCount: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -22,8 +22,8 @@ public struct OTPDataModel: Codable {
 }
 
 public struct OTPResponse: Codable {
-    public let resultCode: Int16
-    public let resultMessage: String
+    public let resultCode: Int16?
+    public let resultMessage: String?
     public let data: OTPDataModel
 }
 

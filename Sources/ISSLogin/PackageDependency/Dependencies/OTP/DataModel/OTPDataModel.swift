@@ -21,6 +21,17 @@ public struct OTPDataModel: Codable {
     }
 }
 
+public extension OTPDataModel {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(String.self, forKey: .id) ?? ""
+        email = try container.decodeIfPresent(String.self, forKey: .email) ?? ""
+        mobileNo = try container.decodeIfPresent(String.self, forKey: .mobileNo) ?? ""
+        message = try container.decodeIfPresent(String.self, forKey: .message) ?? ""
+        otpAttemptCount = try container.decodeIfPresent(String.self, forKey: .otpAttemptCount) ?? 0
+    }
+}
+
 public struct OTPResponse: Codable {
     public let resultCode: Int16?
     public let resultMessage: String?

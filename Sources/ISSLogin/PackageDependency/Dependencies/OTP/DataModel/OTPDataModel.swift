@@ -28,7 +28,7 @@ public extension OTPDataModel {
         email = try container.decodeIfPresent(String.self, forKey: .email) ?? ""
         mobileNo = try container.decodeIfPresent(String.self, forKey: .mobileNo) ?? ""
         message = try container.decodeIfPresent(String.self, forKey: .message) ?? ""
-        otpAttemptCount = try container.decodeIfPresent(String.self, forKey: .otpAttemptCount) ?? 0
+        otpAttemptCount = try container.decodeIfPresent(Int16.self, forKey: .otpAttemptCount) ?? 0
     }
 }
 

@@ -16,14 +16,15 @@ public struct LoginToken: Codable {
         case refreshToken
     }
 }
-//
-//public extension LoginToken {
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        appToken = try? container.decode(String.self, forKey: .appToken)
-//        exp = try? container.decode(String.self, forKey: .exp)
-//    }
-//}
+
+public extension LoginToken {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        appToken = try? container.decode(String.self, forKey: .appToken) ?? ""
+        exp = try? container.decode(String.self, forKey: .exp) ?? ""
+        refreshToken = try? container.decode(String.self, forKey: .refreshToken) ?? ""
+    }
+}
 
 public struct LoginDataModel: Codable {
     public let id: String?
@@ -52,6 +53,24 @@ public struct LoginDataModel: Codable {
         case isDraft
         case isCompleteRegister
         case token
+    }
+}
+
+public extension LoginResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try? container.decode(Int16.self, forKey: .id) ?? ""
+        name = try? container.decode(String.self, forKey: .name) ?? ""
+        email = try? container.decode(String.self, forKey: .email) ?? ""
+        state = try? container.decode(String.self, forKey: .state) ?? ""
+        city = try? container.decode(String.self, forKey: .city) ?? ""
+        mobileNo = try? container.decode(String.self, forKey: .mobileNo) ?? ""
+        status = try? container.decode(Int16.self, forKey: .status) ?? 0
+        isMerchant = try? container.decode(Int16.self, forKey: .isMerchant) ?? 0
+        isCustomer = try? container.decode(Int16.self, forKey: .isCustomer) ?? 0
+        isDraft = try? container.decode(Int16.self, forKey: .isDraft) ?? 0
+        isCompleteRegister = try? container.decode(Int16.self, forKey: .isCompleteRegister) ?? 0
+        token = try container.decode(LoginToken.self, forKey: .token)
     }
 }
 

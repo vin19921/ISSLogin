@@ -20,12 +20,12 @@ public enum Registration {
         struct Response {
             var resultCode: Int16? = 1
             var resultMessage: String?
-            var data: Register
+            var data: RegisterDataModel
         }
 
         struct ViewModel {
             var message: String
-            var registrationData: Register
+            var registrationData: RegisterDataModel
         }
     }
 }

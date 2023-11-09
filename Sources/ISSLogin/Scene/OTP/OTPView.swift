@@ -142,7 +142,7 @@ public struct OTPView: View {
                         resetTimer()
                         presenter.fetchOTP(otpAction: presenter.getOTPAction(),
                                            request: OTP.Model.Request(mobileNo: presenter.getMobileNo(),
-                                                                      otpAttemptCount: presenter.otpAttempCount))
+                                                                      otpAttemptCount: presenter.otpAttemptCount))
                     }) {
                         Text(isButtonEnabled ? "Resend" : "Can resend in \(presenter.getFormattedRemainingTime())")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -164,7 +164,7 @@ public struct OTPView: View {
 //            startCountdownTimer()
             presenter.fetchOTP(otpAction: presenter.getOTPAction(),
                                request: OTP.Model.Request(mobileNo: presenter.getMobileNo(),
-                                                          otpAttemptCount: presenter.otpAttempCount))
+                                                          otpAttemptCount: presenter.otpAttemptCount))
         }
         .onReceive(timer) { _ in
             if presenter.remainingTimeInSeconds > 0 {

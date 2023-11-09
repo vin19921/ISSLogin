@@ -124,8 +124,8 @@ public struct LoginView: View {
                         FacebookLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
-                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
-                            presenter.routeToRegister(fullName: fullName, email: email)
+                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email, action in
+                            presenter.routeToRegister(fullName: fullName, email: email, action: action)
                         })
                         
 //                        }

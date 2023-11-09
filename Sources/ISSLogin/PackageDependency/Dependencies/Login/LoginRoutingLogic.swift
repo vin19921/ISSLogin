@@ -7,6 +7,6 @@
 
 public protocol LoginRoutingLogic {
     func navigateToRootScreen()
-    func navigateToRegisterScreen(fullName: String, email: String)
+    func navigateToRegisterScreen(fullName: String, email: String, action: (() -> Void)?)
     func navigateToResetPasswordScreen()
 }

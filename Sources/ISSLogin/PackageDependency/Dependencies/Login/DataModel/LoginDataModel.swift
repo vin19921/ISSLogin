@@ -56,7 +56,7 @@ public struct LoginDataModel: Codable {
     }
 }
 
-public extension LoginResponse {
+public extension LoginDataModel {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try? container.decode(Int16.self, forKey: .id) ?? ""

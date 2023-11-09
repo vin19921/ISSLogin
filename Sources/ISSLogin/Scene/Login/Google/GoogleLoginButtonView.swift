@@ -16,7 +16,7 @@ struct GoogleLoginButtonView: View {
 //    @AppStorage("uid") var uid: String?
 //    @StateObject var presenter: LoginPresenter
     @Binding var isLoggedIn: Bool
-    let action: ((String, String, (() -> Void)?) -> Void)?
+    let action: ((String, String) -> Void)?
 
     var body: some View {
         VStack {
@@ -150,15 +150,7 @@ struct GoogleLoginButtonView: View {
                     print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
 
                     if let action = action {
-                        action(displayName ?? "", email ?? "", {
-                            do {
-                                try Auth.auth().signOut()
-                                GIDSignIn.sharedInstance.signOut()
-                                isLoggedIn = false
-                            } catch {
-                                print("Google Error signing out: \(error)")
-                            }
-                        })
+                        action(displayName ?? "", email ?? "")
                     }
                 }
             }

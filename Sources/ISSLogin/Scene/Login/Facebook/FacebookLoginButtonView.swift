@@ -45,7 +45,7 @@ struct FacebookLoginButtonView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .foregroundColor(Theme.current.issWhite.color)
-                    .background(Color.blue)
+                    .background(Theme.current.fbBlue.color)
                     .cornerRadius(12)
                 }
 //                .facebookLoginButtonStyle() // Apply custom button style

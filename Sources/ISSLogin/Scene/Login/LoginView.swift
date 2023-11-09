@@ -14,7 +14,7 @@ import UIKit
 public struct LoginView: View {
 
     @ObservedObject private var presenter: LoginPresenter
-    
+
     @State private var isLoading = false
 
     @State private var phoneText = ""
@@ -52,11 +52,6 @@ public struct LoginView: View {
                                                                            prefix: "+60")
                         )
                         .onReceive(Just(phoneText)) { newValue in
-//                            if newValue == RegExConstants.minNineDigitRegEx {
-//                                phoneErrorState = false
-//                            } else {
-//                                phoneErrorState = true
-//                            }
                             let regex = try! NSRegularExpression(pattern: RegExConstants.minNineDigitRegEx)
                             let range = NSRange(location: 0, length: newValue.utf16.count)
 
@@ -66,7 +61,6 @@ public struct LoginView: View {
                                 phoneErrorState = true
                             }
                         }
-
 
                         ISSSecureFieldSUI(inputString: $passwordText,
                                           isErrorState: $passwordErrorState,
@@ -103,24 +97,6 @@ public struct LoginView: View {
                         }
                         .disabled(!validated())
 
-//                        HStack {
-                            
-//                            FacebookLoginButton()
-//                                .frame(maxWidth: .infinity)
-//                                .frame(height: 28)
-//                                .opacity(0)
-////                                .hidden()
-//                                .overlay(
-//                                    HStack {
-//                                        Text("Sign up using Facebook")
-//                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                                verticalPadding: 8)
-//                                    }
-//                                    .foregroundColor(Theme.current.issWhite.color)
-//                                    .background(Color.blue)
-//                                    .cornerRadius(12)
-//                                )
                         FacebookLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
@@ -128,24 +104,6 @@ public struct LoginView: View {
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
                         AppleLoginButtonView(isLoggedIn: $isLoggedIn, action: {_,_ in })
-                        
-//                        }
-//                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                            verticalPadding: 8)
-//                        .frame(maxWidth: .infinity)
-////                        .frame(height: 28)
-//                        .foregroundColor(Theme.current.issWhite.color)
-//                        .background(Color.blue)
-//                        .cornerRadius(12)
-
-//                        HStack {
-//                            Text("Sign up using Facebook")
-//                            FacebookLoginButton(buttonLabel: "Sign up using Facebook")
-////                                .frame(width: 200, height: 28)
-//                        }
-//                        .padding(.horizontal)
-//                        .cornerRadius(12)
                         
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -192,17 +150,11 @@ public struct LoginView: View {
                 presenter.routeToRoot()
             }
             .build()
-//        let leftAlignedSecondItem = ToolBarItemDataBuilder()
-//            .setTitleString("Checkout")
-//            .setTitleFont(Theme.current.subtitle.font)
-//            .build()
         let toolBarItems = ToolBarItemsDataBuilder()
             .setLeftAlignedItem(leftAlignedItem)
-//            .setLeftAlignedSecondItem(leftAlignedSecondItem)
             .build()
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)
-//            .setBackgroundColor(Theme.current.issWhite.color)
             .setTintColor(Theme.current.issBlack.color)
             .includeStatusBarArea(false)
             .build()

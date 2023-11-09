@@ -182,6 +182,7 @@ public struct RegisterView: View {
         let leftAlignedItem = ToolBarItemDataBuilder()
             .setImage(Image(systemName: "chevron.backward"))
             .setCallback {
+                presenter.getBackButtonAction()?
                 self.presentationMode.wrappedValue.dismiss()
             }
             .build()

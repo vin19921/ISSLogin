@@ -16,6 +16,7 @@ final class RegisterPresenter: ObservableObject {
 
     private var fullName = ""
     private var email = ""
+    private var backButtonAction: (() -> Void)? = nil
 
     @Published var presenterState: PresenterState = .success(nil)
     @Published var showingAlert = false
@@ -149,5 +150,13 @@ extension RegisterPresenter {
 
     func getEmail() -> String {
         email
+    }
+
+    func setBackButtonAction(_ action: (() -> Void)?) {
+        self.backButtonAction = action
+    }
+
+    func getBackButtonAction() -> (@escaping () -> Void)? {
+        action
     }
 }

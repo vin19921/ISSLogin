@@ -16,23 +16,24 @@ struct GoogleLoginButtonView: View {
 //    @AppStorage("uid") var uid: String?
 //    @StateObject var presenter: LoginPresenter
     @Binding var isLoggedIn: Bool
-    let action: ((String, String) -> Void)?
+    let action: ((String, String, (() -> Void)?) -> Void)?
 
     var body: some View {
         VStack {
-            if isLoggedIn {
-                Text("Logout")
-                    .onTapGesture {
-                        do {
-                            try Auth.auth().signOut()
-                            GIDSignIn.sharedInstance.signOut()
-//                            self.user = nil
-                            isLoggedIn = false
-                        } catch {
-                            print("Error signing out: \(error)")
-                        }
-                    }
-            } else {
+//            if isLoggedIn {
+//                Text("Logout")
+//                    .onTapGesture {
+//                        do {
+//                            try Auth.auth().signOut()
+//                            GIDSignIn.sharedInstance.signOut()
+////                            self.user = nil
+//                            isLoggedIn = false
+//                        } catch {
+//                            print("Error signing out: \(error)")
+//                        }
+//                    }
+//            }
+//            else {
                 Button(action: {
                     googleSignInAction()
                     // Trigger the Facebook login
@@ -100,7 +101,7 @@ struct GoogleLoginButtonView: View {
                 }
 //                .facebookLoginButtonStyle() // Apply custom button style
             }
-        }
+//        }
         .onAppear {
             // Check if the user is already signed in
             if let user = Auth.auth().currentUser {
@@ -149,7 +150,15 @@ struct GoogleLoginButtonView: View {
                     print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
 
                     if let action = action {
-                        action(displayName ?? "", email ?? "")
+                        action(displayName ?? "", email ?? "", {
+                            do {
+                                try Auth.auth().signOut()
+                                GIDSignIn.sharedInstance.signOut()
+                                isLoggedIn = false
+                            } catch {
+                                print("Google Error signing out: \(error)")
+                            }
+                        })
                     }
                 }
             }

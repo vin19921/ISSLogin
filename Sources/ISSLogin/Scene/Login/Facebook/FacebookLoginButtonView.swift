@@ -16,6 +16,7 @@ struct FacebookLoginButtonView: View {
 //    @State private var isLoggedIn = false
 //    @AppStorage("uid") var uid: String?
     @Binding var isLoggedIn: Bool
+    let action: ((String, String) -> Void)?
 
     var body: some View {
         VStack {
@@ -78,6 +79,10 @@ struct FacebookLoginButtonView: View {
                         print("Display Name: \(displayName ?? "N/A")")
                         print("Email: \(email ?? "N/A")")
                         print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
+
+                        if let action = action {
+                            action(displayName ?? "", email ?? "")
+                        }
                     }
                 }
             }

@@ -121,7 +121,9 @@ public struct LoginView: View {
 //                                    .background(Color.blue)
 //                                    .cornerRadius(12)
 //                                )
-                        FacebookLoginButtonView(isLoggedIn: $isLoggedIn)
+                        FacebookLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
+                            presenter.routeToRegister(fullName: fullName, email: email)
+                        })
                         GoogleLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })

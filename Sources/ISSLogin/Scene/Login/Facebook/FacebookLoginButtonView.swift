@@ -20,12 +20,12 @@ struct FacebookLoginButtonView: View {
 
     var body: some View {
         VStack {
-            if isLoggedIn {
-                Text("Logout")
-                    .onTapGesture {
-                        logout()
-                    }
-            } else {
+//            if isLoggedIn {
+//                Text("Logout")
+//                    .onTapGesture {
+//                        logout()
+//                    }
+//            } else {
                 Button(action: {
                     // Trigger the Facebook login
                     loginWithFacebook()
@@ -49,7 +49,7 @@ struct FacebookLoginButtonView: View {
                     .cornerRadius(12)
                 }
 //                .facebookLoginButtonStyle() // Apply custom button style
-            }
+//            }
         }
     }
 

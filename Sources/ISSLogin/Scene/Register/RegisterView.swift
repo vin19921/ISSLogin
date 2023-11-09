@@ -128,7 +128,7 @@ public struct RegisterView: View {
                                                                    validateText: "Please enter valid email",
                                                                    regEx: RegExConstants.emailRegEx,
                                                                    isRequiredText: "Please enter valid email",
-                                                                   leadingImageIcon: RegisterImageAssets.ic_email.image)
+                                                                   leadingImageIcon: RegisterImageAssets.email.image)
                 )
                 
                 Button(action: {

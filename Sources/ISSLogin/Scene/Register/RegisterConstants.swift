@@ -8,5 +8,5 @@
 import Foundation
 
 public enum RegisterImageAssets: String, ImageLoader, ImageLoaderSUI {
-    case ic_email
+    case email
 }

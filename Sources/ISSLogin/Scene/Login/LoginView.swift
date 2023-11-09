@@ -127,7 +127,7 @@ public struct LoginView: View {
                         GoogleLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
-                        AppleLoginButtonView(isLoggedIn: $isLoggedIn, action: {})
+                        AppleLoginButtonView(isLoggedIn: $isLoggedIn, action: {_,_ in })
                         
 //                        }
 //                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

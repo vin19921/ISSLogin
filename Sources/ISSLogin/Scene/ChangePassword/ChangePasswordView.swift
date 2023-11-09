@@ -34,8 +34,8 @@ public struct ChangePasswordView: View {
                     VStack(spacing: 16) {
                         ISSSecureFieldSUI(inputString: $presenter.oldPasswordText,
                                           isErrorState: $presenter.oldPasswordErrorState,
-                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Old Password",
-                                                                               isRequiredText: "Please enter old password")
+                                          viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Current Password",
+                                                                               isRequiredText: "Please enter current password")
                         )
                         .padding(.top)
                         

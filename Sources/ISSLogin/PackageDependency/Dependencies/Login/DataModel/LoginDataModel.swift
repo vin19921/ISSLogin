@@ -70,7 +70,7 @@ public extension LoginDataModel {
         isCustomer = try? container.decode(Int16.self, forKey: .isCustomer)
         isDraft = try? container.decode(Int16.self, forKey: .isDraft)
         isCompleteRegister = try? container.decode(Int16.self, forKey: .isCompleteRegister)
-        token = try container.decode(LoginToken.self, forKey: .token)
+        token = try? container.decode(LoginToken.self, forKey: .token)
     }
 }
 

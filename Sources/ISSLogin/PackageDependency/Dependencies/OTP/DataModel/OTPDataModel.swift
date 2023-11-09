@@ -10,7 +10,7 @@ public struct OTPDataModel: Codable {
     public let email: String?
     public let mobileNo: String?
     public let message: String?
-    public let otpAttemptCount: String?
+    public let otpAttemptCount: Int16?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,8 +30,8 @@ public struct OTPResponse: Codable {
 public extension OTPResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        resultCode = try container.decode(Int16.self, forKey: .resultCode) ?? 0
-        resultMessage = try container.decode(String.self, forKey: .resultMessage) ?? ""
+        resultCode = try container.decode(Int16.self, forKey: .resultCode)
+        resultMessage = try container.decode(String.self, forKey: .resultMessage)
         data = try container.decode(OTPDataModel.self, forKey: .data)
     }
 }

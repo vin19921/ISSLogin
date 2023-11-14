@@ -137,6 +137,7 @@ public struct LoginView: View {
             AlertSUI(alertInfo: presenter.alertInfo)
         }
         .loading(isLoading: $isLoading)
+        .navigationBarHidden(true)
     }
 
     private func validated() -> Bool {

@@ -107,7 +107,7 @@ public struct ResetPasswordView: View {
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)
             .setTintColor(Theme.current.issBlack.color)
-            .includeStatusBarArea(true)
+            .includeStatusBarArea(false)
             .build()
         return issNavBarData
     }

@@ -136,6 +136,7 @@ public struct LoginView: View {
         .alert(isPresented: $presenter.showingAlert) {
             AlertSUI(alertInfo: presenter.alertInfo)
         }
+        .edgesIgnoringSafeArea(.all)
         .loading(isLoading: $isLoading)
     }
 

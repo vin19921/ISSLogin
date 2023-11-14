@@ -48,7 +48,7 @@ public struct ViewProfileView: View {
                     Spacer()
                 case let .success(viewModel):
                     ScrollView {
-                        VStack(spacing: .zero) {
+                        VStack(alignment: .leading, spacing: .zero) {
                             Text("Full Name")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -142,7 +142,7 @@ public struct ViewProfileView: View {
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)
             .setTintColor(Theme.current.issBlack.color)
-            .includeStatusBarArea(false)
+            .includeStatusBarArea(true)
             .build()
         return issNavBarData
     }

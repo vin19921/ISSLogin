@@ -48,7 +48,7 @@ public struct ViewProfileView: View {
                     Spacer()
                 case let .success(viewModel):
                     ScrollView {
-                        VStack(alignment: .leading, spacing: .zero) {
+                        VStack(spacing: .zero) {
                             Text("Full Name")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,

@@ -44,7 +44,7 @@ public struct LoginView: View {
                     VStack(spacing: 16) {
                         LoginImageAssets.issLogo.image
                             .resizable()
-                            .renderingMode(.template)
+//                            .renderingMode(.template)
                             .frame(width: 128, height: 128)
                             .aspectRatio(contentMode: .fit)
                         ISSTextFieldSUI(inputString: $phoneText,

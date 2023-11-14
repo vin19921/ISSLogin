@@ -42,6 +42,11 @@ public struct LoginView: View {
                 Spacer()
                 ZStack(alignment: .center) {
                     VStack(spacing: 16) {
+                        LoginImageAssets.issLogo.image
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: 128, height: 128)
+                            .aspectRatio(contentMode: .fit)
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
                                         isDisabled: .constant(false),

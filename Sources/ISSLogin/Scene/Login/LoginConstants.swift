@@ -10,6 +10,7 @@ import Foundation
 public enum LoginImageAssets: String, ImageLoader, ImageLoaderSUI {
     case facebook
     case google
+    case issLogo
 }
 
 //public enum UserInfoKey: String {

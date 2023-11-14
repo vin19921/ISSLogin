@@ -221,7 +221,7 @@ public struct OTPView: View {
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)
             .setTintColor(Theme.current.issBlack.color)
-            .includeStatusBarArea(false)
+            .includeStatusBarArea(true)
             .build()
         return issNavBarData
     }

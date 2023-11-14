@@ -118,7 +118,7 @@ public struct ProfileRootView: View {
             .setToolBarItems(toolBarItems)
 //            .setBackgroundColor(Theme.current.issWhite.color)
             .setTintColor(Theme.current.issBlack.color)
-            .includeStatusBarArea(false)
+            .includeStatusBarArea(true)
             .build()
         return issNavBarData
     }

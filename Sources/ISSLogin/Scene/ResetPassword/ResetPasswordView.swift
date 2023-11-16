@@ -85,6 +85,7 @@ public struct ResetPasswordView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(.top)
     }
 
     private func validated() -> Bool {

@@ -46,6 +46,7 @@ public struct LoginView: View {
                             .resizable()
                             .frame(width: 128, height: 128)
                             .aspectRatio(contentMode: .fit)
+                        Spacer()
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,
                                         isDisabled: .constant(false),
@@ -121,7 +122,7 @@ public struct LoginView: View {
                                                 verticalPadding: 0)
                             .onTapGesture {
                                 presenter.routeToRegister(fullName: "", email: "")
-                            }                        
+                            }
                     }
                 }
                 .padding(.horizontal)

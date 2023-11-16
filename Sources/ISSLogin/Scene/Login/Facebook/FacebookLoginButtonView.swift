@@ -87,6 +87,9 @@ struct FacebookLoginButtonView: View {
                         }
                     }
                 }
+            } else {
+                isLoading.toggle()
+                print("result.isCancelled")
             }
         }
     }

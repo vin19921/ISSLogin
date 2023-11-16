@@ -100,7 +100,8 @@ public struct LoginView: View {
                         }
                         .disabled(!validated())
 
-                        FacebookLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
+                        FacebookLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $isLoading, action: { fullName, email in
+                            isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
                         GoogleLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in

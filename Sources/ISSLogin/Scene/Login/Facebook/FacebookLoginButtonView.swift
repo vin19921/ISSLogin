@@ -16,6 +16,7 @@ struct FacebookLoginButtonView: View {
 //    @State private var isLoggedIn = false
 //    @AppStorage("uid") var uid: String?
     @Binding var isLoggedIn: Bool
+    @Binding var isLoading: Bool
     let action: ((String, String) -> Void)?
 
     var body: some View {
@@ -28,6 +29,7 @@ struct FacebookLoginButtonView: View {
 //            } else {
                 Button(action: {
                     // Trigger the Facebook login
+                    isLoading.toggle()
                     loginWithFacebook()
                 }) {
                     HStack {

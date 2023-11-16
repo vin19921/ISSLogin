@@ -95,7 +95,6 @@ public struct ProfileRootView: View {
                         //                        .background(Theme.current.issBlack.color)
                         //                        .cornerRadius(12)
                     }
-                    Spacer()
                 }
             }
         }
@@ -105,24 +104,18 @@ public struct ProfileRootView: View {
         let leftAlignedItem = ToolBarItemDataBuilder()
             .setImage(Image(systemName: "chevron.backward"))
             .setCallback {
-//                self.presentationMode.wrappedValue.dismiss()
-                presenter.routeToRoot()
+                self.presentationMode.wrappedValue.dismiss()
             }
             .build()
-//        let leftAlignedSecondItem = ToolBarItemDataBuilder()
-//            .setTitleString("Checkout")
-//            .setTitleFont(Theme.current.subtitle.font)
-//            .build()
         let toolBarItems = ToolBarItemsDataBuilder()
             .setLeftAlignedItem(leftAlignedItem)
-//            .setLeftAlignedSecondItem(leftAlignedSecondItem)
             .build()
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)
-//            .setBackgroundColor(Theme.current.issWhite.color)
             .setTintColor(Theme.current.issBlack.color)
             .includeStatusBarArea(true)
             .build()
         return issNavBarData
     }
+
 }

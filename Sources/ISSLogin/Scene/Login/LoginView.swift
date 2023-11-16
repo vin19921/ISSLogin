@@ -39,12 +39,11 @@ public struct LoginView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                Spacer()
-                ZStack(alignment: .center) {
+                ScrollView {
                     VStack(spacing: 16) {
+                        Spacer()
                         LoginImageAssets.issLogo.image
                             .resizable()
-//                            .renderingMode(.template)
                             .frame(width: 128, height: 128)
                             .aspectRatio(contentMode: .fit)
                         ISSTextFieldSUI(inputString: $phoneText,
@@ -87,8 +86,6 @@ public struct LoginView: View {
                                                                               password: passwordText),
                                                  completionHandler: {
                                                     isLoading.toggle()
-//                                                    self.presentationMode.wrappedValue.dismiss()
-//                                                    presenter.routeToRoot()
                                                  })
                         }) {
                             Text("Login")
@@ -125,11 +122,12 @@ public struct LoginView: View {
                             .onTapGesture {
                                 presenter.routeToRegister(fullName: "", email: "")
                             }
+
+                        Spacer()
                         
                     }
                 }
                 .padding(.horizontal)
-                Spacer()
             }
         }
         .background(Theme.current.issWhite.color)

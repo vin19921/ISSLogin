@@ -82,7 +82,7 @@ public struct ProfileRootView: View {
                         
                         Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         
-                        ZStack(alignment: .bottom) {
+                        ZStack {
                             Button(action: {
                                 self.presentationMode.wrappedValue.dismiss()
                                 presenter.logOut()
@@ -97,6 +97,7 @@ public struct ProfileRootView: View {
                                 //                        .cornerRadius(12)
                             }
                         }
+                        .frame(alignment: .bottom)
                     }
                 }
             }

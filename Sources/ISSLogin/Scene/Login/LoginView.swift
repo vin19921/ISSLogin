@@ -41,11 +41,11 @@ public struct LoginView: View {
                 ISSNavigationBarSUI(data: navigationBarData)
                 ScrollView {
                     VStack(spacing: 16) {
-                        Spacer()
                         LoginImageAssets.issLogo.image
                             .resizable()
                             .frame(width: 128, height: 128)
                             .aspectRatio(contentMode: .fit)
+                            .padding(.top, 50)
                         Spacer()
                         ISSTextFieldSUI(inputString: $phoneText,
                                         isErrorState: $phoneErrorState,

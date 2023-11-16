@@ -121,10 +121,7 @@ public struct LoginView: View {
                                                 verticalPadding: 0)
                             .onTapGesture {
                                 presenter.routeToRegister(fullName: "", email: "")
-                            }
-
-                        Spacer()
-                        
+                            }                        
                     }
                 }
                 .padding(.horizontal)

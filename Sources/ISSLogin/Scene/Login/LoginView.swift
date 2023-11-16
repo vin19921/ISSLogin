@@ -126,8 +126,8 @@ public struct LoginView: View {
                                 presenter.routeToRegister(fullName: "", email: "")
                             }
                     }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
             }
         }
         .background(Theme.current.issWhite.color)

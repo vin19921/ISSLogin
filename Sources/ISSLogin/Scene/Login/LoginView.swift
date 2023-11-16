@@ -104,7 +104,8 @@ public struct LoginView: View {
                             isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
-                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn, action: { fullName, email in
+                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $isLoading, action: { fullName, email in
+                            isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
                         AppleLoginButtonView(isLoggedIn: $isLoggedIn, action: {_,_ in })

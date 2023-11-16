@@ -16,6 +16,7 @@ struct GoogleLoginButtonView: View {
 //    @AppStorage("uid") var uid: String?
 //    @StateObject var presenter: LoginPresenter
     @Binding var isLoggedIn: Bool
+    @Binding var isLoading: Bool
     let action: ((String, String) -> Void)?
 
     var body: some View {
@@ -35,6 +36,7 @@ struct GoogleLoginButtonView: View {
 //            }
 //            else {
                 Button(action: {
+                    isLoading.toggle()
                     googleSignInAction()
                     // Trigger the Facebook login
 //                    presenter.signIn()
@@ -126,6 +128,7 @@ struct GoogleLoginButtonView: View {
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { authentication, error in
             if let error = error {
                 print("There is an error signing the user in ==> \(error)")
+                isLoading.toggle()
                 return
             }
             guard let user = authentication?.user, let idToken = user.idToken?.tokenString else { return }

@@ -82,22 +82,19 @@ public struct ProfileRootView: View {
                         
                         Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         
-                        ZStack {
-                            Button(action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                                presenter.logOut()
-                            }) {
-                                Text("Log Out")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 8)
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundColor(Theme.current.issBlack.color)
-                                //                        .background(Theme.current.issBlack.color)
-                                //                        .cornerRadius(12)
-                            }
-                        }
-                        .frame(alignment: .bottom)
+                        Spacer()
+                    }
+                    
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                        presenter.logOut()
+                    }) {
+                        Text("Log Out")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 8)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Theme.current.issBlack.color)
                     }
                 }
             }

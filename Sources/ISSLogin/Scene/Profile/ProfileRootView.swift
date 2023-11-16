@@ -84,22 +84,24 @@ public struct ProfileRootView: View {
                         
                         Spacer()
                     }
-                    
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                        presenter.logOut()
-                    }) {
-                        Text("Log Out")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 8)
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(Theme.current.issBlack.color)
-                    }
                 }
             }
         }
         .edgesIgnoringSafeArea(.top)
+
+        ZStack(alignment: .bottom) {
+            Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+                presenter.logOut()
+            }) {
+                Text("Log Out")
+                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                        verticalPadding: 8)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Theme.current.issBlack.color)
+            }
+        }
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

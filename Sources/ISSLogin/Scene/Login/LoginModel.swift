@@ -18,12 +18,12 @@ public enum Login {
             var resultCode: Int16? = 1
             var resultMessage: String?
             var status: Int16?
-            var data: LoginDataModel
+            var data: LoginDataModel?
         }
 
         struct ViewModel {
             var message: String
-            var otpData: LoginDataModel
+            var otpData: LoginDataModel?
         }
     }
 }

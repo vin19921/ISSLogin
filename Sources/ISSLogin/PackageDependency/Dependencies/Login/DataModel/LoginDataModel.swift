@@ -17,7 +17,7 @@ public protocol LoginDataModel {
     var isCustomer: Int16 { get }
     var isDraft: Int16 { get }
     var isCompleteRegister: Int16 { get }
-    var token: LoginToken? { get }
+    var token: LoginTokenDataModel? { get }
 }
 
 public protocol LoginTokenDataModel {

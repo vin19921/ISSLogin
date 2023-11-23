@@ -20,6 +20,12 @@ public protocol LoginDataModel {
     var token: LoginToken? { get }
 }
 
+public protocol LoginTokenDataModel {
+    var appToken: String { get }
+    var exp: Int { get }
+    var refreshToken: String { get }
+}
+
 //public struct LoginToken: Codable {
 //    public let appToken: String?
 //    public let exp: Int?

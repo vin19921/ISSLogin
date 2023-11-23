@@ -5,6 +5,13 @@
 //  Created by Wing Seng Chew on 05/10/2023.
 //
 
+public protocol LoginRsponseDataModel {
+    var resultCode: Int16 { get }
+    var resultMessage: String { get }
+    var status: Int16 { get }
+    var data: LoginDataModel? { get }
+}
+
 public protocol LoginDataModel {
     var id: String { get }
     var name: String { get }

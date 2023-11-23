@@ -5,7 +5,7 @@
 //  Created by Wing Seng Chew on 05/10/2023.
 //
 
-public protocol LoginRsponseDataModel {
+public protocol LoginResponseDataModel {
     var resultCode: Int16 { get }
     var resultMessage: String { get }
     var status: Int16 { get }

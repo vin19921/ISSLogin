@@ -75,6 +75,7 @@ final class LoginPresenter: ObservableObject {
                 showingAlert.toggle()
                 alertInfo = AlertInfo(alertType: .failure, message: message)
             } else {
+                guard data else return
                 saveUserInfo(loginDataModel: data)
                 routeToRoot()
             }

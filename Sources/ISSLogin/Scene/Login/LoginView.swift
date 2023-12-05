@@ -25,8 +25,6 @@ public struct LoginView: View {
 
     @State private var isLoggedIn = false
 
-    @State private var offset: CGFloat = 0
-
     // MARK: Injection
 
     @Environment(\.presentationMode) var presentationMode
@@ -130,24 +128,6 @@ public struct LoginView: View {
                     }
                     .padding(.horizontal)
                 }
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            if value.translation.width < 0 {
-                                self.offset = value.translation.width
-                                print(self.offset)
-                            }
-                        }
-                        .onEnded { value in
-                            withAnimation {
-                                if -value.predictedEndTranslation.width > UIScreen.main.bounds.width / 2 {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }
-                                self.offset = 0
-                            }
-                        }
-                )
-                .offset(x: offset)
             }
         }
         .background(Theme.current.issWhite.color)
@@ -156,6 +136,9 @@ public struct LoginView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .loading(isLoading: $isLoading)
+        .modifier(SwipeBackGesture {
+            self.presentationMode.wrappedValue.dismiss()
+        })
     }
 
     private func validated() -> Bool {

@@ -83,7 +83,9 @@ extension ProfileRootPresenter {
 
     func logOut() {
         interactor.logOut()
-        interactor.isLoggedIn()
+        DispatchQueue.main.async {
+            interactor.isLoggedIn()
+        }
         print("isLoggedIn ::: \(interactor.isLoggedIn())")
     }
 }

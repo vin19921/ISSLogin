@@ -31,8 +31,9 @@ public struct ProfileRootView: View {
 
     public var body: some View {
         ZStack(alignment: .top) {
-            VStack(spacing: .zero) {
-                if presenter.isLoggedIn() {
+//            VStack(spacing: .zero) {
+            if presenter.isLoggedIn() {
+                VStack(spacing: .zero) {
                     ISSNavigationBarSUI(data: navigationBarData)
                     ScrollView {
                         VStack(spacing: .zero) {
@@ -84,14 +85,17 @@ public struct ProfileRootView: View {
                             
                             Spacer()
                         }
-                    
+                        
                     }
-                } else {
+                }
+            } else {
+                VStack {
                     Spacer()
                     Text(" You are not logged in")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 0)
+                        .padding()
                     Button(action: {
                         presenter.routeToLogin()
                     }) {
@@ -102,6 +106,7 @@ public struct ProfileRootView: View {
                     }
                     Spacer()
                 }
+                .background(Theme.current.grayDisabled.color)
             }
         }
         .edgesIgnoringSafeArea(.top)

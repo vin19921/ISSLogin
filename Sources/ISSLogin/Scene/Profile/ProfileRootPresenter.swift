@@ -17,6 +17,7 @@ final class ProfileRootPresenter: ObservableObject {
 
     @Published var showingAlert = false
     @Published var errorMessage = ""
+    @Published var isLoggedIn = false
 
     // MARK: Injection
 
@@ -81,8 +82,14 @@ extension ProfileRootPresenter {
         router?.navigate(to: .changePasswordScreen)
     }
 
+//    func logOut() {
+//        interactor.logOut()
+//    }
+
     func logOut() {
         interactor.logOut()
+        updateLoginStatus()
+//       completion?()
     }
 }
 
@@ -93,8 +100,12 @@ extension ProfileRootPresenter {
         interactor.getUserName()
     }
 
-    func isLoggedIn() -> Bool {
-        interactor.isLoggedIn()
+//    func isLoggedIn() -> Bool {
+//        interactor.isLoggedIn()
+//    }
+
+    func updateLoginStatus() {
+        isLoggedIn = interactor.isLoggedIn()
     }
 }
 

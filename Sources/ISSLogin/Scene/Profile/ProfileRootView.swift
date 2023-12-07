@@ -32,9 +32,9 @@ public struct ProfileRootView: View {
     public var body: some View {
         ZStack(alignment: .top) {
 //            VStack(spacing: .zero) {
-            if presenter.isLoggedIn() {
-                VStack(spacing: .zero) {
-                    ISSNavigationBarSUI(data: navigationBarData)
+            VStack(spacing: .zero) {
+                ISSNavigationBarSUI(data: navigationBarData)
+                if presenter.isLoggedIn {
                     ScrollView {
                         VStack(spacing: .zero) {
                             HStack {
@@ -87,41 +87,44 @@ public struct ProfileRootView: View {
                         }
                         
                     }
-                }
-            } else {
-                VStack {
-                    Spacer()
-                    HStack {
+                } else {
+                    VStack {
                         Spacer()
-                        Text(" You are not logged in")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
+                        HStack {
+                            Spacer()
+                            Text(" You are not logged in")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                            Spacer()
+                        }
+                        Button(action: {
+                            presenter.routeToLogin()
+                        }) {
+                            Text("Click Here to Login")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
                         Spacer()
                     }
-                    Button(action: {
-                        presenter.routeToLogin()
-                    }) {
-                        Text("Click Here to Login")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                    }
-                    Spacer()
+                    .background(Theme.current.grayDisabled.color)
                 }
-                .background(Theme.current.grayDisabled.color)
             }
         }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             presenter.showTabBar()
+            presenter.updateLoginStatus()
         }
 
         if presenter.isLoggedIn() {
             ZStack(alignment: .bottom) {
                 Button(action: {
 //                    self.presentationMode.wrappedValue.dismiss()
-                    presenter.logOut()
+                    presenter.logOut {
+                        presenter.isLoggedIn()
+                    }
                 }) {
                     Text("Log Out")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

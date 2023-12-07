@@ -23,7 +23,7 @@ final class ProfileRootPresenter: ObservableObject {
 
     init(interactor: ProfileRootBusinessLogic) {
         self.interactor = interactor
-        isLoggedIn = isLoggedIn()
+        isLoggedIn = self.isLoggedIn()
         print("isLoggedIn ::: \(isLoggedIn)")
     }
 

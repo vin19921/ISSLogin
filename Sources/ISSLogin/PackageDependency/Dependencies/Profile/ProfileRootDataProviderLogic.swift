@@ -14,4 +14,5 @@ public protocol ProfileRootDataProviderLogic {
     func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfileResponse, Error>
     func getUserName() -> String
     func logOut()
+    func isLoggedIn() -> Bool
 }

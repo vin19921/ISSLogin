@@ -104,6 +104,7 @@ public struct ProfileRootView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(.top)
         .onAppear {
             presenter.showTabBar()
         }

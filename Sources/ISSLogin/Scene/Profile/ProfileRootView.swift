@@ -34,72 +34,90 @@ public struct ProfileRootView: View {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
                 ScrollView {
-                    VStack(spacing: .zero) {
-                        HStack {
-                            VStack(alignment: .leading, spacing: .zero) {
-                                Text(presenter.getUserName())
-                                    .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                        lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                        verticalPadding: 0)
-                                Text("View Profile")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 0)
-                                    .foregroundColor(Color.blue)
-                                    .padding(.top, 8)
-                                    .onTapGesture {
-                                        print("On Tap View Profile")
-                                        presenter.routeToViewProfile()
-                                    }
+                    if presenter.isLoggedIn() {
+                        VStack(spacing: .zero) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: .zero) {
+                                    Text(presenter.getUserName())
+                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                            verticalPadding: 0)
+                                    Text("View Profile")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                        .foregroundColor(Color.blue)
+                                        .padding(.top, 8)
+                                        .onTapGesture {
+                                            print("On Tap View Profile")
+                                            presenter.routeToViewProfile()
+                                        }
+                                }
+                                Spacer()
                             }
+                            .padding(.horizontal)
+                            .padding(.bottom)
+                            
+                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+                            
+                            Button(action: {
+                                presenter.routeToChangePassword()
+                            }) {
+                                HStack {
+                                    Text("Change Password")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 36)
+                                .foregroundColor(Theme.current.issBlack.color)
+                                .padding(.horizontal)
+                            }
+                            
+                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+                            
                             Spacer()
                         }
-                        .padding(.horizontal)
-                        .padding(.bottom)
-                        
-                        Rectangle().frame(height: 1).foregroundColor(Color.gray)
-                        
-                        Button(action: {
-                            //                    presenter.viewProfile(request: ViewProfile.Model.Request(mobileNo: "60129665980"))
-                            presenter.routeToChangePassword()
-                        }) {
-                            HStack {
-                                Text("Change Password")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 0)
-                                Spacer()
-                                Image(systemName: "chevron.right")
+                    } else {
+                        VStack {
+                            Text(" You are not logged in")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                            Button(action: {
+                                presenter.routeToChangePassword()
+                            }) {
+                                Text("Click Here to Login")
                                     .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                         verticalPadding: 0)
                             }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 36)
-                            .foregroundColor(Theme.current.issBlack.color)
-                            .padding(.horizontal)
                         }
-                        
-                        Rectangle().frame(height: 1).foregroundColor(Color.gray)
-                        
-                        Spacer()
                     }
                 }
             }
         }
         .edgesIgnoringSafeArea(.top)
 
-        ZStack(alignment: .bottom) {
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-                presenter.logOut()
-            }) {
-                Text("Log Out")
-                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                        verticalPadding: 8)
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(Theme.current.issBlack.color)
+        if presenter.isLoggedIn() {
+            ZStack(alignment: .bottom) {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                    presenter.logOut()
+                }) {
+                    Text("Log Out")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Theme.current.issBlack.color)
+                }
             }
         }
     }

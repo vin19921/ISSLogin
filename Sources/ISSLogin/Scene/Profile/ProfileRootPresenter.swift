@@ -79,11 +79,14 @@ extension ProfileRootPresenter {
     }
 }
 
-// MARK: - Get User Info
+// MARK: - UserDefaults
 
 extension ProfileRootPresenter {
     func getUserName() -> String {
         interactor.getUserName()
     }
-}
 
+    func isLoggedIn() -> Bool {
+        interactor.isLoggedIn()
+    }
+}

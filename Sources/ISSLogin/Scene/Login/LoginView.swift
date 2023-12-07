@@ -136,9 +136,9 @@ public struct LoginView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .loading(isLoading: $isLoading)
-        .modifier(SwipeBackGesture {
-            self.presentationMode.wrappedValue.dismiss()
-        })
+//        .modifier(SwipeBackGesture {
+//            self.presentationMode.wrappedValue.dismiss()
+//        })
     }
 
     private func validated() -> Bool {

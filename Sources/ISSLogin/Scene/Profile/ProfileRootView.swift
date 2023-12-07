@@ -118,13 +118,11 @@ public struct ProfileRootView: View {
             presenter.updateLoginStatus()
         }
 
-        if presenter.isLoggedIn() {
+        if presenter.isLoggedIn {
             ZStack(alignment: .bottom) {
                 Button(action: {
 //                    self.presentationMode.wrappedValue.dismiss()
-                    presenter.logOut {
-                        presenter.isLoggedIn()
-                    }
+                    presenter.logOut()
                 }) {
                     Text("Log Out")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

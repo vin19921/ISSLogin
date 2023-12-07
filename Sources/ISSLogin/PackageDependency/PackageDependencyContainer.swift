@@ -24,7 +24,7 @@ public enum PackageDependency {
         packageDependencies.networkMonitor = networkMonitor
     }
     
-    public static func setTabBarController(tabBarController: TabBarControlling) {
+    public static func setTabBarController(tabBarController: TabBarControllerLogic) {
         packageDependencies.tabBarController = tabBarController
     }
 }

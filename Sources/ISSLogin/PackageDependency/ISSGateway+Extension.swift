@@ -12,11 +12,11 @@ extension ISSGateway {
     
     // MARK: TabBar Controller
     
-    public static func setTabBarController(_ tabBarController: TabBarControlling) {
+    public static func setTabBarController(_ tabBarController: TabBarControllerLogic) {
         injectTabBarController(tabBarController)
     }
 
-    private static func injectTabBarController(_ tabBarController: TabBarControlling) {
+    private static func injectTabBarController(_ tabBarController: TabBarControllerLogic) {
         let internalDepends = PackageDependency.self
         internalDepends.setTabBarController(tabBarController: tabBarController)
     }

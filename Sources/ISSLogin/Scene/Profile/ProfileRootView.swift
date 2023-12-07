@@ -33,7 +33,7 @@ public struct ProfileRootView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 if presenter.isLoggedIn() {
-//                    ISSNavigationBarSUI(data: navigationBarData)
+                    ISSNavigationBarSUI(data: navigationBarData)
                     ScrollView {
                         VStack(spacing: .zero) {
                             HStack {
@@ -126,17 +126,17 @@ public struct ProfileRootView: View {
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
-        let leftAlignedItem = ToolBarItemDataBuilder()
-            .setImage(Image(systemName: "chevron.backward"))
-            .setCallback {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-            .build()
-        let toolBarItems = ToolBarItemsDataBuilder()
-            .setLeftAlignedItem(leftAlignedItem)
-            .build()
+//        let leftAlignedItem = ToolBarItemDataBuilder()
+//            .setImage(Image(systemName: "chevron.backward"))
+//            .setCallback {
+//                self.presentationMode.wrappedValue.dismiss()
+//            }
+//            .build()
+//        let toolBarItems = ToolBarItemsDataBuilder()
+//            .setLeftAlignedItem(leftAlignedItem)
+//            .build()
         let issNavBarData = ISSNavigationBarBuilder()
-            .setToolBarItems(toolBarItems)
+//            .setToolBarItems(toolBarItems)
             .setTintColor(Theme.current.issBlack.color)
             .includeStatusBarArea(true)
             .build()

@@ -13,6 +13,7 @@ protocol ProfileRootBusinessLogic {
     func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfile.Model.Response, Error>
     func getUserName() -> String
     func logOut()
+    func isLoggedIn() -> Bool
 }
 
 final class ProfileRootInteractor: ProfileRootBusinessLogic {
@@ -51,6 +52,10 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
 
     func logOut() {
         provider.logOut()
+    }
+
+    func isLoggedIn() -> Bool {
+        provider.isLoggedIn()
     }
 }
 

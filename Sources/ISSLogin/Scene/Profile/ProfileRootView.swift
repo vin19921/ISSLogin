@@ -93,7 +93,7 @@ public struct ProfileRootView: View {
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 0)
                     Button(action: {
-                        presenter.routeToRoot()
+                        presenter.routeToLogin()
                     }) {
                         Text("Click Here to Login")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

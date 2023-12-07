@@ -33,7 +33,7 @@ public struct ProfileRootView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 if presenter.isLoggedIn() {
-                    ISSNavigationBarSUI(data: navigationBarData)
+//                    ISSNavigationBarSUI(data: navigationBarData)
                     ScrollView {
                         VStack(spacing: .zero) {
                             HStack {
@@ -109,7 +109,7 @@ public struct ProfileRootView: View {
         if presenter.isLoggedIn() {
             ZStack(alignment: .bottom) {
                 Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+//                    self.presentationMode.wrappedValue.dismiss()
                     presenter.logOut()
                 }) {
                     Text("Log Out")

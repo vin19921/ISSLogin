@@ -10,7 +10,7 @@ import ISSNetwork
 /// All dependencies that are required to be initialized once and passed down to the providers should be held here.
 public struct PackageDependencyContainer {
     public var networkMonitor: NetworkMonitor?
-    public var tabBarController: TabBarControlling?
+    public var tabBarController: TabBarControllerLogic?
 }
 
 public enum PackageDependency {

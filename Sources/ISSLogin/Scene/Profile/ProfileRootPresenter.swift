@@ -17,14 +17,14 @@ final class ProfileRootPresenter: ObservableObject {
 
     @Published var showingAlert = false
     @Published var errorMessage = ""
-    @Published var isLoggedIn = false
+    @Published var isLoggedIn: Bool
 
     // MARK: Injection
 
     init(interactor: ProfileRootBusinessLogic) {
         self.interactor = interactor
-        isLoggedIn = self.isLoggedIn()
-        print("isLoggedIn ::: \(isLoggedIn)")
+        self.isLoggedIn = interactor.isLoggedIn()
+        print("isLoggedIn ::: \(self.isLoggedIn)")
     }
 
     func setRouter(_ router: ProfileRootRouter) {

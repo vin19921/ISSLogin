@@ -69,6 +69,7 @@ extension ProfileRootPresenter {
     }
 
     func routeToLogin() {
+        hideTabBar()
         router?.navigate(to: .loginScreen)
     }
 

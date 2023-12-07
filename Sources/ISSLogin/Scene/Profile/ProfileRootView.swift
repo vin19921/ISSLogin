@@ -104,7 +104,9 @@ public struct ProfileRootView: View {
                 }
             }
         }
-//        .edgesIgnoringSafeArea(.top)
+        .onAppear {
+            presenter.showTabBar()
+        }
 
         if presenter.isLoggedIn() {
             ZStack(alignment: .bottom) {

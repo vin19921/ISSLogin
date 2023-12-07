@@ -17,14 +17,11 @@ final class ProfileRootPresenter: ObservableObject {
 
     @Published var showingAlert = false
     @Published var errorMessage = ""
-    @Published var isLoggedIn: Bool
 
     // MARK: Injection
 
     init(interactor: ProfileRootBusinessLogic) {
         self.interactor = interactor
-        self.isLoggedIn = interactor.isLoggedIn()
-        print("isLoggedIn ::: \(self.isLoggedIn)")
     }
 
     func setRouter(_ router: ProfileRootRouter) {
@@ -86,8 +83,6 @@ extension ProfileRootPresenter {
 
     func logOut() {
         interactor.logOut()
-        isLoggedIn = interactor.isLoggedIn()
-        print("isLoggedIn ::: \(isLoggedIn)")
     }
 }
 
@@ -97,10 +92,10 @@ extension ProfileRootPresenter {
     func getUserName() -> String {
         interactor.getUserName()
     }
-//
-//    func isLoggedIn() -> Bool {
-//        interactor.isLoggedIn()
-//    }
+
+    func isLoggedIn() -> Bool {
+        interactor.isLoggedIn()
+    }
 }
 
 // MARK: - TabBar Controller

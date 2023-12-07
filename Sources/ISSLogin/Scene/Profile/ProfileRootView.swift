@@ -32,7 +32,7 @@ public struct ProfileRootView: View {
     public var body: some View {
         ZStack(alignment: .top) {
 //            VStack(spacing: .zero) {
-            if presenter.isLoggedIn() {
+            if presenter.isLoggedIn {
                 VStack(spacing: .zero) {
                     ISSNavigationBarSUI(data: navigationBarData)
                     ScrollView {
@@ -114,7 +114,7 @@ public struct ProfileRootView: View {
             presenter.showTabBar()
         }
 
-        if presenter.isLoggedIn() {
+        if presenter.isLoggedIn {
             ZStack(alignment: .bottom) {
                 Button(action: {
 //                    self.presentationMode.wrappedValue.dismiss()

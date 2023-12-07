@@ -17,6 +17,10 @@ final class ProfileRootPresenter: ObservableObject {
 
     @Published var showingAlert = false
     @Published var errorMessage = ""
+    @Published var isLoggedIn: Bool {
+        // You can add any additional logic here before returning the value
+        return interactor.isLoggedIn()
+    }
 
     // MARK: Injection
 
@@ -97,9 +101,9 @@ extension ProfileRootPresenter {
         interactor.getUserName()
     }
 
-    func isLoggedIn() -> Bool {
-        interactor.isLoggedIn()
-    }
+//    func isLoggedIn() -> Bool {
+//        isLoggedIn = interactor.isLoggedIn()
+//    }
 }
 
 // MARK: - TabBar Controller

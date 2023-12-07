@@ -13,6 +13,8 @@ final class ProfileRootPresenter: ObservableObject {
     private var router: ProfileRootRouter?
     private var cancellables = Set<AnyCancellable>()
 
+    private let tabBarController = PackageDependency.dependencies?.tabBarController
+
     @Published var showingAlert = false
     @Published var errorMessage = ""
 
@@ -92,5 +94,17 @@ extension ProfileRootPresenter {
 
     func isLoggedIn() -> Bool {
         interactor.isLoggedIn()
+    }
+}
+
+// MARK: - TabBar Controller
+
+extension ProfileRootPresenter {
+    func hideTabBar() {
+        tabBarController?.hideMainTabBar()
+    }
+    
+    func showTabBar() {
+        tabBarController?.showMainTabBar()
     }
 }

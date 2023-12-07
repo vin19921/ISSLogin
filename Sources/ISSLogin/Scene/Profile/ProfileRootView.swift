@@ -104,7 +104,7 @@ public struct ProfileRootView: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.top)
+//        .edgesIgnoringSafeArea(.top)
 
         if presenter.isLoggedIn() {
             ZStack(alignment: .bottom) {

@@ -21,9 +21,6 @@ public enum ISSGateway {
     {
         /// Explicity setting the theme to register fonts and colors required by events package.
         Theme.current = theme
-//        injectEventsOverviewProvider(provider)
-//        injectEventsOverviewRouter(router)
-//        injectNetworkMonitor(networkMonitor)
         
         let interactor = LoginInteractor(provider: provider)
         let presenter = LoginPresenter(interactor: interactor)
@@ -85,8 +82,7 @@ public enum ISSGateway {
 
     public static func makeProfileRoot(theme: Theme,
                                        provider: ProfileRootDataProviderLogic,
-                                       router: ProfileRootRoutingLogic,
-                                       networkMonitor: NetworkMonitor) ->
+                                       router: ProfileRootRoutingLogic) ->
     ProfileRootView
     {
         Theme.current = theme

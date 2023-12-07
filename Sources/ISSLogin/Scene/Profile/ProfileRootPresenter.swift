@@ -97,10 +97,10 @@ extension ProfileRootPresenter {
     func getUserName() -> String {
         interactor.getUserName()
     }
-
-    func isLoggedIn() -> Bool {
-        interactor.isLoggedIn()
-    }
+//
+//    func isLoggedIn() -> Bool {
+//        interactor.isLoggedIn()
+//    }
 }
 
 // MARK: - TabBar Controller

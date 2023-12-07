@@ -7,6 +7,7 @@
 
 public protocol ProfileRootRoutingLogic {
     func navigateToRootScreen()
+    func navigateToLoginScreen()
     func navigateToViewProfileScreen()
     func navigateToChangePasswordScreen()
 }

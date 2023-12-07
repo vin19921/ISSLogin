@@ -32,9 +32,9 @@ public struct ProfileRootView: View {
     public var body: some View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
-                ISSNavigationBarSUI(data: navigationBarData)
-                ScrollView {
-                    if presenter.isLoggedIn() {
+                if presenter.isLoggedIn() {
+                    ISSNavigationBarSUI(data: navigationBarData)
+                    ScrollView {
                         VStack(spacing: .zero) {
                             HStack {
                                 VStack(alignment: .leading, spacing: .zero) {
@@ -84,22 +84,23 @@ public struct ProfileRootView: View {
                             
                             Spacer()
                         }
-                    } else {
-                        VStack {
-                            Text(" You are not logged in")
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 0)
-                            Button(action: {
-                                presenter.routeToChangePassword()
-                            }) {
-                                Text("Click Here to Login")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 0)
-                            }
-                        }
+                    
                     }
+                } else {
+                    Spacer()
+                    Text(" You are not logged in")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 0)
+                    Button(action: {
+                        presenter.routeToRoot()
+                    }) {
+                        Text("Click Here to Login")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
+                    }
+                    Spacer()
                 }
             }
         }

@@ -18,6 +18,7 @@ public struct ProfileRootRouter {
 extension ProfileRootRouter: RoutingLogic {
     public enum Destination {
         case rootScreen
+        case loginScreen
         case viewProfileScreen
         case changePasswordScreen
     }
@@ -26,6 +27,8 @@ extension ProfileRootRouter: RoutingLogic {
         switch destination {
         case .rootScreen:
             navigator.navigateToRootScreen()
+        case .loginScreen:
+            navigator.navigateToLoginScreen()
         case .viewProfileScreen:
             navigator.navigateToViewProfileScreen()
         case .changePasswordScreen:

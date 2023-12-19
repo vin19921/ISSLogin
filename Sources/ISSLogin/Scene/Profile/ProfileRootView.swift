@@ -84,8 +84,21 @@ public struct ProfileRootView: View {
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
                             
                             Spacer()
+                            
+//                            ZStack(alignment: .bottom) {
+                                Button(action: {
+                //                    self.presentationMode.wrappedValue.dismiss()
+                                    presenter.logOut()
+                                }) {
+                                    Text("Log Out")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 8)
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundColor(Theme.current.issBlack.color)
+                                }
+//                            }
                         }
-                        
                     }
                 } else {
                     VStack {
@@ -116,23 +129,6 @@ public struct ProfileRootView: View {
         .onAppear {
             presenter.updateLoginStatus()
             presenter.showTabBar()
-        }
-
-        if presenter.isLoggedIn {
-            ZStack(alignment: .bottom) {
-                Button(action: {
-//                    self.presentationMode.wrappedValue.dismiss()
-                    presenter.logOut()
-                }) {
-                    Text("Log Out")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 8)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Theme.current.issBlack.color)
-                }
-            }
-            .frame(height: 36)
         }
     }
 

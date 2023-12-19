@@ -115,8 +115,8 @@ public struct ProfileRootView: View {
             }
             .edgesIgnoringSafeArea(.top)
             
-            if presenter.isLoggedIn {
-                ZStack(alignment: .bottom) {
+            ZStack(alignment: .bottom) {
+                if presenter.isLoggedIn {
                     Button(action: {
                         //                    self.presentationMode.wrappedValue.dismiss()
                         presenter.logOut()

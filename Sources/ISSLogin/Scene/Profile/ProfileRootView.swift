@@ -114,8 +114,8 @@ public struct ProfileRootView: View {
         }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
-            presenter.showTabBar()
             presenter.updateLoginStatus()
+            presenter.showTabBar()
         }
 
         if presenter.isLoggedIn {

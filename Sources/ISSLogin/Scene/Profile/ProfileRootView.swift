@@ -30,7 +30,6 @@ public struct ProfileRootView: View {
     // MARK: View
 
     public var body: some View {
-        GeometryReader { geo in
         ZStack(alignment: .top) {
 //            VStack(spacing: .zero) {
             VStack(spacing: .zero) {

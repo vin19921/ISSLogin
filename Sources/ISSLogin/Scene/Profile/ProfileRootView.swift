@@ -89,7 +89,7 @@ public struct ProfileRootView: View {
                     }
                 } else {
                     VStack {
-                        Spacer()
+//                        Spacer()
                         HStack {
                             Spacer()
                             Text(" You are not logged in")
@@ -106,7 +106,7 @@ public struct ProfileRootView: View {
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
                         }
-                        Spacer()
+//                        Spacer()
                     }
                     .background(Theme.current.grayDisabled.color)
                 }
@@ -129,10 +129,10 @@ public struct ProfileRootView: View {
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 8)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 36)
                         .foregroundColor(Theme.current.issBlack.color)
                 }
             }
+            .frame(height: 36)
         }
     }
 

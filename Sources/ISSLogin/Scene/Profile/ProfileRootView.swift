@@ -34,8 +34,9 @@ public struct ProfileRootView: View {
 //            VStack(spacing: .zero) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                if presenter.isLoggedIn {
-                    ScrollView {
+                ScrollView {
+                    if presenter.isLoggedIn {
+                        
                         VStack(spacing: .zero) {
                             HStack {
                                 VStack(alignment: .leading, spacing: .zero) {
@@ -58,9 +59,9 @@ public struct ProfileRootView: View {
                             }
                             .padding(.horizontal)
                             .padding(.bottom)
-
+                            
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
-
+                            
                             Button(action: {
                                 presenter.routeToChangePassword()
                             }) {
@@ -80,24 +81,16 @@ public struct ProfileRootView: View {
                                 .foregroundColor(Theme.current.issBlack.color)
                                 .padding(.horizontal)
                             }
-
+                            
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
-
-//                            Spacer()
                         }
-                    }
-                } else {
-                    ScrollView {
-                        VStack(spacing: 16) {
-                            //                        Spacer()
-                            //                        HStack {
-                                                        Spacer()
+                    } else {
+                        VStack(spacing: 8) {
+                            Spacer()
                             Text(" You are not logged in")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
-                            //                            Spacer()
-                            //                        }
                             Button(action: {
                                 presenter.routeToLogin()
                             }) {
@@ -106,10 +99,9 @@ public struct ProfileRootView: View {
                                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                         verticalPadding: 0)
                             }
-                                                    Spacer()
+                            Spacer()
                         }
                     }
-//                    .background(Theme.current.grayDisabled.color)
                 }
             }
         }

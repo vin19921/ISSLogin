@@ -30,12 +30,10 @@ public struct ProfileRootView: View {
     // MARK: View
 
     public var body: some View {
-        if presenter.isLoggedIn {
-            ZStack(alignment: .top) {
-                //            VStack(spacing: .zero) {
-                VStack(spacing: .zero) {
-                    ISSNavigationBarSUI(data: navigationBarData)
-                    
+        ZStack(alignment: .top) {
+            VStack(spacing: .zero) {
+                ISSNavigationBarSUI(data: navigationBarData)
+                if presenter.isLoggedIn {
                     ScrollView {
                         VStack(spacing: .zero) {
                             HStack {
@@ -84,52 +82,49 @@ public struct ProfileRootView: View {
                             
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
-                        Spacer()
-
-//                        ZStack {
-                            Button(action: {
-                                //                    self.presentationMode.wrappedValue.dismiss()
-                                presenter.logOut()
-                            }) {
-                                Text("Log Out")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 8)
-                            }
-                            .frame(maxWidth: .infinity)
-//                        }
-//                        .frame(height: 36)
-//                        .foregroundColor(Theme.current.issBlack.color)
                     }
-                }
-            }
-            .edgesIgnoringSafeArea(.top)
-            .onAppear {
-                presenter.updateLoginStatus()
-//                presenter.showTabBar()
-            }
-        } else {
-            ZStack(alignment: .center) {
-                VStack {
-                    Text(" You are not logged in")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 0)
-                    Button(action: {
-                        presenter.routeToLogin()
-                    }) {
-                        Text("Click Here to Login")
+                } else {
+                    VStack {
+                        Spacer()
+                        Text(" You are not logged in")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
+                        Button(action: {
+                            presenter.routeToLogin()
+                        }) {
+                            Text("Click Here to Login")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        Spacer()
                     }
                 }
             }
-            .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                presenter.updateLoginStatus()
+        }
+        .edgesIgnoringSafeArea(.top)
+        .onAppear {
+            presenter.updateLoginStatus()
 //                presenter.showTabBar()
+        }
+
+        if presenter.isLoggedIn {
+            ZStack {
+                Button(action: {
+                    //                    self.presentationMode.wrappedValue.dismiss()
+                    presenter.logOut()
+                }) {
+                    Text("Log Out")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                }
+                
             }
+            .frame(alignment: .bottom)
+            .frame(maxWidth: .infinity)
+            .foregroundColor(Theme.current.issBlack.color)
         }
     }
 

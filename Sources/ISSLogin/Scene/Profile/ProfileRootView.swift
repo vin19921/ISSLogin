@@ -94,7 +94,7 @@ public struct ProfileRootView: View {
         }
 
         if !presenter.isLoggedIn {
-            ZStack {
+            ZStack(alignment: .center) {
                 VStack {
                     Text(" You are not logged in")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -110,7 +110,6 @@ public struct ProfileRootView: View {
                     }
                 }
             }
-            .frame(alignment: .center)
         } else {
             ZStack {
                 

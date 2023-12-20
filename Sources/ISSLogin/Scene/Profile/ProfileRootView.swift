@@ -89,14 +89,14 @@ public struct ProfileRootView: View {
                 } else {
                     VStack(alignment: .center) {
 //                        Spacer()
-                        HStack {
-                            Spacer()
+//                        HStack {
+//                            Spacer()
                             Text(" You are not logged in")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
-                            Spacer()
-                        }
+//                            Spacer()
+//                        }
                         Button(action: {
                             presenter.routeToLogin()
                         }) {

@@ -34,8 +34,8 @@ public struct ProfileRootView: View {
 //            VStack(spacing: .zero) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                ScrollView {
-                    if presenter.isLoggedIn {
+                if presenter.isLoggedIn {
+                    ScrollView {
                         VStack(spacing: .zero) {
                             HStack {
                                 VStack(alignment: .leading, spacing: .zero) {
@@ -84,18 +84,8 @@ public struct ProfileRootView: View {
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
                     }
-                }
-            }
-        }
-        .edgesIgnoringSafeArea(.top)
-        .onAppear {
-            presenter.updateLoginStatus()
-            presenter.showTabBar()
-        }
-
-        if !presenter.isLoggedIn {
-            ZStack(alignment: .center) {
-                VStack {
+                } else {
+                    Spacer()
                     Text(" You are not logged in")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -108,11 +98,18 @@ public struct ProfileRootView: View {
                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                 verticalPadding: 0)
                     }
+                    Spacer()
                 }
             }
-        } else {
+        }
+        .edgesIgnoringSafeArea(.top)
+        .onAppear {
+            presenter.updateLoginStatus()
+            presenter.showTabBar()
+        }
+        
+        if presenter.isLoggedIn {
             ZStack {
-                
                 Button(action: {
                     //                    self.presentationMode.wrappedValue.dismiss()
                     presenter.logOut()

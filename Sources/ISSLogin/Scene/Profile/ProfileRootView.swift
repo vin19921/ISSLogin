@@ -91,7 +91,7 @@ public struct ProfileRootView: View {
                         VStack(spacing: 16) {
                             //                        Spacer()
                             //                        HStack {
-                            //                            Spacer()
+                                                        Spacer()
                             Text(" You are not logged in")
                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -106,7 +106,7 @@ public struct ProfileRootView: View {
                                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                         verticalPadding: 0)
                             }
-                            //                        Spacer()
+                                                    Spacer()
                         }
                     }
 //                    .background(Theme.current.grayDisabled.color)

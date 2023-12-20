@@ -83,26 +83,11 @@ public struct ProfileRootView: View {
                             
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
                             
-                            Spacer()
-                            
-                            ZStack(alignment: .bottom) {
-                                Button(action: {
-                //                    self.presentationMode.wrappedValue.dismiss()
-                                    presenter.logOut()
-                                }) {
-                                    Text("Log Out")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 8)
-                                }
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 36)
-                            .foregroundColor(Theme.current.issBlack.color)
+//                            Spacer()
                         }
                     }
                 } else {
-                    VStack {
+                    VStack(alignment: .center) {
 //                        Spacer()
                         HStack {
                             Spacer()
@@ -122,7 +107,7 @@ public struct ProfileRootView: View {
                         }
 //                        Spacer()
                     }
-                    .background(Theme.current.grayDisabled.color)
+//                    .background(Theme.current.grayDisabled.color)
                 }
             }
         }
@@ -131,6 +116,24 @@ public struct ProfileRootView: View {
             presenter.updateLoginStatus()
             presenter.showTabBar()
         }
+
+        ZStack {
+            if presenter.isLoggedIn {
+                Button(action: {
+                    //                    self.presentationMode.wrappedValue.dismiss()
+                    presenter.logOut()
+                }) {
+                    Text("Log Out")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                }
+            }
+        }
+        .frame(alignment: .bottom)
+        .frame(maxWidth: .infinity)
+        .frame(height: 36)
+        .foregroundColor(Theme.current.issBlack.color)
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

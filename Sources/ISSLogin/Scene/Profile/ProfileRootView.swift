@@ -85,7 +85,7 @@ public struct ProfileRootView: View {
                             
                             Spacer()
                             
-//                            ZStack(alignment: .bottom) {
+                            ZStack(alignment: .bottom) {
                                 Button(action: {
                 //                    self.presentationMode.wrappedValue.dismiss()
                                     presenter.logOut()
@@ -94,10 +94,11 @@ public struct ProfileRootView: View {
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 8)
-                                        .frame(maxWidth: .infinity)
-                                        .foregroundColor(Theme.current.issBlack.color)
                                 }
-//                            }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 36)
+                            .foregroundColor(Theme.current.issBlack.color)
                         }
                     }
                 } else {

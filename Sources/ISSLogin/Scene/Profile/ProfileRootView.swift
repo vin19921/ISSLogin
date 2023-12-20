@@ -34,60 +34,60 @@ public struct ProfileRootView: View {
 //            VStack(spacing: .zero) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
-                if presenter.isLoggedIn {
-                    ScrollView {
-                        VStack(spacing: .zero) {
-                            HStack {
-                                VStack(alignment: .leading, spacing: .zero) {
-                                    Text(presenter.getUserName())
-                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                            verticalPadding: 0)
-                                    Text("View Profile")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
-                                        .foregroundColor(Color.blue)
-                                        .padding(.top, 8)
-                                        .onTapGesture {
-                                            print("On Tap View Profile")
-                                            presenter.routeToViewProfile()
-                                        }
-                                }
-                                Spacer()
-                            }
-                            .padding(.horizontal)
-                            .padding(.bottom)
-                            
-                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
-                            
-                            Button(action: {
-                                presenter.routeToChangePassword()
-                            }) {
-                                HStack {
-                                    Text("Change Password")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
-                                }
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 36)
-                                .foregroundColor(Theme.current.issBlack.color)
-                                .padding(.horizontal)
-                            }
-                            
-                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
-                            
-//                            Spacer()
-                        }
-                    }
-                } else {
-                    VStack(alignment: .center) {
+//                if presenter.isLoggedIn {
+//                    ScrollView {
+//                        VStack(spacing: .zero) {
+//                            HStack {
+//                                VStack(alignment: .leading, spacing: .zero) {
+//                                    Text(presenter.getUserName())
+//                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+//                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
+//                                                            verticalPadding: 0)
+//                                    Text("View Profile")
+//                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                            verticalPadding: 0)
+//                                        .foregroundColor(Color.blue)
+//                                        .padding(.top, 8)
+//                                        .onTapGesture {
+//                                            print("On Tap View Profile")
+//                                            presenter.routeToViewProfile()
+//                                        }
+//                                }
+//                                Spacer()
+//                            }
+//                            .padding(.horizontal)
+//                            .padding(.bottom)
+//
+//                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+//
+//                            Button(action: {
+//                                presenter.routeToChangePassword()
+//                            }) {
+//                                HStack {
+//                                    Text("Change Password")
+//                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                            verticalPadding: 0)
+//                                    Spacer()
+//                                    Image(systemName: "chevron.right")
+//                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                            verticalPadding: 0)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                                .frame(height: 36)
+//                                .foregroundColor(Theme.current.issBlack.color)
+//                                .padding(.horizontal)
+//                            }
+//
+//                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+//
+////                            Spacer()
+//                        }
+//                    }
+//                } else {
+                VStack(spacing: 16) {
 //                        Spacer()
 //                        HStack {
 //                            Spacer()
@@ -108,7 +108,7 @@ public struct ProfileRootView: View {
 //                        Spacer()
                     }
 //                    .background(Theme.current.grayDisabled.color)
-                }
+//                }
             }
         }
         .edgesIgnoringSafeArea(.top)

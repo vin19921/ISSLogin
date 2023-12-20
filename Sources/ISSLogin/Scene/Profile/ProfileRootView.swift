@@ -106,7 +106,7 @@ public struct ProfileRootView: View {
             .edgesIgnoringSafeArea(.top)
             .onAppear {
                 presenter.updateLoginStatus()
-                presenter.showTabBar()
+//                presenter.showTabBar()
             }
         } else {
             ZStack(alignment: .center) {
@@ -128,7 +128,7 @@ public struct ProfileRootView: View {
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 presenter.updateLoginStatus()
-                presenter.showTabBar()
+//                presenter.showTabBar()
             }
         }
     }

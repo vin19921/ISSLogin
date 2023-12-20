@@ -125,6 +125,10 @@ public struct ProfileRootView: View {
                     }
                 }
             }
+            .onAppear {
+                presenter.updateLoginStatus()
+                presenter.showTabBar()
+            }
         }
     }
 

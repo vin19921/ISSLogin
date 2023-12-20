@@ -36,7 +36,6 @@ public struct ProfileRootView: View {
                 ISSNavigationBarSUI(data: navigationBarData)
                 ScrollView {
                     if presenter.isLoggedIn {
-                        
                         VStack(spacing: .zero) {
                             HStack {
                                 VStack(alignment: .leading, spacing: .zero) {
@@ -84,23 +83,6 @@ public struct ProfileRootView: View {
                             
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
-                    } else {
-                        VStack(spacing: 8) {
-                            Spacer()
-                            Text(" You are not logged in")
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 0)
-                            Button(action: {
-                                presenter.routeToLogin()
-                            }) {
-                                Text("Click Here to Login")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 0)
-                            }
-                            Spacer()
-                        }
                     }
                 }
             }
@@ -111,8 +93,27 @@ public struct ProfileRootView: View {
             presenter.showTabBar()
         }
 
-        ZStack {
-            if presenter.isLoggedIn {
+        if !presenter.isLoggedIn {
+            ZStack {
+                VStack {
+                    Text(" You are not logged in")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 0)
+                    Button(action: {
+                        presenter.routeToLogin()
+                    }) {
+                        Text("Click Here to Login")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
+                    }
+                }
+            }
+            .frame(alignment: .center)
+        } else {
+            ZStack {
+                
                 Button(action: {
                     //                    self.presentationMode.wrappedValue.dismiss()
                     presenter.logOut()
@@ -123,11 +124,11 @@ public struct ProfileRootView: View {
                                             verticalPadding: 8)
                 }
             }
+            .frame(alignment: .bottom)
+            .frame(maxWidth: .infinity)
+            .frame(height: 36)
+            .foregroundColor(Theme.current.issBlack.color)
         }
-        .frame(alignment: .bottom)
-        .frame(maxWidth: .infinity)
-        .frame(height: 36)
-        .foregroundColor(Theme.current.issBlack.color)
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

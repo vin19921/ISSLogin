@@ -100,6 +100,7 @@ public struct ProfileRootView: View {
                         }
                         Spacer()
                     }
+                    .background(Theme.current.backgroundGray.color)
                 }
             }
         }

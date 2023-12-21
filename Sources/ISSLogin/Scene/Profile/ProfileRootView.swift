@@ -83,6 +83,7 @@ public struct ProfileRootView: View {
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
                     }
+                    .background(Theme.current.backgroundGray.color)
                 } else {
                     VStack {
                         Spacer()

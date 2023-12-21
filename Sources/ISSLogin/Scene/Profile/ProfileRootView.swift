@@ -115,20 +115,24 @@ public struct ProfileRootView: View {
         }
 
         if presenter.isLoggedIn {
-            ZStack(spacing: .zero) {
+            ZStack {
                 Button(action: {
                     //                    self.presentationMode.wrappedValue.dismiss()
                     presenter.logOut()
                 }) {
-                    Text("Log Out")
-                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                            verticalPadding: 8)
+                    HStack {
+                        Spacer()
+                        Text("Log Out")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 36)
                 }
-                
             }
             .frame(alignment: .bottom)
-            .frame(maxWidth: .infinity)
             .foregroundColor(Theme.current.issBlack.color)
             .background(Theme.current.backgroundGray.color)
         }

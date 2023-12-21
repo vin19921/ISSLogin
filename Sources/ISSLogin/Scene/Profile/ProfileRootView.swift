@@ -55,8 +55,7 @@ public struct ProfileRootView: View {
                                 }
                                 Spacer()
                             }
-                            .padding(.horizontal)
-                            .padding(.bottom)
+                            .padding()
                             
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
                             
@@ -116,7 +115,7 @@ public struct ProfileRootView: View {
         }
 
         if presenter.isLoggedIn {
-            ZStack {
+            ZStack(spacing: .zero) {
                 Button(action: {
                     //                    self.presentationMode.wrappedValue.dismiss()
                     presenter.logOut()

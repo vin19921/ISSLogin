@@ -84,14 +84,17 @@ public struct ProfileRootView: View {
                         }
                     }
                     .background(Theme.current.backgroundGray.color)
-                    .padding(.top)
                 } else {
                     VStack {
                         Spacer()
-                        Text(" You are not logged in")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
+                        HStack {
+                            Spacer()
+                            Text(" You are not logged in")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                            Spacer()
+                        }
                         Button(action: {
                             presenter.routeToLogin()
                         }) {
@@ -102,7 +105,6 @@ public struct ProfileRootView: View {
                         }
                         Spacer()
                     }
-                    .frame(width: .infinity)
                     .background(Theme.current.backgroundGray.color)
                 }
             }
@@ -129,6 +131,7 @@ public struct ProfileRootView: View {
             .frame(alignment: .bottom)
             .frame(maxWidth: .infinity)
             .foregroundColor(Theme.current.issBlack.color)
+            .background(Theme.current.backgroundGray.color)
         }
     }
 

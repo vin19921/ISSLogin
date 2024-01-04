@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseAuth
-//import CryptoKit
+import CryptoKit
 import AuthenticationServices
 
 class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDelegate  {

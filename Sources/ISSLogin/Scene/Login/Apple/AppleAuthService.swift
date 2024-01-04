@@ -121,7 +121,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
                 } else if let user = authResult?.user {
                     print("Firebase login success! User UID: \(user.uid)")
                     
-                    isLoggedIn = true
+//                    isLoggedIn = true
                     // Fetch user information from Facebook if needed
                     let uid = user.uid
                     let displayName = user.displayName
@@ -133,9 +133,9 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
                     print("Email: \(email ?? "N/A")")
                     print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
                     
-                    if let action = action {
-                        action(displayName ?? "", email ?? "")
-                    }
+//                    if let action = action {
+//                        action(displayName ?? "", email ?? "")
+//                    }
                 }
             }
         }

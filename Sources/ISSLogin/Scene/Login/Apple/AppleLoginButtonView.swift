@@ -111,7 +111,7 @@ struct AppleSignInView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 
-    class Coordinator: NSObject, ASAuthorizationControllerDelegate {
+    class Coordinator: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
         var parent: AppleSignInView
 
         init(_ parent: AppleSignInView) {
@@ -127,23 +127,19 @@ struct AppleSignInView: UIViewControllerRepresentable {
             controller.presentationContextProvider = self
             controller.performRequests()
         }
-    }
-}
 
-extension AppleSignInView.Coordinator: ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return UIApplication.shared.windows.first!
-    }
-}
-
-extension AppleSignInView.Coordinator: ASAuthorizationControllerDelegate {
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            parent.completionHandler(.success(credential))
+        func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+            return UIApplication.shared.windows.first!
         }
-    }
 
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        parent.completionHandler(.failure(error))
+        func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+            if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+                parent.completionHandler(.success(credential))
+            }
+        }
+
+        func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+            parent.completionHandler(.failure(error))
+        }
     }
 }

@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import FirebaseCore
+import Firebase
 import FirebaseAuth
-import CryptoKit
+//import CryptoKit
 import AuthenticationServices
 
 class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDelegate  {
@@ -114,21 +114,29 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
-            
-            // Sign in with Firebase.
+
             Auth.auth().signIn(with: credential) { (authResult, error) in
-                if (error != nil) {
-                    // Error. If error.code == .MissingOrInvalidNonce, make sure
-                    // you're sending the SHA256-hashed nonce as a hex string with
-                    // your request to Apple.
-                    print(error?.localizedDescription)
-                    return
+                if let error = error {
+                    print("Firebase authentication error: \(error.localizedDescription)")
+                } else if let user = authResult?.user {
+                    print("Firebase login success! User UID: \(user.uid)")
+                    
+                    isLoggedIn = true
+                    // Fetch user information from Facebook if needed
+                    let uid = user.uid
+                    let displayName = user.displayName
+                    let email = user.email
+                    let photoURL = user.photoURL
+                    
+                    print("UID: \(uid)")
+                    print("Display Name: \(displayName ?? "N/A")")
+                    print("Email: \(email ?? "N/A")")
+                    print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
+                    
+                    if let action = action {
+                        action(displayName ?? "", email ?? "")
+                    }
                 }
-                // User is signed in to Firebase with Apple.
-                // ...
-                print("Apple sign in!")
-                
-                // Allow proceed to next screen
             }
         }
     }

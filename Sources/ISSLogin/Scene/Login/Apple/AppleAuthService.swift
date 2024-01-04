@@ -128,6 +128,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
                     let email = user.email
                     let photoURL = user.photoURL
                     
+                    print(user)
                     print("UID: \(uid)")
                     print("Display Name: \(displayName ?? "N/A")")
                     print("Email: \(email ?? "N/A")")

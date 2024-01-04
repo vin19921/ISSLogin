@@ -90,13 +90,26 @@ struct AppleSignInView: UIViewControllerRepresentable {
         Coordinator(self)
     }
 
-    func makeUIViewController(context: Context) -> ASAuthorizationController {
-        let controller = ASAuthorizationController(authorizationRequests: [ASAuthorizationAppleIDProvider().createRequest()])
-        controller.delegate = context.coordinator
+    func makeUIViewController(context: Context) -> UIViewController {
+        let controller = UIViewController()
+        let authorizationButton = ASAuthorizationAppleIDButton()
+        authorizationButton.addTarget(context.coordinator, action: #selector(Coordinator.handleAppleSignIn), for: .touchUpInside)
+
+        let stackView = UIStackView(arrangedSubviews: [authorizationButton])
+        stackView.axis = .vertical
+        stackView.spacing = 16.0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        controller.view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.centerYAnchor.constraint(equalTo: controller.view.centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor)
+        ])
+
         return controller
     }
 
-    func updateUIViewController(_ uiViewController: ASAuthorizationController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 
     class Coordinator: NSObject, ASAuthorizationControllerDelegate {
         var parent: AppleSignInView
@@ -105,14 +118,32 @@ struct AppleSignInView: UIViewControllerRepresentable {
             self.parent = parent
         }
 
-        func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-            if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-                parent.completionHandler(.success(credential))
-            }
-        }
+        @objc func handleAppleSignIn() {
+            let request = ASAuthorizationAppleIDProvider().createRequest()
+            request.requestedScopes = [.fullName, .email]
 
-        func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-            parent.completionHandler(.failure(error))
+            let controller = ASAuthorizationController(authorizationRequests: [request])
+            controller.delegate = self
+            controller.presentationContextProvider = self
+            controller.performRequests()
         }
+    }
+}
+
+extension AppleSignInView.Coordinator: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return UIApplication.shared.windows.first!
+    }
+}
+
+extension AppleSignInView.Coordinator: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            parent.completionHandler(.success(credential))
+        }
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        parent.completionHandler(.failure(error))
     }
 }

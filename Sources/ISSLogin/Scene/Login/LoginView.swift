@@ -108,7 +108,10 @@ public struct LoginView: View {
                             isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
-                        AppleLoginButtonView(isLoggedIn: $isLoggedIn, action: {_,_ in })
+                        AppleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $isLoading, action: { fullName, email in
+                            isLoading.toggle()
+                            presenter.routeToRegister(fullName: fullName, email: email)
+                        })
                         
                         Text("Forget Password")
                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

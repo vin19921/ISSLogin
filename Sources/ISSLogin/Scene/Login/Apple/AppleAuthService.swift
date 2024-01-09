@@ -83,7 +83,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
     
     // Single-sign-on with Apple
     @available(iOS 13, *)
-    func startSignInWithAppleFlow() {
+    func startSignInWithAppleFlow(action: ((String, String) -> Void)?) {
        
         let nonce = randomNonceString()
         currentNonce = nonce
@@ -94,7 +94,17 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
 
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
-        authorizationController.performRequests()
+//        authorizationController.performRequests()
+        authorizationController.performRequests { (success, error) in
+            // Handle success and extract user information
+            // For example, you can extract full name and email
+            if let fullName = self.fullName, let email = self.email {
+                // Call the action closure with the user's full name and email
+                action(fullName, email)
+            } else {
+                print("Failed to retrieve user information")
+            }
+        }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -133,10 +143,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
                     print("Display Name: \(displayName ?? "N/A")")
                     print("Email: \(email ?? "N/A")")
                     print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
-                    
-//                    if let action = action {
-//                        action(displayName ?? "", email ?? "")
-//                    }
+
                 }
             }
         }

@@ -12,6 +12,7 @@ import ISSTheme
 
 struct AppleLoginButtonView: View {
     @Binding var isLoggedIn: Bool
+    @Binding var isLoading: Bool
     let action: ((String, String) -> Void)?
 
     @State private var isShowingAppleSignIn = false
@@ -22,7 +23,7 @@ struct AppleLoginButtonView: View {
         VStack {
             Button(action: {
 //                isShowingAppleSignIn.toggle()
-                authService.startSignInWithAppleFlow()
+                authService.startSignInWithAppleFlow(action: action)
             }) {
                 HStack {
                     Spacer()
@@ -42,17 +43,17 @@ struct AppleLoginButtonView: View {
                 .cornerRadius(12)
             }
         }
-        .fullScreenCover(isPresented: $isShowingAppleSignIn) {
-            AppleSignInView { result in
-                switch result {
-                case .success(let appleIDCredential):
-                    handleAppleSignInSuccess(appleIDCredential)
-                case .failure(let error):
-                    handleAppleSignInFailure(error)
-                }
-                isShowingAppleSignIn = false
-            }
-        }
+//        .fullScreenCover(isPresented: $isShowingAppleSignIn) {
+//            AppleSignInView { result in
+//                switch result {
+//                case .success(let appleIDCredential):
+//                    handleAppleSignInSuccess(appleIDCredential)
+//                case .failure(let error):
+//                    handleAppleSignInFailure(error)
+//                }
+//                isShowingAppleSignIn = false
+//            }
+//        }
     }
 
     private func handleAppleSignInSuccess(_ credential: ASAuthorizationAppleIDCredential) {

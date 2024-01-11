@@ -17,7 +17,7 @@ struct AppleLoginButtonView: View {
 
     @State private var isShowingAppleSignIn = false
     @State private var appleSignInError: Error?
-    @StateObject private var authService = AppleAuthService()
+    @StateObject private var authService = AppleAuthService(isLoading: self.isLoading)
 
     var body: some View {
         VStack {

@@ -13,6 +13,7 @@ import AuthenticationServices
 
 class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDelegate  {
     
+    var action: ((String, String) -> Void)?
     @Published var signedIn:Bool = false
     
     // Unhashed nonce.
@@ -84,7 +85,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
     // Single-sign-on with Apple
     @available(iOS 13, *)
     func startSignInWithAppleFlow(action: ((String, String) -> Void)?) {
-       
+        self.action = action
         let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -94,17 +95,17 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
 
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
-//        authorizationController.performRequests()
-        authorizationController.performRequests(completionHandler: { (success, error) in
-            // Handle success and extract user information
-            // For example, you can extract full name and email
-            if let fullName = self.fullName, let email = self.email {
-                // Call the action closure with the user's full name and email
-                action(fullName, email)
-            } else {
-                print("Failed to retrieve user information")
-            }
-        }
+        authorizationController.performRequests()
+//        authorizationController.performRequests(completionHandler: { (success, error) in
+//            // Handle success and extract user information
+//            // For example, you can extract full name and email
+//            if let fullName = self.fullName, let email = self.email {
+//                // Call the action closure with the user's full name and email
+//                action(fullName, email)
+//            } else {
+//                print("Failed to retrieve user information")
+//            }
+//        }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -137,13 +138,13 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
                     let displayName = user.displayName
                     let email = user.email
                     let photoURL = user.photoURL
-                    
-                    print(user)
+
                     print("UID: \(uid)")
                     print("Display Name: \(displayName ?? "N/A")")
                     print("Email: \(email ?? "N/A")")
                     print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
 
+                    self.action?(displayName, email)
                 }
             }
         }

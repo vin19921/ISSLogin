@@ -14,6 +14,7 @@ import AuthenticationServices
 class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDelegate  {
     
     var action: ((String, String) -> Void)?
+    @Binding var isLoading: Bool
     @Published var signedIn:Bool = false
     
     // Unhashed nonce.
@@ -128,6 +129,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
 
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 if let error = error {
+                    self.isLoading.toggle()
                     print("Firebase authentication error: \(error.localizedDescription)")
                 } else if let user = authResult?.user {
                     print("Firebase login success! User UID: \(user.uid)")

@@ -14,7 +14,8 @@ import AuthenticationServices
 class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDelegate  {
     
     var action: ((String, String) -> Void)?
-    @Binding var isLoading: Bool
+    var cancelLoadingAction: (() -> Void)?
+
     @Published var signedIn:Bool = false
     
     // Unhashed nonce.
@@ -86,8 +87,9 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
     
     // Single-sign-on with Apple
     @available(iOS 13, *)
-    func startSignInWithAppleFlow(action: ((String, String) -> Void)?) {
+    func startSignInWithAppleFlow(action: ((String, String) -> Void)?, cancelLoadingAction: (() -> Void)?) {
         self.action = action
+        self.cancelLoadingAction = cancelLoadingAction
         let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -130,7 +132,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
 
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 if let error = error {
-                    self.isLoading.toggle()
+                    self.cancelLoadingAction?()
                     print("Firebase authentication error: \(error.localizedDescription)")
                 } else if let user = authResult?.user {
                     print("Firebase login success! User UID: \(user.uid)")

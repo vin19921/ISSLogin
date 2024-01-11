@@ -17,14 +17,16 @@ struct AppleLoginButtonView: View {
 
     @State private var isShowingAppleSignIn = false
     @State private var appleSignInError: Error?
-    @StateObject private var authService = AppleAuthService(isLoading: self.isLoading)
+    @StateObject private var authService = AppleAuthService()
 
     var body: some View {
         VStack {
             Button(action: {
 //                isShowingAppleSignIn.toggle()
                 isLoggedIn.toggle()
-                authService.startSignInWithAppleFlow(action: action)
+                authService.startSignInWithAppleFlow(action: action, cancelLoadingAction: {
+                    isLoading = false
+                })
             }) {
                 HStack {
                     Spacer()

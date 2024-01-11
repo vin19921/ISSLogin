@@ -22,8 +22,7 @@ struct AppleLoginButtonView: View {
     var body: some View {
         VStack {
             Button(action: {
-//                isShowingAppleSignIn.toggle()
-                isLoggedIn.toggle()
+                isLoading.toggle()
                 authService.startSignInWithAppleFlow(action: action, cancelLoadingAction: {
                     isLoading = false
                 })

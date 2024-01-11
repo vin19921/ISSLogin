@@ -21,9 +21,8 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
     // Unhashed nonce.
     var currentNonce: String?
     
-    init(isLoading: Binding<Bool>) {
+    override init() {
         super.init()
-        self._isLoading = isLoading
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.signedIn = true

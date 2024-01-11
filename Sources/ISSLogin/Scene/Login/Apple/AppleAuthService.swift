@@ -144,7 +144,9 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
                     print("Email: \(email ?? "N/A")")
                     print("Photo URL: \(photoURL?.absoluteString ?? "N/A")")
 
-                    self.action?(displayName, email)
+                    if let action = self.action {
+                        action(displayName ?? "", email ?? "")
+                    }
                 }
             }
         }

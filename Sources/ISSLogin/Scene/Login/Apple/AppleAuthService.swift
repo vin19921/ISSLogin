@@ -95,7 +95,7 @@ class AppleAuthService: NSObject, ObservableObject, ASAuthorizationControllerDel
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
 //        authorizationController.performRequests()
-        authorizationController.performRequests { (success, error) in
+        authorizationController.performRequests(completionHandler: { (success, error) in
             // Handle success and extract user information
             // For example, you can extract full name and email
             if let fullName = self.fullName, let email = self.email {

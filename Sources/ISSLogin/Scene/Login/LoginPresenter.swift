@@ -17,6 +17,7 @@ final class LoginPresenter: ObservableObject {
     private var router: LoginRouter?
     private var cancellables = Set<AnyCancellable>()
 
+    @Published var isLoading = false
     @Published var showingAlert = false
     @Published var alertInfo = AlertInfo(message: "")
 
@@ -30,7 +31,8 @@ final class LoginPresenter: ObservableObject {
         self.router = router
     }
 
-    func fetchLogin(request: Login.Model.Request, isLoading: Bool, completionHandler: (() -> Void)? = nil) {
+    func fetchLogin(request: Login.Model.Request, completionHandler: (() -> Void)? = nil) {
+        isLoading.toggle()
         interactor.fetchLogin(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
@@ -100,6 +102,7 @@ extension LoginPresenter {
     }
 
     func routeToRegister(fullName: String, email: String) {
+        isLoading.toggle()
         router?.navigate(to: .registerScreen(fullName: fullName, email: email))
     }
 

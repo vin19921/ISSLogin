@@ -15,7 +15,7 @@ public struct LoginView: View {
 
     @ObservedObject private var presenter: LoginPresenter
 
-    @State private var isLoading = false
+//    @State private var isLoading = false
 
     @State private var phoneText = ""
     @State private var passwordText = ""
@@ -82,10 +82,9 @@ public struct LoginView: View {
                         }
 
                         Button(action: {
-                            isLoading.toggle()
+//                            isLoading.toggle()
                             presenter.fetchLogin(request: Login.Model.Request(mobileNo: "60\(phoneText)",
                                                                               password: passwordText),
-                                                 isLoading: isLoading,
                                                  completionHandler: {
 //                                                    isLoading.toggle()
                                                     self.presentationMode.wrappedValue.dismiss()
@@ -102,16 +101,16 @@ public struct LoginView: View {
                         }
                         .disabled(!validated())
 
-                        FacebookLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $isLoading, action: { fullName, email in
-                            isLoading.toggle()
+                        FacebookLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $presenter.isLoading, action: { fullName, email in
+//                            presenter.isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
-                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $isLoading, action: { fullName, email in
-                            isLoading.toggle()
+                        GoogleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $presenter.isLoading, action: { fullName, email in
+//                            isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
-                        AppleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $isLoading, action: { fullName, email in
-                            isLoading.toggle()
+                        AppleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $presenter.isLoading, action: { fullName, email in
+//                            isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
                         
@@ -140,7 +139,7 @@ public struct LoginView: View {
             AlertSUI(alertInfo: presenter.alertInfo)
         }
         .edgesIgnoringSafeArea(.all)
-        .loading(isLoading: $isLoading)
+        .loading(isLoading: $presenter.isLoading)
 //        .modifier(SwipeBackGesture {
 //            self.presentationMode.wrappedValue.dismiss()
 //        })

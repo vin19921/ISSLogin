@@ -77,7 +77,7 @@ final class LoginPresenter: ObservableObject {
             } else {
                 guard let data = data else { return }
                 saveUserInfo(loginDataModel: data)
-                routeToRoot()
+//                routeToRoot()
             }
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
 //                                                                        registrationData: response.data))

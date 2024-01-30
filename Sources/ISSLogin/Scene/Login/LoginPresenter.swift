@@ -30,13 +30,13 @@ final class LoginPresenter: ObservableObject {
         self.router = router
     }
 
-    func fetchLogin(request: Login.Model.Request, completionHandler: (() -> Void)? = nil) {
+    func fetchLogin(request: Login.Model.Request, isLoading: Bool, completionHandler: (() -> Void)? = nil) {
         interactor.fetchLogin(request: request)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
 
-                completionHandler?()
+                isLoading.toggle()
 
                 switch completion {
                 case let .failure(error):
@@ -55,13 +55,13 @@ final class LoginPresenter: ObservableObject {
                 }
             }, receiveValue: { response in
                 DispatchQueue.main.async {
-                    self.handleLoginResponse(response: response)
+                    self.handleLoginResponse(response: response, completionHandler: completionHandler)
                 }
             })
             .store(in: &cancellables)
     }
 
-    private func handleLoginResponse(response: Login.Model.Response) {
+    private func handleLoginResponse(response: Login.Model.Response, completionHandler: (() -> Void)? = nil) {
 //        let resultCode = response.resultCode
 //        let resultMessage = response.resultMessage
         let status = response.status
@@ -77,6 +77,7 @@ final class LoginPresenter: ObservableObject {
             } else {
                 guard let data = data else { return }
                 saveUserInfo(loginDataModel: data)
+                completionHandler?()
 //                routeToRoot()
             }
 //            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,

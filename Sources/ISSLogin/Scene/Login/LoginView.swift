@@ -85,8 +85,9 @@ public struct LoginView: View {
                             isLoading.toggle()
                             presenter.fetchLogin(request: Login.Model.Request(mobileNo: "60\(phoneText)",
                                                                               password: passwordText),
+                                                 isLoading: isLoading,
                                                  completionHandler: {
-                                                    isLoading.toggle()
+//                                                    isLoading.toggle()
                                                     self.presentationMode.wrappedValue.dismiss()
                                                  })
                         }) {

@@ -10,7 +10,7 @@ import ISSNetwork
 /// All dependencies that are required to be initialized once and passed down to the providers should be held here.
 public struct PackageDependencyContainer {
     public var networkMonitor: NetworkMonitor?
-    public var tabBarController: TabBarControllerLogic?
+    public var tabBarController: LoginTabBarControllerLogic?
 }
 
 public enum PackageDependency {
@@ -24,7 +24,7 @@ public enum PackageDependency {
         packageDependencies.networkMonitor = networkMonitor
     }
     
-    public static func setTabBarController(tabBarController: TabBarControllerLogic) {
+    public static func setTabBarController(tabBarController: LoginTabBarControllerLogic) {
         packageDependencies.tabBarController = tabBarController
     }
 }

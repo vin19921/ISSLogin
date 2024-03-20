@@ -42,8 +42,8 @@ public struct LoginView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         LoginImageAssets.jomBookLogo.image
-                            .resizable()
-                            .frame(width: 128, height: 128)
+//                            .resizable()
+//                            .frame(width: 128, height: 128)
                             .aspectRatio(contentMode: .fit)
                             .padding(.top, 50)
                         Spacer()

@@ -41,7 +41,7 @@ public struct LoginView: View {
                 ISSNavigationBarSUI(data: navigationBarData)
                 ScrollView {
                     VStack(spacing: 16) {
-                        LoginImageAssets.issLogo.image
+                        LoginImageAssets.jomBookLogo.image
                             .resizable()
                             .frame(width: 128, height: 128)
                             .aspectRatio(contentMode: .fit)

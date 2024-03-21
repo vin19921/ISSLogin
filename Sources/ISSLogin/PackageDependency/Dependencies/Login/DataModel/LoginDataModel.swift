@@ -13,6 +13,11 @@ public protocol LoginResponseDataModel {
 }
 
 public protocol LoginDataModel {
+    var login: LoginDetailsDataModel? { get }
+    var token: LoginTokenDataModel? { get }
+}
+
+public protocol LoginDetailsDataModel {
     var id: String { get }
     var name: String { get }
     var email: String { get }
@@ -24,7 +29,6 @@ public protocol LoginDataModel {
     var isCustomer: Int16 { get }
     var isDraft: Int16 { get }
     var isCompleteRegister: Int16 { get }
-    var token: LoginTokenDataModel? { get }
 }
 
 public protocol LoginTokenDataModel {

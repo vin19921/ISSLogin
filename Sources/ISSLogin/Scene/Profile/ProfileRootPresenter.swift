@@ -83,7 +83,7 @@ extension ProfileRootPresenter {
     }
 
     func routeToUserPreference() {
-        router?.navigate(to: .userPreference)
+        router?.navigate(to: .userPreference(hasRunBefore: interactor.hasRunBefore()))
     }
 
 //    func logOut() {

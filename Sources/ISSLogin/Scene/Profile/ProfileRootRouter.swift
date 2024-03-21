@@ -21,7 +21,7 @@ extension ProfileRootRouter: RoutingLogic {
         case loginScreen
         case viewProfileScreen
         case changePasswordScreen
-        case userPreference(hasRunBefore: Bool)
+        case userPreference
     }
 
     public func navigate(to destination: Destination) {
@@ -34,8 +34,8 @@ extension ProfileRootRouter: RoutingLogic {
             navigator.navigateToViewProfileScreen()
         case .changePasswordScreen:
             navigator.navigateToChangePasswordScreen()
-        case let .userPreference(hasRunBefore):
-            navigator.navigateToUserPreferenceScreen(hasRunBefore: hasRunBefore)
+        case .userPreference:
+            navigator.navigateToUserPreferenceScreen()
         }
     }
 }

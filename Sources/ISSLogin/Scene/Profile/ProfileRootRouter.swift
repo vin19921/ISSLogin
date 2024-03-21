@@ -21,6 +21,7 @@ extension ProfileRootRouter: RoutingLogic {
         case loginScreen
         case viewProfileScreen
         case changePasswordScreen
+        case userPreference
     }
 
     public func navigate(to destination: Destination) {
@@ -33,6 +34,8 @@ extension ProfileRootRouter: RoutingLogic {
             navigator.navigateToViewProfileScreen()
         case .changePasswordScreen:
             navigator.navigateToChangePasswordScreen()
+        case .userPreference:
+            navigator.navigateToUserPreferenceScreen()
         }
     }
 }

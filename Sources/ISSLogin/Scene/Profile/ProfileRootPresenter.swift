@@ -82,6 +82,10 @@ extension ProfileRootPresenter {
         router?.navigate(to: .changePasswordScreen)
     }
 
+    func routeToUserPreference() {
+        router?.navigate(to: .userPreference)
+    }
+
 //    func logOut() {
 //        interactor.logOut()
 //    }

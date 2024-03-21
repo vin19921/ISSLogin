@@ -80,6 +80,28 @@ public struct ProfileRootView: View {
                             }
                             
                             Rectangle().frame(height: 1).foregroundColor(Color.gray)
+
+                            Button(action: {
+                                presenter.routeToUserPreference()
+                            }) {
+                                HStack {
+                                    Text("User Preference")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 36)
+                                .foregroundColor(Theme.current.issBlack.color)
+                                .padding(.horizontal)
+                            }
+                            
+                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
                     }
                 } else {

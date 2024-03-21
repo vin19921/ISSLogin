@@ -10,5 +10,5 @@ public protocol ProfileRootRoutingLogic {
     func navigateToLoginScreen()
     func navigateToViewProfileScreen()
     func navigateToChangePasswordScreen()
-    func navigateToUserPreferenceScreen()
+    func navigateToUserPreferenceScreen(hasRunBefore: Bool)
 }

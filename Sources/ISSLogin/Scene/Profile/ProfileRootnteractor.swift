@@ -14,6 +14,7 @@ protocol ProfileRootBusinessLogic {
     func getUserName() -> String
     func logOut()
     func isLoggedIn() -> Bool
+    func hasRunBefore() -> Bool
 }
 
 final class ProfileRootInteractor: ProfileRootBusinessLogic {
@@ -56,6 +57,10 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
 
     func isLoggedIn() -> Bool {
         provider.isLoggedIn()
+    }
+
+    func hasRunBefore() -> Bool {
+        provider.hasRunBefore()
     }
 }
 

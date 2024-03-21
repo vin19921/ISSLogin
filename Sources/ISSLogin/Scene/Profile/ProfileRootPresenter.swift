@@ -104,6 +104,10 @@ extension ProfileRootPresenter {
         interactor.getUserName()
     }
 
+    func hasRunBefore() -> Bool {
+        interactor.hasRunBefore()
+    }
+
 //    func isLoggedIn() -> Bool {
 //        interactor.isLoggedIn()
 //    }

@@ -102,7 +102,9 @@ extension LoginPresenter {
     }
 
     func routeToRegister(fullName: String, email: String) {
-        isLoading.toggle()
+        if fullName.isEmpty || email.isEmpty {
+            isLoading.toggle()
+        }
         router?.navigate(to: .registerScreen(fullName: fullName, email: email))
     }
 

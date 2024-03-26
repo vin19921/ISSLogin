@@ -39,6 +39,7 @@ public extension ViewProfileUserDataModel {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id) ?? ""
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
         email = try container.decodeIfPresent(String.self, forKey: .email) ?? ""
         mobileNo = try container.decodeIfPresent(String.self, forKey: .mobileNo) ?? ""
     }

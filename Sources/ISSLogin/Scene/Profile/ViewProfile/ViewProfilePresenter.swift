@@ -160,9 +160,9 @@ final class ViewProfilePresenter: ObservableObject {
 //                    saveUserInfo(key: .isLoggedIn, value: true)
 //                    saveUserInfo(loginDataModel: data)
 //                }
-                fullNameText = data.name ?? ""
-                emailText = data.email ?? ""
-                phoneText = data.mobileNo ?? ""
+                fullNameText = data.user?.name ?? ""
+                emailText = data.user?.email ?? ""
+                phoneText = data.user?.mobileNo ?? ""
 
                 saveUserInfo(viewProfileDataModel: data)
 

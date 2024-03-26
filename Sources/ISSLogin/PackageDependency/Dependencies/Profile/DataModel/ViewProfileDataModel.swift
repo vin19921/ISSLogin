@@ -6,32 +6,44 @@
 //
 
 public struct ViewProfileDataModel: Codable {
+    public let user: ViewProfileUserDataModel?
+
+    enum CodingKeys: String, CodingKey {
+        case user
+    }
+}
+
+public extension ViewProfileDataModel {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        user = try? container.decode(ViewProfileUserDataModel.self, forKey: .user)
+    }
+}
+
+
+public struct ViewProfileUserDataModel: Codable {
     public let id: String?
     public let name: String?
     public let email: String?
-    public let state: String?
-    public let city: String?
     public let mobileNo: String?
-    public let status: Int16?
-    public let isMerchant: Int16?
-    public let isCustomer: Int16?
-    public let isDraft: Int16?
-    public let isCompleteRegister: Int16?
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case email
-        case state
-        case city
         case mobileNo
-        case status
-        case isMerchant
-        case isCustomer
-        case isDraft
-        case isCompleteRegister
     }
 }
+
+public extension ViewProfileUserDataModel {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(String.self, forKey: .id) ?? ""
+        email = try container.decodeIfPresent(String.self, forKey: .email) ?? ""
+        mobileNo = try container.decodeIfPresent(String.self, forKey: .mobileNo) ?? ""
+    }
+}
+
 
 public struct ViewProfileResponse: Codable {
     public let resultCode: Int16?

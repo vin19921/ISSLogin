@@ -154,6 +154,7 @@ public struct ProfileRootView: View {
             }
             .frame(alignment: .bottom)
             .foregroundColor(Theme.current.issBlack.color)
+            .padding()
         }
     }
 

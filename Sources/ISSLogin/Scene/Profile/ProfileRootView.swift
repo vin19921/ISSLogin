@@ -36,28 +36,67 @@ public struct ProfileRootView: View {
                 if presenter.isLoggedIn {
                     ScrollView {
                         VStack(spacing: .zero) {
-                            HStack {
-                                VStack(alignment: .leading, spacing: .zero) {
+                            HStack(spacing: 12) {
+                                Circle()
+                                    .fill(Color.gray)
+                                    .frame(width: 54, height : 54)
+                                
+                                VStack(spacing: .zero) {
                                     Text(presenter.getUserName())
                                         .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                             lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                             verticalPadding: 0)
-                                    Text("View Profile")
+                                    Text("Created by")
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
-                                        .foregroundColor(Color.blue)
-                                        .padding(.top, 8)
-                                        .onTapGesture {
-                                            print("On Tap View Profile")
-                                            presenter.routeToViewProfile()
-                                        }
                                 }
                                 Spacer()
                             }
                             .padding()
+//                            HStack {
+//                                VStack(alignment: .leading, spacing: .zero) {
+//                                    
+//                                    
+//                                    Text("View Profile")
+//                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                            verticalPadding: 0)
+//                                        .foregroundColor(Color.blue)
+//                                        .padding(.top, 8)
+//                                        .onTapGesture {
+//                                            print("On Tap View Profile")
+//                                            presenter.routeToViewProfile()
+//                                        }
+//                                }
+//                                Spacer()
+//                            }
+//                            .padding()
+
+                            Button(action: {
+                                presenter.routeToViewProfile()
+                            }) {
+                                HStack {
+                                    Text("View Profile")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 36)
+                                .foregroundColor(Theme.current.issBlack.color)
+                                .padding(.horizontal)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
+                            }
                             
-                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
                             
                             Button(action: {
                                 presenter.routeToChangePassword()
@@ -77,9 +116,13 @@ public struct ProfileRootView: View {
                                 .frame(height: 36)
                                 .foregroundColor(Theme.current.issBlack.color)
                                 .padding(.horizontal)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
                             }
                             
-                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+//                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
 
                             Button(action: {
                                 presenter.routeToUserPreference()
@@ -99,9 +142,13 @@ public struct ProfileRootView: View {
                                 .frame(height: 36)
                                 .foregroundColor(Theme.current.issBlack.color)
                                 .padding(.horizontal)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
                             }
                             
-                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+//                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
                     }
                 } else {

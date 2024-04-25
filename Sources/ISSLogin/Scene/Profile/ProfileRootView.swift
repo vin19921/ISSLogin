@@ -69,7 +69,6 @@ public struct ProfileRootView: View {
                                     .padding()
                             }
                             .padding(.horizontal)
-                            .background(Color.blue)
 //                            HStack {
 //                                VStack(alignment: .leading, spacing: .zero) {
 //                                    
@@ -182,6 +181,11 @@ public struct ProfileRootView: View {
                                     presenter.logOut()
                                 }) {
                                     HStack {
+                                        LoginImageAssets.exit.image
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .frame(width: 22, height: 22)
+                                            .aspectRatio(contentMode: .fit)
                                         Text("Log Out")
                                             .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                                 lineHeight: Theme.current.bodyOneBold.lineHeight,
@@ -202,11 +206,11 @@ public struct ProfileRootView: View {
 //                                    )
                                 }
                             }
-                            .padding(.horizontal)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Color.red, lineWidth: 1)
                             )
+                            .padding(.horizontal)
                         
                             
 //                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
@@ -267,12 +271,12 @@ public struct ProfileRootView: View {
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
-        let centerAlignedItem = ToolBarItemDataBuilder()
+        let leftAlignedItem = ToolBarItemDataBuilder()
             .setTitleString("Profile")
             .setTitleFont(Theme.current.subtitle.font)
             .build()
         let toolBarItems = ToolBarItemsDataBuilder()
-            .setCenterAlignedItem(centerAlignedItem)
+            .setLeftAlignedItem(leftAlignedItem)
             .build()
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)

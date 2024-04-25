@@ -50,6 +50,7 @@ public struct ProfileRootView: View {
                                                                     verticalPadding: 0)
                                             Spacer()
                                         }
+                                        Spacer()
                                         HStack {
                                             Text("0129665980")
                                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -67,7 +68,8 @@ public struct ProfileRootView: View {
                                     .frame(height: 69)
                                     .padding()
                             }
-                            .padding()
+                            .padding(.horizontal)
+                            .background(Color.blue)
 //                            HStack {
 //                                VStack(alignment: .leading, spacing: .zero) {
 //                                    
@@ -87,86 +89,94 @@ public struct ProfileRootView: View {
 //                            }
 //                            .padding()
 
-                            Button(action: {
-                                presenter.routeToViewProfile()
-                            }) {
-                                HStack {
-                                    LoginImageAssets.profile.image
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .frame(width: 22, height: 22)
-                                        .aspectRatio(contentMode: .fit)
-                                    Text("View Profile")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
+                            VStack(spacing: .zero) {
+                                Button(action: {
+                                    presenter.routeToViewProfile()
+                                }) {
+                                    HStack {
+                                        LoginImageAssets.profile.image
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .frame(width: 22, height: 22)
+                                            .aspectRatio(contentMode: .fit)
+                                        Text("View Profile")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 36)
+                                    .foregroundColor(Theme.current.issBlack.color)
+                                    .padding()
+                                    //                                .overlay(
+                                    //                                    RoundedRectangle(cornerRadius: 16)
+                                    //                                        .stroke(Color.gray, lineWidth: 1)
+                                    //                                )
                                 }
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 36)
-                                .foregroundColor(Theme.current.issBlack.color)
-                                .padding()
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
-                            }
-                            .padding(.horizontal)
-                            
-                            
-                            Button(action: {
-                                presenter.routeToChangePassword()
-                            }) {
-                                HStack {
-                                    Text("Change Password")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
-                                }
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 36)
-                                .foregroundColor(Theme.current.issBlack.color)
                                 .padding(.horizontal)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
-                            }
-                            
-//                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
-
-                            Button(action: {
-                                presenter.routeToUserPreference()
-                            }) {
-                                HStack {
-                                    Text("User Preference")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
+                                
+                                
+                                Button(action: {
+                                    presenter.routeToChangePassword()
+                                }) {
+                                    HStack {
+                                        Text("Change Password")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 36)
+                                    .foregroundColor(Theme.current.issBlack.color)
+                                    .padding()
+//                                    .overlay(
+//                                        RoundedRectangle(cornerRadius: 16)
+//                                            .stroke(Color.gray, lineWidth: 1)
+//                                    )
                                 }
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 36)
-                                .foregroundColor(Theme.current.issBlack.color)
                                 .padding(.horizontal)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
+                                
+                                //                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+                                
+                                Button(action: {
+                                    presenter.routeToUserPreference()
+                                }) {
+                                    HStack {
+                                        Text("User Preference")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 36)
+                                    .foregroundColor(Theme.current.issBlack.color)
+                                    .padding()
+//                                    .overlay(
+//                                        RoundedRectangle(cornerRadius: 16)
+//                                            .stroke(Color.gray, lineWidth: 1)
+//                                    )
+                                }
+                                .padding(.horizontal)
                             }
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color.gray, lineWidth: 1)
+                            )
                             
 //                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }

@@ -100,8 +100,8 @@ public struct ProfileRootView: View {
                                             .frame(width: 22, height: 22)
                                             .aspectRatio(contentMode: .fit)
                                         Text("View Profile")
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                                 verticalPadding: 0)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -118,16 +118,14 @@ public struct ProfileRootView: View {
                                     //                                        .stroke(Color.gray, lineWidth: 1)
                                     //                                )
                                 }
-                                .padding(.horizontal)
-                                
                                 
                                 Button(action: {
                                     presenter.routeToChangePassword()
                                 }) {
                                     HStack {
                                         Text("Change Password")
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                                 verticalPadding: 0)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -144,7 +142,6 @@ public struct ProfileRootView: View {
 //                                            .stroke(Color.gray, lineWidth: 1)
 //                                    )
                                 }
-                                .padding(.horizontal)
                                 
                                 //                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
                                 
@@ -153,8 +150,8 @@ public struct ProfileRootView: View {
                                 }) {
                                     HStack {
                                         Text("User Preference")
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                                 verticalPadding: 0)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -171,12 +168,46 @@ public struct ProfileRootView: View {
 //                                            .stroke(Color.gray, lineWidth: 1)
 //                                    )
                                 }
-                                .padding(.horizontal)
                             }
+                            .padding(.horizontal)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Color.gray, lineWidth: 1)
                             )
+
+                            Spacer()
+
+                            VStack {
+                                Button(action: {
+                                    presenter.logOut()
+                                }) {
+                                    HStack {
+                                        Text("Log Out")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 36)
+                                    .foregroundColor(Color.red)
+                                    .padding()
+//                                    .overlay(
+//                                        RoundedRectangle(cornerRadius: 16)
+//                                            .stroke(Color.gray, lineWidth: 1)
+//                                    )
+                                }
+                            }
+                            .padding(.horizontal)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color.red, lineWidth: 1)
+                            )
+                        
                             
 //                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
@@ -211,34 +242,34 @@ public struct ProfileRootView: View {
 //                presenter.showTabBar()
         }
 
-        if presenter.isLoggedIn {
-            ZStack {
-                Button(action: {
-                    //                    self.presentationMode.wrappedValue.dismiss()
-                    presenter.logOut()
-                }) {
-                    HStack {
-                        Spacer()
-                        Text("Log Out")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 0)
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 36)
-                }
-            }
-            .frame(alignment: .bottom)
-            .foregroundColor(Theme.current.issBlack.color)
-            .padding()
-        }
+//        if presenter.isLoggedIn {
+//            ZStack {
+//                Button(action: {
+//                    //                    self.presentationMode.wrappedValue.dismiss()
+//                    presenter.logOut()
+//                }) {
+//                    HStack {
+//                        Spacer()
+//                        Text("Log Out")
+//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+//                                                verticalPadding: 0)
+//                        Spacer()
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                    .frame(height: 36)
+//                }
+//            }
+//            .frame(alignment: .bottom)
+//            .foregroundColor(Theme.current.issBlack.color)
+//            .padding()
+//        }
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
         let centerAlignedItem = ToolBarItemDataBuilder()
             .setTitleString("Profile")
-            .setTitleFont(Theme.current.bodyOneBold.font)
+            .setTitleFont(Theme.current.subtitle.font)
             .build()
         let toolBarItems = ToolBarItemsDataBuilder()
             .setCenterAlignedItem(centerAlignedItem)

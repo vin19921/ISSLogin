@@ -13,6 +13,7 @@ public enum LoginImageAssets: String, ImageLoader, ImageLoaderSUI {
     case issLogo
     case jomBookLogo
     case profile
+    case exit
 }
 
 //public enum UserInfoKey: String {

@@ -236,6 +236,7 @@ public struct ProfileRootView: View {
 //                                            .stroke(Color.gray, lineWidth: 1)
 //                                    )
                     }
+                    .cornerRadius(12)
 //                }
 //                .background(Color.red.opacity(0.5))
 //                .overlay(
@@ -245,14 +246,12 @@ public struct ProfileRootView: View {
 //                .padding(.horizontal)
             }
             .frame(alignment: .bottom)
-            .background(Color.red.opacity(0.5))
+            .background(Color.red.opacity(0.2))
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.red, lineWidth: 1)
             )
-            .padding(.horizontal)
-//            .foregroundColor(Theme.current.issBlack.color)
-//            .padding()
+            .padding()
         }
     }
 

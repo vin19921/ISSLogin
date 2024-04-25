@@ -237,12 +237,12 @@ public struct ProfileRootView: View {
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
                         }
-                        .padding()
-                        .cornerRadius(12)
                         .frame(maxWidth: .infinity)
                         .frame(height: 36)
                         .foregroundColor(Color.red)
                         .background(Color.red.opacity(0.2))
+                        .padding()
+                        .cornerRadius(12)
 //                                    .overlay(
 //                                        RoundedRectangle(cornerRadius: 16)
 //                                            .stroke(Color.gray, lineWidth: 1)

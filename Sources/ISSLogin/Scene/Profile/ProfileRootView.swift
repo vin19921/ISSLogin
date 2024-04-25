@@ -240,8 +240,8 @@ public struct ProfileRootView: View {
 //                        .frame(maxWidth: .infinity)
 //                        .frame(height: 36)
                         .foregroundColor(Color.red)
-                        .background(Color.red.opacity(0.2))
                         .padding()
+                        .background(Color.red.opacity(0.2)
                         .cornerRadius(12)
 //                                    .overlay(
 //                                        RoundedRectangle(cornerRadius: 16)

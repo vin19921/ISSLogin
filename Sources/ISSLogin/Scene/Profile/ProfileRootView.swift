@@ -99,8 +99,8 @@ public struct ProfileRootView: View {
                                             .frame(width: 22, height: 22)
                                             .aspectRatio(contentMode: .fit)
                                         Text("View Profile")
-                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
                                                                 verticalPadding: 0)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -122,9 +122,14 @@ public struct ProfileRootView: View {
                                     presenter.routeToChangePassword()
                                 }) {
                                     HStack {
+                                        LoginImageAssets.lock.image
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .frame(width: 22, height: 22)
+                                            .aspectRatio(contentMode: .fit)
                                         Text("Change Password")
-                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
                                                                 verticalPadding: 0)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -148,9 +153,14 @@ public struct ProfileRootView: View {
                                     presenter.routeToUserPreference()
                                 }) {
                                     HStack {
-                                        Text("User Preference")
-                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                        LoginImageAssets.love.image
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .frame(width: 22, height: 22)
+                                            .aspectRatio(contentMode: .fit)
+                                        Text("Task Preferences")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
                                                                 verticalPadding: 0)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -170,7 +180,7 @@ public struct ProfileRootView: View {
                             }
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.gray, lineWidth: 1)
+                                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                             )
                             .padding(.horizontal)
                         }
@@ -218,8 +228,8 @@ public struct ProfileRootView: View {
                                 .frame(width: 22, height: 22)
                                 .aspectRatio(contentMode: .fit)
                             Text("Log Out")
-                                .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                    lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyOneMedium.lineHeight,
                                                     verticalPadding: 0)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -236,7 +246,6 @@ public struct ProfileRootView: View {
 //                                            .stroke(Color.gray, lineWidth: 1)
 //                                    )
                     }
-                    .cornerRadius(12)
 //                }
 //                .background(Color.red.opacity(0.5))
 //                .overlay(
@@ -246,6 +255,7 @@ public struct ProfileRootView: View {
 //                .padding(.horizontal)
             }
             .frame(alignment: .bottom)
+            .cornerRadius(12)
             .background(Color.red.opacity(0.2))
             .overlay(
                 RoundedRectangle(cornerRadius: 16)

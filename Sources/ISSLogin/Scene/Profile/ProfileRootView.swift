@@ -168,52 +168,11 @@ public struct ProfileRootView: View {
 //                                    )
                                 }
                             }
-                            .padding(.horizontal)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Color.gray, lineWidth: 1)
                             )
-
-                            Spacer()
-
-                            VStack {
-                                Button(action: {
-                                    presenter.logOut()
-                                }) {
-                                    HStack {
-                                        LoginImageAssets.exit.image
-                                            .resizable()
-                                            .renderingMode(.template)
-                                            .frame(width: 22, height: 22)
-                                            .aspectRatio(contentMode: .fit)
-                                        Text("Log Out")
-                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                                verticalPadding: 0)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                                verticalPadding: 0)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 36)
-                                    .foregroundColor(Color.red)
-                                    .padding()
-//                                    .overlay(
-//                                        RoundedRectangle(cornerRadius: 16)
-//                                            .stroke(Color.gray, lineWidth: 1)
-//                                    )
-                                }
-                            }
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.red, lineWidth: 1)
-                            )
                             .padding(.horizontal)
-                        
-                            
-//                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
                         }
                     }
                 } else {
@@ -246,28 +205,55 @@ public struct ProfileRootView: View {
 //                presenter.showTabBar()
         }
 
-//        if presenter.isLoggedIn {
-//            ZStack {
-//                Button(action: {
-//                    //                    self.presentationMode.wrappedValue.dismiss()
-//                    presenter.logOut()
-//                }) {
-//                    HStack {
-//                        Spacer()
-//                        Text("Log Out")
-//                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                verticalPadding: 0)
-//                        Spacer()
-//                    }
-//                    .frame(maxWidth: .infinity)
-//                    .frame(height: 36)
+        if presenter.isLoggedIn {
+            ZStack {
+//                VStack {
+                    Button(action: {
+                        presenter.logOut()
+                    }) {
+                        HStack {
+                            LoginImageAssets.exit.image
+                                .resizable()
+                                .renderingMode(.template)
+                                .frame(width: 22, height: 22)
+                                .aspectRatio(contentMode: .fit)
+                            Text("Log Out")
+                                .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                    lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                    verticalPadding: 0)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                    verticalPadding: 0)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 36)
+                        .foregroundColor(Color.red)
+                        .padding()
+//                                    .overlay(
+//                                        RoundedRectangle(cornerRadius: 16)
+//                                            .stroke(Color.gray, lineWidth: 1)
+//                                    )
+                    }
 //                }
-//            }
-//            .frame(alignment: .bottom)
+//                .background(Color.red.opacity(0.5))
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 16)
+//                        .stroke(Color.red, lineWidth: 1)
+//                )
+//                .padding(.horizontal)
+            }
+            .frame(alignment: .bottom)
+            .background(Color.red.opacity(0.5))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.red, lineWidth: 1)
+            )
+            .padding(.horizontal)
 //            .foregroundColor(Theme.current.issBlack.color)
 //            .padding()
-//        }
+        }
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

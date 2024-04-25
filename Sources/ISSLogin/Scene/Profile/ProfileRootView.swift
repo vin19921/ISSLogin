@@ -36,22 +36,36 @@ public struct ProfileRootView: View {
                 if presenter.isLoggedIn {
                     ScrollView {
                         VStack(spacing: .zero) {
-                            HStack(spacing: 12) {
-                                Circle()
-                                    .fill(Color.gray)
-                                    .frame(width: 54, height : 54)
-                                
-                                VStack(spacing: .zero) {
-                                    Text(presenter.getUserName())
-                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                            verticalPadding: 0)
-                                    Text("Created by")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
+                            VStack {
+                                HStack(spacing: 12) {
+                                    Circle()
+                                        .fill(Color.gray)
+                                        .frame(width: 54, height : 54)
+                                    
+                                    VStack(spacing: .zero) {
+                                        HStack {
+                                            Text(presenter.getUserName())
+                                                .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                    lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                                    verticalPadding: 0)
+                                            Spacer()
+                                        }
+                                        HStack {
+                                            Text("0129665980")
+                                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                    verticalPadding: 0)
+                                            Spacer()
+                                        }
+                                    }
+                                    Spacer()
                                 }
-                                Spacer()
+                                .padding([.top, .horizontal])
+
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color.orange)
+                                    .frame(height: 69)
+                                    .padding()
                             }
                             .padding()
 //                            HStack {
@@ -77,6 +91,11 @@ public struct ProfileRootView: View {
                                 presenter.routeToViewProfile()
                             }) {
                                 HStack {
+                                    LoginImageAssets.profile.image
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .frame(width: 22, height: 22)
+                                        .aspectRatio(contentMode: .fit)
                                     Text("View Profile")
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -90,12 +109,13 @@ public struct ProfileRootView: View {
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 36)
                                 .foregroundColor(Theme.current.issBlack.color)
-                                .padding(.horizontal)
+                                .padding()
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 16)
                                         .stroke(Color.gray, lineWidth: 1)
                                 )
                             }
+                            .padding(.horizontal)
                             
                             
                             Button(action: {
@@ -206,17 +226,15 @@ public struct ProfileRootView: View {
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
-//        let leftAlignedItem = ToolBarItemDataBuilder()
-//            .setImage(Image(systemName: "chevron.backward"))
-//            .setCallback {
-//                self.presentationMode.wrappedValue.dismiss()
-//            }
-//            .build()
-//        let toolBarItems = ToolBarItemsDataBuilder()
-//            .setLeftAlignedItem(leftAlignedItem)
-//            .build()
+        let centerAlignedItem = ToolBarItemDataBuilder()
+            .setTitleString("Profile")
+            .setTitleFont(Theme.current.bodyOneBold.font)
+            .build()
+        let toolBarItems = ToolBarItemsDataBuilder()
+            .setCenterAlignedItem(centerAlignedItem)
+            .build()
         let issNavBarData = ISSNavigationBarBuilder()
-//            .setToolBarItems(toolBarItems)
+            .setToolBarItems(toolBarItems)
             .setTintColor(Theme.current.issBlack.color)
             .includeStatusBarArea(true)
             .build()

@@ -83,11 +83,14 @@ public struct ProfileRootView: View {
                                                                     verticalPadding: 0)
                                                 .foregroundColor(Color.white)
                                         }
-                                        Text("RM230.90")
-                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                                verticalPadding: 0)
-                                            .foregroundColor(Color.white)
+                                        HStack {
+                                            Text("RM230.90")
+                                                .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                    lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                                    verticalPadding: 0)
+                                                .foregroundColor(Color.white)
+                                            Spacer()
+                                        }
                                     }
                                     .padding(.leading, 20)
 
@@ -102,6 +105,7 @@ public struct ProfileRootView: View {
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
                                                 .padding(.all, 7)
+                                                .foregroundColor(Color.black)
                                         }
                                         .frame(width: 32, height: 32)
 //                                        .foregroundColor(Theme.current.issBlack.color)
@@ -123,6 +127,7 @@ public struct ProfileRootView: View {
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
                                                 .padding(.all, 7)
+                                                .foregroundColor(Color.black)
                                         }
                                         .frame(width: 32, height: 32)
 //                                        .foregroundColor(Theme.current.issBlack.color)
@@ -136,10 +141,10 @@ public struct ProfileRootView: View {
                                     .padding(.leading, 13)
                                     .padding(.trailing, 20)
                                 }
-                                .cornerRadius(12)
                                 .frame(height: 69)
                                 .background(Color.red)
                                 .padding()
+                                .cornerRadius(12)
                             }
                             .background(Theme.current.lightGray.color)
                             .cornerRadius(16)

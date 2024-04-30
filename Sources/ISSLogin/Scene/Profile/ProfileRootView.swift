@@ -101,14 +101,16 @@ public struct ProfileRootView: View {
                                                 .renderingMode(.template)
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
-                                                .background(Color.black)
                                                 .padding(.all, 7)
                                         }
                                         .frame(width: 32, height: 32)
 //                                        .foregroundColor(Theme.current.issBlack.color)
                                         .background(Color.white)
-                                        .padding(.all, 7)
                                         .clipShape(Circle())
+                                        .overlay(
+                                            Circle()
+                                                .stroke(Color.gray, lineWidth: 1)
+                                        )
                                     }
 
                                     Button(action: {
@@ -120,13 +122,16 @@ public struct ProfileRootView: View {
                                                 .renderingMode(.template)
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
-                                                .background(Color.black)
                                                 .padding(.all, 7)
                                         }
                                         .frame(width: 32, height: 32)
 //                                        .foregroundColor(Theme.current.issBlack.color)
                                         .background(Color.white)
                                         .clipShape(Circle())
+                                        .overlay(
+                                            Circle()
+                                                .stroke(Color.gray, lineWidth: 1)
+                                        )
                                     }
                                     .padding(.leading, 13)
                                     .padding(.trailing, 20)

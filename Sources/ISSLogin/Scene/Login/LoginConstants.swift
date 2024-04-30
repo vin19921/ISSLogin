@@ -16,6 +16,9 @@ public enum LoginImageAssets: String, ImageLoader, ImageLoaderSUI {
     case exit
     case lock
     case love
+    case reload
+    case leftTopArrow
+    case wallet
 }
 
 //public enum UserInfoKey: String {

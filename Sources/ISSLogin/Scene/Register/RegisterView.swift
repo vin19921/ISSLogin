@@ -134,15 +134,15 @@ public struct RegisterView: View {
 
                 VStack(alignment: .leading) {
                     HStack {
-                        Toggle("Option 1", isOn: Binding(
-                            get: { self.optionSelected == "Option 1" },
-                            set: { _ in self.optionSelected = "Option 1" }
+                        Toggle("Service Provider", isOn: Binding(
+                            get: { self.optionSelected == "Service Provider" },
+                            set: { _ in self.optionSelected = "Service Provider" }
                         ))
                         .toggleStyle(RadioButtonStyle())
 
-                        Toggle("Option 2", isOn: Binding(
-                            get: { self.optionSelected == "Option 2" },
-                            set: { _ in self.optionSelected = "Option 2" }
+                        Toggle("Customer", isOn: Binding(
+                            get: { self.optionSelected == "Customer" },
+                            set: { _ in self.optionSelected = "Customer" }
                         ))
                         .toggleStyle(RadioButtonStyle())
                     }
@@ -151,7 +151,7 @@ public struct RegisterView: View {
                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                         verticalPadding: 0)
 
-                    Text("Selected option: \(optionSelected ?? "Please select user")")
+                    Text(optionSelected == nil ?? "Please select user" : "")
                         .foregroundColor(optionSelected == nil ?? Color.red : Color.black)
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -239,9 +239,9 @@ struct RadioButtonStyle: ToggleStyle {
             configuration.isOn.toggle()
         } label: {
             HStack {
-                configuration.label
-                Spacer()
                 Image(systemName: configuration.isOn ? "largecircle.fill.circle" : "circle")
+                Spacer()
+                configuration.label
             }
         }
     }

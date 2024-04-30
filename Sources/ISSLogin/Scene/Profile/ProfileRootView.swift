@@ -277,12 +277,12 @@ public struct ProfileRootView: View {
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
-        let leftAlignedItem = ToolBarItemDataBuilder()
+        let centerAlignedItem = ToolBarItemDataBuilder()
             .setTitleString("Profile")
             .setTitleFont(Theme.current.subtitle.font)
             .build()
         let toolBarItems = ToolBarItemsDataBuilder()
-            .setLeftAlignedItem(leftAlignedItem)
+            .setCenterAlignedItem(centerAlignedItem)
             .build()
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)

@@ -68,8 +68,8 @@ public struct ProfileRootView: View {
                                     .frame(height: 69)
                                     .padding()
                             }
-                            .cornerRadius(16)
                             .background(Theme.current.lightGray.color)
+                            .cornerRadius(16)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Theme.current.lightGrayBorder.color, lineWidth: 1)
@@ -186,8 +186,8 @@ public struct ProfileRootView: View {
 //                                    )
                                 }
                             }
-                            .cornerRadius(16)
                             .background(Theme.current.lightGray.color)
+                            .cornerRadius(16)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Theme.current.lightGrayBorder.color, lineWidth: 1)

@@ -76,27 +76,34 @@ public struct ProfileRootView: View {
                                                 .renderingMode(.original)
                                                 .frame(width: 16, height: 16)
                                                 .aspectRatio(contentMode: .fit)
-                                            
-                                            Text("RM230.90")
-                                                .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                                    lineHeight: Theme.current.bodyOneBold.lineHeight,
+
+                                            Text("Total Earnings")
+                                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                                     verticalPadding: 0)
                                                 .foregroundColor(Color.white)
                                         }
+                                        Text("RM230.90")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                                verticalPadding: 0)
+                                            .foregroundColor(Color.white)
                                     }
+                                    .padding(.leading, 20)
 
                                     Spacer()
                                     Button(action: {
-                                        print("reload btn")
+                                        print("addCircle btn")
                                     }) {
                                         HStack {
-                                            LoginImageAssets.reload.image
+                                            LoginImageAssets.addCircle.image
                                                 .resizable()
                                                 .renderingMode(.template)
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
+                                                .background(Color.black)
+                                                .padding(.all, 7)
                                         }
-                                        .frame(maxWidth: .infinity)
                                         .frame(width: 32, height: 32)
 //                                        .foregroundColor(Theme.current.issBlack.color)
                                         .background(Color.white)
@@ -105,25 +112,24 @@ public struct ProfileRootView: View {
                                     }
 
                                     Button(action: {
-                                        print("leftTopArrow btn")
+                                        print("importCircle btn")
                                     }) {
                                         HStack {
-                                            LoginImageAssets.leftTopArrow.image
+                                            LoginImageAssets.importCircle.image
                                                 .resizable()
                                                 .renderingMode(.template)
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
+                                                .background(Color.black)
+                                                .padding(.all, 7)
                                         }
-                                        .frame(maxWidth: .infinity)
                                         .frame(width: 32, height: 32)
 //                                        .foregroundColor(Theme.current.issBlack.color)
                                         .background(Color.white)
-                                        .padding(.all, 7)
                                         .clipShape(Circle())
                                     }
                                     .padding(.leading, 13)
                                     .padding(.trailing, 20)
-                                    
                                 }
                                 .frame(height: 69)
                                 .background(Color.red)

@@ -132,21 +132,21 @@ public struct RegisterView: View {
                                                                    leadingImageIcon: RegisterImageAssets.email.image)
                 )
 
-                VStack(alignment: .leading) {
-                    HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: .zero) {
                         Toggle("Service Provider", isOn: Binding(
                             get: { self.optionSelected == "Service Provider" },
                             set: { _ in self.optionSelected = "Service Provider" }
                         ))
                         .toggleStyle(RadioButtonStyle())
-                        .frame(width: UIScreen.main.bounds.width / 2)
+                        .frame(width: UIScreen.main.bounds.width - 32 / 2)
 
                         Toggle("Customer", isOn: Binding(
                             get: { self.optionSelected == "Customer" },
                             set: { _ in self.optionSelected = "Customer" }
                         ))
                         .toggleStyle(RadioButtonStyle())
-                        .frame(width: UIScreen.main.bounds.width / 2)
+                        .frame(width: UIScreen.main.bounds.width - 32 / 2)
                     }
                     .foregroundColor(Color.black)
                     .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

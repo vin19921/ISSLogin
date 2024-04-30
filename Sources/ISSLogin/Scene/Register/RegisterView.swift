@@ -242,6 +242,7 @@ struct RadioButtonStyle: ToggleStyle {
             HStack {
                 Image(systemName: configuration.isOn ? "largecircle.fill.circle" : "circle")
                 configuration.label
+                Spacer()
             }
         }
     }

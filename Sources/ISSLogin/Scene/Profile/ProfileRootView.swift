@@ -69,7 +69,7 @@ public struct ProfileRootView: View {
 //                                    .padding()
 
                                 HStack(spacing: .zero) {
-                                    VStack(spacing: 4) {
+                                    VStack(spacing: 4, alignment: .leading) {
                                         HStack(spacing: 6) {
                                             LoginImageAssets.wallet.image
                                                 .resizable()
@@ -83,14 +83,12 @@ public struct ProfileRootView: View {
                                                                     verticalPadding: 0)
                                                 .foregroundColor(Color.white)
                                         }
-                                        HStack {
-                                            Text("RM230.90")
-                                                .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                                    lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                                    verticalPadding: 0)
-                                                .foregroundColor(Color.white)
-                                            Spacer()
-                                        }
+                                        Text("RM230.90")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                                verticalPadding: 0)
+                                            .foregroundColor(Color.white)
+                                        
                                     }
                                     .padding(.leading, 20)
 
@@ -101,7 +99,7 @@ public struct ProfileRootView: View {
                                         HStack {
                                             LoginImageAssets.addCircle.image
                                                 .resizable()
-                                                .renderingMode(.template)
+//                                                .renderingMode(.template)
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
                                                 .padding(.all, 7)
@@ -123,7 +121,7 @@ public struct ProfileRootView: View {
                                         HStack {
                                             LoginImageAssets.importCircle.image
                                                 .resizable()
-                                                .renderingMode(.template)
+//                                                .renderingMode(.template)
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
                                                 .padding(.all, 7)
@@ -143,8 +141,8 @@ public struct ProfileRootView: View {
                                 }
                                 .frame(height: 69)
                                 .background(Color.red)
-                                .padding()
                                 .cornerRadius(12)
+                                .padding()
                             }
                             .background(Theme.current.lightGray.color)
                             .cornerRadius(16)

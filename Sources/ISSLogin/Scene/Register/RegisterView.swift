@@ -140,6 +140,8 @@ public struct RegisterView: View {
                         ))
                         .toggleStyle(RadioButtonStyle())
 
+                        Spacer()
+
                         Toggle("Customer", isOn: Binding(
                             get: { self.optionSelected == "Customer" },
                             set: { _ in self.optionSelected = "Customer" }
@@ -240,7 +242,6 @@ struct RadioButtonStyle: ToggleStyle {
         } label: {
             HStack {
                 Image(systemName: configuration.isOn ? "largecircle.fill.circle" : "circle")
-                Spacer()
                 configuration.label
             }
         }

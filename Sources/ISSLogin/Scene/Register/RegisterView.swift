@@ -28,6 +28,7 @@ public struct RegisterView: View {
     @State private var emailErrorState = false
 
     @State private var isLoading = false
+    @State private var optionSelected: String? = nil
 
     // MARK: Injection
 
@@ -130,6 +131,29 @@ public struct RegisterView: View {
                                                                    isRequiredText: "Please enter valid email",
                                                                    leadingImageIcon: RegisterImageAssets.email.image)
                 )
+
+                VStack(alignment: .leading) {
+                    Toggle("Option 1", isOn: Binding(
+                        get: { self.optionSelected == "Option 1" },
+                        set: { _ in self.optionSelected = "Option 1" }
+                    ))
+                    .toggleStyle(RadioButtonStyle())
+                    
+                    Toggle("Option 2", isOn: Binding(
+                        get: { self.optionSelected == "Option 2" },
+                        set: { _ in self.optionSelected = "Option 2" }
+                    ))
+                    .toggleStyle(RadioButtonStyle())
+                    
+                    Toggle("Option 3", isOn: Binding(
+                        get: { self.optionSelected == "Option 3" },
+                        set: { _ in self.optionSelected = "Option 3" }
+                    ))
+                    .toggleStyle(RadioButtonStyle())
+                    
+                    Text("Selected option: \(optionSelected ?? "None")")
+                }
+                .padding()
                 
                 Button(action: {
                     isLoading.toggle()
@@ -202,5 +226,19 @@ public struct RegisterView: View {
 
     public func setEmail(_ email: String) {
         presenter.setEmail(email)
+    }
+}
+
+struct RadioButtonStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button {
+            configuration.isOn.toggle()
+        } label: {
+            HStack {
+                configuration.label
+                Spacer()
+                Image(systemName: configuration.isOn ? "largecircle.fill.circle" : "circle")
+            }
+        }
     }
 }

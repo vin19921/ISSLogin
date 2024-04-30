@@ -133,25 +133,29 @@ public struct RegisterView: View {
                 )
 
                 VStack(alignment: .leading) {
-                    Toggle("Option 1", isOn: Binding(
-                        get: { self.optionSelected == "Option 1" },
-                        set: { _ in self.optionSelected = "Option 1" }
-                    ))
-                    .toggleStyle(RadioButtonStyle())
-                    
-                    Toggle("Option 2", isOn: Binding(
-                        get: { self.optionSelected == "Option 2" },
-                        set: { _ in self.optionSelected = "Option 2" }
-                    ))
-                    .toggleStyle(RadioButtonStyle())
-                    
-                    Toggle("Option 3", isOn: Binding(
-                        get: { self.optionSelected == "Option 3" },
-                        set: { _ in self.optionSelected = "Option 3" }
-                    ))
-                    .toggleStyle(RadioButtonStyle())
-                    
-                    Text("Selected option: \(optionSelected ?? "None")")
+                    HStack {
+                        Toggle("Option 1", isOn: Binding(
+                            get: { self.optionSelected == "Option 1" },
+                            set: { _ in self.optionSelected = "Option 1" }
+                        ))
+                        .toggleStyle(RadioButtonStyle())
+
+                        Toggle("Option 2", isOn: Binding(
+                            get: { self.optionSelected == "Option 2" },
+                            set: { _ in self.optionSelected = "Option 2" }
+                        ))
+                        .toggleStyle(RadioButtonStyle())
+                    }
+                    .foregroundColor(Color.black)
+                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                        verticalPadding: 0)
+
+                    Text("Selected option: \(optionSelected ?? "Please select user")")
+                        .foregroundColor(optionSelected ?? Color.red : Color.black)
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 0)
                 }
                 .padding()
                 

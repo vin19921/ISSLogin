@@ -136,6 +136,7 @@ public struct ProfileRootView: View {
                                     .padding(.leading, 13)
                                     .padding(.trailing, 20)
                                 }
+                                .cornerRadius(12)
                                 .frame(height: 69)
                                 .background(Color.red)
                                 .padding()

@@ -69,7 +69,7 @@ public struct ProfileRootView: View {
 //                                    .padding()
 
                                 HStack(spacing: .zero) {
-                                    VStack(spacing: 4, alignment: .leading) {
+                                    VStack(alignment: .leading, spacing: 4) {
                                         HStack(spacing: 6) {
                                             LoginImageAssets.wallet.image
                                                 .resizable()

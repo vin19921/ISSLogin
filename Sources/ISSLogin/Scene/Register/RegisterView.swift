@@ -151,8 +151,8 @@ public struct RegisterView: View {
                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                         verticalPadding: 0)
 
-                    Text(optionSelected == nil ?? "Please select user" : "")
-                        .foregroundColor(optionSelected == nil ?? Color.red : Color.black)
+                    Text(optionSelected == nil ? "Please select user" : "")
+                        .foregroundColor(optionSelected == nil ? Color.red : Color.black)
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                             verticalPadding: 0)

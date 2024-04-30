@@ -69,11 +69,11 @@ public struct ProfileRootView: View {
                                     .padding()
                             }
                             .background(Theme.current.lightGray.color)
-                            .padding(.horizontal)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Theme.current.lightGrayBorder.color, lineWidth: 1)
                             )
+                            .padding(.horizontal)
 //                            HStack {
 //                                VStack(alignment: .leading, spacing: .zero) {
 //                                    
@@ -122,6 +122,8 @@ public struct ProfileRootView: View {
                                     //                                        .stroke(Color.gray, lineWidth: 1)
                                     //                                )
                                 }
+
+                                Rectangle().frame(height: 1).foregroundColor(Theme.current.lightGrayBorder.color)
                                 
                                 Button(action: {
                                     presenter.routeToChangePassword()
@@ -152,7 +154,7 @@ public struct ProfileRootView: View {
 //                                    )
                                 }
                                 
-                                //                            Rectangle().frame(height: 1).foregroundColor(Color.gray)
+                                Rectangle().frame(height: 1).foregroundColor(Theme.current.lightGrayBorder.color)
                                 
                                 Button(action: {
                                     presenter.routeToUserPreference()
@@ -184,12 +186,12 @@ public struct ProfileRootView: View {
                                 }
                             }
                             .background(Theme.current.lightGray.color)
-                            .padding(.horizontal)
-                            .padding(.top)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Theme.current.lightGrayBorder.color, lineWidth: 1)
                             )
+                            .padding(.horizontal)
+                            .padding(.top)
                         }
                     }
                 } else {

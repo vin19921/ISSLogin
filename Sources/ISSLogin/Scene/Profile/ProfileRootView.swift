@@ -69,6 +69,11 @@ public struct ProfileRootView: View {
                                     .padding()
                             }
                             .padding(.horizontal)
+                            .background(Theme.current.lightGray.color)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Theme.current.lightGrayBorder.color, lineWidth: 1)
+                            )
 //                            HStack {
 //                                VStack(alignment: .leading, spacing: .zero) {
 //                                    
@@ -178,11 +183,12 @@ public struct ProfileRootView: View {
 //                                    )
                                 }
                             }
+                            .padding(.horizontal)
+                            .background(Theme.current.lightGray.color)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                    .stroke(Theme.current.lightGrayBorder.color, lineWidth: 1)
                             )
-                            .padding(.horizontal)
                         }
                     }
                 } else {

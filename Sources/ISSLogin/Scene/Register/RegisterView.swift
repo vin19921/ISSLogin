@@ -168,7 +168,7 @@ public struct RegisterView: View {
                         confirmPassword: cPasswordText,
                         email: emailText,
                         name: fullNameText,
-                        userType: optionSelected
+                        userType: optionSelected ?? 0
                     ), completionHandler: {
                             isLoading.toggle()
                     })
@@ -203,7 +203,8 @@ public struct RegisterView: View {
            !fullNameErrorState,
            !passwordErrorState,
            !cPasswordErrorState,
-           !emailErrorState {
+           !emailErrorState,
+           optionSelected != nil {
             return true
         }
         return false

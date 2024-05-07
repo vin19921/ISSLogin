@@ -86,6 +86,10 @@ extension ProfileRootPresenter {
         router?.navigate(to: .userPreference)
     }
 
+    func routeToTimeFrame() {
+        router?.navigate(to: .timeFrameScreen)
+    }
+
 //    func logOut() {
 //        interactor.logOut()
 //    }

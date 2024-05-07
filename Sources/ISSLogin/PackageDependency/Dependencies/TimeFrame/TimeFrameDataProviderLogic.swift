@@ -8,6 +8,6 @@
 import Combine
 
 public protocol TimeFrameDataProviderLogic {
-    func fetchTimeFrameList(request: TimeFrame.Model.Request) -> AnyPublisher<TimeFrameListResponseDataModel, Error>
+    func fetchTimeFrameList(request: TimeFrame.Model.Request) -> AnyPublisher<TimeFrameListResponse, Error>
 }
 

@@ -15,6 +15,7 @@ public enum Registration {
             public var confirmPassword: String
             public var email: String
             public var name: String
+            public var userType: Int /// 0 = merchant, 1 = service_provider, 2 = customer
         }
         
         struct Response {

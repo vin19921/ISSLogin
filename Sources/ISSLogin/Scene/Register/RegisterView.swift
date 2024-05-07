@@ -28,7 +28,7 @@ public struct RegisterView: View {
     @State private var emailErrorState = false
 
     @State private var isLoading = false
-    @State private var optionSelected: String? = nil
+    @State private var optionSelected: Int? = nil
 
     // MARK: Injection
 
@@ -135,15 +135,15 @@ public struct RegisterView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: .zero) {
                         Toggle("Service Provider", isOn: Binding(
-                            get: { self.optionSelected == "Service Provider" },
-                            set: { _ in self.optionSelected = "Service Provider" }
+                            get: { self.optionSelected == 1 },
+                            set: { _ in self.optionSelected = 1 }
                         ))
                         .toggleStyle(RadioButtonStyle())
                         .frame(width: (UIScreen.main.bounds.width - 32) / 2)
 
                         Toggle("Customer", isOn: Binding(
-                            get: { self.optionSelected == "Customer" },
-                            set: { _ in self.optionSelected = "Customer" }
+                            get: { self.optionSelected == 2 },
+                            set: { _ in self.optionSelected = 2 }
                         ))
                         .toggleStyle(RadioButtonStyle())
                         .frame(width: (UIScreen.main.bounds.width - 32) / 2)
@@ -167,9 +167,11 @@ public struct RegisterView: View {
                         password: passwordText,
                         confirmPassword: cPasswordText,
                         email: emailText,
-                        name: fullNameText), completionHandler: {
+                        name: fullNameText,
+                        userType: optionSelected
+                    ), completionHandler: {
                             isLoading.toggle()
-                        })
+                    })
                 }) {
                     Text("Confirm")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,

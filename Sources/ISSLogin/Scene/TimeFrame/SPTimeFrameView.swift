@@ -13,6 +13,8 @@ public struct SPTimeFrameView: View {
     
     @ObservedObject private var presenter: TimeFramePresenter
     @State private var selectedDate = Date()
+    @State private var selectedOptionIndex = 0
+    let options = ["Option 1", "Option 2", "Option 3", "Option 4"]
     
     // MARK: Injection
     
@@ -46,6 +48,16 @@ public struct SPTimeFrameView: View {
                         DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
                             .datePickerStyle(WheelDatePickerStyle())
                             .labelsHidden()
+
+                        Text("Selected Option: \(options[selectedOptionIndex])")
+                           .padding()
+
+                        Picker(selection: $selectedOptionIndex, label: Text("Select Option")) {
+                            ForEach(0..<options.count) { index in
+                                Text(self.options[index]).tag(index)
+                            }
+                        }
+                        .pickerStyle(CustomPickerStyle())
                     }
                     .padding()
                     Spacer()
@@ -81,5 +93,19 @@ public struct SPTimeFrameView: View {
             .includeStatusBarArea(true)
             .build()
         return issNavBarData
+    }
+}
+
+
+struct CustomPickerStyle: PickerStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            Picker(configuration)
+                .frame(height: 150)
+                .clipped()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+        }
     }
 }

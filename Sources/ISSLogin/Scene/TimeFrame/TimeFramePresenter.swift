@@ -54,6 +54,7 @@ final class TimeFramePresenter: ObservableObject {
             }, receiveValue: { response in
                 DispatchQueue.main.async {
                     print(response)
+                    self.state = .success
                 }
             })
             .store(in: &cancellables)

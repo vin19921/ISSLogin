@@ -5,6 +5,7 @@
 //  Created by Wing Seng Chew on 07/05/2024.
 //
 
+import Combine
 import Foundation
 
 final class TimeFramePresenter: ObservableObject {
@@ -35,8 +36,6 @@ final class TimeFramePresenter: ObservableObject {
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
 
-                isLoading.toggle()
-
                 switch completion {
                 case let .failure(error):
                     DispatchQueue.main.async {
@@ -60,12 +59,3 @@ final class TimeFramePresenter: ObservableObject {
             .store(in: &cancellables)
     }
 }
-
-// MARK: - Routing
-
-extension TimeFramePresenter {
-    func routeToOTP(mobileNo: String) {
-        router?.navigate(to: .otpScreen(mobileNo: mobileNo))
-    }
-}
-

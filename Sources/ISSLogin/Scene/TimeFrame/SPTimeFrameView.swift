@@ -43,7 +43,7 @@ public struct SPTimeFrameView: View {
                         }
                     Spacer()
                 case .success:
-                    VStack {
+//                    VStack {
                         Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
                         
                         DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
@@ -56,9 +56,9 @@ public struct SPTimeFrameView: View {
                         Button("Show Picker") {
                             isShowingPicker.toggle()
                         }
-                    }
-                    .padding()
-                    Spacer()
+//                    }
+//                    .padding()
+//                    Spacer()
                 case let .failure(type):
                     Text("Error")
                     Spacer()

@@ -72,7 +72,7 @@ public struct SPTimeFrameView: View {
         }, onDismiss: {
             print("Dismiss")
         })
-        .animation(.easeOut(duration: 0.2), value: isSheetPresented[1])
+        .animation(.easeOut(duration: 0.2), value: $isShowingPicker)
     }
 
     private var dateFormatter: DateFormatter {

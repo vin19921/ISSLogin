@@ -66,9 +66,13 @@ public struct SPTimeFrameView: View {
             }
         }
         .edgesIgnoringSafeArea(.top)
-        .sheet(isPresented: $isShowingPicker) {
+
+        BottomSheetView(isSheetPresented: $isShowingPicker, content: {
             CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
-        }
+        }, onDismiss: {
+            print("Dismiss")
+        })
+        .animation(.easeOut(duration: 0.2), value: isSheetPresented[1])
     }
 
     private var dateFormatter: DateFormatter {
@@ -116,5 +120,66 @@ struct CustomPicker: View {
             .cornerRadius(10)
             .shadow(radius: 5)
         }
+    }
+}
+
+struct BottomSheetView<Content: View>: View {
+    @Binding var isSheetPresented: Bool
+    @ViewBuilder var content: () -> Content
+    var onDismiss: (() -> Void)?
+    @State private var offset: CGFloat = .zero
+    @State private var size: CGSize = .zero
+
+    var body: some View {
+        ZStack {
+            if isSheetPresented {
+                Color.black
+                    .opacity(0.3)
+                    .transition(.opacity)
+                    .onTapGesture {
+                        isSheetPresented.toggle()
+                        onDismiss?()
+                    }
+            }
+            VStack {
+                Spacer()
+                if isSheetPresented {
+                    VStack(spacing: .zero) {
+                        HStack {
+                            Capsule()
+                                .frame(width: 50, height: 5)
+                                .foregroundColor(Color.gray)
+                                .padding(.vertical)
+                                .onTapGesture {
+                                    isSheetPresented.toggle()
+                                }
+                        }
+                        .frame(width: UIScreen.main.bounds.width, height: 50)
+                        .background(Color.white)
+                        content()
+                    }
+                    .saveSize(in: $size)
+                    .transition(.move(edge: .bottom))
+//                    .cornerRadius(20)
+                    .clipShape(RoundedCorner(radius: 20, corners: [.topLeft, .topRight]))
+//                    .hideTabBar(isSheetPresented: $isSheetPresented) // Apply the modifier
+                }
+            }
+        }
+        .ignoresSafeArea()
+    }
+}
+
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
     }
 }

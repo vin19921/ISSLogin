@@ -65,10 +65,13 @@ public struct SPTimeFrameView: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.top)
+        .edgesIgnoringSafeArea(.vertical)
 
         BottomSheetView(isSheetPresented: $isShowingPicker, content: {
             CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
+                .frame(height: 700)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
         }, onDismiss: {
             print("Dismiss")
         })
@@ -106,7 +109,7 @@ struct CustomPicker: View {
     @Binding var selectedOptionIndex: Int
 
     var body: some View {
-        VStack {
+        ZStack {
             Picker("", selection: $selectedOptionIndex) {
                 ForEach(0..<options.count) { index in
                     Text(self.options[index])
@@ -116,8 +119,6 @@ struct CustomPicker: View {
             .frame(height: 150)
             .clipped()
             .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
         }
     }
 }

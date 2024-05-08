@@ -135,6 +135,7 @@ struct BottomSheetView<Content: View>: View {
                 Color.black
                     .opacity(0.3)
                     .transition(.opacity)
+                    .frame(height: UIScreen.main.bounds.height)
                     .onTapGesture {
                         isSheetPresented.toggle()
                         onDismiss?()
@@ -151,6 +152,7 @@ struct BottomSheetView<Content: View>: View {
                                 .padding(.vertical)
                                 .onTapGesture {
                                     isSheetPresented.toggle()
+                                    onDismiss?()
                                 }
                         }
                         .frame(width: UIScreen.main.bounds.width, height: 50)

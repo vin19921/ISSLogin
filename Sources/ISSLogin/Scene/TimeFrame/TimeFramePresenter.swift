@@ -46,6 +46,7 @@ final class TimeFramePresenter: ObservableObject {
                         default:
 //                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
+                            self.state = .success
                         }
                     }
                 case .finished:

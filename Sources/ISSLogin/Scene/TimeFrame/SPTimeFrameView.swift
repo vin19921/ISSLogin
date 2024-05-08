@@ -12,6 +12,7 @@ import SwiftUI
 public struct SPTimeFrameView: View {
     
     @ObservedObject private var presenter: TimeFramePresenter
+    @State private var selectedDate = Date()
     
     // MARK: Injection
     
@@ -39,7 +40,14 @@ public struct SPTimeFrameView: View {
                         }
                     Spacer()
                 case .success:
-                    Text("Success")
+                    VStack {
+                        Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
+                        
+                        DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
+                            .datePickerStyle(WheelDatePickerStyle())
+                            .labelsHidden()
+                    }
+                    .padding()
                     Spacer()
                 case let .failure(type):
                     Text("Error")
@@ -48,6 +56,13 @@ public struct SPTimeFrameView: View {
             }
         }
         .edgesIgnoringSafeArea(.top)
+    }
+
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

@@ -129,4 +129,18 @@ public enum ISSGateway {
 //        presenter.setRouter(profileRootRouter)
         return view
     }
+
+    public static func makeTimeFrame(theme: Theme,
+                                     provider: TimeFrameDataProviderLogic,
+                                     networkMonitor: NetworkMonitor) ->
+    SPTimeFrameView
+    {
+        Theme.current = theme
+        let interactor = TimeFrameInteractor(provider: provider)
+        let presenter = TimeFramePresenter(interactor: interactor)
+
+        let view = SPTimeFrameView(presenter: presenter)
+
+        return view
+    }
 }

@@ -47,6 +47,7 @@ public struct SPTimeFrameView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(.top)
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

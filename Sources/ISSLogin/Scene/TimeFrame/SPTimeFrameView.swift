@@ -72,7 +72,6 @@ public struct SPTimeFrameView: View {
         }, onDismiss: {
             print("Dismiss")
         })
-        .animation(.easeOut(duration: 0.2), value: $isShowingPicker)
     }
 
     private var dateFormatter: DateFormatter {
@@ -167,6 +166,7 @@ struct BottomSheetView<Content: View>: View {
             }
         }
         .ignoresSafeArea()
+        .animation(.easeOut(duration: 0.2), value: isSheetPresented)
     }
 }
 

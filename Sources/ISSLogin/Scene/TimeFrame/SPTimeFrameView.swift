@@ -52,12 +52,7 @@ public struct SPTimeFrameView: View {
                         Text("Selected Option: \(options[selectedOptionIndex])")
                            .padding()
 
-                        Picker(selection: $selectedOptionIndex, label: Text("Select Option")) {
-                            ForEach(0..<options.count) { index in
-                                Text(self.options[index]).tag(index)
-                            }
-                        }
-                        .pickerStyle(CustomPickerStyle())
+                        CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
                     }
                     .padding()
                     Spacer()
@@ -97,15 +92,23 @@ public struct SPTimeFrameView: View {
 }
 
 
-struct CustomPickerStyle: PickerStyle {
-    func makeBody(configuration: Configuration) -> some View {
+struct CustomPicker: View {
+    let options: [String]
+    @Binding var selectedOptionIndex: Int
+
+    var body: some View {
         VStack {
-            Picker(configuration)
-                .frame(height: 150)
-                .clipped()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 5)
+            Picker("", selection: $selectedOptionIndex) {
+                ForEach(0..<options.count) { index in
+                    Text(self.options[index])
+                }
+            }
+            .pickerStyle(WheelPickerStyle())
+            .frame(height: 150)
+            .clipped()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
         }
     }
 }

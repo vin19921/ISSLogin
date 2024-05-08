@@ -67,7 +67,7 @@ public struct SPTimeFrameView: View {
 
             BottomSheetView(isSheetPresented: $isShowingPicker, content: {
                 CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
-                    .frame(height: 700)
+                    .frame(height: 200)
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
             }, onDismiss: {

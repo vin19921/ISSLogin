@@ -14,6 +14,7 @@ public struct SPTimeFrameView: View {
     @ObservedObject private var presenter: TimeFramePresenter
     @State private var selectedDate = Date()
     @State private var selectedOptionIndex = 0
+    @State private var isShowingPicker = false
     let options = ["Option 1", "Option 2", "Option 3", "Option 4"]
     
     // MARK: Injection
@@ -52,7 +53,9 @@ public struct SPTimeFrameView: View {
                         Text("Selected Option: \(options[selectedOptionIndex])")
                            .padding()
 
-                        CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
+                        Button("Show Picker") {
+                            isShowingPicker.toggle()
+                        }
                     }
                     .padding()
                     Spacer()
@@ -63,6 +66,9 @@ public struct SPTimeFrameView: View {
             }
         }
         .edgesIgnoringSafeArea(.top)
+        .sheet(isPresented: $isShowingPicker) {
+            CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
+        }
     }
 
     private var dateFormatter: DateFormatter {

@@ -64,17 +64,17 @@ public struct SPTimeFrameView: View {
                     Spacer()
                 }
             }
+
+            BottomSheetView(isSheetPresented: $isShowingPicker, content: {
+                CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
+                    .frame(height: 700)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+            }, onDismiss: {
+                print("Dismiss")
+            })
         }
         .edgesIgnoringSafeArea(.vertical)
-
-        BottomSheetView(isSheetPresented: $isShowingPicker, content: {
-            CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
-                .frame(height: 700)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-        }, onDismiss: {
-            print("Dismiss")
-        })
     }
 
     private var dateFormatter: DateFormatter {

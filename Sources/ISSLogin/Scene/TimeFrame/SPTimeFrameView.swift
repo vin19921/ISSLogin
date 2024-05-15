@@ -91,8 +91,7 @@ public struct SPTimeFrameView: View {
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
                                 }
-                                Toggle("Toggle Button", isOn: $isToggled)
-                                    .background(isToggled ? Color.blue : Color.gray)
+                                Toggle("", isOn: $isToggled)
                             }
                         }
                         .padding(.vertical)

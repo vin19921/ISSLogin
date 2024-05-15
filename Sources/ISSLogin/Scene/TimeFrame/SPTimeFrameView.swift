@@ -53,7 +53,7 @@ public struct SPTimeFrameView: View {
 //                            .datePickerStyle(WheelDatePickerStyle())
 //                            .labelsHidden()
 
-                        Text("Selected Option: \(options[selectedOptionIndex])")
+                        Text("Selected Option: \(timeSlotPptions[selectedOptionIndex])")
                            .padding()
 
                         Button("Show Picker") {

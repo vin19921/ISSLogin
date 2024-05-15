@@ -17,6 +17,9 @@ public struct SPTimeFrameView: View {
     @State private var isShowingPicker = false
     let options = ["Option 1", "Option 2", "Option 3", "Option 4"]
     
+    @State private var startTime = Date()
+    @State private var endTime = Date()
+
     // MARK: Injection
     
     @Environment(\.presentationMode) var presentationMode
@@ -44,18 +47,28 @@ public struct SPTimeFrameView: View {
                     Spacer()
                 case .success:
 //                    VStack {
-                        Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
+//                        Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
+//                        
+//                        DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
+//                            .datePickerStyle(WheelDatePickerStyle())
+//                            .labelsHidden()
+//
+//                        Text("Selected Option: \(options[selectedOptionIndex])")
+//                           .padding()
+//
+//                        Button("Show Picker") {
+//                            isShowingPicker.toggle()
+//                        }
+                    VStack {
+                        DatePicker("From", selection: $startTime, displayedComponents: .hourAndMinute)
+                            .padding()
                         
-                        DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
-                            .datePickerStyle(WheelDatePickerStyle())
-                            .labelsHidden()
-
-                        Text("Selected Option: \(options[selectedOptionIndex])")
-                           .padding()
-
-                        Button("Show Picker") {
-                            isShowingPicker.toggle()
-                        }
+                        DatePicker("To", selection: $endTime, in: startTime..., displayedComponents: .hourAndMinute)
+                            .padding()
+                        
+                        Text("Start Time: \(formattedTime(date: startTime))")
+                        Text("End Time: \(formattedTime(date: endTime))")
+                    }
 //                    }
 //                    .padding()
 //                    Spacer()
@@ -83,6 +96,12 @@ public struct SPTimeFrameView: View {
         formatter.timeStyle = .none
         return formatter
     }
+
+    func formattedTime(date: Date) -> String {
+       let formatter = DateFormatter()
+       formatter.timeStyle = .short
+       return formatter.string(from: date)
+   }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
         let leftAlignedItem = ToolBarItemDataBuilder()

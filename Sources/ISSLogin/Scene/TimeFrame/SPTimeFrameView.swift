@@ -15,7 +15,7 @@ public struct SPTimeFrameView: View {
     @State private var selectedDate = Date()
     @State private var selectedOptionIndex = 0
     @State private var isShowingPicker = false
-    let options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+    let timeSlotPptions = ["10:00 a.m. - 11:00 a.m", "11:00 a.m. - 12:00 p.m", "12:00 p.m. - 01:00 p.m", "01:00 p.m. - 02:00 p.m"]
     
     @State private var startTime = Date()
     @State private var endTime = Date()
@@ -47,28 +47,28 @@ public struct SPTimeFrameView: View {
                     Spacer()
                 case .success:
 //                    VStack {
-//                        Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
-//                        
+//                        Text("Selected time: \(selectedDate, formatter: dateFormatter)")
+//
 //                        DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
 //                            .datePickerStyle(WheelDatePickerStyle())
 //                            .labelsHidden()
-//
-//                        Text("Selected Option: \(options[selectedOptionIndex])")
-//                           .padding()
-//
-//                        Button("Show Picker") {
-//                            isShowingPicker.toggle()
-//                        }
-                    VStack {
-                        DatePicker("From", selection: $startTime, displayedComponents: .hourAndMinute)
-                            .padding()
-                        
-                        DatePicker("To", selection: $endTime, in: startTime..., displayedComponents: .hourAndMinute)
-                            .padding()
-                        
-                        Text("Start Time: \(formattedTime(date: startTime))")
-                        Text("End Time: \(formattedTime(date: endTime))")
-                    }
+
+                        Text("Selected Option: \(options[selectedOptionIndex])")
+                           .padding()
+
+                        Button("Show Picker") {
+                            isShowingPicker.toggle()
+                        }
+//                    VStack {
+//                        DatePicker("From", selection: $startTime, displayedComponents: .hourAndMinute)
+//                            .padding()
+//                        
+//                        DatePicker("To", selection: $endTime, in: startTime..., displayedComponents: .hourAndMinute)
+//                            .padding()
+//                        
+//                        Text("Start Time: \(formattedTime(date: startTime))")
+//                        Text("End Time: \(formattedTime(date: endTime))")
+//                    }
 //                    }
 //                    .padding()
 //                    Spacer()
@@ -79,7 +79,7 @@ public struct SPTimeFrameView: View {
             }
 
             BottomSheetView(isSheetPresented: $isShowingPicker, content: {
-                CustomPicker(options: options, selectedOptionIndex: $selectedOptionIndex)
+                CustomPicker(options: timeSlotPptions, selectedOptionIndex: $selectedOptionIndex)
                     .frame(height: 200)
                     .frame(maxWidth: .infinity)
                     .background(Color.white)

@@ -19,6 +19,7 @@ public struct SPTimeFrameView: View {
     
     @State private var startTime = Date()
     @State private var endTime = Date()
+    @State private var isToggled = false
 
     // MARK: Injection
     
@@ -52,13 +53,60 @@ public struct SPTimeFrameView: View {
 //                        DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
 //                            .datePickerStyle(WheelDatePickerStyle())
 //                            .labelsHidden()
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            VStack(spacing: .zero) {
+                                Text("Select day and time preferences")
+                                    .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
+                                                        lineHeight: Theme.current.bodyOneRegular.lineHeight,
+                                                        verticalPadding: 0)
+                                Text("Specify your availability to ensure it aligns with the task requirements and your schedule.")
+                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                        verticalPadding: 0)
+                            }
+                            
+                            VStack(spacing: 16) {
+                                Text("Saturday (this week)")
+                                    .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
+                                                        lineHeight: Theme.current.subtitle.lineHeight,
+                                                        verticalPadding: 0)
+                            }
+                            
+                            Text("Selected Option: \(timeSlotPptions[selectedOptionIndex])")
+                               .padding()
 
-                        Text("Selected Option: \(timeSlotPptions[selectedOptionIndex])")
-                           .padding()
+                            Button("Show Picker") {
+                                isShowingPicker.toggle()
+                            }
 
-                        Button("Show Picker") {
-                            isShowingPicker.toggle()
+                            HStack(spacing: .zero) {
+                                VStack {
+                                    Text("Set recurring")
+                                        .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
+                                                            lineHeight: Theme.current.bodyOneRegular.lineHeight,
+                                                            verticalPadding: 0)
+                                    Text("Recruiters can find you weekly on your specified day and time")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                }
+                                Button(action: {
+                                    self.isToggled.toggle()
+                                }) {
+                                    Text(isToggled ? "ON" : "OFF")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .frame(width: 100, height: 50)
+                                        .background(isToggled ? Color.green : Color.red) // Different background colors based on toggle state
+                                        .cornerRadius(10)
+                                }
+                            }
                         }
+                        .padding(.vertical)
+                        .padding(.horizontal, 24)
+                    }
 //                    VStack {
 //                        DatePicker("From", selection: $startTime, displayedComponents: .hourAndMinute)
 //                            .padding()
@@ -110,11 +158,17 @@ public struct SPTimeFrameView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }
             .build()
+        let centerAlignedItem = ToolBarItemDataBuilder()
+            .setTitleString("My Availability")
+            .setTitleFont(Theme.current.subtitle.font)
+            .build()
         let toolBarItems = ToolBarItemsDataBuilder()
             .setLeftAlignedItem(leftAlignedItem)
+            .setCenterAlignedItem(centerAlignedItem)
             .build()
         let issNavBarData = ISSNavigationBarBuilder()
             .setToolBarItems(toolBarItems)
+            .setBackgroundColor(Color.clear)
             .setTintColor(Theme.current.issBlack.color)
             .includeStatusBarArea(true)
             .build()

@@ -55,7 +55,7 @@ public struct SPTimeFrameView: View {
 //                            .labelsHidden()
                     ScrollView {
                         VStack(spacing: 16) {
-                            VStack(spacing: .zero) {
+                            VStack(alignment: .leading, spacing: .zero) {
                                 Text("Select day and time preferences")
                                     .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
                                                         lineHeight: Theme.current.bodyOneRegular.lineHeight,
@@ -81,7 +81,7 @@ public struct SPTimeFrameView: View {
                             }
 
                             HStack(spacing: .zero) {
-                                VStack {
+                                VStack(alignment: .leading) {
                                     Text("Set recurring")
                                         .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
                                                             lineHeight: Theme.current.bodyOneRegular.lineHeight,
@@ -91,17 +91,8 @@ public struct SPTimeFrameView: View {
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
                                 }
-                                Button(action: {
-                                    self.isToggled.toggle()
-                                }) {
-                                    Text(isToggled ? "ON" : "OFF")
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                        .padding()
-                                        .frame(width: 100, height: 50)
-                                        .background(isToggled ? Color.green : Color.red) // Different background colors based on toggle state
-                                        .cornerRadius(10)
-                                }
+                                Toggle("Toggle Button", isOn: $isToggled)
+                                    .background(isToggled ? Color.blue : Color.gray)
                             }
                         }
                         .padding(.vertical)

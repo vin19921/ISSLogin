@@ -111,7 +111,7 @@ public struct SPTimeFrameView: View {
 //                    .padding()
 //                    Spacer()
                 case let .failure(type):
-                    Text("Error")
+                    Text(String(type))
                     Spacer()
                 }
             }

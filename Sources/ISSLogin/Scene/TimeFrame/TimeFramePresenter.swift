@@ -23,6 +23,7 @@ final class TimeFramePresenter: ObservableObject {
     enum FailureType {
         case connectivity
         case internet
+        case noData
     }
 
     // MARK: Injection
@@ -64,8 +65,10 @@ final class TimeFramePresenter: ObservableObject {
         if let data = response.data {
             timeFrameListViewModel = TimeFrame.Model.ViewModel(message: "Select time",
                                                                timeFrameList: data.timeFrame)
-            if timeFrameListViewModel != nil {
+            if let timeFrameListViewModel = timeFrameListViewModel {
                 state = .success(timeFrameListViewModel)
+            } else {
+                state = .failure(.noData)
             }
         }
     }

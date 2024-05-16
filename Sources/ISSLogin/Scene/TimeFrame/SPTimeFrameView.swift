@@ -97,6 +97,9 @@ public struct SPTimeFrameView: View {
                         .padding(.vertical)
                         .padding(.horizontal, 24)
                     }
+                    .onAppear {
+                        presenter.fetchTimeFrameList(request: TimeFrame.Model.Request())
+                    }
 //                    VStack {
 //                        DatePicker("From", selection: $startTime, displayedComponents: .hourAndMinute)
 //                            .padding()

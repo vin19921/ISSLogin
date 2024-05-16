@@ -19,7 +19,8 @@ public struct SPTimeFrameView: View {
     
     @State private var startTime = Date()
     @State private var endTime = Date()
-    @State private var isToggled = false
+    @State private var isRecurringToggled = false
+    @State private var isAvailabilityToggled = false
 
     // MARK: Injection
     
@@ -58,8 +59,8 @@ public struct SPTimeFrameView: View {
                             VStack(spacing: 4) {
                                 HStack {
                                     Text("Select day and time preferences")
-                                        .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
-                                                            lineHeight: Theme.current.bodyOneRegular.lineHeight,
+                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                             verticalPadding: 0)
                                     Spacer()
                                 }
@@ -81,27 +82,66 @@ public struct SPTimeFrameView: View {
                                     Spacer()
                                 }
                             }
-                            
-                            Text("Selected Option: \(viewModel.timeFrameList[selectedOptionIndex].name)")
-                               .padding()
 
-                            Button("Show Picker") {
+                            VStack(spacing: 12) {
+                                Text("from")
+                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                        verticalPadding: 0)
+                                HStack {
+                                    Text(viewModel.timeFrameList[selectedOptionIndex].startTime)
+                                        .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
+                                                            lineHeight: Theme.current.bodyOneRegular.lineHeight,
+                                                            verticalPadding: 0)
+                                }
+                                .frame(height: 47)
+
+                                Text("until")
+                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                        verticalPadding: 0)
+                                HStack {
+                                    Text(viewModel.timeFrameList[selectedOptionIndex].endTime)
+                                        .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
+                                                            lineHeight: Theme.current.bodyOneRegular.lineHeight,
+                                                            verticalPadding: 0)
+                                }
+                                .frame(height: 47)
+                            }
+                            .onTapGesture {
                                 isShowingPicker.toggle()
                             }
 
-                            HStack(spacing: .zero) {
+                            HStack(spacing: 16) {
                                 VStack(alignment: .leading) {
                                     Text("Set recurring")
-                                        .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
-                                                            lineHeight: Theme.current.bodyOneRegular.lineHeight,
+                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                             verticalPadding: 0)
                                     Text("Recruiters can find you weekly on your specified day and time")
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
+                                        .frame(maxWidth: .infinity)
                                 }
-                                Spacer()
-                                Toggle("", isOn: $isToggled)
+                                Toggle("", isOn: $isRecurringToggled)
+                                    .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
+                                                                   offColor: Color(hex: 0x707070)))
+                            }
+
+                            HStack(spacing: 16) {
+                                VStack(alignment: .leading) {
+                                    Text("Enable availability")
+                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                            verticalPadding: 0)
+                                    Text("Enable potential task recruiters to view, contact, and recruit you.")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                Toggle("", isOn: $isAvailabilityToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
                             }
@@ -306,6 +346,7 @@ struct CustomToggleStyle: ToggleStyle {
                 .overlay(
                     Circle()
                         .fill(Color.white)
+                        .stroke(configuration.isOn ? Color(hex: 0x002ED0) : Color(hex: 0x707070), lineWidth: 1)
                         .shadow(radius: 1)
                         .offset(x: configuration.isOn ? 10 : -10)
                         .animation(.easeInOut(duration: 0.2))

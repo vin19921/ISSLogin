@@ -25,7 +25,7 @@ public enum TimeFrame {
 
         struct ViewModel {
             var message: String
-            var timeFrameList: TimeFrameListDataModel
+            var timeFrameList: [TimeFrameDataModel]
         }
     }
 }

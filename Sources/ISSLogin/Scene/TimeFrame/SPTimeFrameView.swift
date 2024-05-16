@@ -117,7 +117,7 @@ public struct SPTimeFrameView: View {
             }
 
             BottomSheetView(isSheetPresented: $isShowingPicker, content: {
-                CustomPicker(options: presenter.timeFrameListViewModel?.timeFrameList.timeFrame ?? [],
+                CustomPicker(options: presenter.timeFrameListViewModel?.timeFrameList ?? [],
                              selectedOptionIndex: $selectedOptionIndex)
                     .frame(height: 200)
                     .frame(maxWidth: .infinity)

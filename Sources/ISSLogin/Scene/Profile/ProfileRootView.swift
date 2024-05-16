@@ -258,31 +258,33 @@ public struct ProfileRootView: View {
                                     .padding()
                                 }
 
-                                Rectangle().frame(height: 1).foregroundColor(Theme.current.lightGrayBorder.color)
-
-                                Button(action: {
-                                    presenter.routeToTimeFrame()
-                                }) {
-                                    HStack {
-                                        LoginImageAssets.love.image
-                                            .resizable()
-                                            .renderingMode(.template)
-                                            .frame(width: 22, height: 22)
-                                            .aspectRatio(contentMode: .fit)
-                                        Text("Set Available Time")
-                                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
-                                                                verticalPadding: 0)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                                verticalPadding: 0)
+                                if presenter.isServiceProvider {
+                                    Rectangle().frame(height: 1).foregroundColor(Theme.current.lightGrayBorder.color)
+                                    
+                                    Button(action: {
+                                        presenter.routeToTimeFrame()
+                                    }) {
+                                        HStack {
+                                            LoginImageAssets.love.image
+                                                .resizable()
+                                                .renderingMode(.template)
+                                                .frame(width: 22, height: 22)
+                                                .aspectRatio(contentMode: .fit)
+                                            Text("Set Available Time")
+                                                .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                                    lineHeight: Theme.current.bodyOneMedium.lineHeight,
+                                                                    verticalPadding: 0)
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                    verticalPadding: 0)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 36)
+                                        .foregroundColor(Theme.current.issBlack.color)
+                                        .padding()
                                     }
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 36)
-                                    .foregroundColor(Theme.current.issBlack.color)
-                                    .padding()
                                 }
                             }
                             .background(Theme.current.lightGray.color)

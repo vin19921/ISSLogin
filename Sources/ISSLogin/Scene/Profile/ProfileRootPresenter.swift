@@ -18,6 +18,7 @@ final class ProfileRootPresenter: ObservableObject {
     @Published var showingAlert = false
     @Published var errorMessage = ""
     @Published var isLoggedIn = false
+    @Published var isServiceProvider = false
 
     // MARK: Injection
 
@@ -118,6 +119,10 @@ extension ProfileRootPresenter {
 
     func updateLoginStatus() {
         isLoggedIn = interactor.isLoggedIn()
+    }
+
+    func isServiceProvider() {
+        isServiceProvider = interactor.isServiceProvider()
     }
 }
 

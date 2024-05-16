@@ -16,4 +16,5 @@ public protocol ProfileRootDataProviderLogic {
     func logOut()
     func isLoggedIn() -> Bool
     func hasRunBefore() -> Bool
+    func isServiceProvider() -> Bool
 }

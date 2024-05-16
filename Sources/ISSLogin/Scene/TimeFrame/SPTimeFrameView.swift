@@ -46,7 +46,7 @@ public struct SPTimeFrameView: View {
                             presenter.fetchTimeFrameList(request: TimeFrame.Model.Request())
                         }
                     Spacer()
-                case .success:
+                case let .success(viewModel):
 //                    VStack {
 //                        Text("Selected time: \(selectedDate, formatter: dateFormatter)")
 //
@@ -120,7 +120,8 @@ public struct SPTimeFrameView: View {
             }
 
             BottomSheetView(isSheetPresented: $isShowingPicker, content: {
-                CustomPicker(options: timeSlotPptions, selectedOptionIndex: $selectedOptionIndex)
+                CustomPicker(options: presenter.timeFrameListViewModel?.timeFrameList.timeFrame ?? [],
+                             selectedOptionIndex: $selectedOptionIndex)
                     .frame(height: 200)
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
@@ -171,7 +172,7 @@ public struct SPTimeFrameView: View {
 
 
 struct CustomPicker: View {
-    let options: [String]
+    let options: [TimeFrameDataModel]
     @Binding var selectedOptionIndex: Int
 
     var body: some View {

@@ -12,11 +12,12 @@ final class TimeFramePresenter: ObservableObject {
     private var interactor: TimeFrameBusinessLogic
     private var cancellables = Set<AnyCancellable>()
     @Published var state = State.success
+    @Published var timeFrameListViewModel: TimeFrame.Model.ViewModel?
 
     enum State {
         case isLoading
         case failure(FailureType)
-        case success
+        case success(TimeFrame.Model.ViewModel)
     }
 
     enum FailureType {
@@ -54,10 +55,20 @@ final class TimeFramePresenter: ObservableObject {
                 }
             }, receiveValue: { response in
                 DispatchQueue.main.async {
-                    print(response)
-                    self.state = .success
+                    handleRegistrationResponse(response: response)
                 }
             })
             .store(in: &cancellables)
+    }
+
+    private func handleRegistrationResponse(response: TimeFrame.Model.Response) {
+        let data = response.data
+
+        if let data = response.data,
+           let timeFrameList = data.timeFrame {
+            
+            timeFrameListViewModel = TimeFrame.Model.ViewModel(message: "Select time",
+                                                               timeFrameList: timeFrameList))
+        }
     }
 }

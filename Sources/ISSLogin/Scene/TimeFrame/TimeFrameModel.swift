@@ -22,5 +22,10 @@ public enum TimeFrame {
 //            public var status: Int16?
             public var data: TimeFrameListDataModel? = nil
         }
+
+        struct ViewModel {
+            var message: String
+            var timeFrameList: TimeFrameListDataModel
+        }
     }
 }

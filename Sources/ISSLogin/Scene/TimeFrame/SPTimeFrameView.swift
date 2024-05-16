@@ -73,7 +73,7 @@ public struct SPTimeFrameView: View {
                                                         verticalPadding: 0)
                             }
                             
-                            Text("Selected Option: \(timeSlotPptions[selectedOptionIndex])")
+                            Text("Selected Option: \(viewModel.timeFrame[selectedOptionIndex])")
                                .padding()
 
                             Button("Show Picker") {

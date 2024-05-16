@@ -59,11 +59,11 @@ public extension TimeFrameListDataModel {
 }
 
 public struct TimeFrameDataModel: Codable, Identifiable {
-    public let id: String?
-    public let startTime: String?
-    public let endTime: String?
-    public let name: String?
-    public let status: Bool?
+    public let id: String
+    public let startTime: String
+    public let endTime: String
+    public let name: String
+    public let status: Bool
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -81,10 +81,10 @@ public struct TimeFrameDataModel: Codable, Identifiable {
 public extension TimeFrameDataModel {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        startTime = try container.decode(String.self, forKey: .startTime)
-        endTime = try container.decode(String.self, forKey: .endTime)
-        name = try container.decode(String.self, forKey: .name)
-        status = try container.decode(Bool.self, forKey: .status)
+        id = try container.decode(String.self, forKey: .id) ?? ""
+        startTime = try container.decode(String.self, forKey: .startTime) ?? ""
+        endTime = try container.decode(String.self, forKey: .endTime) ?? ""
+        name = try container.decode(String.self, forKey: .name) ?? ""
+        status = try container.decode(Bool.self, forKey: .status) ?? false
     }
 }

@@ -324,6 +324,7 @@ public struct ProfileRootView: View {
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             presenter.updateLoginStatus()
+            presenter.getIsServiceProvider()
 //                presenter.showTabBar()
         }
 

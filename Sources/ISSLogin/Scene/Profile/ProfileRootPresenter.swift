@@ -121,7 +121,7 @@ extension ProfileRootPresenter {
         isLoggedIn = interactor.isLoggedIn()
     }
 
-    func isServiceProvider() {
+    func getIsServiceProvider() {
         isServiceProvider = interactor.isServiceProvider()
     }
 }

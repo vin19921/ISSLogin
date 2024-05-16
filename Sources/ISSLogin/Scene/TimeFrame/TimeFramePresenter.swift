@@ -64,7 +64,9 @@ final class TimeFramePresenter: ObservableObject {
         if let data = response.data {
             timeFrameListViewModel = TimeFrame.Model.ViewModel(message: "Select time",
                                                                timeFrameList: data.timeFrame)
-            state = .success(timeFrameListViewModel)
+            if timeFrameListViewModel != nil {
+                state = .success(timeFrameListViewModel)
+            }
         }
     }
 }

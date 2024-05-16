@@ -42,12 +42,11 @@ final class TimeFramePresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-//                            self.presenterState = .failure(.internet)
+                            self.state = .failure(.internet)
                             print("CommonServiceError ::: internet")
                         default:
-//                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
-                            self.state = .success
+                            self.state = .failure(.connectivity)
                         }
                     }
                 case .finished:

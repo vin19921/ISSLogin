@@ -54,7 +54,7 @@ final class TimeFramePresenter: ObservableObject {
                 }
             }, receiveValue: { response in
                 DispatchQueue.main.async {
-                    handleRegistrationResponse(response: response)
+                    self.handleRegistrationResponse(response: response)
                 }
             })
             .store(in: &cancellables)
@@ -63,11 +63,9 @@ final class TimeFramePresenter: ObservableObject {
     private func handleRegistrationResponse(response: TimeFrame.Model.Response) {
         let data = response.data
 
-        if let data = response.data,
-           let timeFrameList = data.timeFrame {
-            
+        if let data = response.data {
             timeFrameListViewModel = TimeFrame.Model.ViewModel(message: "Select time",
-                                                               timeFrameList: timeFrameList))
+                                                               timeFrameList: data.timeFrame))
         }
     }
 }

@@ -113,7 +113,7 @@ public struct SPTimeFrameView: View {
                             }
 
                             HStack(spacing: 16) {
-                                VStack(alignment: .leading) {
+                                VStack {
                                     Text("Set recurring")
                                         .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                             lineHeight: Theme.current.bodyOneBold.lineHeight,
@@ -122,7 +122,7 @@ public struct SPTimeFrameView: View {
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
-                                        .frame(maxWidth: .infinity)
+                                        .frame(width: .infinity)
                                 }
                                 Toggle("", isOn: $isRecurringToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
@@ -130,7 +130,7 @@ public struct SPTimeFrameView: View {
                             }
 
                             HStack(spacing: 16) {
-                                VStack(alignment: .leading) {
+                                VStack {
                                     Text("Enable availability")
                                         .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                             lineHeight: Theme.current.bodyOneBold.lineHeight,
@@ -139,7 +139,7 @@ public struct SPTimeFrameView: View {
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
-                                        .frame(maxWidth: .infinity)
+                                        .frame(width: .infinity)
                                 }
                                 Toggle("", isOn: $isAvailabilityToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
@@ -348,7 +348,7 @@ struct CustomToggleStyle: ToggleStyle {
                         .fill(Color.white)
                         .overlay(
                             Circle()
-                                .stroke(configuration.isOn ? Color(hex: 0x002ED0) : Color(hex: 0x707070), lineWidth: 1)
+                                .stroke(configuration.isOn ? onColor : offColor, lineWidth: 1)
                         )
                         .shadow(radius: 1)
                         .offset(x: configuration.isOn ? 10 : -10)

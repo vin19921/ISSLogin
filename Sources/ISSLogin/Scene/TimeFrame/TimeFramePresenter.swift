@@ -11,7 +11,7 @@ import Foundation
 final class TimeFramePresenter: ObservableObject {
     private var interactor: TimeFrameBusinessLogic
     private var cancellables = Set<AnyCancellable>()
-    @Published var state = State.success
+    @Published var state = State.isLoading
     @Published var timeFrameListViewModel: TimeFrame.Model.ViewModel?
 
     enum State {

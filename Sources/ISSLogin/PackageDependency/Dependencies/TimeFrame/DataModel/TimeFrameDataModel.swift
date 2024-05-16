@@ -58,7 +58,7 @@ public extension TimeFrameListDataModel {
     }
 }
 
-public struct TimeFrameDataModel: Codable {
+public struct TimeFrameDataModel: Codable, Identifiable {
     public let id: String?
     public let startTime: String?
     public let endTime: String?
@@ -66,11 +66,15 @@ public struct TimeFrameDataModel: Codable {
     public let status: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case id
+        case id = "_id"
         case startTime
         case endTime
         case name
         case status
+    }
+
+    public static func == (lhs: TimeFrameDataModel, rhs: TimeFrameDataModel) -> Bool {
+        lhs.id == rhs.id
     }
 }
 

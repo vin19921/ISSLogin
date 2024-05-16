@@ -61,11 +61,10 @@ final class TimeFramePresenter: ObservableObject {
     }
 
     private func handleRegistrationResponse(response: TimeFrame.Model.Response) {
-        let data = response.data
-
         if let data = response.data {
             timeFrameListViewModel = TimeFrame.Model.ViewModel(message: "Select time",
                                                                timeFrameList: data.timeFrame)
+            state = .success(timeFrameListViewModel)
         }
     }
 }

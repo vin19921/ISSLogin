@@ -55,7 +55,7 @@ public struct SPTimeFrameView: View {
 //                            .labelsHidden()
                     ScrollView {
                         VStack(spacing: 16) {
-                            VStack(alignment: .leading, spacing: .zero) {
+                            VStack(alignment: .leading, spacing: 4) {
                                 Text("Select day and time preferences")
                                     .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
                                                         lineHeight: Theme.current.bodyOneRegular.lineHeight,
@@ -66,7 +66,7 @@ public struct SPTimeFrameView: View {
                                                         verticalPadding: 0)
                             }
                             
-                            VStack(spacing: 16) {
+                            VStack(alignment: .leading, spacing: 16) {
                                 Text("Saturday (this week)")
                                     .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
                                                         lineHeight: Theme.current.subtitle.lineHeight,

@@ -55,22 +55,31 @@ public struct SPTimeFrameView: View {
 //                            .labelsHidden()
                     ScrollView {
                         VStack(spacing: 16) {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Select day and time preferences")
-                                    .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
-                                                        lineHeight: Theme.current.bodyOneRegular.lineHeight,
-                                                        verticalPadding: 0)
-                                Text("Specify your availability to ensure it aligns with the task requirements and your schedule.")
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                        verticalPadding: 0)
+                            VStack(spacing: 4) {
+                                HStack {
+                                    Text("Select day and time preferences")
+                                        .fontWithLineHeight(font: Theme.current.bodyOneRegular.uiFont,
+                                                            lineHeight: Theme.current.bodyOneRegular.lineHeight,
+                                                            verticalPadding: 0)
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("Specify your availability to ensure it aligns with the task requirements and your schedule.")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 0)
+                                    Spacer()
+                                }
                             }
                             
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Saturday (this week)")
-                                    .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
-                                                        lineHeight: Theme.current.subtitle.lineHeight,
-                                                        verticalPadding: 0)
+                            VStack(spacing: .zero) {
+                                HStack {
+                                    Text("Saturday (this week)")
+                                        .fontWithLineHeight(font: Theme.current.subtitle.uiFont,
+                                                            lineHeight: Theme.current.subtitle.lineHeight,
+                                                            verticalPadding: 0)
+                                    Spacer()
+                                }
                             }
                             
                             Text("Selected Option: \(viewModel.timeFrameList[selectedOptionIndex].name)")
@@ -91,7 +100,10 @@ public struct SPTimeFrameView: View {
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
                                 }
+                                Spacer()
                                 Toggle("", isOn: $isToggled)
+                                    .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
+                                                                   offColor: Color(hex: 0x707070)))
                             }
                         }
                         .padding(.vertical)
@@ -121,7 +133,7 @@ public struct SPTimeFrameView: View {
                              selectedOptionIndex: $selectedOptionIndex)
                     .frame(height: 200)
                     .frame(maxWidth: .infinity)
-                    .background(Color.white)
+                    .background(Color.red)
             }, onDismiss: {
                 print("Dismiss")
             })
@@ -182,7 +194,7 @@ struct CustomPicker: View {
             .pickerStyle(WheelPickerStyle())
             .frame(height: 150)
             .clipped()
-            .background(Color.white)
+            .background(Color.orange)
         }
     }
 }
@@ -268,5 +280,40 @@ struct SizeCalculator: ViewModifier {
 extension View {
     func saveSize(in size: Binding<CGSize>) -> some View {
         modifier(SizeCalculator(size: size))
+    }
+}
+
+extension Color {
+    init(hex: UInt) {
+        let red = Double((hex & 0xFF0000) >> 16) / 255.0
+        let green = Double((hex & 0x00FF00) >> 8) / 255.0
+        let blue = Double(hex & 0x0000FF) / 255.0
+        self.init(red: red, green: green, blue: blue)
+    }
+}
+
+struct CustomToggleStyle: ToggleStyle {
+    var onColor: Color
+    var offColor: Color
+
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            configuration.label
+            Spacer()
+            RoundedRectangle(cornerRadius: 16)
+                .fill(configuration.isOn ? onColor : offColor)
+                .frame(width: 50, height: 30)
+                .overlay(
+                    Circle()
+                        .fill(Color.white)
+                        .shadow(radius: 1)
+                        .offset(x: configuration.isOn ? 10 : -10)
+                        .animation(.easeInOut(duration: 0.2))
+                )
+                .onTapGesture {
+                    configuration.isOn.toggle()
+                }
+        }
+        .padding(.horizontal)
     }
 }

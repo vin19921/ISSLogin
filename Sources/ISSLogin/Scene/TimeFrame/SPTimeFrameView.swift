@@ -346,7 +346,10 @@ struct CustomToggleStyle: ToggleStyle {
                 .overlay(
                     Circle()
                         .fill(Color.white)
-                        .stroke(configuration.isOn ? Color(hex: 0x002ED0) : Color(hex: 0x707070), lineWidth: 1)
+                        .overlay(
+                            Circle()
+                                .stroke(configuration.isOn ? Color(hex: 0x002ED0) : Color(hex: 0x707070), lineWidth: 1)
+                        )
                         .shadow(radius: 1)
                         .offset(x: configuration.isOn ? 10 : -10)
                         .animation(.easeInOut(duration: 0.2))

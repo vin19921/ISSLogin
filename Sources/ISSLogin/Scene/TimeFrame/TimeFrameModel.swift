@@ -17,9 +17,9 @@ public enum TimeFrame {
         }
 
         public struct Response {
-            public var resultCode: Int16? = 1
+//            public var resultCode: Int16? = 1
             public var resultMessage: String?
-            public var status: Int16?
+//            public var status: Int16?
             public var data: TimeFrameListDataModel? = nil
         }
     }

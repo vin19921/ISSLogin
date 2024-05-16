@@ -27,19 +27,19 @@
 //}
 
 public struct TimeFrameListResponse: Codable {
-    public let resultCode: Int16
+//    public let resultCode: Int16
     public let resultMessage: String
-    public let status: Int16
+//    public let status: Int16
     public let data: TimeFrameListDataModel
 }
 
 public extension TimeFrameListResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        resultCode = try container.decode(Int16.self, forKey: .resultCode) ?? 0
+//        resultCode = try container.decode(Int16.self, forKey: .resultCode) ?? 0
         resultMessage = try container.decode(String.self, forKey: .resultMessage) ?? ""
-        status = try container.decode(Int16.self, forKey: .status) ?? 0
-        data = try container.decode(TimeFrameListDataModel.self, forKey: .data) 
+//        status = try container.decode(Int16.self, forKey: .status) ?? 0
+        data = try container.decode(TimeFrameListDataModel.self, forKey: .data)
     }
 }
 

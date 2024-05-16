@@ -35,9 +35,10 @@ final class TimeFrameInteractor: TimeFrameBusinessLogic {
                         promise(.failure(error))
                     }
                 } receiveValue: { response in
-                    promise(.success(TimeFrame.Model.Response(resultCode: response.resultCode,
+                    promise(.success(TimeFrame.Model.Response(
+//                        resultCode: response.resultCode,
                                                               resultMessage: response.resultMessage,
-                                                              status: response.status,
+//                                                              status: response.status,
                                                               data: response.data)))
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()

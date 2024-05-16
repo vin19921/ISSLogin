@@ -179,7 +179,7 @@ struct CustomPicker: View {
         ZStack {
             Picker("", selection: $selectedOptionIndex) {
                 ForEach(0..<options.count) { index in
-                    Text(self.options[index])
+                    Text(self.options[index].name)
                 }
             }
             .pickerStyle(WheelPickerStyle())

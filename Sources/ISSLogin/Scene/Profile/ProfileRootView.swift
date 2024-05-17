@@ -8,6 +8,7 @@
 import ISSCommonUI
 import ISSTheme
 import SwiftUI
+import AVFoundation
 
 public struct ProfileRootView: View {
     
@@ -392,7 +393,6 @@ public struct ProfileRootView: View {
         .onAppear {
             presenter.updateLoginStatus()
             presenter.getIsServiceProvider()
-            checkCameraAccess()
 //                presenter.showTabBar()
         }
         .sheet(isPresented: $isShowingScanner) {
@@ -401,7 +401,7 @@ public struct ProfileRootView: View {
                 isShowingScanner = false
             }
         }
-        .alert(isPresented: $isShowingAlert) {
+        .alert(isPresented: $isShowingCameraAlert) {
             Alert(
                 title: Text("Camera Access Denied"),
                 message: Text("Please allow camera access in settings to scan QR codes."),

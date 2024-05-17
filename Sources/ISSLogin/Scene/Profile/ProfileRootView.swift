@@ -18,6 +18,10 @@ public struct ProfileRootView: View {
     @State private var email = ""
     
     @State private var isLoggedIn = false
+
+    // QR Scanner
+    @State private var scannedCode: String?
+    @State private var isShowingScanner = false
     
     // MARK: Injection
     
@@ -286,6 +290,42 @@ public struct ProfileRootView: View {
                                         .padding()
                                     }
                                 }
+
+                                Rectangle().frame(height: 1).foregroundColor(Theme.current.lightGrayBorder.color)
+
+                                if let scannedCode = scannedCode {
+                                    Text("Scanned QR Code: \(scannedCode)")
+                                        .padding()
+                                }
+                                
+                                Button(action: {
+                                    isShowingScanner = true
+                                }) {
+                                    HStack {
+                                        LoginImageAssets.lock.image
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .frame(width: 22, height: 22)
+                                            .aspectRatio(contentMode: .fit)
+                                        Text("Scan QR")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 36)
+                                    .foregroundColor(Theme.current.issBlack.color)
+                                    .padding()
+//                                    .overlay(
+//                                        RoundedRectangle(cornerRadius: 16)
+//                                            .stroke(Color.gray, lineWidth: 1)
+//                                    )
+                                }
                             }
                             .background(Theme.current.lightGray.color)
                             .cornerRadius(16)
@@ -326,6 +366,12 @@ public struct ProfileRootView: View {
             presenter.updateLoginStatus()
             presenter.getIsServiceProvider()
 //                presenter.showTabBar()
+        }
+        .sheet(isPresented: $isShowingScanner) {
+            QRScannerView {
+                scannedCode = $0
+                isShowingScanner = false
+            }
         }
 
         if presenter.isLoggedIn {

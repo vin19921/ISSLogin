@@ -22,6 +22,7 @@ public struct ProfileRootView: View {
     // QR Scanner
     @State private var scannedCode: String?
     @State private var isShowingScanner = false
+    @State private var isShowingCameraAlert = false
     
     // MARK: Injection
     
@@ -321,10 +322,36 @@ public struct ProfileRootView: View {
                                     .frame(height: 36)
                                     .foregroundColor(Theme.current.issBlack.color)
                                     .padding()
-//                                    .overlay(
-//                                        RoundedRectangle(cornerRadius: 16)
-//                                            .stroke(Color.gray, lineWidth: 1)
-//                                    )
+                                }
+                                Button(action: {
+                                    checkCameraAccessAndScan()
+                                }) {
+                                    HStack {
+                                        LoginImageAssets.lock.image
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .frame(width: 22, height: 22)
+                                            .aspectRatio(contentMode: .fit)
+                                        Text("Scan QR")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 36)
+                                    .foregroundColor(Theme.current.issBlack.color)
+                                    .padding()
+                                }
+                                .sheet(isPresented: $isShowingScanner) {
+                                    QRScannerView {
+                                        scannedCode = $0
+                                        isShowingScanner = false
+                                    }
                                 }
                             }
                             .background(Theme.current.lightGray.color)
@@ -365,6 +392,7 @@ public struct ProfileRootView: View {
         .onAppear {
             presenter.updateLoginStatus()
             presenter.getIsServiceProvider()
+            checkCameraAccess()
 //                presenter.showTabBar()
         }
         .sheet(isPresented: $isShowingScanner) {
@@ -372,6 +400,16 @@ public struct ProfileRootView: View {
                 scannedCode = $0
                 isShowingScanner = false
             }
+        }
+        .alert(isPresented: $isShowingAlert) {
+            Alert(
+                title: Text("Camera Access Denied"),
+                message: Text("Please allow camera access in settings to scan QR codes."),
+                primaryButton: .default(Text("Settings"), action: {
+                    openAppSettings()
+                }),
+                secondaryButton: .cancel()
+            )
         }
 
         if presenter.isLoggedIn {
@@ -440,4 +478,45 @@ public struct ProfileRootView: View {
         return issNavBarData
     }
 
+    private func checkCameraAccessAndScan() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            isShowingScanner = true
+        case .notDetermined:
+            requestCameraAccess()
+        case .denied, .restricted:
+            // Handle denied access appropriately, e.g., show an alert
+            isShowingCameraAlert = true
+        @unknown default:
+            // Handle unknown cases appropriately
+            break
+        }
+    }
+    
+    private func requestCameraAccess() {
+        AVCaptureDevice.requestAccess(for: .video) { granted in
+            DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    if granted {
+                        self.isShowingScanner = true
+                    } else {
+                        // Show alert for denied access
+                        self.isShowingCameraAlert = true
+                    }
+                }
+            }
+        }
+    }
+
+    private func openAppSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { success in
+                print("Settings opened: \(success)") // Prints true if successfully opened
+            })
+        }
+    }
 }

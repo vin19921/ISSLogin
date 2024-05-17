@@ -73,4 +73,3 @@ struct QRScannerView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
-

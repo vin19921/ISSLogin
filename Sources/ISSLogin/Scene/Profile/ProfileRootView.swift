@@ -299,31 +299,7 @@ public struct ProfileRootView: View {
                                     Text("Scanned QR Code: \(scannedCode)")
                                         .padding()
                                 }
-                                
-                                Button(action: {
-                                    isShowingScanner = true
-                                }) {
-                                    HStack {
-                                        LoginImageAssets.lock.image
-                                            .resizable()
-                                            .renderingMode(.template)
-                                            .frame(width: 22, height: 22)
-                                            .aspectRatio(contentMode: .fit)
-                                        Text("Scan QR")
-                                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
-                                                                verticalPadding: 0)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                                verticalPadding: 0)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 36)
-                                    .foregroundColor(Theme.current.issBlack.color)
-                                    .padding()
-                                }
+
                                 Button(action: {
                                     checkCameraAccessAndScan()
                                 }) {

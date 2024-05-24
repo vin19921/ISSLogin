@@ -171,8 +171,7 @@ public struct SPTimeFrameView: View {
             BottomSheetView(isSheetPresented: $isShowingPicker, content: {
                 CustomPicker(options: presenter.timeFrameListViewModel?.timeFrameList ?? [],
                              selectedOptionIndex: $selectedOptionIndex)
-                    .frame(height: 200)
-                    .frame(maxWidth: .infinity)
+                .frame(width: UIScreen.main.bounds.width, height: 200)
                     .background(Color.red)
             }, onDismiss: {
                 print("Dismiss")

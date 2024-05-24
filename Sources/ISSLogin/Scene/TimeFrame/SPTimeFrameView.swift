@@ -177,7 +177,6 @@ public struct SPTimeFrameView: View {
                 CustomPicker(options: presenter.timeFrameListViewModel?.timeFrameList ?? [],
                              selectedOptionIndex: $selectedOptionIndex)
                 .frame(width: UIScreen.main.bounds.width, height: 200)
-                    .background(Color.red)
             }, onDismiss: {
                 print("Dismiss")
             })
@@ -238,7 +237,6 @@ struct CustomPicker: View {
             .pickerStyle(WheelPickerStyle())
             .frame(height: 150)
             .clipped()
-            .background(Color.orange)
         }
     }
 }

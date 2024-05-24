@@ -129,13 +129,13 @@ public struct SPTimeFrameView: View {
                                         Spacer()
                                     }
                                 }
+                                .frame(width: UIScreen.main.bounds.width - 32 - 48 - 50)
                                 .background(Color.yellow)
 
                                 Toggle("", isOn: $isRecurringToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
                             }
-                            .frame(width: UIScreen.main.bounds.width - 32 - 48 - 50)
                             .background(Color.orange)
 
                             HStack(spacing: 16) {

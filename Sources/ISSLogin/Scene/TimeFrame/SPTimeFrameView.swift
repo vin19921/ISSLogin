@@ -122,7 +122,6 @@ public struct SPTimeFrameView: View {
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
-                                        .frame(width: .infinity)
                                 }
                                 Toggle("", isOn: $isRecurringToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),

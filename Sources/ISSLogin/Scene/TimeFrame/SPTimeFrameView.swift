@@ -113,22 +113,23 @@ public struct SPTimeFrameView: View {
                             }
 
                             HStack(spacing: 16) {
-                                VStack {
-                                    HStack {
+                                VStack(alignment: .leading) {
+//                                    HStack {
                                         Text("Set recurring")
                                             .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                                 lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                                 verticalPadding: 0)
-                                        Spacer()
-                                    }
-                                    HStack {
+//                                        Spacer()
+//                                    }
+//                                    HStack {
                                         Text("Recruiters can find you weekly on your specified day and time")
                                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                                 verticalPadding: 0)
-                                        Spacer()
-                                    }
+//                                        Spacer()
+//                                    }
                                 }
+                                .frame(maxWidth: UIScreen.main.bounds.width)
                                 Toggle("", isOn: $isRecurringToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
@@ -361,6 +362,6 @@ struct CustomToggleStyle: ToggleStyle {
                     configuration.isOn.toggle()
                 }
         }
-        .padding(.horizontal)
+//        .padding(.horizontal)
     }
 }

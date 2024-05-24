@@ -114,14 +114,20 @@ public struct SPTimeFrameView: View {
 
                             HStack(spacing: 16) {
                                 VStack {
-                                    Text("Set recurring")
-                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                            verticalPadding: 0)
-                                    Text("Recruiters can find you weekly on your specified day and time")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
+                                    HStack {
+                                        Text("Set recurring")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                    }
+                                    HStack {
+                                        Text("Recruiters can find you weekly on your specified day and time")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                    }
                                 }
                                 Toggle("", isOn: $isRecurringToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),

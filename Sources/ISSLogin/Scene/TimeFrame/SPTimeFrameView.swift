@@ -130,25 +130,32 @@ public struct SPTimeFrameView: View {
                                     }
                                 }
                                 .frame(width: UIScreen.main.bounds.width - 32 - 48 - 50)
-                                .background(Color.yellow)
 
                                 Toggle("", isOn: $isRecurringToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
                             }
-                            .background(Color.orange)
 
                             HStack(spacing: 16) {
                                 VStack {
-                                    Text("Enable availability")
-                                        .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
-                                                            lineHeight: Theme.current.bodyOneBold.lineHeight,
-                                                            verticalPadding: 0)
-                                    Text("Enable potential task recruiters to view, contact, and recruit you.")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                            verticalPadding: 0)
+                                    HStack {
+                                        Text("Enable availability")
+                                            .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
+                                                                lineHeight: Theme.current.bodyOneBold.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                    }
+
+                                    HStack {
+                                        Text("Enable potential task recruiters to view, contact, and recruit you.")
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                verticalPadding: 0)
+                                        Spacer()
+                                    }
                                 }
+                                .frame(width: UIScreen.main.bounds.width - 32 - 48 - 50)
+
                                 Toggle("", isOn: $isAvailabilityToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
@@ -180,6 +187,7 @@ public struct SPTimeFrameView: View {
                 CustomPicker(options: presenter.timeFrameListViewModel?.timeFrameList ?? [],
                              selectedOptionIndex: $selectedOptionIndex)
                 .frame(width: UIScreen.main.bounds.width, height: 200)
+                .background(Color.white)
             }, onDismiss: {
                 print("Dismiss")
             })

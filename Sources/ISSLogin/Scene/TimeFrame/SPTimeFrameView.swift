@@ -114,22 +114,22 @@ public struct SPTimeFrameView: View {
 
                             HStack(spacing: 16) {
                                 VStack(alignment: .leading) {
-//                                    HStack {
+                                    HStack {
                                         Text("Set recurring")
                                             .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                                 lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                                 verticalPadding: 0)
-//                                        Spacer()
-//                                    }
-//                                    HStack {
+                                        Spacer()
+                                    }
+                                    HStack {
                                         Text("Recruiters can find you weekly on your specified day and time")
                                             .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                                 lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                                 verticalPadding: 0)
-//                                        Spacer()
-//                                    }
+                                        Spacer()
+                                    }
                                 }
-                                .frame(maxWidth: UIScreen.main.bounds.width)
+                                .frame(width: UIScreen.main.bounds.width - 48 - 50)
                                 Toggle("", isOn: $isRecurringToggled)
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))

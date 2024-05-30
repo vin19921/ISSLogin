@@ -95,5 +95,9 @@ struct WeeklyCalendarView: View {
             return ""
         }
     }
+
+    private func getButtonWidth() -> CGFloat {
+        (UIScreen.main.bounds.width - CGFloat((buttonText.count - 1) * 8) - 32) / CGFloat(buttonText.count)
+    }
 }
 

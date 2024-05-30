@@ -163,7 +163,7 @@ public struct SPTimeFrameView: View {
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
                             }
-                            .animation(.easeOut(duration: 0.2), value: isRecurringToggled)
+                            .animation(.easeInOut(duration: 0.2), value: isRecurringToggled)
 
                             HStack(spacing: 16) {
                                 VStack {
@@ -189,7 +189,7 @@ public struct SPTimeFrameView: View {
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
                             }
-                            .animation(.easeOut(duration: 0.2), value: isRecurringToggled)
+                            .animation(.easeInOut(duration: 0.2), value: isRecurringToggled)
                         }
                         .padding(.vertical)
                         .padding(.horizontal, 24)

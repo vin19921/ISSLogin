@@ -51,6 +51,7 @@ struct WeeklyCalendarView: View {
                                     .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                         lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                         verticalPadding: 0)
+                                    .frame(height: 77)
 
                                 Button(action: {
                                     toggleSelection(index: index)

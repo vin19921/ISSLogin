@@ -22,7 +22,7 @@ struct WeeklyCalendarView: View {
         
         ScrollView(.horizontal, showsIndicators: false) {
             ScrollViewReader { scrollViewProxy in
-                HStack(alignment: .center, spacing: 8) {
+                HStack(alignment: .top, spacing: 8) {
                     
                     ForEach(buttonText.indices, id: \.self) { index in
                         let part = buttonText[index].split(separator: "\n", maxSplits: 1)
@@ -69,7 +69,7 @@ struct WeeklyCalendarView: View {
                                 .clipShape(Circle())
                             }
                         }
-                        .animation(.easeInOut, value: recurring)
+                        .animation(.easeOut(duration: 0.2), value: recurring)
                     }
                 }
                 .padding(.top)

@@ -99,6 +99,7 @@ public struct SPTimeFrameView: View {
                             WeeklyCalendarView(selectedIndices: $selectedIndices,
                                                isSelected: $isButtonSelected,
                                                buttonText: $buttonText,
+                                               recurring: $isRecurringToggled,
                                                onSelectDate: { (selectedDate, selectedIndex) in
                                 print("selectedDate ::: \(selectedDate)")
                                 print("selectedIndex ::: \(selectedIndex)")

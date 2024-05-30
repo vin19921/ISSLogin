@@ -36,8 +36,8 @@ struct WeeklyCalendarView: View {
                                     HStack(spacing: 8) {
                                         Text(part[0])
                                             .foregroundColor(isSelected[index] ? .white : .black)
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoBold.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoBold.lineHeight,
                                                                 verticalPadding: 0)
                                     }
                                     .frame(width: getButtonWidth(), height: 77)
@@ -48,8 +48,8 @@ struct WeeklyCalendarView: View {
                             } else {
                                 Text(part[0])
                                     .foregroundColor(.black)
-                                    .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                        lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                    .fontWithLineHeight(font: Theme.current.bodyTwoBold.uiFont,
+                                                        lineHeight: Theme.current.bodyTwoBold.lineHeight,
                                                         verticalPadding: 0)
 
                                 Button(action: {
@@ -59,8 +59,8 @@ struct WeeklyCalendarView: View {
                                     HStack(spacing: 8) {
                                         Text(part[1])
                                             .foregroundColor(isSelected[index] ? .white : .black)
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            .fontWithLineHeight(font: Theme.current.bodyTwoBold.uiFont,
+                                                                lineHeight: Theme.current.bodyTwoBold.lineHeight,
                                                                 verticalPadding: 0)
                                     }
                                     .frame(width: getButtonWidth(), height: 77)

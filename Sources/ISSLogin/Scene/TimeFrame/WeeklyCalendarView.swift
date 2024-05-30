@@ -39,7 +39,7 @@ struct WeeklyCalendarView: View {
                             }) {
                                 HStack(spacing: 8) {
                                     Text(part[1])
-                                        .foregroundColor(selectedButtonIndex == index ? .white : .black)
+                                        .foregroundColor(isSelected[index] ? .white : .black)
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
@@ -100,7 +100,7 @@ struct WeeklyCalendarView: View {
     }
 
     private func getButtonWidth() -> CGFloat {
-        (UIScreen.main.bounds.width - CGFloat((buttonText.count - 1) * 8) - 32) / CGFloat(buttonText.count)
+        (UIScreen.main.bounds.width - CGFloat((buttonText.count - 1) * 8) - 48) / CGFloat(buttonText.count)
     }
 }
 

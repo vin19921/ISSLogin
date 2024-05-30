@@ -33,7 +33,8 @@ struct WeeklyCalendarView: View {
                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                     verticalPadding: 0)
                             Button(action: {
-                                selectedButtonIndex = index
+//                                selectedButtonIndex = index
+                                toggleSelection(index: index)
                                 onSelectDate?(formattedDate(index), index)
                             }) {
                                 HStack(spacing: 8) {
@@ -51,15 +52,17 @@ struct WeeklyCalendarView: View {
                     }
                 }
                 .padding(.top)
-                .padding(.horizontal)
+//                .padding(.horizontal)
             }
         }
         .background(Theme.current.issWhite.color)
     }
 
     private func toggleSelection(index: Int) {
+        isButtonSelected[index].toggle()
         if isSelected(index: index) {
-            selectedIndices.removeAll { $0 == index }
+            selectedIndices.remove(at: index)
+//            selectedIndices.removeAll { $0 == index }
         } else {
             selectedIndices.append(index)
         }

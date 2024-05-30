@@ -89,6 +89,13 @@ public struct SPTimeFrameView: View {
                                     Spacer()
                                 }
                             }
+//                            HStack {
+//                                Text(presenter.getFormattedDisplayDate())
+//                                    .fontWithLineHeight(font: Theme.current.modalHeadline.uiFont,
+//                                                        lineHeight: Theme.current.modalHeadline.lineHeight,
+//                                                        verticalPadding: 0)
+//                                Spacer()
+//                            }
 
                             WeeklyCalendarView(selectedIndices: $selectedIndices,
                                                isSelected: $isButtonSelected,

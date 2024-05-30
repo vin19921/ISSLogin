@@ -103,7 +103,7 @@ public struct SPTimeFrameView: View {
                                 print("selectedDate ::: \(selectedDate)")
                                 print("selectedIndex ::: \(selectedIndex)")
                                 if presenter.selectedDates.contains(selectedDate) {
-                                    presenter.selectedDates.removeAll(where: { $0 == index })
+                                    presenter.selectedDates.removeAll(where: { $0 == selectedDate })
                                 } else {
                                     presenter.selectedDates.append(selectedDate)
                                 }

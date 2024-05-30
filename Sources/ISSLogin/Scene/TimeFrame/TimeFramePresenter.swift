@@ -13,6 +13,7 @@ final class TimeFramePresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var state = State.isLoading
     @Published var timeFrameListViewModel: TimeFrame.Model.ViewModel?
+    @Published var selectedDates = [String]()
 
     enum State {
         case isLoading

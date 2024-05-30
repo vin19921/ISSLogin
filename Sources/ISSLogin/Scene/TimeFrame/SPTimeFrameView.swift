@@ -102,6 +102,12 @@ public struct SPTimeFrameView: View {
                                                onSelectDate: { (selectedDate, selectedIndex) in
                                 print("selectedDate ::: \(selectedDate)")
                                 print("selectedIndex ::: \(selectedIndex)")
+                                if presenter.selectedDates.contains(selectedDate) {
+                                    presenter.selectedDates.removeAll(where: { $0 == index })
+                                } else {
+                                    presenter.selectedDates.append(selectedDate)
+                                }
+                                print(presenter.selectedDates)
                             })
 
                             VStack(spacing: 12) {

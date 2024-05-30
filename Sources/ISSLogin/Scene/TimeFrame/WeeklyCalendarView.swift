@@ -46,7 +46,7 @@ struct WeeklyCalendarView: View {
                                 }
                                 .frame(width: getButtonWidth(), height: 77)
                             }
-                            .background(selectedButtonIndex == index ? Color.red : Color.clear)
+                            .background(isSelected[index] ? Color.red : Color.clear)
                             .clipShape(Circle())
                         }
                     }

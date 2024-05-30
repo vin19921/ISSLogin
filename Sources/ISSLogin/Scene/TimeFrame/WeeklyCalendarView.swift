@@ -69,7 +69,7 @@ struct WeeklyCalendarView: View {
                                 .clipShape(Circle())
                             }
                         }
-                        .animation(.easeInOut(duration: 0.2), value: recurring)
+//                        .animation(.easeInOut(duration: 0.2), value: recurring)
                     }
                 }
             }

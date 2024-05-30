@@ -70,9 +70,11 @@ struct WeeklyCalendarView: View {
                             }
                         }
                         .animation(.easeInOut(duration: 0.2), value: recurring)
+                        .background(Color.yellow)
                     }
                 }
                 .padding(.top)
+                .background(Color.orange)
 //                .padding(.horizontal)
             }
         }

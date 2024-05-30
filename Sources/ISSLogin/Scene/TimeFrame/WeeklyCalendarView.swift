@@ -61,11 +61,11 @@ struct WeeklyCalendarView: View {
     private func toggleSelection(index: Int) {
         isSelected[index].toggle()
         if isSelected(index: index) {
-            selectedIndices.remove(at: index)
+            selectedIndices.removeAll(where: { $0 == index })
 //            selectedIndices.removeAll { $0 == index }
         } else {
             selectedIndices.append(index)
-            selectedIndices.sort()
+//            selectedIndices.sort()
         }
     }
 

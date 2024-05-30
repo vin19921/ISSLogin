@@ -29,47 +29,48 @@ struct WeeklyCalendarView: View {
                         
                         VStack(spacing: .zero) {
                             if recurring {
-                                Button(action: {
-                                    toggleSelection(index: index)
-                                    onSelectDate?(formattedDate(index), index)
-                                }) {
-                                    HStack(spacing: 8) {
-                                        Text(part[0])
-                                            .foregroundColor(isSelected[index] ? .white : .black)
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                                verticalPadding: 0)
+                                withAnimation {
+                                    Button(action: {
+                                        toggleSelection(index: index)
+                                        onSelectDate?(formattedDate(index), index)
+                                    }) {
+                                        HStack(spacing: 8) {
+                                            Text(part[0])
+                                                .foregroundColor(isSelected[index] ? .white : .black)
+                                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                    verticalPadding: 0)
+                                        }
+                                        .frame(width: getButtonWidth(), height: 77)
                                     }
-                                    .frame(width: getButtonWidth(), height: 77)
+                                    .background(isSelected[index] ? Color.red : Color.clear)
+                                    .clipShape(Circle())
                                 }
-                                .background(isSelected[index] ? Color.red : Color.clear)
-                                .clipShape(Circle())
 
                             } else {
-                                HStack {
+                                withAnimation {
                                     Text(part[0])
                                         .foregroundColor(.black)
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
-                                }
-                                .frame(height: 77)
-
-                                Button(action: {
-                                    toggleSelection(index: index)
-                                    onSelectDate?(formattedDate(index), index)
-                                }) {
-                                    HStack(spacing: 8) {
-                                        Text(part[1])
-                                            .foregroundColor(isSelected[index] ? .white : .black)
-                                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                                verticalPadding: 0)
+                                    
+                                    Button(action: {
+                                        toggleSelection(index: index)
+                                        onSelectDate?(formattedDate(index), index)
+                                    }) {
+                                        HStack(spacing: 8) {
+                                            Text(part[1])
+                                                .foregroundColor(isSelected[index] ? .white : .black)
+                                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                                    verticalPadding: 0)
+                                        }
+                                        .frame(width: getButtonWidth(), height: 77)
                                     }
-                                    .frame(width: getButtonWidth(), height: 77)
+                                    .background(isSelected[index] ? Color.red : Color.clear)
+                                    .clipShape(Circle())
                                 }
-                                .background(isSelected[index] ? Color.red : Color.clear)
-                                .clipShape(Circle())
                             }
                         }
                     }

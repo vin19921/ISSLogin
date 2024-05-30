@@ -65,6 +65,7 @@ struct WeeklyCalendarView: View {
 //            selectedIndices.removeAll { $0 == index }
         } else {
             selectedIndices.append(index)
+            selectedIndices.sort()
         }
     }
 

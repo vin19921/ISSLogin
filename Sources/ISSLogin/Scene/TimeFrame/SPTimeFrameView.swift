@@ -24,7 +24,7 @@ public struct SPTimeFrameView: View {
     
     // Weekly Calendar
     @State private var isButtonSelected: [Bool] = Array(repeating: false, count: 7)
-    @State private var selectedIndices: [Int]
+    @State private var selectedIndices: [Int] = []
     @State private var buttonText: [String] = []
 
     // MARK: Injection
@@ -33,7 +33,6 @@ public struct SPTimeFrameView: View {
     
     init(presenter: TimeFramePresenter) {
         self.presenter = presenter
-        _selectedIndices = State(initialValue: [-1])
         _buttonText = State(initialValue: generateDateStrings(numberOfDays: 7))
     }
     

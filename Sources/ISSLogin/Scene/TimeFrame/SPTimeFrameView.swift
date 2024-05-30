@@ -21,6 +21,11 @@ public struct SPTimeFrameView: View {
     @State private var endTime = Date()
     @State private var isRecurringToggled = false
     @State private var isAvailabilityToggled = false
+    
+    // Weekly Calendar
+    @State private var isButtonSelected: [Bool] = Array(repeating: false, count: 7)
+    @State private var selectedIndices: [Int]
+    @State private var buttonText: [String] = []
 
     // MARK: Injection
     
@@ -28,6 +33,8 @@ public struct SPTimeFrameView: View {
     
     init(presenter: TimeFramePresenter) {
         self.presenter = presenter
+        _selectedIndices = State(initialValue: [-1])
+        _buttonText = State(initialValue: generateDateStrings(numberOfDays: 7))
     }
     
     // MARK: View
@@ -82,6 +89,14 @@ public struct SPTimeFrameView: View {
                                     Spacer()
                                 }
                             }
+
+                            WeeklyCalendarView(selectedIndices: $selectedIndices,
+                                               isSelected: $isButtonSelected,
+                                               buttonText: $buttonText,
+                                               onSelectDate: { (selectedDate, selectedIndex) in
+                                print("selectedDate ::: \(selectedDate)")
+                                print("selectedIndex ::: \(selectedIndex)")
+                            })
 
                             VStack(spacing: 12) {
                                 Text("from")
@@ -207,6 +222,37 @@ public struct SPTimeFrameView: View {
        formatter.timeStyle = .short
        return formatter.string(from: date)
    }
+
+    func generateDateStrings(numberOfDays: Int) -> [String] {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        var dateStrings: [String] = []
+        var displayDateString: [String] = []
+        var combinedDateString: [String] = []
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        for i in 0..<numberOfDays {
+            if let date = calendar.date(byAdding: .day, value: i, to: currentDate) {
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                let formattedDate = dateFormatter.string(from: date)
+                dateStrings.append(formattedDate)
+
+                dateFormatter.dateFormat = "dd"
+                let displayFormattedDate = dateFormatter.string(from: date)
+
+                dateFormatter.dateFormat = "EEE"
+                let abbreviatedDayName = dateFormatter.string(from: date)
+
+                combinedDateString.append("\(abbreviatedDayName)\n\(displayFormattedDate)")
+            }
+        }
+        print("\(combinedDateString)")
+//        isButtonSelected[0] = true
+//        presenter.selectedDate = dateStrings[0]
+        return combinedDateString
+    }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
         let leftAlignedItem = ToolBarItemDataBuilder()

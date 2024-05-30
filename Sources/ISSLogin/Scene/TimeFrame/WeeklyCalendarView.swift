@@ -73,7 +73,7 @@ struct WeeklyCalendarView: View {
                         .background(Color.yellow)
                     }
                 }
-                .padding(.top)
+//                .padding(.top)
                 .background(Color.orange)
 //                .padding(.horizontal)
             }

@@ -265,6 +265,23 @@ public struct SPTimeFrameView: View {
         print("\(combinedDateString)")
 //        isButtonSelected[0] = true
 //        presenter.selectedDate = dateStrings[0]
+
+        ///
+        let formatter = ISO8601DateFormatter()
+        // Insert .withFractionalSeconds to the current format.
+        formatter.formatOptions.insert(.withFractionalSeconds)
+        let date = formatter.date(from: "2022-01-05T03:30:00.000Z")
+        print("-------------")
+        print("\(date)")
+
+        // Set new format with .withFractionalSeconds
+        formatter.formatOptions = [
+            .withInternetDateTime,
+            .withFractionalSeconds
+        ]
+        let date2 = formatter.date(from: "2022-01-05T03:30:00.000Z")
+        print("\(date2)")
+
         return combinedDateString
     }
 

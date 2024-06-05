@@ -60,7 +60,7 @@ public struct MyAvailabilityListView: View {
                             VStack(spacing: 4) {
                                 HStack {
                                 }
-                                .frame(height: 123, width: UIScreen.main.bounds.width - 48)
+                                .frame(width: UIScreen.main.bounds.width - 48, height: 123)
                             }
                         }
                         Spacer()

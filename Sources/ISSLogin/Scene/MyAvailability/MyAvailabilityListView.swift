@@ -39,7 +39,7 @@ public struct MyAvailabilityListView: View {
                         }
                     Spacer()
                 case .success:
-                    ScrollView {
+                    
                         VStack(spacing: 16) {
                             VStack(spacing: 4) {
                                 HStack {
@@ -54,6 +54,11 @@ public struct MyAvailabilityListView: View {
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
+                                    Spacer()
+                                }
+                            }
+                            ScrollView {
+                                VStack(spacing: 4) {
                                     Spacer()
                                 }
                             }
@@ -84,15 +89,15 @@ public struct MyAvailabilityListView: View {
                                 .cornerRadius(25)
                             }
                         }
+                        .frame(height: UIScreen.main.bounds.height)
                         .padding(.vertical)
                         .padding(.horizontal, 24)
-                    }
+                    
                 case let .failure(type):
                     Text("Error")
                     Spacer()
                 }
             }
-            .frame(height: UIScreen.main.bounds.height)
         }
         .edgesIgnoringSafeArea(.vertical)
     }

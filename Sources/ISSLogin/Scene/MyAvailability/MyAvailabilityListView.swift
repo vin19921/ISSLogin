@@ -63,6 +63,31 @@ public struct MyAvailabilityListView: View {
                                 .frame(width: UIScreen.main.bounds.width - 48, height: 123)
                                 .background(Color.gray)
                                 .cornerRadius(12)
+
+                                HStack {
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 48, height: 123)
+                                .background(Color.gray)
+                                .cornerRadius(12)
+
+                                HStack {
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 48, height: 123)
+                                .background(Color.gray)
+                                .cornerRadius(12)
+
+                                HStack {
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 48, height: 123)
+                                .background(Color.gray)
+                                .cornerRadius(12)
+
+                                HStack {
+                                }
+                                .frame(width: UIScreen.main.bounds.width - 48, height: 123)
+                                .background(Color.gray)
+                                .cornerRadius(12)
+
                                 Spacer()
                             }
                             .background(Color.yellow)

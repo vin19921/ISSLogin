@@ -61,6 +61,8 @@ public struct MyAvailabilityListView: View {
                                 HStack {
                                 }
                                 .frame(width: UIScreen.main.bounds.width - 48, height: 123)
+                                .background(Color.gray)
+                                .cornerRadius(12)
                             }
                         }
                         Spacer()
@@ -88,6 +90,7 @@ public struct MyAvailabilityListView: View {
                             .background(Color.black)
                             .cornerRadius(25)
                         }
+                        .padding()
                     }
                     .padding(.vertical)
                     .padding(.horizontal, 24)
@@ -98,7 +101,7 @@ public struct MyAvailabilityListView: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.vertical)
+        .edgesIgnoringSafeArea(.top)
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {

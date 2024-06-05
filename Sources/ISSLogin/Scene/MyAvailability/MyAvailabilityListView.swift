@@ -38,7 +38,7 @@ public struct MyAvailabilityListView: View {
                             
                         }
                     Spacer()
-                case let .success(viewModel):
+                case .success:
                     ScrollView {
                         VStack(spacing: 16) {
                             VStack(spacing: 4) {

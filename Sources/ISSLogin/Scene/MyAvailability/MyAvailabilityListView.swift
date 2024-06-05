@@ -87,12 +87,12 @@ public struct MyAvailabilityListView: View {
                         .padding(.vertical)
                         .padding(.horizontal, 24)
                     }
-                    .frame(height: UIScreen.main.bounds.height)
                 case let .failure(type):
                     Text("Error")
                     Spacer()
                 }
             }
+            .frame(height: UIScreen.main.bounds.height)
         }
         .edgesIgnoringSafeArea(.vertical)
     }

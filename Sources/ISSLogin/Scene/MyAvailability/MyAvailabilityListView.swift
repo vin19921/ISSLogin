@@ -65,7 +65,7 @@ public struct MyAvailabilityListView: View {
                                 .cornerRadius(12)
                                 Spacer()
                             }
-                            .bacground(Color.yellow)
+                            .background(Color.yellow)
                         }
 //                        Spacer()
                         Button(action: {

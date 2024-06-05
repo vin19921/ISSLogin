@@ -149,7 +149,7 @@ public enum ISSGateway {
     MyAvailabilityListView
     {
         Theme.current = theme
-        let presenter = MyAvailabilityListPresenter(interactor: interactor)
+        let presenter = MyAvailabilityListPresenter()
 
         let view = MyAvailabilityListView(presenter: presenter)
 

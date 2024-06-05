@@ -63,9 +63,11 @@ public struct MyAvailabilityListView: View {
                                 .frame(width: UIScreen.main.bounds.width - 48, height: 123)
                                 .background(Color.gray)
                                 .cornerRadius(12)
+                                Spacer()
                             }
+                            .bacground(Color.yellow)
                         }
-                        Spacer()
+//                        Spacer()
                         Button(action: {
                             print("add new")
                             presenter.routeToTimeFrame()
@@ -90,7 +92,6 @@ public struct MyAvailabilityListView: View {
                             .background(Color.black)
                             .cornerRadius(25)
                         }
-                        .padding()
                     }
                     .padding(.vertical)
                     .padding(.horizontal, 24)

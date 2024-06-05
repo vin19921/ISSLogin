@@ -63,19 +63,22 @@ public struct MyAvailabilityListView: View {
                                 print("add new")
                             }) {
                                 HStack {
+                                    Spacer()
                                     LoginImageAssets.addCircle.image
                                         .resizable()
 //                                                .renderingMode(.template)
                                         .frame(width: 24, height: 24)
                                         .aspectRatio(contentMode: .fit)
+                                        .background(Color.white)
                                         .padding(.vertical, 12)
 
                                     Text("Add New")
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 8)
+                                        .foregroundColor(Color.white)
+                                    Spacer()
                                 }
-                                .foregroundColor(Color.white)
                                 .background(Color.black)
                                 .cornerRadius(20)
                             }

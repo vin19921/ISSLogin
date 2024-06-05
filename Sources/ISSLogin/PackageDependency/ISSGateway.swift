@@ -143,4 +143,16 @@ public enum ISSGateway {
 
         return view
     }
+
+    public static func makeMyAvailabilityList(theme: Theme,
+                                              networkMonitor: NetworkMonitor) ->
+    MyAvailabilityListView
+    {
+        Theme.current = theme
+        let presenter = MyAvailabilityListPresenter(interactor: interactor)
+
+        let view = MyAvailabilityListView(presenter: presenter)
+
+        return view
+    }
 }

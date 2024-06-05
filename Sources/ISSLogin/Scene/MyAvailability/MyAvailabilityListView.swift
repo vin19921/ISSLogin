@@ -64,12 +64,12 @@ public struct MyAvailabilityListView: View {
                             }) {
                                 HStack {
                                     Spacer()
-                                    LoginImageAssets.addCircle.image
+                                    LoginImageAssets.plusCircle.image
                                         .resizable()
 //                                                .renderingMode(.template)
                                         .frame(width: 24, height: 24)
                                         .aspectRatio(contentMode: .fit)
-                                        .background(Color.white)
+                                        .foregroundColor(Color.white)
                                         .padding(.vertical, 12)
 
                                     Text("Add New")
@@ -80,12 +80,13 @@ public struct MyAvailabilityListView: View {
                                     Spacer()
                                 }
                                 .background(Color.black)
-                                .cornerRadius(20)
+                                .cornerRadius(25)
                             }
                         }
                         .padding(.vertical)
                         .padding(.horizontal, 24)
                     }
+                    .frame(maxHeight: UIScreen.main.bounds.height)
                 case let .failure(type):
                     Text("Error")
                     Spacer()

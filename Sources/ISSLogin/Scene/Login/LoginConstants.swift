@@ -19,6 +19,7 @@ public enum LoginImageAssets: String, ImageLoader, ImageLoaderSUI {
     case addCircle
     case importCircle
     case wallet
+    case plusCircle
 }
 
 //public enum UserInfoKey: String {

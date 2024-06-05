@@ -145,6 +145,7 @@ public enum ISSGateway {
     }
 
     public static func makeMyAvailabilityList(theme: Theme,
+                                              router: MyAvailabilityListRoutingLogic,
                                               networkMonitor: NetworkMonitor) ->
     MyAvailabilityListView
     {
@@ -152,6 +153,8 @@ public enum ISSGateway {
         let presenter = MyAvailabilityListPresenter()
 
         let view = MyAvailabilityListView(presenter: presenter)
+        let myAvailabilityListRouter = MyAvailabilityListRouter(navigator: router)
+        presenter.setRouter(myAvailabilityListRouter)
 
         return view
     }

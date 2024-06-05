@@ -74,8 +74,8 @@ public struct MyAvailabilityListView: View {
                                         .padding(.vertical, 12)
 
                                     Text("Add New")
-                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoBold.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoBold.lineHeight,
                                                             verticalPadding: 8)
                                         .foregroundColor(Color.white)
                                     Spacer()

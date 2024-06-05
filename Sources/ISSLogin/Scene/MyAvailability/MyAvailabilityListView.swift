@@ -61,6 +61,7 @@ public struct MyAvailabilityListView: View {
                             Spacer()
                             Button(action: {
                                 print("add new")
+                                presenter.routeToTimeFrame()
                             }) {
                                 HStack {
                                     Spacer()

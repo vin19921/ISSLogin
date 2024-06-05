@@ -10,6 +10,7 @@ import Foundation
 
 final class MyAvailabilityListPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
+    private var router: MyAvailabilityListRouter?
     @Published var state = State.success
 
     enum State {
@@ -26,8 +27,15 @@ final class MyAvailabilityListPresenter: ObservableObject {
 
     // MARK: Injection
 
-//    init(interactor: TimeFrameBusinessLogic) {
-//        self.interactor = interactor
-//    }
+    func setRouter(_ router: MyAvailabilityListRouter) {
+        self.router = router
+    }
 }
 
+// MARK: - Routing
+
+extension MyAvailabilityListPresenter {
+    func routeToTimeFrame() {
+        router?.navigate(to: .timeFrameScreen)
+    }
+}

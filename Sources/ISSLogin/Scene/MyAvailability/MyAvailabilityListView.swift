@@ -57,7 +57,7 @@ public struct MyAvailabilityListView: View {
                             }
                         }
                         ScrollView {
-                            VStack(spacing: 4) {
+                            VStack(spacing: 12) {
                                 HStack {
                                 }
                                 .frame(width: UIScreen.main.bounds.width - 48, height: 123)
@@ -90,9 +90,7 @@ public struct MyAvailabilityListView: View {
 
                                 Spacer()
                             }
-                            .background(Color.yellow)
                         }
-//                        Spacer()
                         Button(action: {
                             print("add new")
                             presenter.routeToTimeFrame()

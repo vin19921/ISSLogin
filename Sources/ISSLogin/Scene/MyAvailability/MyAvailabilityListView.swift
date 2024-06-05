@@ -35,7 +35,7 @@ public struct MyAvailabilityListView: View {
                         .progressViewStyle(CircularProgressViewStyle())
                         .padding()
                         .onAppear {
-                            presenter.fetchTimeFrameList(request: TimeFrame.Model.Request())
+                            
                         }
                     Spacer()
                 case let .success(viewModel):

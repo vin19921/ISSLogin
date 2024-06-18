@@ -34,10 +34,10 @@ public enum TimeFrame {
         }
 
         public struct CreateRequest: Encodable {
-            public var rule: Int
+            public var rule: Int = 1
             public var scheduleName: String = "my schedule"
-            public var status: Int
-            public var days: [TimeFrame]
+            public var status: Int = 0
+            public var days: [TimeFrame] = []
         }
 
         public struct CreateResponse {

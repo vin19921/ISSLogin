@@ -81,7 +81,7 @@ public struct SPTimeFrameView: View {
                                 .frame(width: UIScreen.main.bounds.width - 48)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.black, lineWidth: 1)
+                                        .stroke(Color.gray, lineWidth: 1)
                                 )
                             }
                             
@@ -194,7 +194,7 @@ public struct SPTimeFrameView: View {
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
                             }
-
+                            Spacer()
                             HStack {
                                 Button(action: {
                                     print("cencel")
@@ -210,7 +210,7 @@ public struct SPTimeFrameView: View {
                                         .cornerRadius(30)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 30)
-                                                .stroke(Color.black, lineWidth: 1)
+                                                .stroke(Color.gray, lineWidth: 1)
                                         )
                                 }
 

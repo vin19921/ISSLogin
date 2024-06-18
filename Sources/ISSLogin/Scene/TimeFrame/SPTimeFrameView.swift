@@ -76,9 +76,9 @@ public struct SPTimeFrameView: View {
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
+                                        .padding()
                                 }
-                                .frame(width: UIScreen.main.bounds.width)
-                                .padding(.horizontal, 24)
+                                .frame(width: UIScreen.main.bounds.width - 48)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(Color.black, lineWidth: 1)

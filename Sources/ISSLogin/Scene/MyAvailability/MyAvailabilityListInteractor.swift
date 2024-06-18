@@ -35,7 +35,7 @@ final class MyAvailabilityListInteractor: MyAvailabilityListBusinessLogic {
                         promise(.failure(error))
                     }
                 } receiveValue: { response in
-                    promise(.success("\(response)")
+                    promise(.success("\(response)"))
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()
     }

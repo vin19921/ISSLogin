@@ -35,7 +35,7 @@ public struct MyAvailabilityListView: View {
                         .progressViewStyle(CircularProgressViewStyle())
                         .padding()
                         .onAppear {
-                            
+                            presenter.fetchMyAvailabilityList()
                         }
                     Spacer()
                 case .success:

@@ -26,6 +26,7 @@ public struct SPTimeFrameView: View {
     @State private var isButtonSelected: [Bool] = Array(repeating: false, count: 7)
     @State private var selectedIndices: [Int] = []
     @State private var buttonText: [String] = []
+    @State private var titleText: String = ""
 
     // MARK: Injection
     
@@ -64,19 +65,24 @@ public struct SPTimeFrameView: View {
                         VStack(spacing: 16) {
                             VStack(spacing: 4) {
                                 HStack {
-                                    Text("Select day and time preferences")
+                                    Text("Title")
                                         .fontWithLineHeight(font: Theme.current.bodyOneBold.uiFont,
                                                             lineHeight: Theme.current.bodyOneBold.lineHeight,
                                                             verticalPadding: 0)
                                     Spacer()
                                 }
                                 HStack {
-                                    Text("Specify your availability to ensure it aligns with the task requirements and your schedule.")
+                                    TextField($titleText)
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)
-                                    Spacer()
                                 }
+                                .frame(width: UIScreen.main.bounds.width)
+                                .padding(.horizontal, 24)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.black, lineWidth: 1)
+                                )
                             }
                             
                             VStack(spacing: .zero) {
@@ -332,7 +338,7 @@ public struct SPTimeFrameView: View {
             }
             .build()
         let centerAlignedItem = ToolBarItemDataBuilder()
-            .setTitleString("My Availability")
+            .setTitleString("Availability Details")
             .setTitleFont(Theme.current.subtitle.font)
             .build()
         let toolBarItems = ToolBarItemsDataBuilder()

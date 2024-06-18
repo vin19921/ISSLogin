@@ -72,7 +72,7 @@ public struct SPTimeFrameView: View {
                                     Spacer()
                                 }
                                 HStack {
-                                    TextField($titleText)
+                                    TextField(text: $titleText)
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                             verticalPadding: 0)

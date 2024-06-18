@@ -28,7 +28,7 @@ public enum TimeFrame {
             var timeFrameList: [TimeFrameDataModel]
         }
 
-        public struct TimeFrame {
+        public struct TimeFrame: Encodable {
             let date: String
             let timeFrameId: String
         }

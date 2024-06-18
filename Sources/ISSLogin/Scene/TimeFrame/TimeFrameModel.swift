@@ -28,8 +28,8 @@ public enum TimeFrame {
             var timeFrameList: [TimeFrameDataModel]
         }
 
-        struct TimeFrame {
-            let date: Date
+        public struct TimeFrame {
+            let date: String
             let timeFrameId: String
         }
 

@@ -117,15 +117,15 @@ final class TimeFramePresenter: ObservableObject {
 }
 
 extension TimeFramePresenter {
-    func convertMultipleDatesToISO8601(selectedTimeFrameId: String, targetHour: Int = 10, targetMinute: Int = 0, targetSecond: Int = 0) -> [String] {
-        var isoDateStrings: [String, String] = []
+    func convertMultipleDatesToISO8601(selectedTimeFrameId: String, targetHour: Int = 10, targetMinute: Int = 0, targetSecond: Int = 0) -> [TimeFrame.Model.TimeFrame] {
+        var isoDateStrings: [TimeFrame.Model.TimeFrame] = []
         
         for dateString in selectedDates {
             if let isoDateString = convertToISO8601(dateString: dateString, targetHour: targetHour, targetMinute: targetMinute, targetSecond: targetSecond) {
-                isoDateStrings.append(isoDateString, selectedTimeFrameId)
+                isoDateStrings.append(TimeFrame.Model.TimeFrame(date: isoDateString, timeFrameId: selectedTimeFrameId))
             }
         }
-        
+
         return isoDateStrings
     }
 

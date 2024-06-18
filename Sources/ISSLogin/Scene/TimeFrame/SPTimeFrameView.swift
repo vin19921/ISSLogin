@@ -188,6 +188,45 @@ public struct SPTimeFrameView: View {
                                     .toggleStyle(CustomToggleStyle(onColor: Color(hex: 0x002ED0),
                                                                    offColor: Color(hex: 0x707070)))
                             }
+
+                            HStack {
+                                Button(action: {
+                                    print("cencel")
+//                                    action?()
+                                }) {
+                                    Text("Cancel")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 8)
+                                        .padding(.vertical, 8)
+                                        .foregroundColor(.black)
+                                        .frame(maxWidth: .infinity)
+                                        .cornerRadius(30)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .stroke(Color.black, lineWidth: 1)
+                                        )
+                                }
+
+                                Button(action: {
+                                    print("to time slot")
+                                    presenter.createTimeFrame(request: TimeFrame.Model.CreateRequest(
+                                        rule: 1,
+                                        status: 0,
+                                        days: presenter.convertMultipleDatesToISO8601(selectedTimeFrameId: viewModel.timeFrameList[selectedOptionIndex].id)))
+                                }) {
+                                    Text("Save")
+                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                            verticalPadding: 8)
+                                        .padding(.vertical, 8)
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .background(Color.black)
+                                        .cornerRadius(30)
+                                }
+//                                .disabled(selectedTimeSlotIndex == -1)
+                            }
                         }
                         .padding(.vertical)
                         .padding(.horizontal, 24)

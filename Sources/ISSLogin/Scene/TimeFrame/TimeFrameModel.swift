@@ -27,5 +27,21 @@ public enum TimeFrame {
             var message: String
             var timeFrameList: [TimeFrameDataModel]
         }
+
+        struct TimeFrame {
+            let date: Date
+            let timeFrameId: String
+        }
+
+        public struct CreateRequest: Encodable {
+            public var rule: Int
+            public var scheduleName: String = "my schedule"
+            public var status: Int
+            public var days: [TimeFrame]
+        }
+
+        public struct CreateResponse {
+            public var resultMessage: String?
+        }
     }
 }

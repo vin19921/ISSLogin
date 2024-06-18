@@ -145,12 +145,14 @@ public enum ISSGateway {
     }
 
     public static func makeMyAvailabilityList(theme: Theme,
+                                              provider: MyAvailabilityListDataProviderLogic,
                                               router: MyAvailabilityListRoutingLogic,
                                               networkMonitor: NetworkMonitor) ->
     MyAvailabilityListView
     {
         Theme.current = theme
-        let presenter = MyAvailabilityListPresenter()
+        let interactor = MyAvailabilityListInteractor(provider: provider)
+        let presenter = MyAvailabilityListPresenter(interactor: interactor)
 
         let view = MyAvailabilityListView(presenter: presenter)
         let myAvailabilityListRouter = MyAvailabilityListRouter(navigator: router)

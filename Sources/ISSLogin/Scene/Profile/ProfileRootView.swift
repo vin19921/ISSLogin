@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ProfileRootView.swift
 //
-//  Created by Wing Seng Chew on 12/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSCommonUI
@@ -69,11 +69,6 @@ public struct ProfileRootView: View {
                                 }
                                 .padding([.top, .horizontal])
 
-//                                RoundedRectangle(cornerRadius: 16)
-//                                    .fill(Color.orange)
-//                                    .frame(height: 69)
-//                                    .padding()
-
                                 HStack(spacing: .zero) {
                                     VStack(alignment: .leading, spacing: 4) {
                                         HStack(spacing: 6) {
@@ -112,7 +107,6 @@ public struct ProfileRootView: View {
                                                 .foregroundColor(Color.black)
                                         }
                                         .frame(width: 32, height: 32)
-//                                        .foregroundColor(Theme.current.issBlack.color)
                                         .background(Color.white)
                                         .clipShape(Circle())
                                         .overlay(
@@ -127,14 +121,12 @@ public struct ProfileRootView: View {
                                         HStack {
                                             LoginImageAssets.importCircle.image
                                                 .resizable()
-//                                                .renderingMode(.template)
                                                 .frame(width: 18, height: 18)
                                                 .aspectRatio(contentMode: .fit)
                                                 .padding(.all, 7)
                                                 .foregroundColor(Color.black)
                                         }
                                         .frame(width: 32, height: 32)
-//                                        .foregroundColor(Theme.current.issBlack.color)
                                         .background(Color.white)
                                         .clipShape(Circle())
                                         .overlay(
@@ -157,24 +149,6 @@ public struct ProfileRootView: View {
                                     .stroke(Theme.current.lightGrayBorder.color, lineWidth: 1)
                             )
                             .padding(.horizontal)
-//                            HStack {
-//                                VStack(alignment: .leading, spacing: .zero) {
-//                                    
-//                                    
-//                                    Text("View Profile")
-//                                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-//                                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-//                                                            verticalPadding: 0)
-//                                        .foregroundColor(Color.blue)
-//                                        .padding(.top, 8)
-//                                        .onTapGesture {
-//                                            print("On Tap View Profile")
-//                                            presenter.routeToViewProfile()
-//                                        }
-//                                }
-//                                Spacer()
-//                            }
-//                            .padding()
 
                             VStack(spacing: .zero) {
                                 Button(action: {
@@ -200,10 +174,6 @@ public struct ProfileRootView: View {
                                     .frame(height: 36)
                                     .foregroundColor(Theme.current.issBlack.color)
                                     .padding()
-                                    //                                .overlay(
-                                    //                                    RoundedRectangle(cornerRadius: 16)
-                                    //                                        .stroke(Color.gray, lineWidth: 1)
-                                    //                                )
                                 }
 
                                 Rectangle().frame(height: 1).foregroundColor(Theme.current.lightGrayBorder.color)
@@ -231,10 +201,6 @@ public struct ProfileRootView: View {
                                     .frame(height: 36)
                                     .foregroundColor(Theme.current.issBlack.color)
                                     .padding()
-//                                    .overlay(
-//                                        RoundedRectangle(cornerRadius: 16)
-//                                            .stroke(Color.gray, lineWidth: 1)
-//                                    )
                                 }
                                 
                                 Rectangle().frame(height: 1).foregroundColor(Theme.current.lightGrayBorder.color)
@@ -369,7 +335,6 @@ public struct ProfileRootView: View {
         .onAppear {
             presenter.updateLoginStatus()
             presenter.getIsServiceProvider()
-//                presenter.showTabBar()
         }
         .sheet(isPresented: $isShowingScanner) {
             QRScannerView {
@@ -390,44 +355,30 @@ public struct ProfileRootView: View {
 
         if presenter.isLoggedIn {
             ZStack {
-//                VStack {
-                    Button(action: {
-                        presenter.logOut()
-                    }) {
-                        HStack {
-                            LoginImageAssets.exit.image
-                                .resizable()
-                                .renderingMode(.template)
-                                .frame(width: 22, height: 22)
-                                .aspectRatio(contentMode: .fit)
-                            Text("Log Out")
-                                .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyOneMedium.lineHeight,
-                                                    verticalPadding: 0)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                    lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                    verticalPadding: 0)
-                        }
-//                        .frame(maxWidth: .infinity)
-//                        .frame(height: 36)
-                        .foregroundColor(Color.red)
-                        .padding()
-                        .background(Color.red.opacity(0.2))
-                        .cornerRadius(12)
-//                                    .overlay(
-//                                        RoundedRectangle(cornerRadius: 16)
-//                                            .stroke(Color.gray, lineWidth: 1)
-//                                    )
+                Button(action: {
+                    presenter.logOut()
+                }) {
+                    HStack {
+                        LoginImageAssets.exit.image
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: 22, height: 22)
+                            .aspectRatio(contentMode: .fit)
+                        Text("Log Out")
+                            .fontWithLineHeight(font: Theme.current.bodyOneMedium.uiFont,
+                                                lineHeight: Theme.current.bodyOneMedium.lineHeight,
+                                                verticalPadding: 0)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                                verticalPadding: 0)
                     }
-//                }
-//                .background(Color.red.opacity(0.5))
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 16)
-//                        .stroke(Color.red, lineWidth: 1)
-//                )
-//                .padding(.horizontal)
+                    .foregroundColor(Color.red)
+                    .padding()
+                    .background(Color.red.opacity(0.2))
+                    .cornerRadius(12)
+                }
             }
             .frame(alignment: .bottom)
             .overlay(
@@ -461,7 +412,6 @@ public struct ProfileRootView: View {
         case .notDetermined:
             requestCameraAccess()
         case .denied, .restricted:
-            // Handle denied access appropriately, e.g., show an alert
             isShowingCameraAlert = true
         @unknown default:
             // Handle unknown cases appropriately

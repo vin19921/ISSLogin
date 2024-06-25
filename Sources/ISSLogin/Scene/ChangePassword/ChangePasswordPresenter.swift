@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ChangePasswordPresenter.swift
 //
-//  Created by Wing Seng Chew on 07/11/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSCommonUI
@@ -14,7 +14,6 @@ final class ChangePasswordPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     @Published var showingAlert = false
-//    @Published var alertMessage = ""
     @Published var alertInfo = AlertInfo(message: "")
 
     @Published var isDisabled = true
@@ -38,7 +37,6 @@ final class ChangePasswordPresenter: ObservableObject {
             case let .success(success):
                 self.handleChangePasswordResponse(response: success)
             case let .failure(error):
-                //                self.handleError(error: error)
                 print(error)
             }
         }
@@ -60,13 +58,9 @@ final class ChangePasswordPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-                            //                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
-//                            self.state = .failure(.internet)
                         default:
-                            //                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
-//                            self.state = .failure(.connectivity)
                         }
                     }
                 case .finished:
@@ -75,7 +69,6 @@ final class ChangePasswordPresenter: ObservableObject {
             }, receiveValue: { response in
                 DispatchQueue.main.async {
                     print("\(response)")
-//                    self.handleViewProfileResponse(response: response)
                     completion(.success(response))
                 }
             })

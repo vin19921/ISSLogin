@@ -1,8 +1,8 @@
 //
-//  File 2.swift
-//  
+//  ISSGateway+Extension.swift
 //
-//  Created by Wing Seng Chew on 07/12/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSNetwork

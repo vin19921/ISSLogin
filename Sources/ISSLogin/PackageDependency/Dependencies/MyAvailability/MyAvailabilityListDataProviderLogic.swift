@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  MyAvailabilityListDataProviderLogic.swift
 //  
 //
-//  Created by Wing Seng Chew on 18/06/2024.
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine

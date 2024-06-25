@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  OTPDataModel.swift
 //
-//  Created by Wing Seng Chew on 20/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 public struct OTPDataModel: Codable {

@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ViewProfileDataModel.swift
 //
-//  Created by Wing Seng Chew on 17/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 public struct ViewProfileDataModel: Codable {

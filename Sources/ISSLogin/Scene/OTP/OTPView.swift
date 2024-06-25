@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  OTPView.swift
 //
-//  Created by Wing Seng Chew on 12/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -18,10 +18,7 @@ public struct OTPView: View {
     @State private var pin: [String] = Array(repeating: "", count: 6)
     @State private var pinText = ""
     @State private var isButtonEnabled = false
-//    @State private var countdown = 180 // 3 minutes in seconds
-//    private var timer: AnyCancellable?
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-//    @State private var timer: AnyCancellable?
     @State private var isLoading = false
 
     // MARK: Injection
@@ -32,17 +29,14 @@ public struct OTPView: View {
         self.presenter = presenter
     }
 
-    //MARK -> BODY
+    // MARK: Body
+
     public var body: some View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 ISSNavigationBarSUI(data: navigationBarData)
 
                 VStack(spacing: 16) {
-//                    Text("Verify your Email Address")
-//                        .fontWithLineHeight(font: Theme.current.subtitle2.uiFont,
-//                                            lineHeight: Theme.current.subtitle2.lineHeight,
-//                                            verticalPadding: 0)
                     Text("Please enter OTP code sent to +\(presenter.getMobileNo())")
                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                             lineHeight: Theme.current.bodyTwoMedium.lineHeight,
@@ -81,22 +75,6 @@ public struct OTPView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                                 )
-//                                .onReceive(Just(pinText)) { newText in
-//                                    if newText.count >= 6 {
-//                                        print("pin limit reached")
-//                                        isButtonEnabled = true
-//                                        presenter.validateOTP(request: OTP.Model.Request(mobileNo: presenter.getMobileNo(), code: pinText), completionHandler: {
-//                                            isButtonEnabled = false
-//                                        })
-//                                    }
-//                                }
-//                                .alert(isPresented: $presenter.showingAlert) {
-//                                    AlertSUI(alertInfo: AlertInfo(title: "", message: presenter.otpDataModel?.message ?? "",
-//                                                                  dismissText: "Back to Login", onDismiss: {
-//                                        print("Dismiss")
-//                                        presenter.routeToLogin()
-//                                    }))
-//                                }
                         } else {
                             KerningTextField(text: $pinText)
                                 .padding(.vertical, 4)
@@ -113,25 +91,6 @@ public struct OTPView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
                                 )
-//                            OTPTextField(otp: $pinText, maxLength: 6, symbolWidth: 26, font: Theme.current.headline4.uiFont)
-////                                .padding(.leading, 30)
-//                                .lineLimit(1)
-//                                .background(Theme.current.backgroundGray.color)
-////                                .textContentType(.oneTimeCode)
-//                                .onChange(of: pinText, perform: {
-//                                    pinText = String($0.prefix(6))
-//                                    if pinText.count == 6 {
-//                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//                                    }
-//                                })
-//                                .frame(width: 204, height: 32)
-////                                .keyboardType(.numberPad)
-//                                .accentColor(Color.black)
-////                                .multilineTextAlignment(.center)
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 10)
-//                                        .stroke(Theme.current.issBlack.color.opacity(0.5), lineWidth: 2)
-//                                )
                         }
                         Spacer()
                     }
@@ -161,7 +120,6 @@ public struct OTPView: View {
             }
         }
         .onAppear {
-//            startCountdownTimer()
             presenter.fetchOTP(otpAction: presenter.getOTPAction(),
                                request: OTP.Model.Request(mobileNo: presenter.getMobileNo(),
                                                           otpAttemptCount: presenter.otpAttemptCount))
@@ -171,10 +129,7 @@ public struct OTPView: View {
                 presenter.remainingTimeInSeconds -= 1
             }
             else {
-//                presenter.remainingTimeInSeconds = 0
-//                presenter.showTimeOutAlert()
                 isButtonEnabled = true
-//                timer.upstream.connect().cancel()
             }
         }
         .onDisappear {
@@ -186,26 +141,9 @@ public struct OTPView: View {
         .loading(isLoading: $isLoading)
     }
 
-//    private func startCountdownTimer() {
-//        timer = Timer
-//            .publish(every: 1, on: .main, in: .common)
-//            .autoconnect()
-//            .sink { [weak self] _ in
-//                guard let self = self else { return }
-//
-//                if self.countdown > 0 {
-//                    self.countdown -= 1
-//                } else {
-//                    self.isButtonEnabled = true
-//                    self.timer?.cancel()
-//                }
-//            }
-//    }
-
     private func resetTimer() {
         presenter.remainingTimeInSeconds = 10 // Reset the countdown to 3 minutes
         isButtonEnabled = false // Disable the button
-//        startCountdownTimer() // Start the timer again
     }
 
     private var navigationBarData: ISSNavigationBarBuilder.ISSNavigationBarData {
@@ -293,45 +231,6 @@ struct OTPTextField: UIViewRepresentable {
             self.parent = parent
         }
 
-//        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//            let maxLength = parent.maxLength
-//            let symbolWidth = parent.symbolWidth
-//            let font = parent.font
-//
-//            if string == "" {
-//                return true
-//            }
-//
-//            if textField.text!.count + string.count - range.length > maxLength {
-//                return false
-//            }
-//
-//            let currentText = NSMutableAttributedString(attributedString: NSAttributedString(string: textField.text ?? ""))
-//            currentText.deleteCharacters(in: range)
-//            var newStringLength = 0
-//
-//            for char in string {
-//                let lastCharacterRange = NSRange(location: textField.text!.count - 1, length: 1)
-//                let newSymbol = NSMutableAttributedString(string: String(char))
-//                newSymbol.addAttribute(.font, value: font, range: NSMakeRange(0, 1))
-//                let currentSymbolWidth = newSymbol.size().width
-//                let kern = symbolWidth - currentSymbolWidth
-//
-//                if !lastCharacterRange {
-//                    newSymbol.addAttribute(.kern, value: kern, range: NSMakeRange(0, 1))
-//                    print("added kern: \(newSymbol)")
-//                }
-//
-//                currentText.insert(newSymbol, at: range.location + newStringLength)
-//                newStringLength += 1
-//            }
-//
-//            textField.attributedText = currentText
-//            parent.otp = currentText.string
-//
-//            return false
-//        }
-
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
             let maxLength = parent.maxLength
 
@@ -415,10 +314,6 @@ struct KerningTextField: UIViewRepresentable {
     }
 
     private func applyKerning(to textField: UITextField) {
-//        if let attributedText = textField.attributedText?.mutableCopy() as? NSMutableAttributedString {
-//            attributedText.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedText.length))
-//            textField.attributedText = attributedText
-//        }
         if let text = textField.text, text.count > 0 {
            // Exclude the last character from kerning
            let textExcludingLastCharacter = String(text.dropLast())

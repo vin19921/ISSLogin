@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  LoginDataProviderLogic.swift
 //
-//  Created by Wing Seng Chew on 05/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -11,6 +11,5 @@ import Combine
 /// This helps provide proper separation of concerns between the these objects.
 public protocol LoginDataProviderLogic {
     func fetchLogin(request: Login.Model.Request) -> AnyPublisher<LoginResponseDataModel, Error>
-//    func getUserInfo(key: UserInfoKey) -> String
     func saveUserInfo(loginDataModel: LoginDataModel)
 }

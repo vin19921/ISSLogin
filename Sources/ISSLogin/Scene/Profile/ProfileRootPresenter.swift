@@ -1,8 +1,8 @@
 //
-//  File 2.swift
-//  
+//  ProfileRootPresenter.swift
 //
-//  Created by Wing Seng Chew on 12/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -56,7 +56,6 @@ final class ProfileRootPresenter: ObservableObject {
             }, receiveValue: { response in
                 DispatchQueue.main.async {
                     print("\(response)")
-//                    self.handleLoginResponse(response: response)
                 }
             })
             .store(in: &cancellables)
@@ -91,14 +90,9 @@ extension ProfileRootPresenter {
         router?.navigate(to: .timeFrameScreen)
     }
 
-//    func logOut() {
-//        interactor.logOut()
-//    }
-
     func logOut() {
         interactor.logOut()
         updateLoginStatus()
-//       completion?()
     }
 }
 
@@ -112,10 +106,6 @@ extension ProfileRootPresenter {
     func hasRunBefore() -> Bool {
         interactor.hasRunBefore()
     }
-
-//    func isLoggedIn() -> Bool {
-//        interactor.isLoggedIn()
-//    }
 
     func updateLoginStatus() {
         isLoggedIn = interactor.isLoggedIn()

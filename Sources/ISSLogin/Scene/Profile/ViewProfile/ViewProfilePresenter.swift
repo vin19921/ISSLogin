@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ViewProfilePresenter.swift
 //
-//  Created by Wing Seng Chew on 26/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -48,7 +48,6 @@ final class ViewProfilePresenter: ObservableObject {
             case let .success(success):
                 self.handleViewProfileResponse(response: success)
             case let .failure(error):
-                //                self.handleError(error: error)
                 print(error)
             }
         }
@@ -59,8 +58,6 @@ final class ViewProfilePresenter: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
-                
-                //                completionHandler?()
                 
                 switch completion {
                 case let .failure(error):
@@ -82,7 +79,6 @@ final class ViewProfilePresenter: ObservableObject {
             }, receiveValue: { response in
                 DispatchQueue.main.async {
                     print("\(response)")
-//                    self.handleViewProfileResponse(response: response)
                     completion(.success(response))
                 }
             })
@@ -95,7 +91,6 @@ final class ViewProfilePresenter: ObservableObject {
             case let .success(success):
                 self.handleViewProfileResponse(response: success)
             case let .failure(error):
-                //                self.handleError(error: error)
                 print(error)
             }
         }
@@ -117,11 +112,9 @@ final class ViewProfilePresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-                            //                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
                             self.state = .failure(.internet)
                         default:
-                            //                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
                             self.state = .failure(.connectivity)
                         }
@@ -132,7 +125,6 @@ final class ViewProfilePresenter: ObservableObject {
             }, receiveValue: { response in
                 DispatchQueue.main.async {
                     print("\(response)")
-//                    self.handleViewProfileResponse(response: response)
                     completion(.success(response))
                 }
             })
@@ -140,8 +132,6 @@ final class ViewProfilePresenter: ObservableObject {
     }
 
     private func handleViewProfileResponse(response: ViewProfile.Model.Response) {
-//        let resultCode = response.resultCode
-//        let resultMessage = response.resultMessage
         let status = response.status
         let data = response.data
 
@@ -153,13 +143,6 @@ final class ViewProfilePresenter: ObservableObject {
                 showingAlert = true
                 alertMessage = message
             } else {
-//                print("Login Successful ::: \(data)")
-//                if let data = response.data.token?.appToken {
-//                    saveUserInfo(key: .userEmail, value: data.email ?? "")
-//                    saveUserInfo(key: .accessToken, value: data.token?.appToken ?? "")
-//                    saveUserInfo(key: .isLoggedIn, value: true)
-//                    saveUserInfo(loginDataModel: data)
-//                }
                 fullNameText = data.user?.name ?? ""
                 emailText = data.user?.email ?? ""
                 phoneText = data.user?.mobileNo ?? ""
@@ -174,12 +157,6 @@ final class ViewProfilePresenter: ObservableObject {
                                                                   viewProfileData: response.data))
             }
         }
-//        else {
-////            loginDataModel = data
-//            print("Login Successful ::: \(data)")
-//            //            routeToOTP(mobileNo: data.mobileNo)
-//            //        }
-//        }
     }
 }
 

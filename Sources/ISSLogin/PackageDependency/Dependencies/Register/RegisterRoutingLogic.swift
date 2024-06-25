@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  RegisterRoutingLogic.swift
 //
-//  Created by Wing Seng Chew on 12/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 public protocol RegisterRoutingLogic {

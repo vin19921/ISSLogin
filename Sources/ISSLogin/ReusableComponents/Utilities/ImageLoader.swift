@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ImageLoader.swift
 //
-//  Created by Wing Seng Chew on 05/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import UIKit

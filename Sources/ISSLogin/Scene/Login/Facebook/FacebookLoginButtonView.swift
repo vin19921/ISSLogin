@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  FacebookLoginButtonView.swift
 //
-//  Created by Wing Seng Chew on 05/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import FacebookLogin
@@ -13,45 +13,34 @@ import SwiftUI
 import ISSTheme
 
 struct FacebookLoginButtonView: View {
-//    @State private var isLoggedIn = false
-//    @AppStorage("uid") var uid: String?
     @Binding var isLoggedIn: Bool
     @Binding var isLoading: Bool
     let action: ((String, String) -> Void)?
 
     var body: some View {
         VStack {
-//            if isLoggedIn {
-//                Text("Logout")
-//                    .onTapGesture {
-//                        logout()
-//                    }
-//            } else {
-                Button(action: {
-                    // Trigger the Facebook login
-                    isLoading.toggle()
-                    loginWithFacebook()
-                }) {
-                    HStack {
-                        Spacer()
-                        LoginImageAssets.facebook.image
-                            .resizable()
-                            .renderingMode(.template)
-                            .frame(width: 20, height: 20)
-                            .aspectRatio(contentMode: .fit)
-                        Text("Sign Up with Facebook")
-                            .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
-                                                lineHeight: Theme.current.bodyTwoMedium.lineHeight,
-                                                verticalPadding: 8)
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(Theme.current.issWhite.color)
-                    .background(Theme.current.fbBlue.color)
-                    .cornerRadius(12)
+            Button(action: {
+                isLoading.toggle()
+                loginWithFacebook()
+            }) {
+                HStack {
+                    Spacer()
+                    LoginImageAssets.facebook.image
+                        .resizable()
+                        .renderingMode(.template)
+                        .frame(width: 20, height: 20)
+                        .aspectRatio(contentMode: .fit)
+                    Text("Sign Up with Facebook")
+                        .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
+                                            lineHeight: Theme.current.bodyTwoMedium.lineHeight,
+                                            verticalPadding: 8)
+                    Spacer()
                 }
-//                .facebookLoginButtonStyle() // Apply custom button style
-//            }
+                .frame(maxWidth: .infinity)
+                .foregroundColor(Theme.current.issWhite.color)
+                .background(Theme.current.fbBlue.color)
+                .cornerRadius(12)
+            }
         }
     }
 

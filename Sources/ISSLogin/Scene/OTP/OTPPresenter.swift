@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  OTPPresenter.swift
 //
-//  Created by Wing Seng Chew on 12/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -52,10 +52,8 @@ final class OTPPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-//                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
                         default:
-//                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
                         }
                     }
@@ -74,16 +72,7 @@ final class OTPPresenter: ObservableObject {
         let resultCode = response.resultCode
         let resultMessage = response.resultMessage
         let data = response.data
-        
-//        if resultCode > 0 {
-//            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
-//            showingAlert = true
-//            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
-//                                                                        registrationData: response.data))
-//        } else {
-            print("OTP Successful ::: \(data)")
-//            routeToOTP(mobileNo: data.mobileNo)
-//        }
+        print("OTP Successful ::: \(data)")
     }
 
     func validateOTP(request: OTP.Model.Request, completionHandler: (() -> Void)? = nil) {
@@ -100,10 +89,8 @@ final class OTPPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-//                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
                         default:
-//                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
                         }
                     }
@@ -122,14 +109,7 @@ final class OTPPresenter: ObservableObject {
         let resultCode = response.resultCode
         let resultMessage = response.resultMessage
         let data = response.data
-        
-//        if resultCode > 0 {
-//            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
-//            showingAlert = true
-//            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
-//                                                                        registrationData: response.data))
-//        } else {
-            print("OTP Successful ::: \(data)")
+        print("OTP Successful ::: \(data)")
 
         if let code = response.resultCode,
            let message = response.resultMessage {
@@ -152,10 +132,6 @@ final class OTPPresenter: ObservableObject {
             }
             showingAlert.toggle()
         }
-//        showingAlert = true
-//        otpDataModel = data
-//            routeToOTP(mobileNo: data.mobileNo)
-//        }
     }
 }
 

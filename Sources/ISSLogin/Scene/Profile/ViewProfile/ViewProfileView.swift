@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ViewProfileView.swift
 //
-//  Created by Wing Seng Chew on 26/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -19,7 +19,6 @@ public struct ViewProfileView: View {
     @State private var email = ""
     
     @State private var isLoggedIn = false
-//    @State private var isEditMode = false
     
     // MARK: Injection
     

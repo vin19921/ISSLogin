@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  MyAvailabilityListView.swift
 //
-//  Created by Wing Seng Chew on 05/06/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSCommonUI
@@ -99,7 +99,6 @@ public struct MyAvailabilityListView: View {
                                 Spacer()
                                 LoginImageAssets.plusCircle.image
                                     .resizable()
-//                                                .renderingMode(.template)
                                     .frame(width: 24, height: 24)
                                     .aspectRatio(contentMode: .fit)
                                     .foregroundColor(Color.white)

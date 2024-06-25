@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ChangePasswordView.swift
 //
-//  Created by Wing Seng Chew on 07/11/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSCommonUI
@@ -45,8 +45,6 @@ public struct ChangePasswordView: View {
                                                                                validateText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character.",
                                                                                regEx: RegExConstants.passwordRegEx,
                                                                                isRequiredText: "Password must contain the following:\n- 8 Characters in length.\n- 1 Uppercase (A-Z).\n- 1 Lowercase (a-z).\n- 1 Digit (0-9).\n- 1 Special character."
-//                                                                               ,
-//                                                                               leadingImageIcon: Image(systemName: "lock")
                                                                               )
                         )
                         
@@ -56,8 +54,6 @@ public struct ChangePasswordView: View {
                                           viewData: ISSSecureFieldSUI.ViewData(placeholderText: "Confirm New Password",
                                                                                validateText: "New Password does not match",
                                                                                isRequiredText: "New Password does not match"
-//                                                                               ,
-//                                                                               leadingImageIcon: Image(systemName: "lock")
                                                                               )
                         )
 
@@ -78,15 +74,6 @@ public struct ChangePasswordView: View {
                                 .cornerRadius(12)
                         }
                         .disabled(!validated())
-//                        .alert(isPresented: $showingAlert) {
-//                            Alert(title: Text("Reset Successful"),
-//                                  message: Text("Please check your registered email for the new password"),
-//                                  dismissButton: .default(Text("OK")) {
-////                                presentationMode.wrappedValue.dismiss()
-//                                presenter.routeToOTP(mobileNo: "60\(phoneText)")
-//                            })
-//                        }
-
                     }
                     .padding(.horizontal)
 

@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  MyAvailabilityListRoutingLogic.swift
 //
-//  Created by Wing Seng Chew on 05/06/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 public protocol MyAvailabilityListRoutingLogic {

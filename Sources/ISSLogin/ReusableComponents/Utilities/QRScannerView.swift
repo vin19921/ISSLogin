@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  QRScannerView.swift
 //
-//  Created by Wing Seng Chew on 17/05/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import SwiftUI

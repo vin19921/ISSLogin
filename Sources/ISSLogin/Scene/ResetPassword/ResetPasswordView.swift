@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ResetPasswordView.swift
 //
-//  Created by Wing Seng Chew on 18/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSCommonUI
@@ -55,8 +55,6 @@ public struct ResetPasswordView: View {
                         )
 
                         Button(action: {
-                            print("resetpw btn")
-//                            showingAlert.toggle()
                             presenter.routeToOTP(mobileNo: "60\(phoneText)")
                         }) {
                             Text("Reset Password")
@@ -69,15 +67,6 @@ public struct ResetPasswordView: View {
                                 .cornerRadius(12)
                         }
                         .disabled(!validated())
-//                        .alert(isPresented: $showingAlert) {
-//                            Alert(title: Text("Reset Successful"),
-//                                  message: Text("Please check your registered email for the new password"),
-//                                  dismissButton: .default(Text("OK")) {
-////                                presentationMode.wrappedValue.dismiss()
-//                                presenter.routeToOTP(mobileNo: "60\(phoneText)")
-//                            })
-//                        }
-
                     }
                     .padding(.horizontal)
 

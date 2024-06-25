@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  TimeFramePresenter.swift
 //
-//  Created by Wing Seng Chew on 07/05/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine

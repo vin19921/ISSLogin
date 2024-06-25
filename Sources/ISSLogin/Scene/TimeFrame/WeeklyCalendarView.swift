@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  WeeklyCalendarView.swift
 //
-//  Created by Wing Seng Chew on 30/05/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSTheme
@@ -69,7 +69,6 @@ struct WeeklyCalendarView: View {
                                 .clipShape(Circle())
                             }
                         }
-//                        .animation(.easeInOut(duration: 0.2), value: recurring)
                     }
                 }
             }
@@ -81,10 +80,8 @@ struct WeeklyCalendarView: View {
         isSelected[index].toggle()
         if isSelected(index: index) {
             selectedIndices.removeAll(where: { $0 == index })
-//            selectedIndices.removeAll { $0 == index }
         } else {
             selectedIndices.append(index)
-//            selectedIndices.sort()
         }
     }
 

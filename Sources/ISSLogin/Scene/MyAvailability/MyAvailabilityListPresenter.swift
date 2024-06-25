@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  MyAvailabilityListPresenter.swift
 //
-//  Created by Wing Seng Chew on 05/06/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -47,10 +47,8 @@ final class MyAvailabilityListPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-//                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
                         default:
-//                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
                         }
                     }

@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  RegisterConstants.swift
 //
-//  Created by Wing Seng Chew on 09/11/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Foundation

@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  LoginInteractor.swift
 //
-//  Created by Wing Seng Chew on 05/10/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -11,7 +11,6 @@ import ISSNetwork
 
 protocol LoginBusinessLogic {
     func fetchLogin(request: Login.Model.Request) -> AnyPublisher<Login.Model.Response, Error>
-//    func getUserInfo(key: UserInfoKey) -> String
     func saveUserInfo(loginDataModel: LoginDataModel)
 }
 
@@ -44,10 +43,6 @@ final class LoginInteractor: LoginBusinessLogic {
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()
     }
-
-//    func getUserInfo(key: UserInfoKey) -> String {
-//        provider.getUserInfo(key: key)
-//    }
 
     func saveUserInfo(loginDataModel: LoginDataModel) {
         provider.saveUserInfo(loginDataModel: loginDataModel)

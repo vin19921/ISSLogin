@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  AppleAuthService.swift
 //
-//  Created by Wing Seng Chew on 04/01/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Foundation

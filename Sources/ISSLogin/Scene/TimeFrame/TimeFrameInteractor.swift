@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  TimeFrameInteractor.swift
 //
-//  Created by Wing Seng Chew on 07/05/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -36,10 +36,7 @@ final class TimeFrameInteractor: TimeFrameBusinessLogic {
                         promise(.failure(error))
                     }
                 } receiveValue: { response in
-                    promise(.success(TimeFrame.Model.Response(
-//                        resultCode: response.resultCode,
-                                                              resultMessage: response.resultMessage,
-//                                                              status: response.status,
+                    promise(.success(TimeFrame.Model.Response(resultMessage: response.resultMessage,
                                                               data: response.data)))
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()
@@ -59,13 +56,7 @@ final class TimeFrameInteractor: TimeFrameBusinessLogic {
                         promise(.failure(error))
                     }
                 } receiveValue: { response in
-                    promise(.success(TimeFrame.Model.CreateResponse(
-//                        resultCode: response.resultCode,
-                                                              resultMessage: response.resultMessage
-//                                                              ,
-//                                                              status: response.status,
-//                                                              data: response.data
-                    )))
+                    promise(.success(TimeFrame.Model.CreateResponse(resultMessage: response.resultMessage)))
                 }.store(in: &self.cancellables)
         }.eraseToAnyPublisher()
     }

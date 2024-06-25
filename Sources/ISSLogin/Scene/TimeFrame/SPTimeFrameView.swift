@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  SPTimeFrameView.swift
 //
-//  Created by Wing Seng Chew on 07/05/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import ISSCommonUI
@@ -55,12 +55,6 @@ public struct SPTimeFrameView: View {
                         }
                     Spacer()
                 case let .success(viewModel):
-//                    VStack {
-//                        Text("Selected time: \(selectedDate, formatter: dateFormatter)")
-//
-//                        DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
-//                            .datePickerStyle(WheelDatePickerStyle())
-//                            .labelsHidden()
                     ScrollView {
                         VStack(spacing: 16) {
                             VStack(spacing: 4) {
@@ -94,13 +88,6 @@ public struct SPTimeFrameView: View {
                                     Spacer()
                                 }
                             }
-//                            HStack {
-//                                Text(presenter.getFormattedDisplayDate())
-//                                    .fontWithLineHeight(font: Theme.current.modalHeadline.uiFont,
-//                                                        lineHeight: Theme.current.modalHeadline.lineHeight,
-//                                                        verticalPadding: 0)
-//                                Spacer()
-//                            }
 
                             WeeklyCalendarView(selectedIndices: $selectedIndices,
                                                isSelected: $isButtonSelected,
@@ -198,7 +185,6 @@ public struct SPTimeFrameView: View {
                             HStack {
                                 Button(action: {
                                     print("cencel")
-//                                    action?()
                                 }) {
                                     Text("Cancel")
                                         .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
@@ -231,26 +217,12 @@ public struct SPTimeFrameView: View {
                                         .background(Color.black)
                                         .cornerRadius(30)
                                 }
-//                                .disabled(selectedTimeSlotIndex == -1)
                             }
                         }
                         .padding(.vertical)
                         .padding(.horizontal, 24)
                         .animation(.easeInOut(duration: 0.2), value: isRecurringToggled)
                     }
-//                    VStack {
-//                        DatePicker("From", selection: $startTime, displayedComponents: .hourAndMinute)
-//                            .padding()
-//                        
-//                        DatePicker("To", selection: $endTime, in: startTime..., displayedComponents: .hourAndMinute)
-//                            .padding()
-//                        
-//                        Text("Start Time: \(formattedTime(date: startTime))")
-//                        Text("End Time: \(formattedTime(date: endTime))")
-//                    }
-//                    }
-//                    .padding()
-//                    Spacer()
                 case let .failure(type):
                     Text("Error")
                     Spacer()
@@ -308,10 +280,7 @@ public struct SPTimeFrameView: View {
             }
         }
         print("\(combinedDateString)")
-//        isButtonSelected[0] = true
-//        presenter.selectedDate = dateStrings[0]
 
-        ///
         let formatter = ISO8601DateFormatter()
         // Insert .withFractionalSeconds to the current format.
         formatter.formatOptions.insert(.withFractionalSeconds)
@@ -493,6 +462,5 @@ struct CustomToggleStyle: ToggleStyle {
                     configuration.isOn.toggle()
                 }
         }
-//        .padding(.horizontal)
     }
 }

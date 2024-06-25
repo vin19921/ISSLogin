@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ChangePasswordModel.swift
 //
-//  Created by Wing Seng Chew on 07/11/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import UIKit

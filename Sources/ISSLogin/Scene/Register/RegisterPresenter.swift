@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  RegisterPresenter.swift
 //
-//  Created by Wing Seng Chew on 12/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -42,17 +42,6 @@ final class RegisterPresenter: ObservableObject {
         self.router = router
     }
 
-//    func proceedRegistration(request: RegisterModel.Request) {
-//        fetchRegister(request: request) { result in
-//            switch result {
-//            case let .success(response):
-//                self.handleRegistrationResponse(response: response)
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
-//    }
-
     func fetchRegister(request: Registration.Model.Request, completionHandler: (() -> Void)? = nil) {
         interactor.fetchRegister(request: request)
             .receive(on: DispatchQueue.main)
@@ -83,19 +72,8 @@ final class RegisterPresenter: ObservableObject {
     }
 
     private func handleRegistrationResponse(response: Registration.Model.Response) {
-//        let resultCode = response.resultCode
-//        let resultMessage = response.resultMessage
         let data = response.data
-        
-//        if resultCode > 0 {
-//            print("resultCode ::: \(resultCode), resultMessage ::: \(resultMessage)")
-//            showingAlert = true
-//            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
-//                                                                        registrationData: response.data))
-//        } else {
-//            print("Registration Successful ::: \(data)")
-//            routeToOTP(mobileNo: data.mobileNo) //temporary use email
-//        }
+
         if let code = response.resultCode,
            let message = response.resultMessage {
             print("resultCode ::: \(code), resultMessage ::: \(message)")
@@ -114,19 +92,6 @@ final class RegisterPresenter: ObservableObject {
         }
     }
 }
-
-//extension RegisterPresenter {
-//    enum State {
-//        case isLoading
-//        case failure(FailureType)
-//        case success(RegisterModel.Response)
-//    }
-//
-//    enum FailureType {
-//        case connectivity
-//        case internet
-//    }
-//}
 
 // MARK: - Routing
 

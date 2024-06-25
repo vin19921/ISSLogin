@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  TimeFrameModel.swift
 //
-//  Created by Wing Seng Chew on 07/05/2024.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import UIKit
@@ -17,9 +17,7 @@ public enum TimeFrame {
         }
 
         public struct Response {
-//            public var resultCode: Int16? = 1
             public var resultMessage: String?
-//            public var status: Int16?
             public var data: TimeFrameListDataModel? = nil
         }
 

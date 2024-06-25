@@ -1,14 +1,11 @@
 //
-//  File.swift
-//  
+//  LoginPresenter.swift
 //
-//  Created by Wing Seng Chew on 07/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
-//import GoogleSignIn
-//import Firebase
-//import FirebaseAuth
 import Foundation
 import ISSCommonUI
 
@@ -45,10 +42,8 @@ final class LoginPresenter: ObservableObject {
                     DispatchQueue.main.async {
                         switch error.localizedDescription {
                         case CommonServiceError.internetFailure.localizedDescription:
-//                            self.presenterState = .failure(.internet)
                             print("CommonServiceError ::: internet")
                         default:
-//                            self.presenterState = .failure(.connectivity)
                             print("CommonServiceError ::: connectivity")
                         }
                     }
@@ -64,8 +59,6 @@ final class LoginPresenter: ObservableObject {
     }
 
     private func handleLoginResponse(response: Login.Model.Response, completionHandler: (() -> Void)? = nil) {
-//        let resultCode = response.resultCode
-//        let resultMessage = response.resultMessage
         let status = response.status
         let data = response.data
 
@@ -80,17 +73,8 @@ final class LoginPresenter: ObservableObject {
                 guard let data = data else { return }
                 saveUserInfo(loginDataModel: data)
                 completionHandler?()
-//                routeToRoot()
             }
-//            self.presenterState = .success(Registration.Model.ViewModel(message: response.resultMessage,
-//                                                                        registrationData: response.data))
         }
-//        else {
-////            loginDataModel = data
-//            print("Login Successful ::: \(data)")
-//            //            routeToOTP(mobileNo: data.mobileNo)
-//            //        }
-//        }
     }
 }
 

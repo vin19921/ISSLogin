@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  ResetPasswordRouter.swift
 //
-//  Created by Wing Seng Chew on 26/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import UIKit

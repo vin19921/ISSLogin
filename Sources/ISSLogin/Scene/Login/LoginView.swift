@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  LoginView.swift
 //
-//  Created by Wing Seng Chew on 07/09/2023.
+//
+//  Copyright by iSoftStone 2024.
 //
 
 import Combine
@@ -14,8 +14,6 @@ import UIKit
 public struct LoginView: View {
 
     @ObservedObject private var presenter: LoginPresenter
-
-//    @State private var isLoading = false
 
     @State private var phoneText = ""
     @State private var passwordText = ""
@@ -42,8 +40,6 @@ public struct LoginView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         LoginImageAssets.jomBookLogo.image
-//                            .resizable()
-//                            .frame(width: 128, height: 128)
                             .aspectRatio(contentMode: .fit)
                             .padding(.top, 50)
                         Spacer()
@@ -82,11 +78,9 @@ public struct LoginView: View {
                         }
 
                         Button(action: {
-//                            isLoading.toggle()
                             presenter.fetchLogin(request: Login.Model.Request(mobileNo: "60\(phoneText)",
                                                                               password: passwordText),
                                                  completionHandler: {
-//                                                    isLoading.toggle()
                                                     self.presentationMode.wrappedValue.dismiss()
                                                  })
                         }) {
@@ -102,15 +96,12 @@ public struct LoginView: View {
                         .disabled(!validated())
 
                         FacebookLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $presenter.isLoading, action: { fullName, email in
-//                            presenter.isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
                         GoogleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $presenter.isLoading, action: { fullName, email in
-//                            isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
                         AppleLoginButtonView(isLoggedIn: $isLoggedIn, isLoading: $presenter.isLoading, action: { fullName, email in
-//                            isLoading.toggle()
                             presenter.routeToRegister(fullName: fullName, email: email)
                         })
                         
@@ -140,9 +131,6 @@ public struct LoginView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .loading(isLoading: $presenter.isLoading)
-//        .modifier(SwipeBackGesture {
-//            self.presentationMode.wrappedValue.dismiss()
-//        })
     }
 
     private func validated() -> Bool {
@@ -157,7 +145,6 @@ public struct LoginView: View {
         let leftAlignedItem = ToolBarItemDataBuilder()
             .setImage(Image(systemName: "chevron.backward"))
             .setCallback {
-//                self.presentationMode.wrappedValue.dismiss()
                 presenter.routeToRoot()
             }
             .build()

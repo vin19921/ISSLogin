@@ -12,6 +12,7 @@ import ISSNetwork
 protocol ProfileRootBusinessLogic {
     func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfile.Model.Response, Error>
     func getUserName() -> String
+    func getMobileNo() -> String
     func logOut()
     func isLoggedIn() -> Bool
     func hasRunBefore() -> Bool
@@ -50,6 +51,10 @@ final class ProfileRootInteractor: ProfileRootBusinessLogic {
 
     func getUserName() -> String {
         provider.getUserName()
+    }
+
+    func getMobileNo() -> String {
+        provider.getMobileNo()
     }
 
     func logOut() {

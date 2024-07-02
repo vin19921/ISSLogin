@@ -58,7 +58,7 @@ public struct ProfileRootView: View {
                                         }
                                         Spacer()
                                         HStack {
-                                            Text("0129665980")
+                                            Text(presenter.getMobileNo())
                                                 .fontWithLineHeight(font: Theme.current.bodyTwoMedium.uiFont,
                                                                     lineHeight: Theme.current.bodyTwoMedium.lineHeight,
                                                                     verticalPadding: 0)

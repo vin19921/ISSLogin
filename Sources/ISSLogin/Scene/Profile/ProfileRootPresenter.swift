@@ -103,6 +103,10 @@ extension ProfileRootPresenter {
         interactor.getUserName()
     }
 
+    func getMobileNo() -> String {
+        interactor.getMobileNo()
+    }
+
     func hasRunBefore() -> Bool {
         interactor.hasRunBefore()
     }

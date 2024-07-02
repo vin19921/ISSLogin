@@ -12,6 +12,7 @@ import Combine
 public protocol ProfileRootDataProviderLogic {
     func fetchViewProfile(request: ViewProfile.Model.FetchRequest) -> AnyPublisher<ViewProfileResponse, Error>
     func getUserName() -> String
+    func getMobileNo() -> String
     func logOut()
     func isLoggedIn() -> Bool
     func hasRunBefore() -> Bool
